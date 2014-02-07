@@ -65,30 +65,30 @@
   </dependencies>
 
   <repositories>
-      <repository>
-          <id>prime-repo</id>
-          <name>Prime Repo</name>
-          <url>http://repository.primefaces.org</url>
-      </repository>
+    <repository>
+      <id>prime-repo</id>
+      <name>Prime Repo</name>
+      <url>http://repository.primefaces.org</url>
+    </repository>
   </repositories>
 
   <properties>
-      <springframework.version>3.0.5.RELEASE</springframework.version>
-      <primafaces.version>3.3.1</primafaces.version>
+    <springframework.version>3.0.5.RELEASE</springframework.version>
+    <primafaces.version>3.3.1</primafaces.version>
   </properties>
 
   <build>
     <finalName>numbrcrunchr</finalName>
     <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>1.6</source>
-                <target>1.6</target>
-                <showWarnings>true</showWarnings>
-            </configuration>
-        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <showWarnings>true</showWarnings>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
