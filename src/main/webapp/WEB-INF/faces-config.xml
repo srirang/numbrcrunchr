@@ -7,13 +7,28 @@
 
   <application>
     <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    <message-bundle>ValidationMessages</message-bundle>
+    <message-bundle>custom-validation-messages</message-bundle>
+
     <locale-config>
       <default-locale>en</default-locale>
     </locale-config>
-
     <resource-bundle>
       <base-name>messages</base-name>
       <var>msg</var>
     </resource-bundle>
   </application>
+
+  <validator>
+    <validator-id>au.com.numbrcrunchr.web.EmailValidator</validator-id>
+    <validator-class>au.com.numbrcrunchr.web.EmailValidator</validator-class>
+  </validator>
+  <converter>
+    <converter-id>au.com.numbrcrunchr.web.CurrencyConverter</converter-id>
+    <converter-class>au.com.numbrcrunchr.web.CurrencyConverter</converter-class>
+  </converter>
+  <converter>
+    <converter-id>au.com.numbrcrunchr.web.PercentageConverter</converter-id>
+    <converter-class>au.com.numbrcrunchr.web.PercentageConverter</converter-class>
+  </converter>
 </faces-config>

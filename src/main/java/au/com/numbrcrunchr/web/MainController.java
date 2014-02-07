@@ -584,7 +584,7 @@ public class MainController implements Serializable {
 	private static FeasibilityAnalysisProjectionService feasibilityAnalysisProjectionService;
 
 	@ManagedProperty(value = "#{versionDetails}")
-	private static VersionDetails versionDetails;
+	private VersionDetails versionDetails;
 
 	public void setLoanBalanceCalculator(
 			LoanBalanceCalculator loanBalanceCalculator) {
@@ -770,11 +770,11 @@ public class MainController implements Serializable {
 	}
 
 	public void setVersionDetails(VersionDetails versionDetails) {
-		MainController.versionDetails = versionDetails;
+		this.versionDetails = versionDetails;
 	}
 
 	public String getVersionNumber() {
-		return MainController.versionDetails.getVersionNumber();
+		return versionDetails.getVersionNumber();
 	}
 
 	public boolean getHasErrors() {
