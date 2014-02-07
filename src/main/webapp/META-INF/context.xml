@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="">
+	<Resource name="mail/Session" auth="Container" type="javax.mail.Session"
+		mail.smtp.host="mail.metawerx.net" />
+</Context>

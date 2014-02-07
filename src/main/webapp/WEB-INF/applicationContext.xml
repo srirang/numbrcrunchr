@@ -3,4 +3,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+  <import resource="classpath:/domainApplicationContext.xml" />
+
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <!--<property name="session" ref="mailSession" /> -->
+    <property name="host" value="mail.metawerx.net" />
+  </bean>
 </beans>
