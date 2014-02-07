@@ -19,47 +19,47 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="stampDutyCalculator" class="com.pincpal.domain.StampDutyCalculator">
+	<bean id="stampDutyCalculator" class="au.com.numbrcrunchr.domain.StampDutyCalculator">
 		<property name="stampDutyRepository" ref="stampDutyRepository" />
 	</bean>
 
-	<bean id="stampDutyRepository" class="com.pincpal.domain.StampDutyRepositoryJpaImpl">
+	<bean id="stampDutyRepository" class="au.com.numbrcrunchr.domain.StampDutyRepositoryJpaImpl">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="taxCalculator" class="com.pincpal.domain.TaxCalculator">
+	<bean id="taxCalculator" class="au.com.numbrcrunchr.domain.TaxCalculator">
 		<property name="taxRateRepository" ref="taxRateRepository" />
 	</bean>
 
-	<bean id="taxRateRepository" class="com.pincpal.domain.TaxRateRepositoryJpaImpl">
+	<bean id="taxRateRepository" class="au.com.numbrcrunchr.domain.TaxRateRepositoryJpaImpl">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="feasibilityAnalyser" class="com.pincpal.domain.FeasibilityAnalyser">
+	<bean id="feasibilityAnalyser" class="au.com.numbrcrunchr.domain.FeasibilityAnalyser">
 		<property name="taxCalculator" ref="taxCalculator" />
 		<property name="interestCalculator" ref="interestCalculator" />
 		<property name="rentalIncomeCalculator" ref="rentalIncomeCalculator" />
 	</bean>
 
-	<bean id="loanBalanceCalculator" class="com.pincpal.domain.LoanBalanceCalculator" />
+	<bean id="loanBalanceCalculator" class="au.com.numbrcrunchr.domain.LoanBalanceCalculator" />
 
-	<bean id="interestCalculator" class="com.pincpal.domain.InterestOnlyLoanRepaymentCalculator" />
+	<bean id="interestCalculator" class="au.com.numbrcrunchr.domain.InterestOnlyLoanRepaymentCalculator" />
 
-	<bean id="rentalIncomeCalculator" class="com.pincpal.domain.RentalIncomeCalculator" />
+	<bean id="rentalIncomeCalculator" class="au.com.numbrcrunchr.domain.RentalIncomeCalculator" />
 
-	<bean id="ongoingCosts" class="com.pincpal.domain.OngoingCosts" />
+	<bean id="ongoingCosts" class="au.com.numbrcrunchr.domain.OngoingCosts" />
 
-	<bean id="propertyRepository" class="com.pincpal.domain.PropertyRepositoryJpaImpl">
+	<bean id="propertyRepository" class="au.com.numbrcrunchr.domain.PropertyRepositoryJpaImpl">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
 	<bean id="feasibilityAnalysisProjectionService"
-		class="com.pincpal.domain.FeasibilityAnalysisProjectionService">
+		class="au.com.numbrcrunchr.domain.FeasibilityAnalysisProjectionService">
 		<property name="feasibilityAnalyser" ref="feasibilityAnalyser" />
 		<property name="loanAmortisationScheduleCalculator" ref="loanAmortisationScheduleCalculator" />
 	</bean>
 
-	<bean id="projectionParameters" class="com.pincpal.domain.ProjectionParameters">
+	<bean id="projectionParameters" class="au.com.numbrcrunchr.domain.ProjectionParameters">
 		<property name="cpi" value="3" />
 		<property name="salaryIncreaseRate" value="3.5" />
 		<property name="rentIncreaseRate" value="4" />
@@ -67,14 +67,14 @@
 		<property name="propertyManagementFeeRate" value="5" />
 	</bean>
 
-	<bean id="dbInitialiser" class="com.pincpal.DbInitialiser" destroy-method="shutdownDatabase" lazy-init="false">
+	<bean id="dbInitialiser" class="au.com.numbrcrunchr.DbInitialiser" destroy-method="shutdownDatabase" lazy-init="false">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 		<property name="sqlFilepath" value="schema/insert.sql" />
 		<property name="stampDutyRepository" ref="stampDutyRepository" />
 		<property name="taxRateRepository" ref="taxRateRepository" />
 	</bean>
 
-	<bean id="mainController" class="com.pincpal.web.MainController">
+	<bean id="mainController" class="au.com.numbrcrunchr.web.MainController">
 		<property name="feasibilityAnalysisProjectionService" ref="feasibilityAnalysisProjectionService" />
 		<property name="loanBalanceCalculator" ref="loanBalanceCalculator" />
 		<property name="stampDutyCalculator" ref="stampDutyCalculator" />
@@ -82,11 +82,11 @@
 		<property name="versionDetails" ref="versionDetails" />
 	</bean>
 
-	<bean id="loanAmortisationScheduleCalculator" class="com.pincpal.domain.LoanAmortisationScheduleCalculator">
+	<bean id="loanAmortisationScheduleCalculator" class="au.com.numbrcrunchr.domain.LoanAmortisationScheduleCalculator">
 		<property name="interestCalculator" ref="interestCalculator" />
 	</bean>
 
-	<bean id="versionDetails" class="com.pincpal.web.VersionDetails">
+	<bean id="versionDetails" class="au.com.numbrcrunchr.web.VersionDetails">
 		<property name="versionNumber" value="1.0" />
 	</bean>
 </beans>

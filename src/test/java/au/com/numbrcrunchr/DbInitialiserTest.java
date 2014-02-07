@@ -20,7 +20,6 @@ import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import au.com.numbrcrunchr.DbInitialiser;
 import au.com.numbrcrunchr.domain.DataException;
 import au.com.numbrcrunchr.domain.StampDutyRate;
 import au.com.numbrcrunchr.domain.StampDutyRepository;

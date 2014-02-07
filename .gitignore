@@ -7,3 +7,10 @@
 
 # Maven #
 target/
+
+# HSQL #
+*.lck
+*.log
+*.script
+pincpal.properties
+*.tmp
