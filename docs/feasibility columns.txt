@@ -1,0 +1,23 @@
+Expenses:
+Interest
+Council Rates
+Water Rates
+Insurance
+Body Corporate/Strata
+Rental Fee
+
+Income:
+Rent
+Other Income
+
+Holding Cost
+
+Annual Income
+Tax before IP
+
+Tax Credits
+Tax After IP
+
+You Pay
+ATO Pays
+Tenant Pays

@@ -1,0 +1,4 @@
+Example URL:
+http://www.realestate.com.au/rent/with-3-bedrooms-in-76+ferntree+gully+rd,+oakleigh+east,+vic+3166/list-1?source=location-search&numBaths=2
+
+http://reaxml.realestate.com.au/

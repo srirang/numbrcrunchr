@@ -1,0 +1,136 @@
+http://www.hughchou.org/calc/formula.html
+
+
+How to Calculate Loan Amortization Schedules/Tables by Hand
+
+I have gotten numerous requests from individuals wondering what the simple formula is for calculating the monthly payment and also the amortization table. Instead of just showing some boring source code, I thought I would try to explain it.
+
+Spreadsheet (Excel, Lotus, Quattro) users should look here
+
+NEW! Want to see how this is derived? Find a full derivation here! (Thanks goes to "Hans" Gurdip Singh.)
+
+NOTE: This first part is for United States mortgages. Look here for the Canadian formula.
+
+First you must define some variables to make it easier to set up:
+
+P = principal, the initial amount of the loan
+I = the annual interest rate (from 1 to 100 percent)
+L = length, the length (in years) of the loan, or at least the length over which the loan is amortized.
+The following assumes a typical conventional loan where the interest is compounded monthly. First I will define two more variables to make the calculations easier:
+
+J = monthly interest in decimal form = I / (12 x 100)
+N = number of months over which loan is amortized = L x 12
+Okay now for the big monthly payment (M) formula, it is:
+
+                              J
+         M  =  P  x ------------------------
+                 
+                      1  - ( 1 + J ) ^ -N
+
+   where 1 is the number one (it does not appear too clearly on some browsers)
+So to calculate it, you would first calculate 1 + J then take that to the -N (minus N) power, subtract that from the number 1. Now take the inverse of that (if you have a 1/X button on your calculator push that). Then multiply the result times J and then times P. Sorry, for the long way of explaining it, but I just wanted to be clear for everybody.
+
+The one-liner for a program would be (adjust for your favorite language):
+
+         M = P * ( J / (1 - (1 + J) ** -N))
+So now you should be able to calculate the monthly payment, M. To calculate the amortization table you need to do some iteration (i.e. a simple loop). I will tell you the simple steps :
+
+Step 1: Calculate H = P x J, this is your current monthly interest 
+Step 2: Calculate C = M - H, this is your monthly payment minus your monthly interest, so it is the amount of principal you pay for that month 
+Step 3: Calculate Q = P - C, this is the new balance of your principal of your loan. 
+Step 4: Set P equal to Q and go back to Step 1: You thusly loop around until the value Q (and hence P) 
+goes to zero.
+
+Programmers will see how this makes a trivial little loop to code, but I have found that many people now surfing on the Internet are NOT programmers and still want to calculate their mortgages! So this page was dedicated more to the latter. If you have any further questions you can contact me for more info.
+
+Finding the Number of Periods given a Payment, Interest and Loan Amount
+
+This formula previously was not explicit enough!! The 1/q factor in there was to convert the number of periods into years. For number of payments this must actually be left out.
+Many people have asked me how to find N (number of payments) given the payment, interest and loan amount. I didn't know the answer and in my calculators I find it by doing a binary search over the payment formula above. However, Gary R. Walo ( nenonen5@southeast.net) found the answer to the actual formula in the book: The Vest Pocket Real Estate Advisor by Martin Miles (Prentice Hall). Here is the corrected formula:
+n = - (LN(1-(B/m)*(r/q)))/LN(1+(r/q))
+# years = - 1/q * (LN(1-(B/m)*(r/q)))/LN(1+(r/q))
+
+Where:
+
+q = amount of annual payment periods
+r = interest rate
+B = principal
+m = payment amount
+n = amount payment periods
+LN = natural logarithm
+For Finding Remaining Principal Balance
+
+The following formula will calculate your remaining balance if you have made t of N fixed payments in a timely basis (i.e. by the due date) so that no additional interest has accrued.
+
+P = P * (1 - ((1 + J) ** t - 1) / ((1 + J) ** N - 1))
+
+where:
+P = principal, the initial amount of the loan
+I = the annual interest rate (from 1 to 100 percent)
+L = length, the length (in years) of the loan, or at least the length over which the loan is amortized.
+J = monthly interest in decimal form = I / (12 x 100)
+N = number of months over which loan is amortized = L x 12
+t=number of paid monthly loan payments
+This is from Mortgage Backed Securities by William W Barlett and was sent to me by Victor Kheyfets. 
+
+If you would like to calculate an outstanding loan balance but have not made regular fixed payments by the due date, you will have to fill out an accurate payment schedule within a spreadsheet, or similar application where you can account for missing and different payments.
+Finding the Interest Rate Given Loan Amount, Payment and Number of Periods
+
+Many folks have asked me for a simple formula to calculate the interest rate give the other three terms (loan amount, payment and # of periods). I can calculate the number easily enough, but I have no idea if there is a simple formula to do it or not. I do it the good old fashioned way -- plug and chug! Luckily, a computer program makes "plug and chug" trivial and speedy with a simple binary search:
+   min_rate = 0; max_rate = 100; # Set Maximum and minimum rate
+   while (min_rate < max_rate - 0.0001)
+   {
+      mid_rate = (min_rate + max_rate) / 2; # Divide by 2 to find midpoint
+      J = mid_rate / 1200; # Convert to monthly decimal percentage
+      # calculate payment based on this interest, term of F and loan_amt
+      guessed_pmt = loan_amt *   ( J / (1 - (1 + J) ** -N ));
+      if (guessed_pmt > actual_payment)
+        { 
+           max_rate = mid_rate; # current rate is new maximum 
+        }
+      else
+        {
+           min_rate = mid_rate; # current rate is new minimum
+        }
+   }
+   print " The Rate is ", mid_rate;
+On any modern computer this runs pretty much instantaneously.
+Canadian Formula
+
+This was contributed to me by: Mike Morley (morleym@interlog.com)
+
+Canadian mortgages are compounded semi-annually instead of monthly like
+US
+mortgages.
+ 
+          Monthly Pmt =
+(P*(((1+i/200)^(1/6)-1))/(1-(((1+i/200)^(1/6)))^-(n*12)))
+ 
+          Where:
+ 
+                        P = principal outstanding
+                        i = annual interest rate percentage
+                        n = number of years
+
+Here is a easier to read representation:
+
+                           i    1/6
+                   ( 1 +  --- )       -   1
+                          200
+Pmt = Principal x  ------------------------
+                                i   1/6    -12 x n
+                   1 -  [ (1 + --- )     ] 
+                               200
+
+Or to convert canadian interest rates to US interest rates:
+
+                           Can. Rate  1/6
+US Rate =  1200 x [ ( 1 +  --------- )     - 1 ]
+                              200
+
+or as a formula, US Rate = 1200 * ((1 + Can.Rate/200)^(1/6) - 1)
+You'll note if you plug this into the US formula you get the above formula for payment.
+
+Back to Mortgage Calculator Home Page
+
+ to help me keep my site free indefinitely!

@@ -1,0 +1,81 @@
+Victoria - http://www.sro.vic.gov.au/sro/SROnav.nsf/alltitle/Tax%20%26%20Duty%20Rates-Duties-Transfer%20of%20Property-Non%20PPR%20Dutiable%20Property?open
+
+Tax rate information according to the Duties Act 2000 For Contracts Entered Into On Or After 6 May 2008
+
+For the purchase of any other property (i.e. not your Principal place of residence) for contracts entered into on or after 6 May 2008.
+Dutiable Value Range	Rate
+$0 - $25,000	1.4 per cent of the dutiable value of the property
+> $25,000 - $130,000	$350 plus 2.4 per cent of the dutiable value in excess of $25,000
+> $130,000 - $960,000	$2,870 plus 6 per cent of the dutiable value in excess of $130,000
+More than $960,000	5.5 per cent of the dutiable value
+
+
+New South Wales - http://www.osr.nsw.gov.au/lib/doc/factsheets/ofs_dut01.pdf
+ < $14,000
+1.25% of dutiable value
+$14,001 - $30,000	$175 + 1.5% of dutiable value
+$30,001 - $80,000	$415 + 1.75% of dutiable value
+$80,001 - $300,000	$1,290 + 3.5% of dutiable value
+$300,001 - $1 million	$8,990 + 4.5% of dutiable value
+ > $1 million	$40,490 + 5.5% of dutiable value
+
+Queensland - http://www.osr.qld.gov.au/duties/about-duties/rates-of-duty.shtml?tab=tab4
+ Dutiable value	 Duty rate
+Up to $5,000	 Nil
+$5,000 to $75,000 	$1.50 for each $100, or part of $100, by which the dutiable value is more than $5,000
+$75,000 to $540,000	$1,050 plus $3.50 for each $100, or part of $100, by which the dutiable value is more than $75,000
+$540,000 to $980,000 	$17,325 plus $4.50 for each $100, or part of $100, by which the dutiable value is more than $540,000
+More than $980,000 	$37,125 plus $5.25 for each $100, or part of $100, by which the dutiable value is more than $980,000
+
+South Australia - http://www.revenuesa.sa.gov.au/stamps/ratechart050902.pdf
+Where value of the property conveyed	Amount of Duty
+Does not exceed $12,000	$1.00 for every $100 or part of $100
+Exceeds $12,000 but not $30,000	$120 plus $2.00 for every $100 or part of $100 over $12,000
+Exceeds $30,000 but not $50,000	$480 plus $3.00 for every $100 or part of $100 over $30,000
+Exceeds $50,000 but not $100,000	$1,080 plus $3.50 for every $100 or part of $100 over $50,000
+Exceeds $100,000 but not $200,000	$2,830 plus $4.00 for every $100 or part of $100 over $100,000
+Exceeds $200,000 but not $250,000	$6,830 plus $4.25 for every $100 or part of $100 over $200,000
+Exceeds $250,000 but not $300,000	$8,955 plus $4.75 for every $100 or part of $100 over $250,000
+Exceeds $300,000 but not $500,000	$11,330 plus $5.00 for every $100 or part of $100 over $300,000
+Exceeds $500,000	$21,330 plus $5.50 for every $100 or part of $100 over $500,000
+
+Western Australia - http://www.dtf.wa.gov.au/cms/content.aspx?id=2071
+ < $120,000 1.9% of dutiable value
+$120,001 - $150,000	$2280 + 2.85% of dutiable value
+$150,001 - $360,000	$3135 + 3.8% of dutiable value
+$360,001 - $725,000	$11115 + 4.75% of dutiable value
+ > $725,000 $28453 + 5.15% of dutiable value
+
+Tasmania - http://www.sro.tas.gov.au/domino/dtf/SROWebsite.nsf/v-all/380146A04610A996CA25758B000686E0?OpenDocument&menuitem=Property%20Buyers
+ < $1,300 $20
+$1,301 - $10,000	1.5% of dutiable value
+$10,001 - $30,000	$150 + 2% of dutiable value
+$30,001 - $75,000	$550 + 2.5% of dutiable value
+$75,001 - $150,000	$1675 + 3% of dutiable value
+$150,001 - $225,000	$3925 + 3.5% of dutiable value
+ > $225,001 $6,550 + 4% of dutiable value
+
+Australian Capital Territory
+ < $100,000 2% of dutiable value over
+$100,001 - $200,000	$2000 + 3.5% of dutiable value
+$200,001 - $300,000	$5500 + 4% of dutiable value
+$300,001 - $500,000	$9500 + 5.5% of dutiable value
+$500,001 - $1,000,000	$20,500 + 5.75% of dutiable value
+ > $1 million $49,250 + 6.75% of dutiable value
+
+Northern Territory
+For property values up to $525,000 the following formula is used:
+Duty payable = (0.065 x V^2) + 15V where V = (dutiable value) / 1000.
+Over $525,000, stamp duty is charged at a rate of 4.95% of the dutiable value.
+
+Examples
+On a property purchase with a dutiable value of $300,000, stamp duty will add to the overall costs:
+$8,975 (Queensland)
+$8,990 (NSW)
+$9500 (ACT)
+$9,550 (Tasmania)
+$12,150 or $9650 if the property is the principal place of residence (NT)
+$10,700 (WA)
+$11,330 (SA)
+$13,660 (Victoria).
+For a more expensive purchase, around $500,000 dutiable value, stamp duty will be between $15,975 (Queensland) and $25 660 (Victoria).
