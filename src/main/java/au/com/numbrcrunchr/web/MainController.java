@@ -817,8 +817,8 @@ public class MainController implements Serializable {
 		}
 		return projection.getProjections().subList(
 				0,
-				projection.getProjections().size() < 5 ? projection
-						.getProjections().size() : 5);
+				projection.getProjections().size() < 25 ? projection
+						.getProjections().size() : 25);
 	}
 
 	public void changeFrequency(ValueChangeEvent e) {

@@ -1,17 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:t="http://myfaces.apache.org/tomahawk">
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<h:outputStylesheet library="css" name="pincpal.css" target="body" />
 	<h:outputScript name="jsf.js" library="javax.faces" target="head" />
 	<h:outputScript library="javascript" name="googleanalytics/tracking.js" target="head" rendered="#{applicationController.production}"/>
+<!-- 
 	<h:outputScript library="javascript" name="highcharts/jquery/jquery.min-1.6.1.js" target="head" />
 	<h:outputScript library="javascript" name="highcharts/highcharts.js" target="head" />
 	<h:outputScript library="javascript" name="highcharts/modules/exporting.js" target="head" />
-	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/images/favicon.ico"/>
+ -->
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" />
+
+ 	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/images/favicon.ico"/>
 	<title>Number Cruncher, helps you assess return on your property investment</title>
 	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
 	<meta name="author" content="Srinivasan Ranganathan" />
@@ -21,7 +28,7 @@
 	<meta name="googlebot" content="noarchive" />
 	<f:loadBundle basename="custom-validation-messages" var="msg" />
 
-	<h:outputScript library="javascript" target="head">
+	<script library="javascript" target="head">
 var cashflowChart;
 $(document).ready(
 		function() {
@@ -149,7 +156,7 @@ $(document).ready(
 						} ]
 			});
 		});
-	</h:outputScript>
+	</script>
 </h:head>
 <body>
 	
@@ -307,6 +314,8 @@ $(document).ready(
 								<h:outputText value="#{row.nettYield}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
 							</h:column>
 						</h:dataTable>
+					 	<script src="http://code.highcharts.com/highcharts.js" />
+					 	<script src="http://code.highcharts.com/modules/exporting.js" />
 						<div id="cashflowChart" />
 						<div id="yieldChart" />
  						<h:commandButton actionListener="#{mainController.downloadCsv}" value="Download Data" class="simple-button" />
