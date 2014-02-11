@@ -295,17 +295,49 @@ $(document).ready(
           <hr class="dashes" />
           <h:panelGroup rendered="#{mainController.showResults}">
             <h:commandButton actionListener="#{mainController.downloadCsv}" value="Download Data" class="simple-button" />
+            <script src="http://code.highcharts.com/highcharts.js" />
+            <script src="http://code.highcharts.com/modules/exporting.js" />
+            <div id="cashflowChart" />
+            <div id="yieldChart" />
             <h:dataTable id="returnSummary" value="#{mainController.results}" var="row">
               <h:column>
                 <f:facet name="header"><h:outputText value="Year" /></f:facet>
                 <h:outputText value="#{row.year}" />
               </h:column>
               <h:column>
-                <f:facet name="header"><h:outputText value="Gross Cashflow" /></f:facet>
+                <f:facet name="header"><h:outputText value="Tenant Pays" /></f:facet>
+                <h:outputText value="#{row.rentalIncome}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="You Pay" /></f:facet>
+                <h:outputText value="#{row.youPay}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="ATO Pays" /></f:facet>
+                <h:outputText value="#{row.taxSavings}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Total Income" /></f:facet>
+                <h:outputText value="#{row.totalIncome}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Interest" /></f:facet>
+                <h:outputText value="#{row.interest}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Ongoing Expenses" /></f:facet>
+                <h:outputText value="#{row.ongoingExpenses}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Total Expense" /></f:facet>
+                <h:outputText value="#{row.totalExpense}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Cashflow Before Tax" /></f:facet>
                 <h:outputText value="#{row.grossCashflow}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:column>
               <h:column>
-                <f:facet name="header"><h:outputText value="Nett Cashflow" /></f:facet>
+                <f:facet name="header"><h:outputText value="Cashflow After Tax" /></f:facet>
                 <h:outputText value="#{row.nettCashflow}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:column>
               <h:column>
@@ -317,10 +349,6 @@ $(document).ready(
                 <h:outputText value="#{row.nettYield}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
               </h:column>
             </h:dataTable>
-            <script src="http://code.highcharts.com/highcharts.js" />
-            <script src="http://code.highcharts.com/modules/exporting.js" />
-            <div id="cashflowChart" />
-            <div id="yieldChart" />
             <h:commandButton actionListener="#{mainController.downloadCsv}" value="Download Data" class="simple-button" />
           <h4>Investment Summary :-</h4>
           <h:panelGrid columns="2" id="investmentSummary" width="100%">

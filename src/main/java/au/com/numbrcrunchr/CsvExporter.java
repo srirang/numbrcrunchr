@@ -9,7 +9,7 @@ public class CsvExporter {
 			List<FeasibilityAnalysisResult> feasibilityAnalysisResults) {
 		String eol = System.getProperty("line.separator");
 		StringBuffer buffer = new StringBuffer(
-				"Year, Tenant Pays, You Pay, ATO Pays, Total Income, Total Expense, Interest, Ongoing Expenses, Costs Before Tax, Gross Yield (%), Nett Yield (%)")
+				"Year, Tenant Pays, You Pay, ATO Pays, Total Income, Interest, Ongoing Expenses, Total Expense, Cashflow Before Tax, Cashflow After Tax, Gross Yield (%), Nett Yield (%)")
 				.append(eol);
 		for (FeasibilityAnalysisResult feasibilityAnalysisResult : feasibilityAnalysisResults) {
 			buffer.append(feasibilityAnalysisResult.getYear());
@@ -26,16 +26,19 @@ public class CsvExporter {
 					.getTotalIncome()));
 			buffer.append(",");
 			buffer.append(String.valueOf(feasibilityAnalysisResult
-					.getTotalExpense()));
-			buffer.append(",");
-			buffer.append(String.valueOf(feasibilityAnalysisResult
 					.getInterest()));
 			buffer.append(",");
 			buffer.append(String.valueOf(feasibilityAnalysisResult
 					.getOngoingExpenses()));
 			buffer.append(",");
 			buffer.append(String.valueOf(feasibilityAnalysisResult
+					.getTotalExpense()));
+			buffer.append(",");
+			buffer.append(String.valueOf(feasibilityAnalysisResult
 					.getGrossCashflow()));
+			buffer.append(",");
+			buffer.append(String.valueOf(feasibilityAnalysisResult
+					.getNettCashflow()));
 			buffer.append(",");
 			buffer.append(PercentageConverter.PERCENTAGE_FORAMT
 					.format(feasibilityAnalysisResult.getGrossYield()));

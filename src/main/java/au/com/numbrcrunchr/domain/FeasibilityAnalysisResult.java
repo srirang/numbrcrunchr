@@ -23,10 +23,10 @@ public class FeasibilityAnalysisResult implements Serializable {
 	static {
 		FREQUENCY_FACTORS = new HashMap<String, Double>();
 		FREQUENCY_FACTORS.put(YEARLY, 1.0);
-		FREQUENCY_FACTORS.put(QUARTERLY, 1.0/4.0);
-		FREQUENCY_FACTORS.put(MONTHLY, 1.0/12.0);
-		FREQUENCY_FACTORS.put(FORTNIGHTLY, 1.0/26.0);
-		FREQUENCY_FACTORS.put(WEEKLY, 1.0/52.0);
+		FREQUENCY_FACTORS.put(QUARTERLY, 1.0 / 4.0);
+		FREQUENCY_FACTORS.put(MONTHLY, 1.0 / 12.0);
+		FREQUENCY_FACTORS.put(FORTNIGHTLY, 1.0 / 26.0);
+		FREQUENCY_FACTORS.put(WEEKLY, 1.0 / 52.0);
 	}
 	private final Property property;
 	private final Long interest;
