@@ -814,4 +814,7 @@ public class MainController implements Serializable {
         }
     }
 
+    protected FeasibilityAnalysisProjectionService getFeasibilityAnalysisProjectionService() {
+		return feasibilityAnalysisProjectionService;
+	}
 }
