@@ -71,11 +71,10 @@ public class MainController implements Serializable {
 	public static final List<SelectItem> FREQUENCIES;
 	static {
 		FREQUENCIES = new ArrayList<SelectItem>(
-				FeasibilityAnalysisResult.FREQUENCY_FACTORS.size());
-		for (String frequency : FeasibilityAnalysisResult.FREQUENCY_FACTORS
-				.keySet()) {
-			FREQUENCIES.add(new SelectItem(frequency, frequency));
-		}
+			FeasibilityAnalysisResult.FREQUENCY_FACTORS.size());
+			for (String frequency : FeasibilityAnalysisResult.FREQUENCY_FACTORS.keySet()) {
+				FREQUENCIES.add(new SelectItem(frequency, frequency));
+			}
 	}
 
 	public String performFeasibilityAnalysis() {

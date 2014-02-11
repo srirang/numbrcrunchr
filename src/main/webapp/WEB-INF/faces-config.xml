@@ -10,14 +10,16 @@
     <message-bundle>ValidationMessages</message-bundle>
     <message-bundle>custom-validation-messages</message-bundle>
 
-    <locale-config>
+<!--
+     <locale-config>
       <default-locale>en</default-locale>
     </locale-config>
     <resource-bundle>
       <base-name>messages</base-name>
       <var>msg</var>
     </resource-bundle>
-  </application>
+ -->
+   </application>
 
   <validator>
     <validator-id>au.com.numbrcrunchr.web.EmailValidator</validator-id>

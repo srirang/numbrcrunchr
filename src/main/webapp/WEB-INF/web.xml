@@ -48,4 +48,7 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.faces</url-pattern>
   </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>main.xhtml</welcome-file>
+  </welcome-file-list>
 </web-app>
