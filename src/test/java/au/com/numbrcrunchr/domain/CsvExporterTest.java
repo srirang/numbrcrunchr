@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import au.com.numbrcrunchr.CsvExporter;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class CsvExporterTest {
@@ -47,6 +46,6 @@ public class CsvExporterTest {
 				.getProjections();
 		assertNotNull(projections);
 		assertEquals(26, projections.size());
-		System.out.println(new CsvExporter().exportToCsvString(projections));
+		System.out.println(CsvExporter.exportToCsvString(projections));
 	}
 }

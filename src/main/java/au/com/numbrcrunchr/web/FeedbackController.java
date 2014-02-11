@@ -15,7 +15,7 @@ public class FeedbackController {
 
 	public void sendFeedback(ActionEvent event) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
-		mailMessage.setSubject("PincPal feedback from " + name);
+		mailMessage.setSubject("NumbrCrunchr feedback from " + name);
 		mailMessage.setText(feedbackComment);
 		mailMessage.setFrom(email);
 		mailMessage.setTo("yourpropertyevaluator@gmail.com");

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
 
+import au.com.numbrcrunchr.CsvExporter;
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisProjectionService;
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
 import au.com.numbrcrunchr.domain.FinancialYearUtils;
@@ -71,10 +72,11 @@ public class MainController implements Serializable {
 	public static final List<SelectItem> FREQUENCIES;
 	static {
 		FREQUENCIES = new ArrayList<SelectItem>(
-			FeasibilityAnalysisResult.FREQUENCY_FACTORS.size());
-			for (String frequency : FeasibilityAnalysisResult.FREQUENCY_FACTORS.keySet()) {
-				FREQUENCIES.add(new SelectItem(frequency, frequency));
-			}
+				FeasibilityAnalysisResult.FREQUENCY_FACTORS.size());
+		for (String frequency : FeasibilityAnalysisResult.FREQUENCY_FACTORS
+				.keySet()) {
+			FREQUENCIES.add(new SelectItem(frequency, frequency));
+		}
 	}
 
 	public String performFeasibilityAnalysis() {
@@ -127,10 +129,10 @@ public class MainController implements Serializable {
 		response.reset();
 		response.setContentType("text/csv");
 		response.setHeader("Content-disposition",
-				"attachment; filename=\"pinc-data-download.csv\"");
+				"attachment; filename=\"numbrcrunchr-data-download.csv\"");
 		try {
-			response.getOutputStream().write(
-					new CsvExporter().exportToCsvString(projectionResults)
+			response.getOutputStream()
+					.write(CsvExporter.exportToCsvString(projectionResults)
 							.getBytes());
 		} catch (IOException e) {
 			System.out.println(e);

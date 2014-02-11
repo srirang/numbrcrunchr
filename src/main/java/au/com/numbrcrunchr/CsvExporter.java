@@ -5,7 +5,7 @@ import java.util.List;
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
 
 public class CsvExporter {
-	public String exportToCsvString(
+	public static String exportToCsvString(
 			List<FeasibilityAnalysisResult> feasibilityAnalysisResults) {
 		String eol = System.getProperty("line.separator");
 		StringBuffer buffer = new StringBuffer(
