@@ -10,16 +10,16 @@ import org.apache.commons.lang.StringUtils;
 @ManagedBean
 @RequestScoped
 public class AjaxController {
-	public boolean isDisabled() {
-		String userAgent = ((HttpServletRequest) FacesContext
-				.getCurrentInstance().getExternalContext().getRequest())
-				.getHeader("user-agent");
+    public boolean isDisabled() {
+        String userAgent = ((HttpServletRequest) FacesContext
+                .getCurrentInstance().getExternalContext().getRequest())
+                .getHeader("user-agent");
 
-		return isIE9(userAgent);
-	}
+        return isIE9(userAgent);
+    }
 
-	public boolean isIE9(String userAgent) {
-		return userAgent == null || StringUtils.isEmpty(userAgent) ? false
-				: userAgent.toUpperCase().indexOf("MSIE 9.0") != -1;
-	}
+    public boolean isIE9(String userAgent) {
+        return userAgent == null || StringUtils.isEmpty(userAgent) ? false
+                : userAgent.toUpperCase().indexOf("MSIE 9.0") != -1;
+    }
 }

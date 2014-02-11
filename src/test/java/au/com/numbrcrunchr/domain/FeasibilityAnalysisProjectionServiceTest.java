@@ -17,136 +17,136 @@ import au.com.numbrcrunchr.CsvExporter;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class FeasibilityAnalysisProjectionServiceTest {
-	@Autowired
-	private FeasibilityAnalysisProjectionService projectionService;
-	@Autowired
-	private ProjectionParameters projectionParameters;
+    @Autowired
+    private FeasibilityAnalysisProjectionService projectionService;
+    @Autowired
+    private ProjectionParameters projectionParameters;
 
-	private long income;
-	private long ongoingCosts;
-	private long weeklyRent;
-	private byte weeksRented;
-	private long loanAmount;
-	private double interestRate;
-	private double propertyManagementFee;
-	private long landlordInsurance;
-	private long maintenance;
-	private long strata;
-	private long waterRates;
-	private long cleaning;
-	private long councilRates;
-	private long gardening;
-	private long taxExpenses;
-	private long miscOngoingExpenses;
-	private double capitalGrowthRate;
-	private double cpi;
-	private double salaryIncreaseRate;
-	private double rentIncreaseRate;
-	private int loanTerm;
-	private int interestOnlyPeriod;
-	private int projectionYears;
+    private long income;
+    private long ongoingCosts;
+    private long weeklyRent;
+    private byte weeksRented;
+    private long loanAmount;
+    private double interestRate;
+    private double propertyManagementFee;
+    private long landlordInsurance;
+    private long maintenance;
+    private long strata;
+    private long waterRates;
+    private long cleaning;
+    private long councilRates;
+    private long gardening;
+    private long taxExpenses;
+    private long miscOngoingExpenses;
+    private double capitalGrowthRate;
+    private double cpi;
+    private double salaryIncreaseRate;
+    private double rentIncreaseRate;
+    private int loanTerm;
+    private int interestOnlyPeriod;
+    private int projectionYears;
 
-	@Test
-	public void checkProjectionFor1Year() {
-		income = 120000;
-		ongoingCosts = 7000;
-		weeklyRent = 320;
-		weeksRented = 50;
-		loanAmount = 427320;
-		interestRate = 8;
-		propertyManagementFee = 10;
-		Property property = FeasibilityAnalyserTest.createProperty(income,
-				true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
-				interestRate, propertyManagementFee);
-		List<FeasibilityAnalysisResult> projections = projectionService
-				.applyProjectionFor(property, 1, projectionParameters)
-				.getProjections();
-		assertEquals(2, projections.size());
-	}
+    @Test
+    public void checkProjectionFor1Year() {
+        income = 120000;
+        ongoingCosts = 7000;
+        weeklyRent = 320;
+        weeksRented = 50;
+        loanAmount = 427320;
+        interestRate = 8;
+        propertyManagementFee = 10;
+        Property property = FeasibilityAnalyserTest.createProperty(income,
+                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+                interestRate, propertyManagementFee);
+        List<FeasibilityAnalysisResult> projections = projectionService
+                .applyProjectionFor(property, 1, projectionParameters)
+                .getProjections();
+        assertEquals(2, projections.size());
+    }
 
-	@Test
-	public void checkProjectionFor2Years() {
-		income = 120000;
-		ongoingCosts = 7000;
-		weeklyRent = 320;
-		weeksRented = 50;
-		loanAmount = 427320;
-		interestRate = 8;
-		propertyManagementFee = 10;
-		Property property = FeasibilityAnalyserTest.createProperty(income,
-				true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
-				interestRate, propertyManagementFee);
-		List<FeasibilityAnalysisResult> projections = projectionService
-				.applyProjectionFor(property, 2, projectionParameters)
-				.getProjections();
-		assertEquals(3, projections.size());
-	}
+    @Test
+    public void checkProjectionFor2Years() {
+        income = 120000;
+        ongoingCosts = 7000;
+        weeklyRent = 320;
+        weeksRented = 50;
+        loanAmount = 427320;
+        interestRate = 8;
+        propertyManagementFee = 10;
+        Property property = FeasibilityAnalyserTest.createProperty(income,
+                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+                interestRate, propertyManagementFee);
+        List<FeasibilityAnalysisResult> projections = projectionService
+                .applyProjectionFor(property, 2, projectionParameters)
+                .getProjections();
+        assertEquals(3, projections.size());
+    }
 
-	@Test
-	public void checkProjectionFor20Years() {
-		income = 120000;
-		ongoingCosts = 7000;
-		weeklyRent = 320;
-		weeksRented = 50;
-		loanAmount = 427320;
-		interestRate = 8;
-		propertyManagementFee = 10;
-		Property property = FeasibilityAnalyserTest.createProperty(income,
-				true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
-				interestRate, propertyManagementFee);
-		List<FeasibilityAnalysisResult> projections = projectionService
-				.applyProjectionFor(property, 20, projectionParameters)
-				.getProjections();
-		assertEquals(21, projections.size());
-		System.out.println(CsvExporter.exportToCsvString(projections));
-	}
+    @Test
+    public void checkProjectionFor20Years() {
+        income = 120000;
+        ongoingCosts = 7000;
+        weeklyRent = 320;
+        weeksRented = 50;
+        loanAmount = 427320;
+        interestRate = 8;
+        propertyManagementFee = 10;
+        Property property = FeasibilityAnalyserTest.createProperty(income,
+                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+                interestRate, propertyManagementFee);
+        List<FeasibilityAnalysisResult> projections = projectionService
+                .applyProjectionFor(property, 20, projectionParameters)
+                .getProjections();
+        assertEquals(21, projections.size());
+        System.out.println(CsvExporter.exportToCsvString(projections));
+    }
 
-	@Test
-	public void checkProjectionFor320kPropertyAt288PerWeekOver25Years() {
-		income = 100000;
-		weeklyRent = 320;
-		weeksRented = 50;
-		loanAmount = 288000;
-		interestRate = 6;
-		landlordInsurance = 400;
-		maintenance = 100;
-		strata = 0;
-		waterRates = 800;
-		cleaning = 100;
-		councilRates = 1500;
-		gardening = 100;
-		taxExpenses = 100;
-		propertyManagementFee = 8.8;
-		miscOngoingExpenses = 0;
-		projectionYears = 25;
-		cpi = 3;
-		capitalGrowthRate = 8;
-		salaryIncreaseRate = 3.5;
-		rentIncreaseRate = 4;
-		loanTerm = 30;
-		interestOnlyPeriod = 10;
-		Date purchaseDate = new DateMidnight(2014, 2, 11).toDate();
+    @Test
+    public void checkProjectionFor320kPropertyAt288PerWeekOver25Years() {
+        income = 100000;
+        weeklyRent = 320;
+        weeksRented = 50;
+        loanAmount = 288000;
+        interestRate = 6;
+        landlordInsurance = 400;
+        maintenance = 100;
+        strata = 0;
+        waterRates = 800;
+        cleaning = 100;
+        councilRates = 1500;
+        gardening = 100;
+        taxExpenses = 100;
+        propertyManagementFee = 8.8;
+        miscOngoingExpenses = 0;
+        projectionYears = 25;
+        cpi = 3;
+        capitalGrowthRate = 8;
+        salaryIncreaseRate = 3.5;
+        rentIncreaseRate = 4;
+        loanTerm = 30;
+        interestOnlyPeriod = 10;
+        Date purchaseDate = new DateMidnight(2014, 2, 11).toDate();
 
-		ProjectionParameters projectionParameters = new ProjectionParameters();
-		projectionParameters.setCapitalGrowthRate(capitalGrowthRate);
-		projectionParameters.setCpi(cpi);
-		projectionParameters
-				.setPropertyManagementFeeRate(propertyManagementFee);
-		projectionParameters.setRentIncreaseRate(rentIncreaseRate);
-		projectionParameters.setSalaryIncreaseRate(salaryIncreaseRate);
-		long ongoingCosts = landlordInsurance + maintenance + strata
-				+ waterRates + cleaning + councilRates + gardening
-				+ taxExpenses + miscOngoingExpenses;
+        ProjectionParameters projectionParameters = new ProjectionParameters();
+        projectionParameters.setCapitalGrowthRate(capitalGrowthRate);
+        projectionParameters.setCpi(cpi);
+        projectionParameters
+                .setPropertyManagementFeeRate(propertyManagementFee);
+        projectionParameters.setRentIncreaseRate(rentIncreaseRate);
+        projectionParameters.setSalaryIncreaseRate(salaryIncreaseRate);
+        long ongoingCosts = landlordInsurance + maintenance + strata
+                + waterRates + cleaning + councilRates + gardening
+                + taxExpenses + miscOngoingExpenses;
 
-		Property property = FeasibilityAnalyserTest.createProperty(income,
-				true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
-				interestRate, propertyManagementFee);
-		property.setLoanTerm(loanTerm);
-		property.setPurchaseDate(purchaseDate);
-		property.setInterestOnlyPeriod(interestOnlyPeriod);
-		List<FeasibilityAnalysisResult> projections = projectionService
-				.applyProjectionFor(property, projectionYears,
-						projectionParameters).getProjections();
-		System.out.println(CsvExporter.exportToCsvString(projections));
-	}
+        Property property = FeasibilityAnalyserTest.createProperty(income,
+                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+                interestRate, propertyManagementFee);
+        property.setLoanTerm(loanTerm);
+        property.setPurchaseDate(purchaseDate);
+        property.setInterestOnlyPeriod(interestOnlyPeriod);
+        List<FeasibilityAnalysisResult> projections = projectionService
+                .applyProjectionFor(property, projectionYears,
+                        projectionParameters).getProjections();
+        System.out.println(CsvExporter.exportToCsvString(projections));
+    }
 }

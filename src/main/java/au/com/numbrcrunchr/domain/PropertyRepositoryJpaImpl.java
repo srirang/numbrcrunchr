@@ -11,18 +11,18 @@ import org.springframework.orm.jpa.support.JpaDaoSupport;
  * @author AMIS005
  */
 public class PropertyRepositoryJpaImpl extends JpaDaoSupport implements
-		PropertyRepository {
+        PropertyRepository {
 
-	public void saveProperty(final Property property) {
-		getJpaTemplate().execute(new JpaCallback<Object>() {
-			@Override
-			public Object doInJpa(EntityManager entityManager)
-					throws PersistenceException {
-				entityManager.getTransaction().begin();
-				entityManager.persist(property);
-				entityManager.getTransaction().commit();
-				return property;
-			}
-		});
-	}
+    public void saveProperty(final Property property) {
+        getJpaTemplate().execute(new JpaCallback<Object>() {
+            @Override
+            public Object doInJpa(EntityManager entityManager)
+                    throws PersistenceException {
+                entityManager.getTransaction().begin();
+                entityManager.persist(property);
+                entityManager.getTransaction().commit();
+                return property;
+            }
+        });
+    }
 }

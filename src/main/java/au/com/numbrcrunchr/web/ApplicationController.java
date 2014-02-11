@@ -8,7 +8,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ApplicationScoped
 public class ApplicationController {
-	public boolean isProduction() {
-		return FacesContext.getCurrentInstance().getApplication().getProjectStage().equals(ProjectStage.Production);
-	}
+    public boolean isProduction() {
+        return FacesContext.getCurrentInstance().getApplication()
+                .getProjectStage().equals(ProjectStage.Production);
+    }
 }

@@ -9,9 +9,9 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AbstractRate implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name = "lower_limit")
+    @Column(name = "lower_limit")
     private Long lowerLimit;
     @Column(name = "upper_limit")
     private Long upperLimit;
@@ -23,19 +23,24 @@ public abstract class AbstractRate implements Serializable {
     public AbstractRate() {
     }
 
-    public AbstractRate(Long lowerLimit, Long upperLimit, BigDecimal flatRate, BigDecimal percentage) {
+    public AbstractRate(Long lowerLimit, Long upperLimit, BigDecimal flatRate,
+            BigDecimal percentage) {
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
         this.flatRate = flatRate;
         this.percentage = percentage;
     }
 
-    public AbstractRate(long lowerLimit, long upperLimit, double flatRate, double percentage) {
-        this(lowerLimit, upperLimit, new BigDecimal(String.valueOf(flatRate)), new BigDecimal(String.valueOf(percentage)));
+    public AbstractRate(long lowerLimit, long upperLimit, double flatRate,
+            double percentage) {
+        this(lowerLimit, upperLimit, new BigDecimal(String.valueOf(flatRate)),
+                new BigDecimal(String.valueOf(percentage)));
     }
 
-    public AbstractRate(long lowerLimit, Long upperLimit, double flatRate, double percentage) {
-        this(lowerLimit, upperLimit, new BigDecimal(String.valueOf(flatRate)), new BigDecimal(String.valueOf(percentage)));
+    public AbstractRate(long lowerLimit, Long upperLimit, double flatRate,
+            double percentage) {
+        this(lowerLimit, upperLimit, new BigDecimal(String.valueOf(flatRate)),
+                new BigDecimal(String.valueOf(percentage)));
     }
 
     public Long getLowerLimit() {

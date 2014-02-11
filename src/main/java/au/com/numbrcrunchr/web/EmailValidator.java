@@ -10,26 +10,26 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 public class EmailValidator implements Validator {
-	@Override
-	public void validate(FacesContext facesContext, UIComponent uIComponent,
-			Object object) throws ValidatorException {
+    @Override
+    public void validate(FacesContext facesContext, UIComponent uIComponent,
+            Object object) throws ValidatorException {
 
-		String enteredEmail = (String) object;
-		// Set the email pattern string
-		Pattern p = Pattern.compile(".+@.+\\\\.[a-z]+");
+        String enteredEmail = (String) object;
+        // Set the email pattern string
+        Pattern p = Pattern.compile(".+@.+\\\\.[a-z]+");
 
-		// Match the given string with the pattern
-		Matcher m = p.matcher(enteredEmail);
+        // Match the given string with the pattern
+        Matcher m = p.matcher(enteredEmail);
 
-		// Check whether match is found
-		boolean matchFound = m.matches();
+        // Check whether match is found
+        boolean matchFound = m.matches();
 
-		if (!matchFound) {
-			FacesMessage message = new FacesMessage();
-			message.setDetail("Email not valid");
-			message.setSummary("Email not valid");
-			message.setSeverity(FacesMessage.SEVERITY_ERROR);
-			throw new ValidatorException(message);
-		}
-	}
+        if (!matchFound) {
+            FacesMessage message = new FacesMessage();
+            message.setDetail("Email not valid");
+            message.setSummary("Email not valid");
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(message);
+        }
+    }
 }

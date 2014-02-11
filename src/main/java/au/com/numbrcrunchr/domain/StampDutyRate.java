@@ -26,9 +26,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Stamp_Duty_Rates")
 public class StampDutyRate extends AbstractRate implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public StampDutyRate() {
+    public StampDutyRate() {
     }
 
     @Id
@@ -67,7 +67,8 @@ public class StampDutyRate extends AbstractRate implements Serializable {
             return false;
         }
         StampDutyRate other = (StampDutyRate) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null)
+                || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;

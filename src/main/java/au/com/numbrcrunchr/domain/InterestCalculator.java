@@ -1,7 +1,7 @@
 package au.com.numbrcrunchr.domain;
 
 /**
- *
+ * 
  * @author AMIS005
  */
 public class InterestCalculator {

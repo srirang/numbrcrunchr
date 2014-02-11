@@ -1,14 +1,13 @@
 package au.com.numbrcrunchr.domain;
 
-
-
 /**
- *
+ * 
  * @author AMIS005
  */
-public class StampDutyRepositoryMapImplTest extends StampDutyRepositoryAbstractTestCase {
+public class StampDutyRepositoryMapImplTest extends
+        StampDutyRepositoryAbstractTestCase {
     @Override
     public StampDutyRepository getStampDutyRepository() {
-    	return new StampDutyRepositoryMapImpl();
+        return new StampDutyRepositoryMapImpl();
     }
 }

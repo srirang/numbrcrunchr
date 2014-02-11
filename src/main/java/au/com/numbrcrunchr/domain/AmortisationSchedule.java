@@ -12,7 +12,8 @@ public class AmortisationSchedule {
     private AmortisationSchedule() {
     }
 
-    public static AmortisationSchedule createAmortisationSchedule(List<Amortisation> monthlyAmortisations) {
+    public static AmortisationSchedule createAmortisationSchedule(
+            List<Amortisation> monthlyAmortisations) {
         AmortisationSchedule schedule = new AmortisationSchedule();
         schedule.monthlyAmortisations = monthlyAmortisations;
         schedule.updateYearlyAmortisations();
