@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 @Embeddable
 public class OngoingCosts implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -160,5 +163,11 @@ public class OngoingCosts implements Serializable {
                 this.getTaxExpenses(), projectionParameters.getCpi())));
         this.setWaterCharges(MathUtil.doubleToLong(MathUtil.increaseBy(
                 this.getWaterCharges(), projectionParameters.getCpi())));
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this,
+                ToStringStyle.MULTI_LINE_STYLE);
     }
 }

@@ -201,7 +201,7 @@ $(document).ready(
                 <f:selectItems value="#{mainController.states}" />
                 <f:ajax event="change" disabled="#{ajaxController.disabled}"
                   listener="#{mainController.updateTotals}"
-                  render="totalCost cashDeposit deposit loanAmount errormessages lvr" />
+                  render="totalPurhcaseCost cashDeposit deposit loanAmount errormessages lvr" />
               </h:selectOneMenu>
             </h:panelGroup>
             <h:panelGroup>Purchase Price:</h:panelGroup>
@@ -213,7 +213,7 @@ $(document).ready(
                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                 converterMessage="#{msg.purchasePrice_convert}">
                 <f:ajax event="blur" listener="#{mainController.updateTotals}" disabled="#{ajaxController.disabled}"
-                  render="Price investmentSummary totalCost cashDeposit deposit loanAmount errormessages lvr"
+                  render="Price investmentSummary totalPurhcaseCost cashDeposit deposit loanAmount errormessages lvr"
                   execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
                 <f:validateLongRange minimum="10000" />
               </h:inputText>
@@ -224,7 +224,7 @@ $(document).ready(
                 value="#{mainController.includesStampDuty}">
                 <f:ajax event="change" disabled="#{ajaxController.disabled}"
                   listener="#{mainController.updateTotals}"
-                  render="totalCost investmentSummary cashDeposit deposit loanAmount errormessages lvr"
+                  render="totalPurhcaseCost investmentSummary cashDeposit deposit loanAmount errormessages lvr"
                   execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
               </h:selectBooleanCheckbox>
             </h:panelGroup>
@@ -238,7 +238,7 @@ $(document).ready(
                 <f:validateLongRange minimum="0" />
                 <f:ajax event="change" disabled="#{ajaxController.disabled}"
                   listener="#{mainController.updateTotals}"
-                  render="totalCost investmentSummary loanAmount errormessages lvr" />
+                  render="totalPurhcaseCost investmentSummary loanAmount errormessages lvr" />
               </h:inputText>
             </h:panelGroup>
             <h:panelGroup>Loan/Value Ratio (LVR):</h:panelGroup>
@@ -349,28 +349,27 @@ $(document).ready(
                 <h:outputText value="#{row.nettYield}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
               </h:column>
 
-<!--
               <h:column>
                 <f:facet name="header"><h:outputText value="Weekly Rent" /></f:facet>
-                <h:outputText value="#{row.weeklyRent}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                <h:outputText value="#{row.weeklyRent}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:column>
               <h:column>
                 <f:facet name="header"><h:outputText value="Loan Balance" /></f:facet>
-                <h:outputText value="#{row.loanBalance}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                <h:outputText value="#{row.loanBalance}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:column>
               <h:column>
                 <f:facet name="header"><h:outputText value="Property Value" /></f:facet>
-                <h:outputText value="#{row.propertyValue}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                <h:outputText value="#{row.propertyValue}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:column>
               <h:column>
                 <f:facet name="header"><h:outputText value="Capital Growth" /></f:facet>
-                <h:outputText value="#{row.capitalGrowth}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                <h:outputText value="#{row.capitalGrowth}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:column>
               <h:column>
                 <f:facet name="header"><h:outputText value="Equity Available" /></f:facet>
-                <h:outputText value="#{row.equityAvailable}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                <h:outputText value="#{row.equityAvailable}" converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:column>
--->
+
             </h:dataTable>
             <h:commandButton actionListener="#{mainController.downloadCsv}" value="Download Data" class="simple-button" />
           <h4>Investment Summary :-</h4>
@@ -380,7 +379,7 @@ $(document).ready(
             <h:panelGroup>Stamp Duty:</h:panelGroup>
             <h:panelGroup><h:outputText value="#{mainController.stampDuty}" id="stampDuty" converter="au.com.numbrcrunchr.web.CurrencyConverter" /></h:panelGroup>
             <h:panelGroup>Total Cost:</h:panelGroup>
-            <h:panelGroup><h:outputText value="#{mainController.totalCost}" id="totalCost" converter="au.com.numbrcrunchr.web.CurrencyConverter" /></h:panelGroup>
+            <h:panelGroup><h:outputText value="#{mainController.totalPurhcaseCost}" id="totalPurhcaseCost" converter="au.com.numbrcrunchr.web.CurrencyConverter" /></h:panelGroup>
             <h:panelGroup>Cash Deposit:</h:panelGroup>
             <h:panelGroup><h:outputText value="#{mainController.deposit}" id="deposit" converter="au.com.numbrcrunchr.web.CurrencyConverter" /></h:panelGroup>
             <h:panelGroup>Loan Required:</h:panelGroup>

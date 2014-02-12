@@ -201,4 +201,25 @@ public class FeasibilityAnalysisResult implements Serializable {
     public void changeFrequency(String frequency) {
         this.frequency = frequency;
     }
+
+    public Long getWeeklyRent() {
+        return this.property.getWeeklyRent();
+    }
+
+    public Long getLoanBalance() {
+        return this.property.getLoanAmount();
+    }
+
+    public Long getPropertyValue() {
+        return this.property.getMarketValue();
+    }
+
+    public Long getCapitalGrowth() {
+        return this.property.getMarketValue()
+                - this.property.getPurchasePrice();
+    }
+
+    public Long getEquityAvailable() {
+        return (getPropertyValue() * 80 / 100) - getLoanBalance();
+    }
 }

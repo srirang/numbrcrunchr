@@ -147,7 +147,8 @@ public class MainController implements Serializable {
     public void updateTotals(AjaxBehaviorEvent event) {
         this.setStampDuty(getIncludesStampDuty() ? 0 : stampDutyCalculator
                 .calculateStampDuty(getState(), getPropertyValue()));
-        this.setTotalPurchaseCost(getPropertyValue() + getStampDuty());
+        this.getProperty().initialisePurhcaseCostAndMarketValue(
+                getPropertyValue() + getStampDuty());
         this.setLoanAmount(loanBalanceCalculator.calculateLoanBalance(
                 getPropertyValue(), getStampDuty(), getDeposit()));
         this.setDeposit(this.getTotalPurhcaseCost() - this.getLoanAmount());
@@ -364,10 +365,6 @@ public class MainController implements Serializable {
 
     public Long getTotalPurhcaseCost() {
         return this.getProperty().getTotalPurchaseCost();
-    }
-
-    public void setTotalPurchaseCost(Long totalCost) {
-        this.getProperty().initialisePurhcaseCostAndMarketValue(totalCost);
     }
 
     public Long getWeeklyRent() {

@@ -19,6 +19,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * 
  * @author AMIS005
@@ -82,11 +85,6 @@ public class Owner implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "au.com.propertyanalyst.domain.Owner[idOwner=" + idOwner + "]";
-    }
-
     public void addProperty(Property property) {
         if (this.propertyList == null) {
             this.propertyList = new ArrayList<Property>();
@@ -131,5 +129,11 @@ public class Owner implements Serializable {
 
     public Double getOwnershipShare() {
         return ownershipShare;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this,
+                ToStringStyle.MULTI_LINE_STYLE);
     }
 }

@@ -149,4 +149,23 @@ public class PropertyTest {
         property.addOwner(owner);
         return property;
     }
+
+    public static Property createProperty(long annualIncome,
+            boolean medicareLevyApplies, long loanAmount,
+            OngoingCosts ongoingCosts, byte weeksRented, long weeklyRent,
+            double interestRate, double managementFeeRate) {
+        Property property = new Property();
+        property.setPurchasePrice(loanAmount);
+        property.setLoanAmount(loanAmount);
+        property.setInterestRate(interestRate);
+        property.setWeeklyRent(weeklyRent);
+        property.setWeeksRented(weeksRented);
+        property.setOngoingCosts(ongoingCosts);
+        property.setManagementFeeRate(managementFeeRate);
+        Owner owner = new Owner();
+        owner.setAnnualIncome(annualIncome);
+        owner.setMedicareLevyApplies(medicareLevyApplies);
+        property.addOwner(owner);
+        return property;
+    }
 }

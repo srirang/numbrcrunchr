@@ -23,6 +23,7 @@ import javax.persistence.TemporalType;
 
 import org.apache.commons.lang.SerializationUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * 
@@ -214,11 +215,6 @@ public class Property implements Serializable, Cloneable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     public Long getStampDuty() {
@@ -589,5 +585,11 @@ public class Property implements Serializable, Cloneable {
 
     public void setMarketValue(Long marketValue) {
         this.marketValue = marketValue;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this,
+                ToStringStyle.MULTI_LINE_STYLE);
     }
 }

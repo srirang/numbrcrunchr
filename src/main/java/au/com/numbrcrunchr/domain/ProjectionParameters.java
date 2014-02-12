@@ -3,6 +3,7 @@ package au.com.numbrcrunchr.domain;
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 public class ProjectionParameters implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -46,6 +47,7 @@ public class ProjectionParameters implements Serializable {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return ToStringBuilder.reflectionToString(this,
+                ToStringStyle.MULTI_LINE_STYLE);
     }
 }

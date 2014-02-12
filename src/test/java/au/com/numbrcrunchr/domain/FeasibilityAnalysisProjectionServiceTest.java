@@ -119,9 +119,9 @@ public class FeasibilityAnalysisProjectionServiceTest {
         councilRates = 1500;
         gardening = 100;
         taxExpenses = 100;
-        propertyManagementFee = 8.8;
+        long propertyManagementFees = MathUtil.doubleToLong(8.8 * weeklyRent);
         miscOngoingExpenses = 0;
-        projectionYears = 25;
+        projectionYears = 2;
         cpi = 3;
         capitalGrowthRate = 8;
         salaryIncreaseRate = 3.5;
@@ -135,9 +135,19 @@ public class FeasibilityAnalysisProjectionServiceTest {
         projectionParameters.setCpi(cpi);
         projectionParameters.setRentIncreaseRate(rentIncreaseRate);
         projectionParameters.setSalaryIncreaseRate(salaryIncreaseRate);
-        long ongoingCosts = landlordInsurance + maintenance + strata
-                + waterRates + cleaning + councilRates + gardening
-                + taxExpenses + miscOngoingExpenses;
+        System.out.println(projectionParameters);
+
+        OngoingCosts ongoingCosts = new OngoingCosts();
+        ongoingCosts.setMaintenance(maintenance);
+        ongoingCosts.setStrata(strata);
+        ongoingCosts.setWaterCharges(waterRates);
+        ongoingCosts.setCleaning(cleaning);
+        ongoingCosts.setCouncilRates(councilRates);
+        ongoingCosts.setGardening(gardening);
+        ongoingCosts.setTaxExpenses(taxExpenses);
+        ongoingCosts.setMiscOngoingExpenses(miscOngoingExpenses);
+        ongoingCosts.setLandlordsInsurance(landlordInsurance);
+        ongoingCosts.setPropertyManagementFees(propertyManagementFees);
 
         Property property = PropertyTest.createProperty(income, true,
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
@@ -145,6 +155,8 @@ public class FeasibilityAnalysisProjectionServiceTest {
         property.setLoanTerm(loanTerm);
         property.setPurchaseDate(purchaseDate);
         property.setInterestOnlyPeriod(interestOnlyPeriod);
+        property.setManagementFeeRate(8.8);
+        System.out.println(property);
         List<FeasibilityAnalysisResult> projections = projectionService
                 .applyProjectionFor(property, projectionYears,
                         projectionParameters).getProjections();
