@@ -53,7 +53,7 @@ public class MainControllerTest {
                 5000l, Byte.valueOf("50"), 450l, 8.0, 10.0);
         property.setState(State.VIC);
         controller.setProperty(property);
-        controller.performFeasibilityAnalysis();
+        controller.runProjections();
 
         List<FeasibilityAnalysisResult> projection = controller.getProjection();
         assertEquals(25, projection.size());
@@ -66,7 +66,7 @@ public class MainControllerTest {
                 5000l, Byte.valueOf("50"), 10l, 8.0, 10.0);
         property.setState(State.VIC);
         controller.setProperty(property);
-        controller.performFeasibilityAnalysis();
+        controller.runProjections();
 
         List<FeasibilityAnalysisResult> projection = controller.getProjection();
         assertEquals(25, projection.size());
@@ -80,7 +80,7 @@ public class MainControllerTest {
         property.setState(State.VIC);
         controller.setProperty(property);
         controller.setIncludesStampDuty(true);
-        controller.performFeasibilityAnalysis();
+        controller.runProjections();
 
         List<FeasibilityAnalysisResult> projection = controller.getProjection();
         assertEquals(25, projection.size());
@@ -94,7 +94,7 @@ public class MainControllerTest {
         property.setState(State.VIC);
         controller.setProperty(property);
         controller.setNumberOfYears(4);
-        controller.performFeasibilityAnalysis();
+        controller.runProjections();
 
         controller.getProjection();
         assertEquals("[20471,24223,24578,24970]",

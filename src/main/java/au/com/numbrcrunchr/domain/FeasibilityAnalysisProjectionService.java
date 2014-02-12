@@ -8,7 +8,7 @@ public class FeasibilityAnalysisProjectionService {
     private FeasibilityAnalyser feasibilityAnalyser;
     private LoanAmortisationScheduleCalculator loanAmortisationScheduleCalculator;
 
-    public Projection applyProjectionFor(Property property, int numberOfYears,
+    public Projection runProjections(Property property, int numberOfYears,
             ProjectionParameters projectionParameters) {
         FeasibilityAnalysisResult firstFullYearResult = feasibilityAnalyser
                 .analyseFirstYearFeasibility(property);

@@ -62,7 +62,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .applyProjectionFor(property, 1, projectionParameters)
+                .runProjections(property, 1, projectionParameters)
                 .getProjections();
         assertEquals(2, projections.size());
     }
@@ -80,7 +80,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .applyProjectionFor(property, 2, projectionParameters)
+                .runProjections(property, 2, projectionParameters)
                 .getProjections();
         assertEquals(3, projections.size());
     }
@@ -98,7 +98,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .applyProjectionFor(property, 20, projectionParameters)
+                .runProjections(property, 20, projectionParameters)
                 .getProjections();
         assertEquals(21, projections.size());
         LOGGER.info(CsvExporter.exportToCsvString(projections));
@@ -158,7 +158,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
         property.setManagementFeeRate(8.8);
         System.out.println(property);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .applyProjectionFor(property, projectionYears,
+                .runProjections(property, projectionYears,
                         projectionParameters).getProjections();
         LOGGER.info(CsvExporter.exportToCsvString(projections));
     }

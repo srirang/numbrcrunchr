@@ -7,7 +7,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 <h:head>
-  <h:outputStylesheet library="css" name="pincpal.css" target="body" />
+  <h:outputStylesheet library="css" name="main.css" target="body" />
   <h:outputScript name="jsf.js" library="javax.faces" target="head" />
   <h:outputScript library="javascript" name="googleanalytics/tracking.js" target="head" rendered="#{applicationController.production}"/>
 <!-- 
@@ -283,7 +283,7 @@ $(document).ready(
             </h:panelGroup>
             <h:panelGroup>
               <h:commandButton class="simple-button" value="Crunch Numbers"
-                action="#{mainController.performFeasibilityAnalysis}" onfocus="this.blur()" />
+                action="#{mainController.runProjections}" onfocus="this.blur()" />
             </h:panelGroup>
             <h:panelGroup>
               <h:commandButton class="simple-button" value="Change Assumptions..."

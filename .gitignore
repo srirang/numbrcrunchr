@@ -12,6 +12,5 @@ target/
 *.lck
 *.log
 *.script
-pincpal.properties
 *.tmp
 numbrcrunchr.properties
