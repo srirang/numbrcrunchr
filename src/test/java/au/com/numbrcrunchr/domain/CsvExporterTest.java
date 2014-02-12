@@ -45,7 +45,7 @@ public class CsvExporterTest {
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .runProjections(property, 25, projectionParameters)
+                .runProjection(property, 25, projectionParameters)
                 .getProjections();
         assertNotNull(projections);
         assertEquals(26, projections.size());

@@ -83,10 +83,10 @@ public class MainController implements Serializable {
         }
     }
 
-    public String runProjections() {
+    public String runProjection() {
         updateTotals(null);
         this.advancedSelected = false;
-        projection = feasibilityAnalysisProjectionService.runProjections(
+        projection = feasibilityAnalysisProjectionService.runProjection(
                 getProperty(), getNumberOfYears() - 1,
                 getProjectionParameters());
         projectionResults = projection.getProjections();
@@ -96,7 +96,7 @@ public class MainController implements Serializable {
 
     public void quickAnalysis() {
         updateTotals(null);
-        projection = feasibilityAnalysisProjectionService.runProjections(
+        projection = feasibilityAnalysisProjectionService.runProjection(
                 getProperty(), getNumberOfYears() - 1,
                 getProjectionParameters());
         projectionResults = projection.getProjections();
@@ -119,7 +119,7 @@ public class MainController implements Serializable {
     public String apply() {
         this.advancedSelected = false;
         if (this.resultsAvailable) {
-            runProjections();
+            runProjection();
         }
         return null;
     }

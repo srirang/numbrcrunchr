@@ -62,7 +62,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .runProjections(property, 1, projectionParameters)
+                .runProjection(property, 1, projectionParameters)
                 .getProjections();
         assertEquals(2, projections.size());
     }
@@ -80,7 +80,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .runProjections(property, 2, projectionParameters)
+                .runProjection(property, 2, projectionParameters)
                 .getProjections();
         assertEquals(3, projections.size());
     }
@@ -98,7 +98,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
-                .runProjections(property, 20, projectionParameters)
+                .runProjection(property, 20, projectionParameters)
                 .getProjections();
         assertEquals(21, projections.size());
         LOGGER.info(CsvExporter.exportToCsvString(projections));
@@ -121,7 +121,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
         taxExpenses = 100;
         long propertyManagementFees = MathUtil.doubleToLong(8.8 * weeklyRent);
         miscOngoingExpenses = 0;
-        projectionYears = 2;
+        projectionYears = 24;
         cpi = 3;
         capitalGrowthRate = 8;
         salaryIncreaseRate = 3.5;
@@ -157,9 +157,10 @@ public class FeasibilityAnalysisProjectionServiceTest {
         property.setInterestOnlyPeriod(interestOnlyPeriod);
         property.setManagementFeeRate(8.8);
         System.out.println(property);
-        List<FeasibilityAnalysisResult> projections = projectionService
-                .runProjections(property, projectionYears,
-                        projectionParameters).getProjections();
-        LOGGER.info(CsvExporter.exportToCsvString(projections));
+        Projection projection = projectionService
+                .runProjection(property, projectionYears,
+                        projectionParameters);
+        LOGGER.info(CsvExporter.exportToCsvString(projection.getProjections()));
+        System.out.println(projection);
     }
 }

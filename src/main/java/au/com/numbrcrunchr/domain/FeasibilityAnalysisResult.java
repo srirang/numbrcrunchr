@@ -172,7 +172,7 @@ public class FeasibilityAnalysisResult implements Serializable {
     }
 
     public Long getTotalIncome() {
-        return getTaxSavings() + getRentalIncome();
+        return getRentalIncome();
     }
 
     public Long getTotalOutOfPocket() {

@@ -8,7 +8,7 @@ public class FeasibilityAnalysisProjectionService {
     private FeasibilityAnalyser feasibilityAnalyser;
     private LoanAmortisationScheduleCalculator loanAmortisationScheduleCalculator;
 
-    public Projection runProjections(Property property, int numberOfYears,
+    public Projection runProjection(Property property, int numberOfYears,
             ProjectionParameters projectionParameters) {
         FeasibilityAnalysisResult firstFullYearResult = feasibilityAnalyser
                 .analyseFirstYearFeasibility(property);
@@ -50,7 +50,7 @@ public class FeasibilityAnalysisProjectionService {
                 throw new DataException("Error completing projection", e);
             }
         }
-        return new Projection(projections);
+        return new Projection(projections, projectionParameters);
     }
 
     public void setFeasibilityAnalyser(FeasibilityAnalyser feasibilityAnalyser) {
