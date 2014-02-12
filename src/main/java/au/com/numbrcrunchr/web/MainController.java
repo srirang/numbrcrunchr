@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -44,6 +46,8 @@ import com.google.gson.Gson;
 public class MainController implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = Logger.getLogger(MainController.class
+            .getName());
 
     private boolean hasPartner = false;
     private final FacesMessage shareErrorMessage = new FacesMessage(
@@ -135,7 +139,7 @@ public class MainController implements Serializable {
                     .write(CsvExporter.exportToCsvString(projectionResults)
                             .getBytes());
         } catch (IOException e) {
-            System.out.println(e);
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
         facesContext.responseComplete();
     }
@@ -143,12 +147,12 @@ public class MainController implements Serializable {
     public void updateTotals(AjaxBehaviorEvent event) {
         this.setStampDuty(getIncludesStampDuty() ? 0 : stampDutyCalculator
                 .calculateStampDuty(getState(), getPropertyValue()));
-        this.setTotalCost(getPropertyValue() + getStampDuty());
+        this.setTotalPurchaseCost(getPropertyValue() + getStampDuty());
         this.setLoanAmount(loanBalanceCalculator.calculateLoanBalance(
                 getPropertyValue(), getStampDuty(), getDeposit()));
-        this.setDeposit(this.getTotalCost() - this.getLoanAmount());
+        this.setDeposit(this.getTotalPurhcaseCost() - this.getLoanAmount());
         this.setLvr(new LVRCalculator().calculateLvr(this.getLoanAmount(),
-                this.getTotalCost()));
+                this.getTotalPurhcaseCost()));
     }
 
     public Long getTotalTenantPays() {
@@ -358,12 +362,12 @@ public class MainController implements Serializable {
         this.getProperty().setLoanAmount(loanAmount);
     }
 
-    public Long getTotalCost() {
-        return this.getProperty().getTotalCost();
+    public Long getTotalPurhcaseCost() {
+        return this.getProperty().getTotalPurchaseCost();
     }
 
-    public void setTotalCost(Long totalCost) {
-        this.getProperty().setTotalCost(totalCost);
+    public void setTotalPurchaseCost(Long totalCost) {
+        this.getProperty().initialisePurhcaseCostAndMarketValue(totalCost);
     }
 
     public Long getWeeklyRent() {
@@ -523,12 +527,12 @@ public class MainController implements Serializable {
         return this.getProperty().getInterestRate();
     }
 
-    public void setPropertyManagementFees(Double propertyManagementFees) {
-        this.getProperty().setPropertyManagementFees(propertyManagementFees);
+    public void setPropertyManagementFees(Double managementFeeRate) {
+        this.getProperty().setManagementFeeRate(managementFeeRate);
     }
 
     public Double getPropertyManagementFees() {
-        return this.getProperty().getPropertyManagementFees();
+        return this.getProperty().getManagementFeeRate();
     }
 
     public void setConstructionDate(Date constructionDate) {
@@ -815,6 +819,6 @@ public class MainController implements Serializable {
     }
 
     protected FeasibilityAnalysisProjectionService getFeasibilityAnalysisProjectionService() {
-		return feasibilityAnalysisProjectionService;
-	}
+        return feasibilityAnalysisProjectionService;
+    }
 }

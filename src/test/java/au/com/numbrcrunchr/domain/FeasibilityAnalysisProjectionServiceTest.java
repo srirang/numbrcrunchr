@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.joda.time.DateMidnight;
 import org.junit.Test;
@@ -17,6 +18,8 @@ import au.com.numbrcrunchr.CsvExporter;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class FeasibilityAnalysisProjectionServiceTest {
+    private static final Logger LOGGER = Logger
+            .getLogger(FeasibilityAnalysisProjectionServiceTest.class.getName());
     @Autowired
     private FeasibilityAnalysisProjectionService projectionService;
     @Autowired
@@ -98,15 +101,15 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 .applyProjectionFor(property, 20, projectionParameters)
                 .getProjections();
         assertEquals(21, projections.size());
-        System.out.println(CsvExporter.exportToCsvString(projections));
+        LOGGER.info(CsvExporter.exportToCsvString(projections));
     }
 
     @Test
-    public void checkProjectionFor320kPropertyAt288PerWeekOver25Years() {
+    public void checkProjectionFor320kPropertyAt320PerWeekOver25Years() {
         income = 100000;
         weeklyRent = 320;
         weeksRented = 50;
-        loanAmount = 288000;
+        loanAmount = 320000;
         interestRate = 6;
         landlordInsurance = 400;
         maintenance = 100;
@@ -130,8 +133,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
         ProjectionParameters projectionParameters = new ProjectionParameters();
         projectionParameters.setCapitalGrowthRate(capitalGrowthRate);
         projectionParameters.setCpi(cpi);
-        projectionParameters
-                .setPropertyManagementFeeRate(propertyManagementFee);
         projectionParameters.setRentIncreaseRate(rentIncreaseRate);
         projectionParameters.setSalaryIncreaseRate(salaryIncreaseRate);
         long ongoingCosts = landlordInsurance + maintenance + strata
@@ -147,6 +148,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
         List<FeasibilityAnalysisResult> projections = projectionService
                 .applyProjectionFor(property, projectionYears,
                         projectionParameters).getProjections();
-        System.out.println(CsvExporter.exportToCsvString(projections));
+        LOGGER.info(CsvExporter.exportToCsvString(projections));
     }
 }

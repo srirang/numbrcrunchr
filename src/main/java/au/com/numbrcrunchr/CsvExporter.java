@@ -1,10 +1,16 @@
 package au.com.numbrcrunchr;
 
 import java.util.List;
+import java.util.logging.Logger;
+
+import org.primefaces.component.export.CSVExporter;
 
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
 
 public class CsvExporter {
+    private static final Logger LOGGER = Logger.getLogger(CSVExporter.class
+            .getName());
+
     public static String exportToCsvString(
             List<FeasibilityAnalysisResult> feasibilityAnalysisResults) {
         String eol = System.getProperty("line.separator");
@@ -48,7 +54,7 @@ public class CsvExporter {
 
             buffer.append(eol);
         }
-        System.out.println(buffer);
+        LOGGER.info(buffer.toString());
         return buffer.toString();
     }
 }

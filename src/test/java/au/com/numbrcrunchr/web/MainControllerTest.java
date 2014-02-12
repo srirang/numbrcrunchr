@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,8 @@ import au.com.numbrcrunchr.domain.State;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class MainControllerTest {
+    private static final Logger LOGGER = Logger.getLogger(MainController.class
+            .getName());
 
     @Autowired
     private MainController controller;
@@ -87,7 +90,7 @@ public class MainControllerTest {
         // TODO Why does this fail intermittently?
         Property property = FeasibilityAnalyserTest.createProperty(125000,
                 true, 427320, 5000, (byte) 50, 250, 8.0, 10.0);
-        System.out.println(property);
+        LOGGER.info(String.valueOf(property));
         property.setState(State.VIC);
         controller.setProperty(property);
         controller.setNumberOfYears(4);

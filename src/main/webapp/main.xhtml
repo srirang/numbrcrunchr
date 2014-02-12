@@ -348,6 +348,29 @@ $(document).ready(
                 <f:facet name="header"><h:outputText value="Nett Yield" /></f:facet>
                 <h:outputText value="#{row.nettYield}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
               </h:column>
+
+<!--
+              <h:column>
+                <f:facet name="header"><h:outputText value="Weekly Rent" /></f:facet>
+                <h:outputText value="#{row.weeklyRent}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Loan Balance" /></f:facet>
+                <h:outputText value="#{row.loanBalance}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Property Value" /></f:facet>
+                <h:outputText value="#{row.propertyValue}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Capital Growth" /></f:facet>
+                <h:outputText value="#{row.capitalGrowth}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:column>
+              <h:column>
+                <f:facet name="header"><h:outputText value="Equity Available" /></f:facet>
+                <h:outputText value="#{row.equityAvailable}" converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:column>
+-->
             </h:dataTable>
             <h:commandButton actionListener="#{mainController.downloadCsv}" value="Download Data" class="simple-button" />
           <h4>Investment Summary :-</h4>

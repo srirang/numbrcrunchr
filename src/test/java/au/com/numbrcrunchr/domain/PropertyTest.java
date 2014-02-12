@@ -80,10 +80,15 @@ public class PropertyTest {
     public void checkProjection() throws CloneNotSupportedException {
         Property property = createAProperty();
         property.projectBy(projectionParameters);
-        assertEquals(100000 * 1.035, property.calculateOwnerGrossIncome(), 0.01);
-        assertEquals(250 * 1.04, property.getWeeklyRent(), 0.01);
-        assertEquals(10 * 1.05, property.getPropertyManagementFees(), 0.01);
-        assertEquals(550000 * 1.08, property.getTotalCost(), 0.01);
+        assertEquals(100000 * 1.035, property.calculateOwnerGrossIncome(),
+                0.0001);
+        assertEquals(260, property.getWeeklyRent(),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        assertEquals(26, property.getPropertyManagementFees(),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        assertEquals(550000 * 1.08, property.getMarketValue(),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        assertEquals(550000, property.getTotalPurchaseCost(), 0);
     }
 
     private Property createAProperty() {
@@ -113,8 +118,16 @@ public class PropertyTest {
         property.setStrata(1000l);
         property.setTaxExpenses(250l);
         property.setTitleRegistrationFees(400l);
-        property.setTotalCost(550000l);
+        property.initialisePurhcaseCostAndMarketValue(550000l);
         property.setWaterCharges(800l);
         return property;
+    }
+
+    @Test
+    public void checkPropertyManagementFees() {
+        Property property = createAProperty();
+        assertNotNull(property.getManagementFeeRate());
+        assertEquals(250, property.getWeeklyRent(), 0);
+        assertEquals(25, property.getPropertyManagementFees(), 0);
     }
 }

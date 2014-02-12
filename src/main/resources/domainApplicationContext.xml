@@ -5,7 +5,7 @@
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"
 		id="entityManagerFactory">
-		<property name="persistenceUnitName" value="PincPalPU" />
+		<property name="persistenceUnitName" value="NumbrCrunchrPU" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="showSql" value="true" />
@@ -64,7 +64,6 @@
 		<property name="salaryIncreaseRate" value="3.5" />
 		<property name="rentIncreaseRate" value="4" />
 		<property name="capitalGrowthRate" value="8" />
-		<property name="propertyManagementFeeRate" value="5" />
 	</bean>
 
 	<bean id="dbInitialiser" class="au.com.numbrcrunchr.DbInitialiser" destroy-method="shutdownDatabase" lazy-init="false">

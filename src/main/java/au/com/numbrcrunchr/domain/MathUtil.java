@@ -20,4 +20,9 @@ public class MathUtil {
         return new BigDecimal(String.valueOf(value)).setScale(2,
                 BigDecimal.ROUND_HALF_UP);
     }
+
+    public static double increaseBy(double value, double rate) {
+        return value * ((rate / 100) + 1);
+    }
+
 }

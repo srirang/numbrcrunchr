@@ -2,6 +2,8 @@ package au.com.numbrcrunchr.domain;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 public class ProjectionParameters implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -9,7 +11,6 @@ public class ProjectionParameters implements Serializable {
     private double salaryIncreaseRate;
     private double rentIncreaseRate;
     private double capitalGrowthRate;
-    private double propertyManagementFeeRate;
 
     public double getCapitalGrowthRate() {
         return capitalGrowthRate;
@@ -25,10 +26,6 @@ public class ProjectionParameters implements Serializable {
 
     public double getSalaryIncreaseRate() {
         return salaryIncreaseRate;
-    }
-
-    public double getPropertyManagementFeeRate() {
-        return propertyManagementFeeRate;
     }
 
     public void setCapitalGrowthRate(double capitalGrowthRate) {
@@ -47,27 +44,8 @@ public class ProjectionParameters implements Serializable {
         this.salaryIncreaseRate = salaryIncreaseRate;
     }
 
-    public void setPropertyManagementFeeRate(double propertyManagementFeeRate) {
-        this.propertyManagementFeeRate = propertyManagementFeeRate;
-    }
-
-    public double getCapitalGrowthPercentage() {
-        return capitalGrowthRate / 100;
-    }
-
-    public double getCpiPercentage() {
-        return cpi / 100;
-    }
-
-    public double getRentIncreasePercentage() {
-        return rentIncreaseRate / 100;
-    }
-
-    public double getSalaryIncreasePercentage() {
-        return salaryIncreaseRate / 100;
-    }
-
-    public double getPropertyManagementFeePercentage() {
-        return propertyManagementFeeRate / 100;
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

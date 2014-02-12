@@ -45,6 +45,9 @@ public class OngoingCosts implements Serializable {
     @Column(name = "misc_ongoing_expenses")
     private Long miscOngoingExpenses;
 
+    @Column(name = "property_management_fees")
+    private Long propertyManagementFees;
+
     public Long getLandlordsInsurance() {
         return landlordsInsurance == null ? DEFAULT_LANDLORD_INSURANCE
                 : landlordsInsurance;
@@ -118,12 +121,44 @@ public class OngoingCosts implements Serializable {
         this.taxExpenses = taxExpenses;
     }
 
-    public Long[] getOngoingCosts() {
+    public Long[] getOngoingCosts(Long weeklyRent) {
         Long[] ongoingCosts = new Long[] { getLandlordsInsurance(),
                 getMaintenance(), getStrata(), getWaterCharges(),
                 getCleaning(), getCouncilRates(), getGardening(),
-                getTaxExpenses(), getMiscOngoingExpenses() };
+                getTaxExpenses(), getMiscOngoingExpenses(),
+                getPropertyManagementFees() };
         return ongoingCosts;
     }
 
+    public void setPropertyManagementFees(Long propertyManagementFees) {
+        this.propertyManagementFees = propertyManagementFees;
+    }
+
+    public Long getPropertyManagementFees() {
+        return propertyManagementFees == null ? 0 : propertyManagementFees;
+    }
+
+    public void projectBy(ProjectionParameters projectionParameters) {
+        this.setCleaning(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getCleaning(), projectionParameters.getCpi())));
+        this.setCouncilRates(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getCouncilRates(), projectionParameters.getCpi())));
+        this.setGardening(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getGardening(), projectionParameters.getCpi())));
+        this.setLandlordsInsurance(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getLandlordsInsurance(), projectionParameters.getCpi())));
+        this.setMaintenance(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getMaintenance(), projectionParameters.getCpi())));
+        this.setMiscOngoingExpenses(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getMiscOngoingExpenses(), projectionParameters.getCpi())));
+        this.setPropertyManagementFees(MathUtil.doubleToLong(MathUtil
+                .increaseBy(this.getPropertyManagementFees(),
+                        projectionParameters.getCpi())));
+        this.setStrata(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getStrata(), projectionParameters.getCpi())));
+        this.setTaxExpenses(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getTaxExpenses(), projectionParameters.getCpi())));
+        this.setWaterCharges(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getWaterCharges(), projectionParameters.getCpi())));
+    }
 }

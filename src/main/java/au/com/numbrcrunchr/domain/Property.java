@@ -45,9 +45,9 @@ public class Property implements Serializable, Cloneable {
     private static final Byte DEFAULT_WEEKS_RENTED = 50;
     private static final Integer DEFAULT_LOAN_TERM = 30;
     private static final Double DEFAULT_INTEREST_RATE = 6.0;
-    private static final Double DEFAULT_PROPERTY_MANAGEMENT_FEES = 8.8d;
     private static final int DEFAULT_INTEREST_ONLY_PERIOD = 10;
     private static final Double DEFAULT_LVR = 80.0;
+    private static final Double DEFAULT_PROPERTY_MANAGEMENT_FEES = 8.8d;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +56,7 @@ public class Property implements Serializable, Cloneable {
     private Integer idProperty;
 
     @Column(name = "total_cost")
-    private Long totalCost;
+    private Long totalPurchaseCost;
 
     @Column(name = "address", length = 255)
     private String address;
@@ -69,6 +69,9 @@ public class Property implements Serializable, Cloneable {
 
     @Column(name = "weekly_rent")
     private Long weeklyRent;
+
+    @Column(name = "management_fee_rate")
+    private Double managementFeeRate;
 
     @Basic(optional = false)
     @Column(name = "state", nullable = false, length = 45)
@@ -123,8 +126,8 @@ public class Property implements Serializable, Cloneable {
     @Column(name = "lvr")
     private Double lvr = DEFAULT_LVR;
 
-    @Column(name = "property_management_fees")
-    private Double propertyManagementFees;
+    @Column(name = "market_value")
+    private Long marketValue;
 
     @Column(name = "construction_date")
     @Temporal(TemporalType.DATE)
@@ -174,6 +177,7 @@ public class Property implements Serializable, Cloneable {
 
     public void setPurchasePrice(Long purchasePrice) {
         this.purchasePrice = purchasePrice;
+        initialisePurhcaseCostAndMarketValue(purchasePrice);
     }
 
     public List<Owner> getOwnerList() {
@@ -241,12 +245,13 @@ public class Property implements Serializable, Cloneable {
         this.loanAmount = loanAmount;
     }
 
-    public Long getTotalCost() {
-        return totalCost == null ? 0 : totalCost;
+    public Long getTotalPurchaseCost() {
+        return totalPurchaseCost == null ? 0 : totalPurchaseCost;
     }
 
-    public void setTotalCost(Long totalCost) {
-        this.totalCost = totalCost;
+    public void initialisePurhcaseCostAndMarketValue(Long totalPurchaseCost) {
+        this.totalPurchaseCost = totalPurchaseCost;
+        this.marketValue = totalPurchaseCost;
     }
 
     public Long getWeeklyRent() {
@@ -339,14 +344,14 @@ public class Property implements Serializable, Cloneable {
         return interestRate == null ? DEFAULT_INTEREST_RATE : interestRate;
     }
 
-    public void setPropertyManagementFees(Double propertyManagementFees) {
-        this.propertyManagementFees = propertyManagementFees;
-    }
-
-    public Double getPropertyManagementFees() {
-        return propertyManagementFees == null ? DEFAULT_PROPERTY_MANAGEMENT_FEES
-                : propertyManagementFees;
-    }
+    // public void setPropertyManagementFees(Double propertyManagementFees) {
+    // this.propertyManagementFees = propertyManagementFees;
+    // }
+    //
+    // public Double getPropertyManagementFees() {
+    // return propertyManagementFees == null ? DEFAULT_PROPERTY_MANAGEMENT_FEES
+    // : propertyManagementFees;
+    // }
 
     public Date getPurchaseDate() {
         return purchaseDate == null ? new Date() : purchaseDate;
@@ -386,7 +391,11 @@ public class Property implements Serializable, Cloneable {
     }
 
     public Long[] getOngoingCosts() {
-        return this.ongoingCosts.getOngoingCosts();
+        return this.ongoingCosts.getOngoingCosts(getPropertyManagementFees());
+    }
+
+    public Long getPropertyManagementFees() {
+        return MathUtil.doubleToLong(weeklyRent * getManagementFeeRate() / 100);
     }
 
     public Long totalBuyingCost() {
@@ -401,6 +410,7 @@ public class Property implements Serializable, Cloneable {
         return sum(getBorrowingCosts());
     }
 
+    // TODO: Revisit, where is this used?
     Long sum(Long[] costs) {
         long totalCost = 0;
         for (Long cost : costs) {
@@ -436,17 +446,18 @@ public class Property implements Serializable, Cloneable {
     }
 
     public void projectBy(ProjectionParameters projectionParameters) {
-        this.setWeeklyRent(MathUtil.doubleToLong(this.getWeeklyRent()
-                * (1 + projectionParameters.getRentIncreasePercentage())));
-        this.setPropertyManagementFees(this.getPropertyManagementFees()
-                * (1 + projectionParameters
-                        .getPropertyManagementFeePercentage()));
-        this.setTotalCost(MathUtil.doubleToLong(this.getTotalCost()
-                * (1 + projectionParameters.getCapitalGrowthPercentage())));
+        this.setWeeklyRent(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getWeeklyRent(),
+                projectionParameters.getRentIncreaseRate())));
+        this.setMarketValue(MathUtil.doubleToLong(MathUtil.increaseBy(
+                this.getMarketValue(),
+                projectionParameters.getCapitalGrowthRate())));
+        this.ongoingCosts.projectBy(projectionParameters);
 
         for (Owner owner : getOwnerList()) {
-            owner.setAnnualIncome(MathUtil.doubleToLong(owner.getAnnualIncome()
-                    * (1 + projectionParameters.getSalaryIncreasePercentage())));
+            owner.setAnnualIncome(MathUtil.doubleToLong(MathUtil.increaseBy(
+                    owner.getAnnualIncome(),
+                    projectionParameters.getSalaryIncreaseRate())));
         }
     }
 
@@ -561,5 +572,22 @@ public class Property implements Serializable, Cloneable {
 
     public String getAddress() {
         return address;
+    }
+
+    public Double getManagementFeeRate() {
+        return managementFeeRate == null ? DEFAULT_PROPERTY_MANAGEMENT_FEES
+                : managementFeeRate;
+    }
+
+    public void setManagementFeeRate(Double managementFeeRate) {
+        this.managementFeeRate = managementFeeRate;
+    }
+
+    public Long getMarketValue() {
+        return marketValue;
+    }
+
+    public void setMarketValue(Long marketValue) {
+        this.marketValue = marketValue;
     }
 }

@@ -51,15 +51,15 @@ public class CompareController implements Serializable {
             property.setDeposit(this.deposit);
             property.setStampDuty(stampDutyCalculator.calculateStampDuty(
                     property.getState(), property.getPurchasePrice()));
-            property.setTotalCost(property.getPurchasePrice()
-                    + property.getStampDuty());
+            property.initialisePurhcaseCostAndMarketValue(property
+                    .getPurchasePrice() + property.getStampDuty());
             property.setLoanAmount(loanBalanceCalculator.calculateLoanBalance(
                     property.getPurchasePrice(), property.getStampDuty(),
                     property.getDeposit()));
-            property.setDeposit(property.getTotalCost()
+            property.setDeposit(property.getTotalPurchaseCost()
                     - property.getLoanAmount());
             property.setLvr(new LVRCalculator().calculateLvr(
-                    property.getLoanAmount(), property.getTotalCost()));
+                    property.getLoanAmount(), property.getTotalPurchaseCost()));
         }
     }
 

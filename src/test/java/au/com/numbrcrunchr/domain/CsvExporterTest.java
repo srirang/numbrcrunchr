@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,8 @@ import au.com.numbrcrunchr.CsvExporter;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class CsvExporterTest {
+    private static final Logger LOGGER = Logger.getLogger(CsvExporterTest.class
+            .getName());
     @Autowired
     private FeasibilityAnalysisProjectionService projectionService;
     @Autowired
@@ -46,6 +49,6 @@ public class CsvExporterTest {
                 .getProjections();
         assertNotNull(projections);
         assertEquals(26, projections.size());
-        System.out.println(CsvExporter.exportToCsvString(projections));
+        LOGGER.info(CsvExporter.exportToCsvString(projections));
     }
 }

@@ -179,7 +179,7 @@ public class FeasibilityAnalyserTest {
     public static Property createProperty(long annualIncome,
             boolean medicareLevyApplies, long loanAmount, long ongoingCosts,
             byte weeksRented, long weeklyRent, double interestRate,
-            double propertyManagementFee) {
+            double managementFeeRate) {
         Property property = new Property();
         property.setPurchasePrice(loanAmount);
         property.setLoanAmount(loanAmount);
@@ -187,7 +187,7 @@ public class FeasibilityAnalyserTest {
         property.setWeeklyRent(weeklyRent);
         property.setWeeksRented(weeksRented);
         property.setCouncilRates(ongoingCosts);
-        property.setPropertyManagementFees(propertyManagementFee);
+        property.setManagementFeeRate(managementFeeRate);
         Owner owner = new Owner();
         owner.setAnnualIncome(annualIncome);
         owner.setMedicareLevyApplies(medicareLevyApplies);
