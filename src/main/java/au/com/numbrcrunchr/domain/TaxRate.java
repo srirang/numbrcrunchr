@@ -19,6 +19,11 @@ public class TaxRate extends AbstractRate implements Serializable {
     public TaxRate() {
     }
 
+    public TaxRate(Long lowerLimit, Long upperLimit, long flatRate,
+            double percentage) {
+        super(lowerLimit, upperLimit, flatRate, percentage);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -27,16 +32,6 @@ public class TaxRate extends AbstractRate implements Serializable {
 
     @Column(name = "tax_year", length = 45)
     private String taxYear;
-
-    public TaxRate(long lowerLimit, long upperLimit, double flatRate,
-            double percentage) {
-        super(lowerLimit, upperLimit, flatRate, percentage);
-    }
-
-    public TaxRate(long lowerLimit, Long upperLimit, double flatRate,
-            double percentage) {
-        super(lowerLimit, upperLimit, flatRate, percentage);
-    }
 
     @Override
     public int hashCode() {

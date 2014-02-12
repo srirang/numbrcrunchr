@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import au.com.numbrcrunchr.domain.FeasibilityAnalyserTest;
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
 import au.com.numbrcrunchr.domain.Property;
+import au.com.numbrcrunchr.domain.PropertyTest;
 import au.com.numbrcrunchr.domain.State;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,8 +49,8 @@ public class MainControllerTest {
 
     @Test
     public void performSomeAnalysis() {
-        Property property = FeasibilityAnalyserTest.createProperty(300000l,
-                true, 427320l, 5000l, Byte.valueOf("50"), 450l, 8.0, 10.0);
+        Property property = PropertyTest.createProperty(300000l, true, 427320l,
+                5000l, Byte.valueOf("50"), 450l, 8.0, 10.0);
         property.setState(State.VIC);
         controller.setProperty(property);
         controller.performFeasibilityAnalysis();
@@ -62,8 +62,8 @@ public class MainControllerTest {
 
     @Test
     public void performSomeNegativeAnalysis() {
-        Property property = FeasibilityAnalyserTest.createProperty(300000l,
-                true, 427320l, 5000l, Byte.valueOf("50"), 10l, 8.0, 10.0);
+        Property property = PropertyTest.createProperty(300000l, true, 427320l,
+                5000l, Byte.valueOf("50"), 10l, 8.0, 10.0);
         property.setState(State.VIC);
         controller.setProperty(property);
         controller.performFeasibilityAnalysis();
@@ -75,8 +75,8 @@ public class MainControllerTest {
 
     @Test
     public void performSomeAnalysisWhenStampDutyIsIncluded() {
-        Property property = FeasibilityAnalyserTest.createProperty(300000l,
-                true, 427320l, 5000l, Byte.valueOf("50"), 450l, 8.0, 10.0);
+        Property property = PropertyTest.createProperty(300000l, true, 427320l,
+                5000l, Byte.valueOf("50"), 450l, 8.0, 10.0);
         property.setState(State.VIC);
         controller.setProperty(property);
         controller.setIncludesStampDuty(true);
@@ -88,8 +88,8 @@ public class MainControllerTest {
 
     public void checkJson() {
         // TODO Why does this fail intermittently?
-        Property property = FeasibilityAnalyserTest.createProperty(125000,
-                true, 427320, 5000, (byte) 50, 250, 8.0, 10.0);
+        Property property = PropertyTest.createProperty(125000, true, 427320,
+                5000, (byte) 50, 250, 8.0, 10.0);
         LOGGER.info(String.valueOf(property));
         property.setState(State.VIC);
         controller.setProperty(property);

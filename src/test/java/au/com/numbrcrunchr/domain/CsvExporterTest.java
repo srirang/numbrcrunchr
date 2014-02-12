@@ -41,8 +41,8 @@ public class CsvExporterTest {
         loanAmount = 427320;
         interestRate = 8;
         propertyManagementFee = 10;
-        Property property = FeasibilityAnalyserTest.createProperty(income,
-                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
                 .applyProjectionFor(property, 25, projectionParameters)

@@ -5,48 +5,43 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
-import java.math.BigDecimal;
-
 import org.junit.Test;
 
 public class StampDutyRateTest {
     @Test
     public void lowerLimitIsNull() {
-        StampDutyRate rate = new StampDutyRate("VIC", null, new Long("20000"),
-                new BigDecimal("0"), new BigDecimal("0.014"));
-        assertTrue(rate.isInRange(new Long("0")));
-        assertTrue(rate.isInRange(new Long("100")));
-        assertTrue(rate.isInRange(new Long("20000")));
+        StampDutyRate rate = new StampDutyRate("VIC", null, 20000l, 0, 0.014);
+        assertTrue(rate.isInRange(0l));
+        assertTrue(rate.isInRange(100l));
+        assertTrue(rate.isInRange(20000l));
 
-        assertFalse(rate.isInRange(new Long("20001")));
-        assertFalse(rate.isInRange(new Long("100000")));
+        assertFalse(rate.isInRange(20001l));
+        assertFalse(rate.isInRange(100000l));
     }
 
     @Test
     public void upperLimitIsNull() {
-        StampDutyRate rate = new StampDutyRate("NSW", new Long("1000001"),
-                null, new BigDecimal("40490"), new BigDecimal("0.055"));
-        assertTrue(rate.isInRange(new Long("1000001")));
-        assertTrue(rate.isInRange(new Long("10000011213")));
+        StampDutyRate rate = new StampDutyRate("NSW", 1000001l, null, 40490,
+                0.055);
+        assertTrue(rate.isInRange(1000001l));
+        assertTrue(rate.isInRange(10000011213l));
 
-        assertFalse(rate.isInRange(new Long("0")));
-        assertFalse(rate.isInRange(new Long("100")));
-        assertFalse(rate.isInRange(new Long("20000")));
-        assertFalse(rate.isInRange(new Long("1000000")));
+        assertFalse(rate.isInRange(0l));
+        assertFalse(rate.isInRange(100l));
+        assertFalse(rate.isInRange(20000l));
+        assertFalse(rate.isInRange(1000000l));
     }
 
     @Test
     public void checkCompare() {
-        StampDutyRate rate1 = new StampDutyRate("NSW", new Long("1000001"),
-                null, new BigDecimal("40490"), new BigDecimal("0.055"));
-        StampDutyRate rate2 = new StampDutyRate("NSW", new Long("1000001"),
-                null, new BigDecimal("40490"), new BigDecimal("0.055"));
+        StampDutyRate rate1 = new StampDutyRate("NSW", 1000001l, null, 40490,
+                0.055);
+        StampDutyRate rate2 = new StampDutyRate("NSW", 1000001l, null, 40490,
+                0.055);
         assertEquals(rate1, rate2);
 
-        rate1 = new StampDutyRate("NSW", new Long("1000001"), null,
-                new BigDecimal("40490"), new BigDecimal("0.055"));
-        rate2 = new StampDutyRate("VIC", new Long("1000001"), null,
-                new BigDecimal("40490"), new BigDecimal("0.055"));
+        rate1 = new StampDutyRate("NSW", 1000001l, null, 40490l, 0.055);
+        rate2 = new StampDutyRate("VIC", 1000001l, null, 40490l, 0.055);
         assertNotSame(rate1, rate2);
 
     }

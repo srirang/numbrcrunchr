@@ -1,7 +1,6 @@
 package au.com.numbrcrunchr.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -40,7 +39,7 @@ public class StampDutyRate extends AbstractRate implements Serializable {
     private String state;
 
     public StampDutyRate(String state, Long lowerLimit, Long upperLimit,
-            BigDecimal flatRate, BigDecimal percentage) {
+            long flatRate, double percentage) {
         super(lowerLimit, upperLimit, flatRate, percentage);
         this.state = state;
     }

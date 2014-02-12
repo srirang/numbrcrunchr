@@ -12,17 +12,20 @@ public class TaxRateRepositoryMapImpl implements TaxRateRepository {
     static {
         TAX_RATES = new HashMap<String, TaxRate[]>();
         TAX_RATES.put(TAX_YEAR_2010_2011, new TaxRate[] {
-                new TaxRate(0, 6000, 0, 0), new TaxRate(6001, 37000, 0, .15),
-                new TaxRate(37001, 80000, 4650, 0.30),
-                new TaxRate(80001, 180000, 17550, 0.37),
-                new TaxRate(180001, null, 54550.0, 0.45), });
+                new TaxRate(0l, 6000l, 0, 0),
+                new TaxRate(6001l, 37000l, 0, .15),
+                new TaxRate(37001l, 80000l, 4650, 0.30),
+                new TaxRate(80001l, 180000l, 17550, 0.37),
+                new TaxRate(180001l, null, 54550l, 0.45), });
         TAX_RATES.put(TAX_YEAR_2011_2012, new TaxRate[] {
-                new TaxRate(0, 6000, 0, 0), new TaxRate(6001, 37000, 0, .15),
-                new TaxRate(37001, 80000, 4650, 0.30),
-                new TaxRate(80001, 180000, 17550, 0.37),
-                new TaxRate(180001, null, 54550.0, 0.45), });
+                new TaxRate(0l, 6000l, 0, 0),
+                new TaxRate(6001l, 37000l, 0, .15),
+                new TaxRate(37001l, 80000l, 4650, 0.30),
+                new TaxRate(80001l, 180000l, 17550, 0.37),
+                new TaxRate(180001l, null, 54550, 0.45), });
     }
 
+    @Override
     public TaxRate getRate(String taxYear, long income) {
         if (taxYear == null) {
             throw new DataException(

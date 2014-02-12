@@ -1,7 +1,6 @@
 package au.com.numbrcrunchr.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * 
@@ -31,9 +30,10 @@ public class StampDutyCalculator implements Serializable {
 
         // All other states
         StampDutyRate rate = stampDutyRepository.getRate(state, value);
-        Long stampDuty = MathUtil.bigDecimalToLong(rate.getFlatRate()
-                .add(new BigDecimal(value.longValue()).multiply(rate
-                        .getPercentage())));
+        long previousBand = rate.getLowerLimit() == null ? 0 : rate
+                .getLowerLimit() - 1;
+        Long stampDuty = MathUtil.doubleToLong(rate.getFlatRate()
+                + ((value - previousBand) * rate.getPercentage()));
         return stampDuty;
     }
 

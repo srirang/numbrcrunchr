@@ -92,8 +92,8 @@ public class PropertyTest {
     }
 
     private Property createAProperty() {
-        Property property = FeasibilityAnalyserTest.createProperty(100000l,
-                true, 500000l, 10000l, Byte.valueOf("50"), 250l, 7d, 10d);
+        Property property = PropertyTest.createProperty(100000l, true, 500000l,
+                10000l, Byte.valueOf("50"), 250l, 7d, 10d);
         property.setPurchasePrice(550000l);
         property.setBuildingInspectionFees(500l);
         property.setBuildingValue(340000l);
@@ -129,5 +129,24 @@ public class PropertyTest {
         assertNotNull(property.getManagementFeeRate());
         assertEquals(250, property.getWeeklyRent(), 0);
         assertEquals(25, property.getPropertyManagementFees(), 0);
+    }
+
+    public static Property createProperty(long annualIncome,
+            boolean medicareLevyApplies, long loanAmount, long ongoingCosts,
+            byte weeksRented, long weeklyRent, double interestRate,
+            double managementFeeRate) {
+        Property property = new Property();
+        property.setPurchasePrice(loanAmount);
+        property.setLoanAmount(loanAmount);
+        property.setInterestRate(interestRate);
+        property.setWeeklyRent(weeklyRent);
+        property.setWeeksRented(weeksRented);
+        property.setCouncilRates(ongoingCosts);
+        property.setManagementFeeRate(managementFeeRate);
+        Owner owner = new Owner();
+        owner.setAnnualIncome(annualIncome);
+        owner.setMedicareLevyApplies(medicareLevyApplies);
+        property.addOwner(owner);
+        return property;
     }
 }

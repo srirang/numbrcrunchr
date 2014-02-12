@@ -58,8 +58,8 @@ public class FeasibilityAnalysisProjectionServiceTest {
         loanAmount = 427320;
         interestRate = 8;
         propertyManagementFee = 10;
-        Property property = FeasibilityAnalyserTest.createProperty(income,
-                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
                 .applyProjectionFor(property, 1, projectionParameters)
@@ -76,8 +76,8 @@ public class FeasibilityAnalysisProjectionServiceTest {
         loanAmount = 427320;
         interestRate = 8;
         propertyManagementFee = 10;
-        Property property = FeasibilityAnalyserTest.createProperty(income,
-                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
                 .applyProjectionFor(property, 2, projectionParameters)
@@ -94,8 +94,8 @@ public class FeasibilityAnalysisProjectionServiceTest {
         loanAmount = 427320;
         interestRate = 8;
         propertyManagementFee = 10;
-        Property property = FeasibilityAnalyserTest.createProperty(income,
-                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
                 .applyProjectionFor(property, 20, projectionParameters)
@@ -139,8 +139,8 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 + waterRates + cleaning + councilRates + gardening
                 + taxExpenses + miscOngoingExpenses;
 
-        Property property = FeasibilityAnalyserTest.createProperty(income,
-                true, loanAmount, ongoingCosts, weeksRented, weeklyRent,
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         property.setLoanTerm(loanTerm);
         property.setPurchaseDate(purchaseDate);

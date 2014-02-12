@@ -16,31 +16,19 @@ public abstract class AbstractRate implements Serializable {
     @Column(name = "upper_limit")
     private Long upperLimit;
     @Column(name = "flat_rate", precision = 22)
-    private BigDecimal flatRate;
+    private long flatRate;
     @Column(name = "percentage", precision = 22)
-    private BigDecimal percentage;
+    private double percentage;
 
     public AbstractRate() {
     }
 
-    public AbstractRate(Long lowerLimit, Long upperLimit, BigDecimal flatRate,
-            BigDecimal percentage) {
+    public AbstractRate(Long lowerLimit, Long upperLimit, long flatRate,
+            double percentage) {
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
         this.flatRate = flatRate;
         this.percentage = percentage;
-    }
-
-    public AbstractRate(long lowerLimit, long upperLimit, double flatRate,
-            double percentage) {
-        this(lowerLimit, upperLimit, new BigDecimal(String.valueOf(flatRate)),
-                new BigDecimal(String.valueOf(percentage)));
-    }
-
-    public AbstractRate(long lowerLimit, Long upperLimit, double flatRate,
-            double percentage) {
-        this(lowerLimit, upperLimit, new BigDecimal(String.valueOf(flatRate)),
-                new BigDecimal(String.valueOf(percentage)));
     }
 
     public Long getLowerLimit() {
@@ -51,11 +39,11 @@ public abstract class AbstractRate implements Serializable {
         return upperLimit;
     }
 
-    public BigDecimal getFlatRate() {
+    public long getFlatRate() {
         return flatRate;
     }
 
-    public BigDecimal getPercentage() {
+    public double getPercentage() {
         return percentage;
     }
 
@@ -90,7 +78,7 @@ public abstract class AbstractRate implements Serializable {
     @Override
     public String toString() {
         return nullSafeNumber(getLowerLimit()) + " < "
-                + nullSafeNumber(getUpperLimit()) + " = "
-                + nullSafeNumber(flatRate) + " + " + nullSafeNumber(percentage);
+                + nullSafeNumber(getUpperLimit()) + " = " + flatRate + " + "
+                + percentage;
     }
 }

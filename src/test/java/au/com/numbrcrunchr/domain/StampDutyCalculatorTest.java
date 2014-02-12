@@ -13,7 +13,7 @@ public class StampDutyCalculatorTest {
     public void calcualteStampDutyForVIC() {
         assertEquals(0, calculator.calculateStampDuty(State.VIC, new Long("0"))
                 .doubleValue(), 0);
-        assertEquals(2750,
+        assertEquals(2150,
                 calculator.calculateStampDuty(State.VIC, new Long("100000"))
                         .doubleValue(), 0);
     }
