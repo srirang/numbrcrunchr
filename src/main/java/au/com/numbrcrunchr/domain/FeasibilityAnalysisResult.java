@@ -221,6 +221,6 @@ public class FeasibilityAnalysisResult implements Serializable {
     }
 
     public Long getEquityAvailable() {
-        return (getPropertyValue() * 80 / 100) - getLoanBalance();
+        return new EquityCalculator().calculateEquity(this.property.getMarketValue(), getLoanBalance());
     }
 }

@@ -11,7 +11,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Embeddable
 public class OngoingCosts implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	// TODO: Create test for OngoingCosts
 	private static final Long DEFAULT_LANDLORD_INSURANCE = 400l;
 	private static final Long DEFAULT_MAINTENANCE = 100l;
 	private static final Long DEFAULT_WATER_CHARGES = 800l;
@@ -19,38 +19,39 @@ public class OngoingCosts implements Serializable {
 	private static final Long DEFAULT_COUNCIL_RATES = 1500l;
 	private static final Long DEFAULT_GARDENING = 100l;
 	private static final Long DEFAULT_TAX_EXPENSES = 100l;
+	private static final Long DEFAULT_MISC_ONGOING_EXPENSES = 0l;
+	private static final Long DEFAULT_STRATA = 0l;
 
 	// Ongoing Costs
 	@Column(name = "landlords_insurance")
-	private Long landlordsInsurance;
+	private Long landlordsInsurance = DEFAULT_LANDLORD_INSURANCE;
 
 	@Column(name = "maintenance")
-	private Long maintenance;
+	private Long maintenance = DEFAULT_MAINTENANCE;
 
 	@Column(name = "strata")
-	private Long strata;
+	private Long strata = DEFAULT_STRATA;
 
 	@Column(name = "water_charges")
-	private Long waterCharges;
+	private Long waterCharges = DEFAULT_WATER_CHARGES;
 
 	@Column(name = "cleaning")
-	private Long cleaning;
+	private Long cleaning = DEFAULT_CLEANING;
 
 	@Column(name = "council_rates")
-	private Long councilRates;
+	private Long councilRates = DEFAULT_COUNCIL_RATES;
 
 	@Column(name = "gardening")
-	private Long gardening;
+	private Long gardening = DEFAULT_GARDENING;
 
 	@Column(name = "tax_expenses")
-	private Long taxExpenses;
+	private Long taxExpenses = DEFAULT_TAX_EXPENSES;
 
 	@Column(name = "misc_ongoing_expenses")
-	private Long miscOngoingExpenses;
+	private Long miscOngoingExpenses = DEFAULT_MISC_ONGOING_EXPENSES;
 
 	public Long getLandlordsInsurance() {
-		return landlordsInsurance == null ? DEFAULT_LANDLORD_INSURANCE
-		        : landlordsInsurance;
+		return this.landlordsInsurance;
 	}
 
 	public void setLandlordsInsurance(Long landlordsInsurance) {
@@ -62,7 +63,7 @@ public class OngoingCosts implements Serializable {
 	}
 
 	public Long getMaintenance() {
-		return maintenance == null ? DEFAULT_MAINTENANCE : maintenance;
+		return this.maintenance;
 	}
 
 	public void setMiscOngoingExpenses(Long miscOngoingExpenses) {
@@ -70,7 +71,7 @@ public class OngoingCosts implements Serializable {
 	}
 
 	public Long getMiscOngoingExpenses() {
-		return miscOngoingExpenses == null ? 0 : miscOngoingExpenses;
+		return this.miscOngoingExpenses;
 	}
 
 	public void setStrata(Long strata) {
@@ -78,7 +79,7 @@ public class OngoingCosts implements Serializable {
 	}
 
 	public Long getStrata() {
-		return strata == null ? 0 : strata;
+		return this.strata;
 	}
 
 	public void setWaterCharges(Long waterCharges) {
@@ -86,7 +87,7 @@ public class OngoingCosts implements Serializable {
 	}
 
 	public Long getWaterCharges() {
-		return waterCharges == null ? DEFAULT_WATER_CHARGES : waterCharges;
+		return waterCharges;
 	}
 
 	public void setCleaning(Long cleaning) {
@@ -94,7 +95,7 @@ public class OngoingCosts implements Serializable {
 	}
 
 	public Long getCleaning() {
-		return cleaning == null ? DEFAULT_CLEANING : cleaning;
+		return cleaning;
 	}
 
 	public void setCouncilRates(Long councilRates) {
@@ -102,11 +103,11 @@ public class OngoingCosts implements Serializable {
 	}
 
 	public Long getCouncilRates() {
-		return councilRates == null ? DEFAULT_COUNCIL_RATES : councilRates;
+		return councilRates;
 	}
 
 	public Long getGardening() {
-		return gardening == null ? DEFAULT_GARDENING : gardening;
+		return gardening;
 	}
 
 	public void setGardening(Long gardening) {
@@ -114,7 +115,7 @@ public class OngoingCosts implements Serializable {
 	}
 
 	public Long getTaxExpenses() {
-		return taxExpenses == null ? DEFAULT_TAX_EXPENSES : taxExpenses;
+		return taxExpenses;
 	}
 
 	public void setTaxExpenses(Long taxExpenses) {

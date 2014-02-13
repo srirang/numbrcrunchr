@@ -63,7 +63,7 @@
 		<property name="cpi" value="3" />
 		<property name="salaryIncreaseRate" value="3.5" />
 		<property name="rentIncreaseRate" value="4" />
-		<property name="capitalGrowthRate" value="8" />
+		<property name="capitalGrowthRate" value="5.5" />
 	</bean>
 
 	<bean id="dbInitialiser" class="au.com.numbrcrunchr.DbInitialiser" destroy-method="shutdownDatabase" lazy-init="false">

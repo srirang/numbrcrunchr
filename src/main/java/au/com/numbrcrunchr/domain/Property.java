@@ -32,12 +32,12 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Entity
 @Table(name = "property")
 @NamedQueries({
-		@NamedQuery(name = "Property.findAll", query = "SELECT p FROM Property p"),
-		@NamedQuery(name = "Property.findByIdProperty", query = "SELECT p FROM Property p WHERE p.idProperty = :idProperty"),
-		@NamedQuery(name = "Property.findByAddress", query = "SELECT p FROM Property p WHERE p.address = :address"),
-		@NamedQuery(name = "Property.findByState", query = "SELECT p FROM Property p WHERE p.state = :state"),
-		@NamedQuery(name = "Property.findByPrice", query = "SELECT p FROM Property p WHERE p.purchasePrice = :askingPrice"),
-		@NamedQuery(name = "Property.findByPurchaseDate", query = "SELECT p FROM Property p WHERE p.purchaseDate = :purchaseDate") })
+        @NamedQuery(name = "Property.findAll", query = "SELECT p FROM Property p"),
+        @NamedQuery(name = "Property.findByIdProperty", query = "SELECT p FROM Property p WHERE p.idProperty = :idProperty"),
+        @NamedQuery(name = "Property.findByAddress", query = "SELECT p FROM Property p WHERE p.address = :address"),
+        @NamedQuery(name = "Property.findByState", query = "SELECT p FROM Property p WHERE p.state = :state"),
+        @NamedQuery(name = "Property.findByPrice", query = "SELECT p FROM Property p WHERE p.purchasePrice = :askingPrice"),
+        @NamedQuery(name = "Property.findByPurchaseDate", query = "SELECT p FROM Property p WHERE p.purchaseDate = :purchaseDate") })
 public class Property implements Serializable, Cloneable {
 	private static final Long DEFAULT_TITLE_REGISTRATION_FEES = 300l;
 	private static final Long DEFAULT_LEGAL_FEES = 800l;
@@ -72,7 +72,7 @@ public class Property implements Serializable, Cloneable {
 	private Long weeklyRent;
 
 	@Column(name = "management_fee_rate")
-	private Double managementFeeRate;
+	private Double managementFeeRate = DEFAULT_PROPERTY_MANAGEMENT_FEES;
 
 	@Basic(optional = false)
 	@Column(name = "state", nullable = false, length = 45)
@@ -93,16 +93,16 @@ public class Property implements Serializable, Cloneable {
 	private Long stampDuty;
 
 	@Column(name = "legal_fees")
-	private Long legalFees;
+	private Long legalFees = DEFAULT_LEGAL_FEES;
 
 	@Column(name = "interest_only_period")
-	private Integer interestOnlyPeriod;
+	private Integer interestOnlyPeriod = DEFAULT_INTEREST_ONLY_PERIOD;
 
 	@Column(name = "building_inspection_fees")
 	private Long buildingInspectionFees;
 
 	@Column(name = "title_registration_fees")
-	private Long titleRegistrationFees;
+	private Long titleRegistrationFees = DEFAULT_TITLE_REGISTRATION_FEES;
 
 	// Borrowing costs
 	@Column(name = "mortgage_stamp_duty")
@@ -122,7 +122,7 @@ public class Property implements Serializable, Cloneable {
 
 	// Assumptions
 	@Column(name = "interest_rate")
-	private Double interestRate;
+	private Double interestRate = DEFAULT_INTEREST_RATE;
 
 	@Column(name = "lvr")
 	private Double lvr = DEFAULT_LVR;
@@ -141,10 +141,10 @@ public class Property implements Serializable, Cloneable {
 	private Long fittingsValue;
 
 	@Column(name = "weeks_rented")
-	private Byte weeksRented;
+	private Byte weeksRented = DEFAULT_WEEKS_RENTED;
 
 	@Column(name = "loan_term")
-	private Integer loanTerm;
+	private Integer loanTerm = DEFAULT_LOAN_TERM;
 
 	public Property() {
 		this.ownerList = new ArrayList<Owner>();
@@ -210,8 +210,8 @@ public class Property implements Serializable, Cloneable {
 		}
 		Property other = (Property) object;
 		if ((this.idProperty == null && other.idProperty != null)
-				|| (this.idProperty != null && !this.idProperty
-						.equals(other.idProperty))) {
+		        || (this.idProperty != null && !this.idProperty
+		                .equals(other.idProperty))) {
 			return false;
 		}
 		return true;
@@ -263,7 +263,7 @@ public class Property implements Serializable, Cloneable {
 	}
 
 	public Long getLegalFees() {
-		return legalFees == null ? DEFAULT_LEGAL_FEES : legalFees;
+		return legalFees;
 	}
 
 	public Long getBuildingInspectionFees() {
@@ -275,8 +275,7 @@ public class Property implements Serializable, Cloneable {
 	}
 
 	public Long getTitleRegistrationFees() {
-		return titleRegistrationFees == null ? DEFAULT_TITLE_REGISTRATION_FEES
-				: titleRegistrationFees;
+		return titleRegistrationFees;
 	}
 
 	public void setTitleRegistrationFees(Long titleRegistration) {
@@ -305,7 +304,7 @@ public class Property implements Serializable, Cloneable {
 
 	public Long getMortgageInsuranceStampDuty() {
 		return mortgageInsuranceStampDuty == null ? 0
-				: mortgageInsuranceStampDuty;
+		        : mortgageInsuranceStampDuty;
 	}
 
 	public void setMortgageStampDuty(Long mortgageStampDuty) {
@@ -321,7 +320,7 @@ public class Property implements Serializable, Cloneable {
 	}
 
 	public Byte getWeeksRented() {
-		return weeksRented == null ? DEFAULT_WEEKS_RENTED : weeksRented;
+		return weeksRented;
 	}
 
 	public Date getConstructionDate() {
@@ -337,17 +336,8 @@ public class Property implements Serializable, Cloneable {
 	}
 
 	public Double getInterestRate() {
-		return interestRate == null ? DEFAULT_INTEREST_RATE : interestRate;
+		return interestRate;
 	}
-
-	// public void setPropertyManagementFees(Double propertyManagementFees) {
-	// this.propertyManagementFees = propertyManagementFees;
-	// }
-	//
-	// public Double getPropertyManagementFees() {
-	// return propertyManagementFees == null ? DEFAULT_PROPERTY_MANAGEMENT_FEES
-	// : propertyManagementFees;
-	// }
 
 	public Date getPurchaseDate() {
 		return purchaseDate == null ? new Date() : purchaseDate;
@@ -375,23 +365,25 @@ public class Property implements Serializable, Cloneable {
 
 	public Long[] getBuyingCosts() {
 		Long[] buyingCosts = new Long[] { getStampDuty(), getLegalFees(),
-				getBuildingInspectionFees(), getTitleRegistrationFees(), };
+		        getBuildingInspectionFees(), getTitleRegistrationFees(), };
 		return buyingCosts;
 	}
 
 	public Long[] getBorrowingCosts() {
 		Long[] borrowingCosts = new Long[] { getMortgageStampDuty(),
-				getMortgageInsurance(), getMortgageInsuranceStampDuty(),
-				getLoanApplicationFees(), };
+		        getMortgageInsurance(), getMortgageInsuranceStampDuty(),
+		        getLoanApplicationFees(), };
 		return borrowingCosts;
 	}
 
 	public Long getTotalOngoingCosts() {
-		return this.ongoingCosts.getTotalOngoingCosts(getPropertyManagementFees());
+		return this.ongoingCosts
+		        .getTotalOngoingCosts(getPropertyManagementFees());
 	}
 
 	public Long getPropertyManagementFees() {
-		return MathUtil.doubleToLong(weeklyRent * getManagementFeeRate() / 100) * weeksRented;
+		return MathUtil.doubleToLong(weeklyRent * getManagementFeeRate() / 100)
+		        * weeksRented;
 	}
 
 	public Long totalBuyingCost() {
@@ -439,22 +431,22 @@ public class Property implements Serializable, Cloneable {
 
 	public void projectBy(ProjectionParameters projectionParameters) {
 		this.setWeeklyRent(MathUtil.doubleToLong(MathUtil.increaseBy(
-				this.getWeeklyRent(),
-				projectionParameters.getRentIncreaseRate())));
+		        this.getWeeklyRent(),
+		        projectionParameters.getRentIncreaseRate())));
 		this.setMarketValue(MathUtil.doubleToLong(MathUtil.increaseBy(
-				this.getMarketValue(),
-				projectionParameters.getCapitalGrowthRate())));
+		        this.getMarketValue(),
+		        projectionParameters.getCapitalGrowthRate())));
 		this.ongoingCosts.projectBy(projectionParameters.getCpi());
 
 		for (Owner owner : getOwnerList()) {
 			owner.setAnnualIncome(MathUtil.doubleToLong(MathUtil.increaseBy(
-					owner.getAnnualIncome(),
-					projectionParameters.getSalaryIncreaseRate())));
+			        owner.getAnnualIncome(),
+			        projectionParameters.getSalaryIncreaseRate())));
 		}
 	}
 
 	public Integer getLoanTerm() {
-		return this.loanTerm == null ? DEFAULT_LOAN_TERM : this.loanTerm;
+		return this.loanTerm;
 	}
 
 	public void setLoanTerm(Integer loanTerm) {
@@ -462,8 +454,7 @@ public class Property implements Serializable, Cloneable {
 	}
 
 	public int getInterestOnlyPeriod() {
-		return interestOnlyPeriod == null ? DEFAULT_INTEREST_ONLY_PERIOD
-				: interestOnlyPeriod;
+		return interestOnlyPeriod;
 	}
 
 	public void setInterestOnlyPeriod(int interestOnlyPeriod) {
@@ -567,8 +558,7 @@ public class Property implements Serializable, Cloneable {
 	}
 
 	public Double getManagementFeeRate() {
-		return managementFeeRate == null ? DEFAULT_PROPERTY_MANAGEMENT_FEES
-				: managementFeeRate;
+		return managementFeeRate;
 	}
 
 	public void setManagementFeeRate(Double managementFeeRate) {
@@ -586,12 +576,12 @@ public class Property implements Serializable, Cloneable {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.MULTI_LINE_STYLE);
+		        ToStringStyle.MULTI_LINE_STYLE);
 	}
 
 	public Long getGovermentCosts() {
 		return this.getStampDuty() + this.getLegalFees()
-				+ this.getMortgageInsuranceStampDuty()
-				+ this.getMortgageStampDuty();
+		        + this.getMortgageInsuranceStampDuty()
+		        + this.getMortgageStampDuty();
 	}
 }
