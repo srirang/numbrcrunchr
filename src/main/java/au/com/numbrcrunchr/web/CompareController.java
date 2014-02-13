@@ -79,7 +79,7 @@ public class CompareController implements Serializable {
         return null;
     }
 
-    public Long getAnnualIncome() {
+    public double getAnnualIncome() {
         return this.owner.getAnnualIncome();
     }
 

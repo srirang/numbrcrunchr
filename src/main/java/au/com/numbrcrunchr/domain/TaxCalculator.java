@@ -14,7 +14,7 @@ public class TaxCalculator {
     public TaxCalculator() {
     }
 
-    public Long calculateTax(Date taxYear, long grossIncome,
+    public double calculateTax(Date taxYear, double grossIncome,
             boolean includeMedicareLevySurcharge) {
         String taxYearString = FinancialYearUtils.getTaxYear(taxYear);
         TaxRate rate = taxRateRepository.getRate(taxYearString, grossIncome);
@@ -33,11 +33,11 @@ public class TaxCalculator {
         return MathUtil.doubleToLong(totalTax);
     }
 
-    public Long calculateNettIncome(Date taxYear, long grossIncome,
+    public double calculateNettIncome(Date taxYear, double grossIncome,
             boolean includeMedicareLevySurcharge) {
-        long tax = calculateTax(taxYear, grossIncome,
+    	double tax = calculateTax(taxYear, grossIncome,
                 includeMedicareLevySurcharge);
-        long nettIncome = grossIncome - tax;
+        double nettIncome = grossIncome - tax;
         return nettIncome;
     }
 

@@ -58,6 +58,11 @@ public class MainControllerTest {
         List<FeasibilityAnalysisResult> projection = controller.getProjection();
         assertEquals(25, projection.size());
         assertEquals("Negative", controller.getGearing());
+        assertNotNull(controller.getAllExpensesAsJson());
+        assertNotNull(controller.getAllGrossYieldsAsJson());
+        assertNotNull(controller.getAllIncomesAsJson());
+        assertNotNull(controller.getAllNettYieldsAsJson());
+        assertNotNull(controller.getAllOutOfPocketsAsJson());
     }
 
     @Test

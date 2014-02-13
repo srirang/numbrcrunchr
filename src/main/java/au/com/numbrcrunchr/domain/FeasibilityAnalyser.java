@@ -19,12 +19,12 @@ public class FeasibilityAnalyser {
 
     public FeasibilityAnalysisResult analyseFeasibility(Property property,
             double interest, double principal) {
-        long tax, nettIncome;
-        long totalGrossIncome = property.calculateOwnerGrossIncome();
+        double tax, nettIncome;
+        double totalGrossIncome = property.calculateOwnerGrossIncome();
 
         // Base variables
-        long totalTax = 0;
-        long totalNettIncome = 0;
+        double totalTax = 0;
+        double totalNettIncome = 0;
         for (Owner owner : property.getOwnerList()) {
             tax = taxCalculator.calculateTax(new Date(),
                     owner.getAnnualIncome(), owner.getMedicareLevyApplies());
@@ -35,31 +35,31 @@ public class FeasibilityAnalyser {
             totalNettIncome += nettIncome;
         }
 
-        long rentalIncome = rentalIncomeCalculator.calculateGrossAnnualRent(
+        double rentalIncome = rentalIncomeCalculator.calculateGrossAnnualRent(
                 property.getWeeklyRent(), property.getWeeksRented());
         double ongoingExpenses = property.getTotalOngoingCosts();
 
         double totalExpenses = interest + ongoingExpenses;
 
         double grossCashflow = rentalIncome - totalExpenses;
-        long annualIncomeBeforeIP = totalGrossIncome;
-        long annualTaxBeforeIP = totalTax;
+        double annualIncomeBeforeIP = totalGrossIncome;
+        double annualTaxBeforeIP = totalTax;
 
-        long annualIncomeAfterIP = (long) (totalGrossIncome + grossCashflow);
-        long annualTaxAfterIP = taxCalculator.calculateTax(new Date(),
+        double annualIncomeAfterIP = totalGrossIncome + grossCashflow;
+        double annualTaxAfterIP = taxCalculator.calculateTax(new Date(),
                 annualIncomeAfterIP, true);
 
-        long taxSavings = annualTaxBeforeIP - annualTaxAfterIP;
+        double taxSavings = annualTaxBeforeIP - annualTaxAfterIP;
 
-        long nettCashflow = (long) (grossCashflow + taxSavings);
-        long youPay = nettCashflow;
+        double nettCashflow = grossCashflow + taxSavings;
+        double youPay = nettCashflow;
 
         return new FeasibilityAnalysisResult(property,
-                MathUtil.doubleToLong(grossCashflow), rentalIncome, taxSavings,
-                youPay, nettCashflow, MathUtil.doubleToLong(interest),
+                grossCashflow, rentalIncome, taxSavings,
+                youPay, nettCashflow, interest,
                 annualIncomeAfterIP, annualTaxAfterIP, annualIncomeBeforeIP,
                 annualTaxBeforeIP, totalNettIncome,
-                MathUtil.doubleToLong(ongoingExpenses));
+                ongoingExpenses);
     }
 
     public FeasibilityAnalysisResult analyseFirstYearFeasibility(

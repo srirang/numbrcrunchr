@@ -1,16 +1,16 @@
 package au.com.numbrcrunchr.domain;
 
 public class ReturnSummary {
-    private long cashInvested;
-    private long grossYearlyCashflow;
+    private double cashInvested;
+    private double grossYearlyCashflow;
     private double grossYield;
     private double nettYield;
-    private long nettYearlyCashflow;
+    private double nettYearlyCashflow;
     private String year;
 
-    private ReturnSummary(String year, long cashInvested,
-            long grossYearlyCashflow, double grossYield,
-            long nettYearlyCashflow, double nettYield) {
+    private ReturnSummary(String year, double cashInvested,
+    		double grossYearlyCashflow, double grossYield,
+    		double nettYearlyCashflow, double nettYield) {
         super();
         this.year = year;
         this.cashInvested = cashInvested;
@@ -26,11 +26,11 @@ public class ReturnSummary {
                 .getNettCashflow(), result.getNettYield());
     }
 
-    public long getCashInvested() {
+    public double getCashInvested() {
         return cashInvested;
     }
 
-    public long getGrossYearlyCashflow() {
+    public double getGrossYearlyCashflow() {
         return grossYearlyCashflow;
     }
 
@@ -38,7 +38,7 @@ public class ReturnSummary {
         return grossYield;
     }
 
-    public long getNettYearlyCashflow() {
+    public double getNettYearlyCashflow() {
         return nettYearlyCashflow;
     }
 

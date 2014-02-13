@@ -36,7 +36,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 public class Owner implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Long DEFAULT_ANNUAL_INCOME = 100000L;
+    private static final double DEFAULT_ANNUAL_INCOME = 100000;
     private static final Double DEFAULT_OWNERSHIP_SHARE = 100.0;
 
     @Id
@@ -45,13 +45,13 @@ public class Owner implements Serializable {
     @Column(name = "idOwner", nullable = false)
     private Integer idOwner;
     @Column(name = "annual_income")
-    private Long annualIncome;
+    private double annualIncome = DEFAULT_ANNUAL_INCOME;
     @Column(name = "ownership_share", precision = 22)
     private Double ownershipShare = DEFAULT_OWNERSHIP_SHARE;
     @JoinTable(name = "property_has_owner", joinColumns = { @JoinColumn(name = "Owner_idOwner", referencedColumnName = "idOwner", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "Property_idProperty", referencedColumnName = "idProperty", nullable = false) })
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Property> propertyList;
-    private Long tax;
+    private double tax;
     private Boolean medicareLevyApplies = Boolean.TRUE;
 
     public Owner() {
@@ -92,20 +92,20 @@ public class Owner implements Serializable {
         this.propertyList.add(property);
     }
 
-    public void setAnnualIncome(Long annualIncome) {
+    public void setAnnualIncome(double annualIncome) {
         this.annualIncome = annualIncome;
     }
 
-    public Long getTax() {
+    public double getTax() {
         return tax;
     }
 
-    public void setTax(Long tax) {
+    public void setTax(double tax) {
         this.tax = tax;
     }
 
-    public Long getAnnualIncome() {
-        return annualIncome == null ? DEFAULT_ANNUAL_INCOME : annualIncome;
+    public double getAnnualIncome() {
+        return annualIncome;
     }
 
     public void setMedicareLevyApplies(Boolean medicareLevyApplies) {

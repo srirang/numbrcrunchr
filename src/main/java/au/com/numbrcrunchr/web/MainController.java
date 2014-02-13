@@ -31,6 +31,7 @@ import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
 import au.com.numbrcrunchr.domain.FinancialYearUtils;
 import au.com.numbrcrunchr.domain.LVRCalculator;
 import au.com.numbrcrunchr.domain.LoanBalanceCalculator;
+import au.com.numbrcrunchr.domain.MathUtil;
 import au.com.numbrcrunchr.domain.Owner;
 import au.com.numbrcrunchr.domain.Projection;
 import au.com.numbrcrunchr.domain.ProjectionParameters;
@@ -157,27 +158,27 @@ public class MainController implements Serializable {
     }
 
     public Long getTotalTenantPays() {
-        Long totalTenantPays = 0l;
+    	double totalTenantPays = 0l;
         for (FeasibilityAnalysisResult result : getProjection()) {
             totalTenantPays += result.getRentalIncome();
         }
-        return totalTenantPays;
+        return MathUtil.doubleToLong(totalTenantPays);
     }
 
     public Long getTotalYouPay() {
-        Long totalYouPay = 0l;
+    	double totalYouPay = 0l;
         for (FeasibilityAnalysisResult result : getProjection()) {
             totalYouPay += result.getYouPay();
         }
-        return totalYouPay;
+        return MathUtil.doubleToLong(totalYouPay);
     }
 
     public Long getTotalAtoPays() {
-        Long totalAtoPays = 0l;
+    	double totalAtoPays = 0l;
         for (FeasibilityAnalysisResult result : getProjection()) {
             totalAtoPays += result.getTaxSavings();
         }
-        return totalAtoPays;
+        return MathUtil.doubleToLong(totalAtoPays);
     }
 
     public String getJsonYears() {
@@ -220,7 +221,7 @@ public class MainController implements Serializable {
                         return ((FeasibilityAnalysisResult) input)
                                 .getTotalExpense();
                     }
-                }).toArray(new Long[] {}));
+                }).toArray(new Double[] {}));
     }
 
     @SuppressWarnings("unchecked")
@@ -232,7 +233,7 @@ public class MainController implements Serializable {
                         return ((FeasibilityAnalysisResult) input)
                                 .getTotalOutOfPocket();
                     }
-                }).toArray(new Long[] {}));
+                }).toArray(new Double[] {}));
     }
 
     public String getAllGrossYieldsAsJson() {
@@ -304,11 +305,11 @@ public class MainController implements Serializable {
     }
 
     public Long getTax() {
-        return this.getOwner().getTax();
+        return MathUtil.doubleToLong(this.getOwner().getTax());
     }
 
     public Long getAnnualIncome() {
-        return this.getOwner().getAnnualIncome();
+        return MathUtil.doubleToLong(this.getOwner().getAnnualIncome());
     }
 
     public void setAnnualIncome(Long annualIncome) {
@@ -316,7 +317,7 @@ public class MainController implements Serializable {
     }
 
     public Long getPartnerAnnualIncome() {
-        return this.getPartner().getAnnualIncome();
+        return MathUtil.doubleToLong(this.getPartner().getAnnualIncome());
     }
 
     public void setPartnerAnnualIncome(Long annualIncome) {

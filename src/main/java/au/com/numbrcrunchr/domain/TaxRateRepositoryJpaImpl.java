@@ -9,7 +9,7 @@ public class TaxRateRepositoryJpaImpl extends AbstractJpaRepository implements
     public TaxRateRepositoryJpaImpl() {
     }
 
-    public TaxRate getRate(String taxYear, long income) {
+    public TaxRate getRate(String taxYear, double income) {
         if (taxYear == null) {
             throw new DataException(
                     "Unable to find any tax rates for tax year: null");
@@ -24,7 +24,7 @@ public class TaxRateRepositoryJpaImpl extends AbstractJpaRepository implements
                     + String.valueOf(taxYear) + " for income " + income);
         }
         for (TaxRate TaxRate : taxRates) {
-            if (TaxRate.isInRange(income)) {
+            if (TaxRate.isInRange(MathUtil.doubleToLong(income))) {
                 return TaxRate;
             }
         }
