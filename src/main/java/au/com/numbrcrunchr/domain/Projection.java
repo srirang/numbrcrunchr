@@ -131,6 +131,8 @@ public class Projection implements Serializable {
 				property.getManagementFeeRate());
 		sb.append("\nOwner PAYG Income: \t").append(
 				property.getOwnerList().get(0).getAnnualIncome());
+		sb.append("\nDays in First Financial Year: \t").append(FinancialYearUtils
+                .getFinancialYearRemainingOn(property.getPurchaseDate()).getDaysInFirstFinancialYear());
 		sb.append("\n");
 		sb.append("\nProperty Details: ");
 		sb.append("\nPurchase Price: \t").append(property.getPurchasePrice());
@@ -259,4 +261,5 @@ public class Projection implements Serializable {
 		sb.append("\n---------------------------------------------------------------------------\n\n\n\n");
 		return sb.toString();
 	}
+
 }

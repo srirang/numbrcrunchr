@@ -66,9 +66,9 @@ public class FeasibilityAnalysisResult implements Serializable {
         this.ongoingExpenses = property.getTotalOngoingCosts();
     }
 
-    public FeasibilityAnalysisResult applyPurchaseDate(Date effectiveDate) {
+    public FeasibilityAnalysisResult applyPurchaseDate(Date purchaseDate) {
         PartialPeriodDetails partialPeriodDetails = FinancialYearUtils
-                .getFinancialYearRemainingOn(effectiveDate);
+                .getFinancialYearRemainingOn(purchaseDate);
 
         double financialYearRemaining = partialPeriodDetails
                 .getProRataFinancialYear();

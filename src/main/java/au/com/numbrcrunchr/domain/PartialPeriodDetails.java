@@ -20,4 +20,8 @@ public class PartialPeriodDetails {
     public Date getFinancialYearEnd() {
         return financialYearEnd;
     }
+
+    public long getDaysInFirstFinancialYear() {
+    	return MathUtil.doubleToLong(proRataFinancialYear * 326);
+    }
 }
