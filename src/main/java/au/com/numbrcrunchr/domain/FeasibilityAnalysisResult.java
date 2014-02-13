@@ -62,7 +62,8 @@ public class FeasibilityAnalysisResult implements Serializable {
         this.annualIncomeBeforeIP = annualIncomeBeforeIP;
         this.annualTaxBeforeIP = annualTaxBeforeIP;
         this.totalNettIncome = totalNettIncome;
-        this.ongoingExpenses = ongoingExpenses;
+//        this.ongoingExpenses = ongoingExpenses;
+        this.ongoingExpenses = property.getTotalOngoingCosts();
     }
 
     public FeasibilityAnalysisResult applyPurchaseDate(Date effectiveDate) {

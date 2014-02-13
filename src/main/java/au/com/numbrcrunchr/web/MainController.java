@@ -601,10 +601,6 @@ public class MainController implements Serializable {
         return "Negative";
     }
 
-    public Long getCashDeductions() {
-        return getProperty().calculateTotalOngoingCost();
-    }
-
     public ProjectionParameters getProjectionParameters() {
         return projectionParameters;
     }

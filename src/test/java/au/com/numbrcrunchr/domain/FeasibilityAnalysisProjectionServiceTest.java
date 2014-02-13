@@ -119,7 +119,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
         councilRates = 1500;
         gardening = 100;
         taxExpenses = 100;
-        long propertyManagementFees = MathUtil.doubleToLong(8.8 * weeklyRent);
         miscOngoingExpenses = 0;
         projectionYears = 24;
         cpi = 3;
@@ -147,7 +146,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
         ongoingCosts.setTaxExpenses(taxExpenses);
         ongoingCosts.setMiscOngoingExpenses(miscOngoingExpenses);
         ongoingCosts.setLandlordsInsurance(landlordInsurance);
-        ongoingCosts.setPropertyManagementFees(propertyManagementFees);
 
         Property property = PropertyTest.createProperty(income, true,
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,

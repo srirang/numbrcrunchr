@@ -134,6 +134,7 @@ public class Projection implements Serializable {
 		sb.append("\n");
 		sb.append("\nProperty Details: ");
 		sb.append("\nPurchase Price: \t").append(property.getPurchasePrice());
+		sb.append("\nStamp Duty & Govt Charges: \t").append(property.getGovermentCosts());
 		sb.append("\nPurchase Date: \t").append(property.getPurchaseDate());
 		sb.append("\nState: \t").append(property.getState());
 		sb.append("\nWeeks Rented: \t").append(property.getWeeksRented());
@@ -146,7 +147,9 @@ public class Projection implements Serializable {
 		sb.append("\nInterest Rate: \t").append(property.getInterestRate());
 		sb.append("\nInterest Only Period: \t")
 				.append(property.getInterestOnlyPeriod()).append(" Years");
-		sb.append("\n\n");
+		sb.append("\nLMI: \t").append(property.getMortgageInsurance());
+		sb.append("\nLVR: \t").append(property.getLvr());
+		sb.append("\n");
 
 		sb.append("\nYears: \t");
 		for (FeasibilityAnalysisResult result : projections) {

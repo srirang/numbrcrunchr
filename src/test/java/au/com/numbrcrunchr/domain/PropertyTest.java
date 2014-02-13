@@ -84,7 +84,7 @@ public class PropertyTest {
                 0.0001);
         assertEquals(260, property.getWeeklyRent(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(26, property.getPropertyManagementFees(),
+        assertEquals(1300, property.getPropertyManagementFees(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(550000 * 1.08, property.getMarketValue(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -128,7 +128,7 @@ public class PropertyTest {
         Property property = createAProperty();
         assertNotNull(property.getManagementFeeRate());
         assertEquals(250, property.getWeeklyRent(), 0);
-        assertEquals(25, property.getPropertyManagementFees(), 0);
+        assertEquals(1250, property.getPropertyManagementFees(), 0);
     }
 
     public static Property createProperty(long annualIncome,

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class FeasibilityAnalyser {
 
+	// TODO: Change to round everything at the very end in Projection class rather than along the way
     /**
      * All figures are annual
      * 
@@ -36,11 +37,7 @@ public class FeasibilityAnalyser {
 
         long rentalIncome = rentalIncomeCalculator.calculateGrossAnnualRent(
                 property.getWeeklyRent(), property.getWeeksRented());
-        double managementFee = rentalIncomeCalculator.calculateAnnualFee(
-                property.getWeeklyRent(), property.getPropertyManagementFees(),
-                property.getWeeksRented());
-        double ongoingExpenses = property.calculateTotalOngoingCost()
-                + managementFee;
+        double ongoingExpenses = property.getTotalOngoingCosts();
 
         double totalExpenses = interest + ongoingExpenses;
 
