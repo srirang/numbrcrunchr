@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FeasibilityAnalysisProjectionService {
-
     private FeasibilityAnalyser feasibilityAnalyser;
     private LoanAmortisationScheduleCalculator loanAmortisationScheduleCalculator;
 

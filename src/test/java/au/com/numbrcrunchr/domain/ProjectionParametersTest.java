@@ -25,6 +25,6 @@ public class ProjectionParametersTest {
         assertEquals(3, projectionParameters.getCpi(), 0);
         assertEquals(3.5, projectionParameters.getSalaryIncreaseRate(), 0);
         assertEquals(4, projectionParameters.getRentIncreaseRate(), 0);
-        assertEquals(8, projectionParameters.getCapitalGrowthRate(), 0);
+        assertEquals(5.5, projectionParameters.getCapitalGrowthRate(), 0);
     }
 }

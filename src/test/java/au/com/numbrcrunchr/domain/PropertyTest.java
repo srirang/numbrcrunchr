@@ -86,7 +86,7 @@ public class PropertyTest {
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(1300, property.getPropertyManagementFees(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(550000 * 1.08, property.getMarketValue(),
+        assertEquals(550000 * 1.055, property.getMarketValue(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(550000, property.getTotalPurchaseCost(), 0);
     }
