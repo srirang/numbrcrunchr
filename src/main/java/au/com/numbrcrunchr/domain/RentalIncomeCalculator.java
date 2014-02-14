@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class RentalIncomeCalculator implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public Long calculateAnnualFee(Long weeklyRent, double commission,
+    public double calculateAnnualFee(double weeklyRent, double commission,
             int numberOfWeeksRented) {
-        return MathUtil.doubleToLong(calculateGrossAnnualRent(weeklyRent,
-                numberOfWeeksRented) * commission / 100);
+        return calculateGrossAnnualRent(weeklyRent, numberOfWeeksRented)
+                * commission / 100;
     }
 
-    public long calculateGrossAnnualRent(Long weeklyRent,
+    public double calculateGrossAnnualRent(double weeklyRent,
             int numberOfWeeksRented) {
         return weeklyRent * numberOfWeeksRented;
     }

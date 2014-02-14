@@ -26,10 +26,11 @@ public class LoanAmortisationScheduleCalculatorTest {
         assertEquals(361, amortisationSchedule.getMonthlyAmortisations().size());
 
         // Check first few months repayment
-        assertEquals(new Amortisation(1, 226.69, 1852.50, 300000),
+        assertEquals(new Amortisation(1, 226.6863403909656, 1852.50, 300000),
                 amortisationSchedule.getMonthlyAmortisations().get(0));
-        assertEquals(new Amortisation(2, 228.09, 1851.10, 299773.31),
-                amortisationSchedule.getMonthlyAmortisations().get(1));
+        assertEquals(new Amortisation(2, 228.08612854287935,
+                1851.1002118480862, 299773.31365960906), amortisationSchedule
+                .getMonthlyAmortisations().get(1));
 
         // Check that at the end of the loan term, balance is 0
         Amortisation lastMonthAmortisation = amortisationSchedule

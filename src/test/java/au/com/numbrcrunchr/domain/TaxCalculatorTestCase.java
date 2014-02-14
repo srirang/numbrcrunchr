@@ -51,9 +51,10 @@ public abstract class TaxCalculatorTestCase {
     @Test
     public void checkTaxOn125k() {
         double income = 125000;
-        double nettIncome = getTaxCalculator().calculateNettIncome(referenceDate,
-                income, true);
+        double nettIncome = getTaxCalculator().calculateNettIncome(
+                referenceDate, income, true);
         LOGGER.log(Level.INFO, "Nett Income: {0}", nettIncome);
-        assertEquals(7410.416666666667, nettIncome / 12, MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        assertEquals(7410.416666666667, nettIncome / 12,
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }
 }

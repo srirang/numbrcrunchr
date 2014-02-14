@@ -27,7 +27,7 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
      * @return
      */
     private List<Amortisation> calculatePrincipalAndInterestAmortisationSchedule(
-    		double loanAmount, int termInYears, double interestRate) {
+            double loanAmount, int termInYears, double interestRate) {
         double loanBalance = loanAmount;
         double r = 1 + (interestRate / 100) / 12;
         int termInMonths = termInYears * 12;
@@ -65,8 +65,9 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
         this.interestCalculator = interestCalculator;
     }
 
-    public AmortisationSchedule calculateAmortisationSchedule(double loanAmount,
-            int interestOnlyPeriod, int termInYears, double interestRate) {
+    public AmortisationSchedule calculateAmortisationSchedule(
+            double loanAmount, int interestOnlyPeriod, int termInYears,
+            double interestRate) {
         List<Amortisation> interestOnlyAmortisations = new ArrayList<Amortisation>(
                 interestOnlyPeriod);
         double loanBalance = loanAmount;
@@ -87,8 +88,8 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
         return AmortisationSchedule.createAmortisationSchedule(amortisations);
     }
 
-    public AmortisationSchedule calculateAmortisationSchedule(double loanAmount,
-            int termInYears, double interestRate) {
+    public AmortisationSchedule calculateAmortisationSchedule(
+            double loanAmount, int termInYears, double interestRate) {
         return this.calculateAmortisationSchedule(loanAmount, 0, termInYears,
                 interestRate);
     }

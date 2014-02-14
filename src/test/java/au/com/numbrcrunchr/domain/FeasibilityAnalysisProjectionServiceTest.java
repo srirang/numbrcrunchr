@@ -155,9 +155,8 @@ public class FeasibilityAnalysisProjectionServiceTest {
         property.setInterestOnlyPeriod(interestOnlyPeriod);
         property.setManagementFeeRate(8.8);
         System.out.println(property);
-        Projection projection = projectionService
-                .runProjection(property, projectionYears,
-                        projectionParameters);
+        Projection projection = projectionService.runProjection(property,
+                projectionYears, projectionParameters);
         LOGGER.info(CsvExporter.exportToCsvString(projection.getProjections()));
         System.out.println(projection);
     }

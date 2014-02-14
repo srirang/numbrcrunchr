@@ -22,6 +22,6 @@ public class PartialPeriodDetails {
     }
 
     public long getDaysInFirstFinancialYear() {
-    	return MathUtil.doubleToLong(proRataFinancialYear * 326);
+        return MathUtil.doubleToLong(proRataFinancialYear * 326);
     }
 }

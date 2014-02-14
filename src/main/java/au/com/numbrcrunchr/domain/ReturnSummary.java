@@ -9,8 +9,8 @@ public class ReturnSummary {
     private String year;
 
     private ReturnSummary(String year, double cashInvested,
-    		double grossYearlyCashflow, double grossYield,
-    		double nettYearlyCashflow, double nettYield) {
+            double grossYearlyCashflow, double grossYield,
+            double nettYearlyCashflow, double nettYield) {
         super();
         this.year = year;
         this.cashInvested = cashInvested;

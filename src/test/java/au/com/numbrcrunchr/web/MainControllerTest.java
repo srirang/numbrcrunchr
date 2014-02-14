@@ -92,7 +92,6 @@ public class MainControllerTest {
     }
 
     public void checkJson() {
-        // TODO Why does this fail intermittently?
         Property property = PropertyTest.createProperty(125000, true, 427320,
                 5000, (byte) 50, 250, 8.0, 10.0);
         LOGGER.info(String.valueOf(property));

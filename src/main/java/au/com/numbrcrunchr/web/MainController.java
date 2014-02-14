@@ -146,19 +146,21 @@ public class MainController implements Serializable {
     }
 
     public void updateTotals(AjaxBehaviorEvent event) {
-        this.setStampDuty(getIncludesStampDuty() ? 0 : stampDutyCalculator
-                .calculateStampDuty(getState(), getPropertyValue()));
+        this.setStampDuty(getIncludesStampDuty() ? 0l : MathUtil
+                .doubleToLong(stampDutyCalculator.calculateStampDuty(
+                        getState(), getPropertyValue())));
         this.getProperty().initialisePurhcaseCostAndMarketValue(
                 getPropertyValue() + getStampDuty());
-        this.setLoanAmount(loanBalanceCalculator.calculateLoanBalance(
-                getPropertyValue(), getStampDuty(), getDeposit()));
+        this.setLoanAmount(MathUtil.doubleToLong(loanBalanceCalculator
+                .calculateLoanBalance(getPropertyValue(), getStampDuty(),
+                        getDeposit())));
         this.setDeposit(this.getTotalPurhcaseCost() - this.getLoanAmount());
         this.setLvr(new LVRCalculator().calculateLvr(this.getLoanAmount(),
                 this.getTotalPurhcaseCost()));
     }
 
     public Long getTotalTenantPays() {
-    	double totalTenantPays = 0l;
+        double totalTenantPays = 0l;
         for (FeasibilityAnalysisResult result : getProjection()) {
             totalTenantPays += result.getRentalIncome();
         }
@@ -166,7 +168,7 @@ public class MainController implements Serializable {
     }
 
     public Long getTotalYouPay() {
-    	double totalYouPay = 0l;
+        double totalYouPay = 0l;
         for (FeasibilityAnalysisResult result : getProjection()) {
             totalYouPay += result.getYouPay();
         }
@@ -174,7 +176,7 @@ public class MainController implements Serializable {
     }
 
     public Long getTotalAtoPays() {
-    	double totalAtoPays = 0l;
+        double totalAtoPays = 0l;
         for (FeasibilityAnalysisResult result : getProjection()) {
             totalAtoPays += result.getTaxSavings();
         }
@@ -293,7 +295,7 @@ public class MainController implements Serializable {
     }
 
     public Long getPropertyValue() {
-        return getProperty().getPurchasePrice();
+        return MathUtil.doubleToLong(getProperty().getPurchasePrice());
     }
 
     public void setPropertyValue(Long askingPrice) {
@@ -301,7 +303,7 @@ public class MainController implements Serializable {
     }
 
     public Long getStampDuty() {
-        return getProperty().getStampDuty();
+        return MathUtil.doubleToLong(getProperty().getStampDuty());
     }
 
     public Long getTax() {
@@ -349,7 +351,7 @@ public class MainController implements Serializable {
     }
 
     public Long getDeposit() {
-        return this.getProperty().getDeposit();
+        return MathUtil.doubleToLong(this.getProperty().getDeposit());
     }
 
     public void setDeposit(Long deposit) {
@@ -357,7 +359,7 @@ public class MainController implements Serializable {
     }
 
     public Long getLoanAmount() {
-        return this.getProperty().getLoanAmount();
+        return MathUtil.doubleToLong(this.getProperty().getLoanAmount());
     }
 
     public void setLoanAmount(Long loanAmount) {
@@ -365,11 +367,11 @@ public class MainController implements Serializable {
     }
 
     public Long getTotalPurhcaseCost() {
-        return this.getProperty().getTotalPurchaseCost();
+        return MathUtil.doubleToLong(this.getProperty().getTotalPurchaseCost());
     }
 
     public Long getWeeklyRent() {
-        return this.getProperty().getWeeklyRent();
+        return MathUtil.doubleToLong(this.getProperty().getWeeklyRent());
     }
 
     public void setWeeklyRent(Long weeklyRent) {
@@ -393,15 +395,17 @@ public class MainController implements Serializable {
     }
 
     public Long getLegalFees() {
-        return this.getProperty().getLegalFees();
+        return MathUtil.doubleToLong(this.getProperty().getLegalFees());
     }
 
     public Long getBuildingInspections() {
-        return this.getProperty().getBuildingInspectionFees();
+        return MathUtil.doubleToLong(this.getProperty()
+                .getBuildingInspectionFees());
     }
 
     public Long getTitleRegistration() {
-        return this.getProperty().getTitleRegistrationFees();
+        return MathUtil.doubleToLong(this.getProperty()
+                .getTitleRegistrationFees());
     }
 
     public void setBuildingInspections(Long buildingInspections) {
@@ -417,7 +421,8 @@ public class MainController implements Serializable {
     }
 
     public Long getLoanApplicationFees() {
-        return this.getProperty().getLoanApplicationFees();
+        return MathUtil.doubleToLong(this.getProperty()
+                .getLoanApplicationFees());
     }
 
     public void setMortgageInsurance(Long mortgageInsurance) {
@@ -425,7 +430,7 @@ public class MainController implements Serializable {
     }
 
     public Long getMortgageInsurance() {
-        return this.getProperty().getMortgageInsurance();
+        return MathUtil.doubleToLong(this.getProperty().getMortgageInsurance());
     }
 
     public void setMortgageInsuranceStampDuty(Long mortgageInsuranceStampDuty) {
@@ -434,7 +439,8 @@ public class MainController implements Serializable {
     }
 
     public Long getMortgageInsuranceStampDuty() {
-        return this.getProperty().getMortgageInsuranceStampDuty();
+        return MathUtil.doubleToLong(this.getProperty()
+                .getMortgageInsuranceStampDuty());
     }
 
     public void setMortgageStampDuty(Long mortgageStampDuty) {
@@ -442,7 +448,7 @@ public class MainController implements Serializable {
     }
 
     public Long getMortgageStampDuty() {
-        return this.getProperty().getMortgageStampDuty();
+        return MathUtil.doubleToLong(this.getProperty().getMortgageStampDuty());
     }
 
     public void setLandlordsInsurance(Long landlordsInsurance) {
@@ -450,7 +456,8 @@ public class MainController implements Serializable {
     }
 
     public Long getLandlordsInsurance() {
-        return this.getProperty().getLandlordsInsurance();
+        return MathUtil
+                .doubleToLong(this.getProperty().getLandlordsInsurance());
     }
 
     public void setMaintenance(Long maintenance) {
@@ -458,7 +465,7 @@ public class MainController implements Serializable {
     }
 
     public Long getMaintenance() {
-        return this.getProperty().getMaintenance();
+        return MathUtil.doubleToLong(this.getProperty().getMaintenance());
     }
 
     public void setStrata(Long strata) {
@@ -466,7 +473,7 @@ public class MainController implements Serializable {
     }
 
     public Long getStrata() {
-        return this.getProperty().getStrata();
+        return MathUtil.doubleToLong(this.getProperty().getStrata());
     }
 
     public void setWaterCharges(Long waterCharges) {
@@ -474,7 +481,7 @@ public class MainController implements Serializable {
     }
 
     public Long getWaterCharges() {
-        return this.getProperty().getWaterCharges();
+        return MathUtil.doubleToLong(this.getProperty().getWaterCharges());
     }
 
     public void setCleaning(Long cleaning) {
@@ -482,7 +489,7 @@ public class MainController implements Serializable {
     }
 
     public Long getCleaning() {
-        return this.getProperty().getCleaning();
+        return MathUtil.doubleToLong(this.getProperty().getCleaning());
     }
 
     public void setCouncilRates(Long councilRates) {
@@ -490,7 +497,7 @@ public class MainController implements Serializable {
     }
 
     public Long getCouncilRates() {
-        return this.getProperty().getCouncilRates();
+        return MathUtil.doubleToLong(this.getProperty().getCouncilRates());
     }
 
     public void setGardening(Long gardening) {
@@ -498,7 +505,7 @@ public class MainController implements Serializable {
     }
 
     public Long getGardening() {
-        return this.getProperty().getGardening();
+        return MathUtil.doubleToLong(this.getProperty().getGardening());
     }
 
     public void setTaxExpenses(Long taxExpenses) {
@@ -506,7 +513,7 @@ public class MainController implements Serializable {
     }
 
     public Long getTaxExpenses() {
-        return this.getProperty().getTaxExpenses();
+        return MathUtil.doubleToLong(this.getProperty().getTaxExpenses());
     }
 
     public void setMiscOngoingExpenses(Long miscOngoingExpenses) {
@@ -514,7 +521,8 @@ public class MainController implements Serializable {
     }
 
     public Long getMiscOngoingExpenses() {
-        return this.getProperty().getMiscOngoingExpenses();
+        return MathUtil.doubleToLong(this.getProperty()
+                .getMiscOngoingExpenses());
     }
 
     public void setInterestRate(Double interestRate) {
@@ -554,7 +562,7 @@ public class MainController implements Serializable {
     }
 
     public Long getBuildingValue() {
-        return this.getProperty().getBuildingValue();
+        return MathUtil.doubleToLong(this.getProperty().getBuildingValue());
     }
 
     public void setFittingsValue(Long fittingsValue) {
@@ -562,7 +570,7 @@ public class MainController implements Serializable {
     }
 
     public Long getFittingsValue() {
-        return this.getProperty().getFittingsValue();
+        return MathUtil.doubleToLong(this.getProperty().getFittingsValue());
     }
 
     public void setWeeksRented(Byte weeksRented) {
@@ -689,21 +697,8 @@ public class MainController implements Serializable {
         this.getProperty().setInterestOnlyPeriod(interestOnlyPeriod);
     }
 
-    // public boolean isAdvancedSelected() {
-    // return advancedSelected;
-    // }
-
     public void setAdvancedSelected(boolean advancedSelected) {
         this.advancedSelected = advancedSelected;
-    }
-
-    // TODO: Remove this method when no longer used
-    public boolean isShowErrors() {
-        return FacesContext.getCurrentInstance().isValidationFailed();
-    }
-
-    public boolean isHasErrors() {
-        return isShowErrors();
     }
 
     public Double getOwnerShare() {

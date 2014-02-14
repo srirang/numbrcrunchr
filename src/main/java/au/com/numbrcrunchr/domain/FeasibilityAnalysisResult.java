@@ -7,218 +7,217 @@ import java.util.Map;
 
 public class FeasibilityAnalysisResult implements Serializable {
 
-	private static final long serialVersionUID = 1908092070730909381L;
+    private static final long serialVersionUID = 1908092070730909381L;
 
-	public static final String POSITIVE = "Positive";
-	public static final String NEGATIVE = "Negative";
-	public static final String NEUTRAL = "Neutral";
+    public static final String POSITIVE = "Positive";
+    public static final String NEGATIVE = "Negative";
+    public static final String NEUTRAL = "Neutral";
 
-	public static final String YEARLY = "Yearly";
-	public static final String QUARTERLY = "Quarterly";
-	public static final String MONTHLY = "Monthly";
-	public static final String FORTNIGHTLY = "Fortnightly";
-	public static final String WEEKLY = "Weekly";
+    public static final String YEARLY = "Yearly";
+    public static final String QUARTERLY = "Quarterly";
+    public static final String MONTHLY = "Monthly";
+    public static final String FORTNIGHTLY = "Fortnightly";
+    public static final String WEEKLY = "Weekly";
 
-	public static final Map<String, Double> FREQUENCY_FACTORS;
-	static {
-		FREQUENCY_FACTORS = new HashMap<String, Double>();
-		FREQUENCY_FACTORS.put(YEARLY, 1.0);
-		FREQUENCY_FACTORS.put(QUARTERLY, 1.0 / 4.0);
-		FREQUENCY_FACTORS.put(MONTHLY, 1.0 / 12.0);
-		FREQUENCY_FACTORS.put(FORTNIGHTLY, 1.0 / 26.0);
-		FREQUENCY_FACTORS.put(WEEKLY, 1.0 / 52.0);
-	}
-	private final Property property;
-	private final double interest;
-	private final double grossCashflow;
-	private final double rentalIncome;
-	private final double taxSavings;
-	private final double youPay;
-	private final double nettCashflow;
-	private final double annualIncomeAfterIP;
-	private final double annualTaxAfterIP;
-	private final double annualIncomeBeforeIP;
-	private final double annualTaxBeforeIP;
-	private final double totalNettIncome;
-	private final double ongoingExpenses;
-	private String year;
-	private String frequency = YEARLY;
+    public static final Map<String, Double> FREQUENCY_FACTORS;
+    static {
+        FREQUENCY_FACTORS = new HashMap<String, Double>();
+        FREQUENCY_FACTORS.put(YEARLY, 1.0);
+        FREQUENCY_FACTORS.put(QUARTERLY, 1.0 / 4.0);
+        FREQUENCY_FACTORS.put(MONTHLY, 1.0 / 12.0);
+        FREQUENCY_FACTORS.put(FORTNIGHTLY, 1.0 / 26.0);
+        FREQUENCY_FACTORS.put(WEEKLY, 1.0 / 52.0);
+    }
+    private final Property property;
+    private final double interest;
+    private final double grossCashflow;
+    private final double rentalIncome;
+    private final double taxSavings;
+    private final double youPay;
+    private final double nettCashflow;
+    private final double annualIncomeAfterIP;
+    private final double annualTaxAfterIP;
+    private final double annualIncomeBeforeIP;
+    private final double annualTaxBeforeIP;
+    private final double totalNettIncome;
+    private final double ongoingExpenses;
+    private String year;
+    private String frequency = YEARLY;
 
-	public FeasibilityAnalysisResult(Property property, double grossCashflow,
-	        double rentalIncome, double taxSavings, double youPay,
-	        double nettCashflow, double interest, double annualIncomeAfterIP,
-	        double annualTaxAfterIP, double annualIncomeBeforeIP,
-	        double annualTaxBeforeIP, double totalNettIncome,
-	        double ongoingExpenses) {
-		super();
-		this.property = property;
-		this.grossCashflow = grossCashflow;
-		this.rentalIncome = rentalIncome;
-		this.taxSavings = taxSavings;
-		this.youPay = youPay;
-		this.nettCashflow = nettCashflow;
-		this.interest = interest;
-		this.annualIncomeAfterIP = annualIncomeAfterIP;
-		this.annualTaxAfterIP = annualTaxAfterIP;
-		this.annualIncomeBeforeIP = annualIncomeBeforeIP;
-		this.annualTaxBeforeIP = annualTaxBeforeIP;
-		this.totalNettIncome = totalNettIncome;
-		// this.ongoingExpenses = ongoingExpenses;
-		this.ongoingExpenses = property.getTotalOngoingCosts();
-	}
+    public FeasibilityAnalysisResult(Property property, double grossCashflow,
+            double rentalIncome, double taxSavings, double youPay,
+            double nettCashflow, double interest, double annualIncomeAfterIP,
+            double annualTaxAfterIP, double annualIncomeBeforeIP,
+            double annualTaxBeforeIP, double totalNettIncome,
+            double ongoingExpenses) {
+        super();
+        this.property = property;
+        this.grossCashflow = grossCashflow;
+        this.rentalIncome = rentalIncome;
+        this.taxSavings = taxSavings;
+        this.youPay = youPay;
+        this.nettCashflow = nettCashflow;
+        this.interest = interest;
+        this.annualIncomeAfterIP = annualIncomeAfterIP;
+        this.annualTaxAfterIP = annualTaxAfterIP;
+        this.annualIncomeBeforeIP = annualIncomeBeforeIP;
+        this.annualTaxBeforeIP = annualTaxBeforeIP;
+        this.totalNettIncome = totalNettIncome;
+        // this.ongoingExpenses = ongoingExpenses;
+        this.ongoingExpenses = property.getTotalOngoingCosts();
+    }
 
-	public FeasibilityAnalysisResult applyPurchaseDate(Date purchaseDate) {
-		PartialPeriodDetails partialPeriodDetails = FinancialYearUtils
-		        .getFinancialYearRemainingOn(purchaseDate);
+    public FeasibilityAnalysisResult applyPurchaseDate(Date purchaseDate) {
+        PartialPeriodDetails partialPeriodDetails = FinancialYearUtils
+                .getFinancialYearRemainingOn(purchaseDate);
 
-		double financialYearRemaining = partialPeriodDetails
-		        .getProRataFinancialYear();
-		FeasibilityAnalysisResult newResult = new FeasibilityAnalysisResult(
-		        this.property, grossCashflow * financialYearRemaining,
-		        rentalIncome * financialYearRemaining, taxSavings
-		                * financialYearRemaining, youPay
-		                * financialYearRemaining, nettCashflow
-		                * financialYearRemaining, interest
-		                * financialYearRemaining, annualIncomeAfterIP
-		                * financialYearRemaining, annualTaxAfterIP
-		                * financialYearRemaining, annualIncomeBeforeIP
-		                * financialYearRemaining, annualTaxBeforeIP
-		                * financialYearRemaining, totalNettIncome
-		                * financialYearRemaining, ongoingExpenses
-		                * financialYearRemaining);
-		return newResult;
-	}
+        double financialYearRemaining = partialPeriodDetails
+                .getProRataFinancialYear();
+        FeasibilityAnalysisResult newResult = new FeasibilityAnalysisResult(
+                this.property, grossCashflow * financialYearRemaining,
+                rentalIncome * financialYearRemaining, taxSavings
+                        * financialYearRemaining, youPay
+                        * financialYearRemaining, nettCashflow
+                        * financialYearRemaining, interest
+                        * financialYearRemaining, annualIncomeAfterIP
+                        * financialYearRemaining, annualTaxAfterIP
+                        * financialYearRemaining, annualIncomeBeforeIP
+                        * financialYearRemaining, annualTaxBeforeIP
+                        * financialYearRemaining, totalNettIncome
+                        * financialYearRemaining, ongoingExpenses
+                        * financialYearRemaining);
+        return newResult;
+    }
 
-	public double getTaxSavings() {
-		return frequencify(taxSavings);
-	}
+    public double getTaxSavings() {
+        return frequencify(taxSavings);
+    }
 
-	public double getGrossCashflow() {
-		return frequencify(grossCashflow);
-	}
+    public double getGrossCashflow() {
+        return frequencify(grossCashflow);
+    }
 
-	private double frequencify(double aNumber) {
-		return FREQUENCY_FACTORS.get(frequency) * aNumber;
-	}
+    private double frequencify(double aNumber) {
+        return FREQUENCY_FACTORS.get(frequency) * aNumber;
+    }
 
-	public double getRentalIncome() {
-		return frequencify(rentalIncome);
-	}
+    public double getRentalIncome() {
+        return frequencify(rentalIncome);
+    }
 
-	public double getYouPay() {
-		return frequencify(youPay);
-	}
+    public double getYouPay() {
+        return frequencify(youPay);
+    }
 
-	public String getGearing() {
-		String gearing;
-		if (grossCashflow < 0) {
-			gearing = NEGATIVE;
-		} else if (grossCashflow > 0) {
-			gearing = POSITIVE;
-		} else {
-			gearing = NEUTRAL;
-		}
-		return gearing;
-	}
+    public String getGearing() {
+        String gearing;
+        if (grossCashflow < 0) {
+            gearing = NEGATIVE;
+        } else if (grossCashflow > 0) {
+            gearing = POSITIVE;
+        } else {
+            gearing = NEUTRAL;
+        }
+        return gearing;
+    }
 
-	public boolean isPositiveCashflow() {
-		return POSITIVE.equals(getGearing());
-	}
+    public boolean isPositiveCashflow() {
+        return POSITIVE.equals(getGearing());
+    }
 
-	public double getInterest() {
-		return frequencify(interest);
-	}
+    public double getInterest() {
+        return frequencify(interest);
+    }
 
-	public double getOngoingExpenses() {
-		return frequencify(ongoingExpenses);
-	}
+    public double getOngoingExpenses() {
+        return frequencify(ongoingExpenses);
+    }
 
-	public double getAnnualIncomeAfterIP() {
-		return frequencify(annualIncomeAfterIP);
-	}
+    public double getAnnualIncomeAfterIP() {
+        return frequencify(annualIncomeAfterIP);
+    }
 
-	public double getAnnualTaxAfterIP() {
-		return frequencify(annualTaxAfterIP);
-	}
+    public double getAnnualTaxAfterIP() {
+        return frequencify(annualTaxAfterIP);
+    }
 
-	public double getAnnualIncomeBeforeIP() {
-		return frequencify(annualIncomeBeforeIP);
-	}
+    public double getAnnualIncomeBeforeIP() {
+        return frequencify(annualIncomeBeforeIP);
+    }
 
-	public double getAnnualTaxBeforeIP() {
-		return frequencify(annualTaxBeforeIP);
-	}
+    public double getAnnualTaxBeforeIP() {
+        return frequencify(annualTaxBeforeIP);
+    }
 
-	public double getNettCashflow() {
-		return frequencify(nettCashflow);
-	}
+    public double getNettCashflow() {
+        return frequencify(nettCashflow);
+    }
 
-	public double getTotalNettIncome() {
-		return frequencify(totalNettIncome);
-	}
+    public double getTotalNettIncome() {
+        return frequencify(totalNettIncome);
+    }
 
-	public void setYear(String year) {
-		this.year = year;
-	}
+    public void setYear(String year) {
+        this.year = year;
+    }
 
-	public String getYear() {
-		return year;
-	}
+    public String getYear() {
+        return year;
+    }
 
-	public double getTotalExpense() {
-		return getOngoingExpenses() + getInterest();
-	}
+    public double getTotalExpense() {
+        return getOngoingExpenses() + getInterest();
+    }
 
-	public double getTotalIncome() {
-		return getRentalIncome();
-	}
+    public double getTotalIncome() {
+        return getRentalIncome();
+    }
 
-	public double getTotalOutOfPocket() {
-		double outOfPocket = getTotalExpense() - getTotalIncome();
-		if (outOfPocket < 0) {
-			return 0l;
-		}
-		return outOfPocket;
-	}
+    public double getTotalOutOfPocket() {
+        double outOfPocket = getTotalExpense() - getTotalIncome();
+        if (outOfPocket < 0) {
+            return 0;
+        }
+        return outOfPocket;
+    }
 
-	public double getGrossYield() {
-		return MathUtil.scaled((double) 100 * getRentalIncome()
-		        / property.getPurchasePrice());
-	}
+    public double getGrossYield() {
+        return MathUtil.scaled(100 * getRentalIncome()
+                / property.getPurchasePrice());
+    }
 
-	public double getNettYield() {
-		return MathUtil.scaled((double) 100
-		        * (getRentalIncome() - getOngoingExpenses())
-		        / property.getPurchasePrice());
-	}
+    public double getNettYield() {
+        return MathUtil.scaled(100 * (getRentalIncome() - getOngoingExpenses())
+                / property.getPurchasePrice());
+    }
 
-	Property getProperty() {
-		return property;
-	}
+    Property getProperty() {
+        return property;
+    }
 
-	public void changeFrequency(String frequency) {
-		this.frequency = frequency;
-	}
+    public void changeFrequency(String frequency) {
+        this.frequency = frequency;
+    }
 
-	public double getWeeklyRent() {
-		return this.property.getWeeklyRent();
-	}
+    public double getWeeklyRent() {
+        return this.property.getWeeklyRent();
+    }
 
-	public double getLoanBalance() {
-		return this.property.getLoanAmount();
-	}
+    public double getLoanBalance() {
+        return this.property.getLoanAmount();
+    }
 
-	public double getPropertyValue() {
-		return this.property.getMarketValue();
-	}
+    public double getPropertyValue() {
+        return this.property.getMarketValue();
+    }
 
-	public double getCapitalGrowth() {
-		return this.property.getMarketValue()
-		        - this.property.getPurchasePrice();
-	}
+    public double getCapitalGrowth() {
+        return this.property.getMarketValue()
+                - this.property.getPurchasePrice();
+    }
 
-	public double getEquityAvailable() {
-		return new EquityCalculator().calculateEquity(
-		        this.property.getMarketValue(), getLoanBalance());
-	}
+    public double getEquityAvailable() {
+        return new EquityCalculator().calculateEquity(
+                this.property.getMarketValue(), getLoanBalance());
+    }
 }

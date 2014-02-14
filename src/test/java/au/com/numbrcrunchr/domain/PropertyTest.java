@@ -25,14 +25,6 @@ public class PropertyTest {
             .getName());
 
     @Test
-    public void checkSum() {
-        assertEquals(
-                55,
-                new Property().sum(new Long[] { 1l, 2l, 3l, 4l, 5l, 6l, 7l, 8l,
-                        9l, 10l }), 0);
-    }
-
-    @Test
     public void checkOwnersList() {
         assertNotNull(new Property().getOwnerList());
         assertEquals(0, new Property().getOwnerList().size());
@@ -49,8 +41,10 @@ public class PropertyTest {
             o.setTax(i * 100l);
             owners.add(o);
         }
-        assertEquals(4500000, property.calculateOwnerGrossIncome());
-        assertEquals(4500, property.calculateOwnerTax());
+        assertEquals(4500000, property.calculateOwnerGrossIncome(),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        assertEquals(4500, property.calculateOwnerTax(),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }
 
     @Test

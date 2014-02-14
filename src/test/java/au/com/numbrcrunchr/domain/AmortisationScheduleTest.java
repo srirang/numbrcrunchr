@@ -16,7 +16,7 @@ public class AmortisationScheduleTest {
 
     @Test
     public void checkMonthly() {
-        long loan = 300000;
+        double loan = 300000;
         double interest = 7.41;
         int termInYears = 30;
         AmortisationSchedule amortisationSchedule = calculator

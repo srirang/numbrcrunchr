@@ -35,7 +35,7 @@ public class TaxCalculator {
 
     public double calculateNettIncome(Date taxYear, double grossIncome,
             boolean includeMedicareLevySurcharge) {
-    	double tax = calculateTax(taxYear, grossIncome,
+        double tax = calculateTax(taxYear, grossIncome,
                 includeMedicareLevySurcharge);
         double nettIncome = grossIncome - tax;
         return nettIncome;

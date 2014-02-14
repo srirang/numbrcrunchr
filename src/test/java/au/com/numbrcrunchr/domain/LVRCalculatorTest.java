@@ -13,12 +13,14 @@ public class LVRCalculatorTest {
     @Test
     public void checkLoanAmount() {
         assertEquals(100000,
-                new LVRCalculator().calculateLoanAmount(200000l, .5));
+                new LVRCalculator().calculateLoanAmount(200000l, .5),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }
 
     @Test
     public void checkLoanAmountFor0PropertyValue() {
-        assertEquals(0, new LVRCalculator().calculateLoanAmount(0l, .5));
+        assertEquals(0, new LVRCalculator().calculateLoanAmount(0l, .5),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }
 
     @Test

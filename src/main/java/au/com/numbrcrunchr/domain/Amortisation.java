@@ -1,7 +1,5 @@
 package au.com.numbrcrunchr.domain;
 
-import java.math.BigDecimal;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Amortisation {
@@ -22,24 +20,24 @@ public class Amortisation {
         this.repayment = this.principal + this.interest;
     }
 
-    public BigDecimal getInterest() {
-        return MathUtil.doubleToBigDecimal(interest);
+    public Double getInterest() {
+        return interest;
     }
 
-    public BigDecimal getLoanBalance() {
-        return MathUtil.doubleToBigDecimal(loanBalance);
+    public Double getLoanBalance() {
+        return loanBalance;
     }
 
     public int getPeriod() {
         return period;
     }
 
-    public BigDecimal getPrincipal() {
-        return MathUtil.doubleToBigDecimal(principal);
+    public Double getPrincipal() {
+        return principal;
     }
 
-    public BigDecimal getRepayment() {
-        return MathUtil.doubleToBigDecimal(repayment);
+    public Double getRepayment() {
+        return repayment;
     }
 
     @Override

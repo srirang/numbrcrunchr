@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class FeasibilityAnalyser {
 
-	// TODO: Change to round everything at the very end in Projection class rather than along the way
     /**
      * All figures are annual
      * 
@@ -54,12 +53,10 @@ public class FeasibilityAnalyser {
         double nettCashflow = grossCashflow + taxSavings;
         double youPay = nettCashflow;
 
-        return new FeasibilityAnalysisResult(property,
-                grossCashflow, rentalIncome, taxSavings,
-                youPay, nettCashflow, interest,
+        return new FeasibilityAnalysisResult(property, grossCashflow,
+                rentalIncome, taxSavings, youPay, nettCashflow, interest,
                 annualIncomeAfterIP, annualTaxAfterIP, annualIncomeBeforeIP,
-                annualTaxBeforeIP, totalNettIncome,
-                ongoingExpenses);
+                annualTaxBeforeIP, totalNettIncome, ongoingExpenses);
     }
 
     public FeasibilityAnalysisResult analyseFirstYearFeasibility(
