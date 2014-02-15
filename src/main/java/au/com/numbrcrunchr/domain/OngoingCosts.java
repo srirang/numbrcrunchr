@@ -11,7 +11,6 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Embeddable
 public class OngoingCosts implements Serializable {
     private static final long serialVersionUID = 1L;
-    // TODO: Create test for OngoingCosts
     private static final double DEFAULT_LANDLORD_INSURANCE = 400l;
     private static final double DEFAULT_MAINTENANCE = 100l;
     private static final double DEFAULT_WATER_CHARGES = 800l;

@@ -76,13 +76,18 @@ public class FeasibilityAnalysisProjectionServiceTest {
         loanAmount = 427320;
         interestRate = 8;
         propertyManagementFee = 10;
+        List<FeasibilityAnalysisResult> projections = runSomeProjections();
+        assertEquals(3, projections.size());
+    }
+
+    private List<FeasibilityAnalysisResult> runSomeProjections() {
         Property property = PropertyTest.createProperty(income, true,
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
         List<FeasibilityAnalysisResult> projections = projectionService
                 .runProjection(property, 2, projectionParameters)
                 .getProjections();
-        assertEquals(3, projections.size());
+        return projections;
     }
 
     @Test
