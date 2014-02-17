@@ -182,13 +182,22 @@ public class FeasibilityAnalysisResult implements Serializable {
     }
 
     public double getGrossYield() {
-        return MathUtil.scaled(100 * getRentalIncome()
+        return MathUtil.scaled(100 * getAnnualRentalIncome()
                 / property.getPurchasePrice());
     }
 
     public double getNettYield() {
-        return MathUtil.scaled(100 * (getRentalIncome() - getOngoingExpenses())
+        return MathUtil.scaled(100
+                * (getAnnualRentalIncome() - getAnnualOngoingExpenses())
                 / property.getPurchasePrice());
+    }
+
+    private double getAnnualOngoingExpenses() {
+        return this.ongoingExpenses;
+    }
+
+    private double getAnnualRentalIncome() {
+        return this.rentalIncome;
     }
 
     Property getProperty() {
@@ -220,4 +229,41 @@ public class FeasibilityAnalysisResult implements Serializable {
         return new EquityCalculator().calculateEquity(
                 this.property.getMarketValue(), getLoanBalance());
     }
+
+    public double getCleaning() {
+        return frequencify(property.getCleaning());
+    }
+
+    public double getMaintenance() {
+        return frequencify(property.getMaintenance());
+    }
+
+    public double getLandlordsInsurance() {
+        return frequencify(property.getLandlordsInsurance());
+    }
+
+    public double getStrata() {
+        return frequencify(property.getStrata());
+    }
+
+    public double getCouncilRates() {
+        return frequencify(property.getCouncilRates());
+    }
+
+    public double getWaterCharges() {
+        return frequencify(property.getWaterCharges());
+    }
+
+    public double getGardening() {
+        return frequencify(property.getGardening());
+    }
+
+    public double getTaxExpenses() {
+        return frequencify(property.getTaxExpenses());
+    }
+
+    public double getPropertyManagementFees() {
+        return frequencify(property.getPropertyManagementFees());
+    }
+
 }

@@ -139,7 +139,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
         projectionParameters.setCpi(cpi);
         projectionParameters.setRentIncreaseRate(rentIncreaseRate);
         projectionParameters.setSalaryIncreaseRate(salaryIncreaseRate);
-        System.out.println(projectionParameters);
 
         OngoingCosts ongoingCosts = new OngoingCosts();
         ongoingCosts.setMaintenance(maintenance);
@@ -159,10 +158,10 @@ public class FeasibilityAnalysisProjectionServiceTest {
         property.setPurchaseDate(purchaseDate);
         property.setInterestOnlyPeriod(interestOnlyPeriod);
         property.setManagementFeeRate(8.8);
-        System.out.println(property);
         Projection projection = projectionService.runProjection(property,
                 projectionYears, projectionParameters);
         LOGGER.info(CsvExporter.exportToCsvString(projection.getProjections()));
-        System.out.println(projection);
+
+        projection.changeFrequency(FeasibilityAnalysisResult.MONTHLY);
     }
 }

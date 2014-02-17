@@ -18,7 +18,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletResponse;
 
@@ -801,9 +800,9 @@ public class MainController implements Serializable {
                         .getProjections().size() : 25);
     }
 
-    public void changeFrequency(ValueChangeEvent e) {
+    public void changeFrequency() {
         for (FeasibilityAnalysisResult result : getResults()) {
-            result.changeFrequency(e.getNewValue().toString());
+            result.changeFrequency(frequency);
         }
     }
 

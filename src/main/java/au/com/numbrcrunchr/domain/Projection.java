@@ -178,41 +178,39 @@ public class Projection implements Serializable {
         }
         sb.append("\nLandlord's Insurance: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getLandlordsInsurance())
-                    .append("\t");
+            sb.append(result.getLandlordsInsurance()).append("\t");
         }
         sb.append("\nMaintenance: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getMaintenance()).append("\t");
+            sb.append(result.getMaintenance()).append("\t");
         }
         sb.append("\nStrata: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getStrata()).append("\t");
+            sb.append(result.getStrata()).append("\t");
         }
         sb.append("\nWater Rates: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getWaterCharges()).append("\t");
+            sb.append(result.getWaterCharges()).append("\t");
         }
         sb.append("\nCleaning: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getCleaning()).append("\t");
+            sb.append(result.getCleaning()).append("\t");
         }
         sb.append("\nCouncil Rates: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getCouncilRates()).append("\t");
+            sb.append(result.getCouncilRates()).append("\t");
         }
         sb.append("\nGardening: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getGardening()).append("\t");
+            sb.append(result.getGardening()).append("\t");
         }
         sb.append("\nTax Expenses: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getTaxExpenses()).append("\t");
+            sb.append(result.getTaxExpenses()).append("\t");
         }
         sb.append("\nProperty Mgmt Fee: \t");
         for (FeasibilityAnalysisResult result : projections) {
-            sb.append(result.getProperty().getPropertyManagementFees()).append(
-                    "\t");
+            sb.append(result.getPropertyManagementFees()).append("\t");
         }
 
         sb.append("\n");
@@ -264,4 +262,9 @@ public class Projection implements Serializable {
         return sb.toString();
     }
 
+    public void changeFrequency(String frequency) {
+        for (FeasibilityAnalysisResult result : projections) {
+            result.changeFrequency(frequency);
+        }
+    }
 }

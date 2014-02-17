@@ -159,7 +159,6 @@
     <jdk.version>1.6</jdk.version>
     <hsqldb.version>2.3.1</hsqldb.version>
     <hibernate.version>3.5.1-Final</hibernate.version>
-    <!-- <jettyVersion>7.2.0.v20101020</jettyVersion> -->
   </properties>
 
   <build>
@@ -175,7 +174,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <!-- This plugin is needed for the servlet example -->
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>8.1.14.v20131031</version>
