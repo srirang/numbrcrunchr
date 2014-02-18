@@ -42,7 +42,7 @@ $(document).ready(
     function() {
       cashflowChart = new Highcharts.Chart({
         chart : {
-          renderTo : 'cashflowChart',
+          renderTo : 'feasibilityAnalysisForm:cashflowChart',
           defaultSeriesType : 'spline'
         },
         credits : {
@@ -65,7 +65,7 @@ $(document).ready(
           },
           labels: {
             formatter: function() {
-              return '$' + this.value.toFixed(2)
+              return '$' + this.value.toFixed(0)
             },
             style: {
               color: '#3E576F'
@@ -76,7 +76,7 @@ $(document).ready(
         tooltip : {
           enabled : true,
           formatter : function() {
-            return this.x + ": " + '$' + this.y.toFixed(2);
+            return this.x + ": " + '$' + this.y.toFixed(0);
           }
         },
         plotOptions : {
@@ -108,7 +108,7 @@ $(document).ready(
     function() {
       yieldChart = new Highcharts.Chart({
         chart : {
-          renderTo : 'yieldChart',
+          renderTo : 'feasibilityAnalysisForm:yieldChart',
           defaultSeriesType : 'spline'
         },
         credits : {
@@ -348,6 +348,11 @@ $(document).ready(
           </h:panelGrid>
           <hr class="dashes" />
           <h:panelGroup rendered="#{mainController.showResults}">
+            <script src="http://code.highcharts.com/highcharts.js" />
+            <script
+              src="http://code.highcharts.com/modules/exporting.js" />
+            <h:panelGroup layout="block" id="cashflowChart" />
+            <h:panelGroup layout="block" id="yieldChart" />
             <h:panelGroup>Select Frequency:</h:panelGroup>
             <h:panelGroup>
               <h:selectOneMenu id="Frequency"
@@ -356,7 +361,7 @@ $(document).ready(
                 <f:ajax event="change"
                   disabled="#{ajaxController.disabled}"
                   listener="#{mainController.changeFrequency}"
-                  render="returnSummary cashflowChart yieldChart" />
+                  render="returnSummary" />
               </h:selectOneMenu>
             </h:panelGroup>
             <h:panelGroup>
@@ -364,11 +369,6 @@ $(document).ready(
                 actionListener="#{mainController.downloadCsv}"
                 value="Download Data" class="simple-button" />
             </h:panelGroup>
-            <script src="http://code.highcharts.com/highcharts.js" />
-            <script
-              src="http://code.highcharts.com/modules/exporting.js" />
-            <h:panelGroup layout="block" id="cashflowChart" />
-            <h:panelGroup layout="block" id="yieldChart" />
             <h:dataTable id="returnSummary"
               value="#{mainController.results}" var="row">
               <h:column>
