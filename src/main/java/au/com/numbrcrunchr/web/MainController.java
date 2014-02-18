@@ -197,12 +197,12 @@ public class MainController implements Serializable {
         for (FeasibilityAnalysisResult result : getProjection()) {
             if (i++ == cashFlowPositive) {
                 json.append("{ y:");
-                json.append(result.getTotalIncome());
+                json.append(MathUtil.doubleToLong(result.getTotalIncome()));
                 json.append(", marker: {symbol:'url(resources/images/dollarsign.png)'}"
                         + "},");
                 continue;
             }
-            json.append(result.getTotalIncome());
+            json.append(MathUtil.doubleToLong(result.getTotalIncome()));
             json.append(", ");
         }
         String jsonString = json.toString();
@@ -219,10 +219,10 @@ public class MainController implements Serializable {
                 new Transformer() {
                     @Override
                     public Object transform(Object input) {
-                        return ((FeasibilityAnalysisResult) input)
-                                .getTotalExpense();
+                        return MathUtil.doubleToLong(((FeasibilityAnalysisResult) input)
+                                .getTotalExpense());
                     }
-                }).toArray(new Double[] {}));
+                }).toArray(new Long[] {}));
     }
 
     @SuppressWarnings("unchecked")
@@ -231,10 +231,10 @@ public class MainController implements Serializable {
                 new Transformer() {
                     @Override
                     public Object transform(Object input) {
-                        return ((FeasibilityAnalysisResult) input)
-                                .getTotalOutOfPocket();
+                        return MathUtil.doubleToLong(((FeasibilityAnalysisResult) input)
+                                .getTotalOutOfPocket());
                     }
-                }).toArray(new Double[] {}));
+                }).toArray(new Long[] {}));
     }
 
     public String getAllGrossYieldsAsJson() {

@@ -65,7 +65,7 @@ $(document).ready(
           },
           labels: {
             formatter: function() {
-              return '$' + this.value
+              return '$' + this.value.toFixed(2)
             },
             style: {
               color: '#3E576F'
@@ -76,7 +76,7 @@ $(document).ready(
         tooltip : {
           enabled : true,
           formatter : function() {
-            return this.x + ": " + '$' + this.y;
+            return this.x + ": " + '$' + this.y.toFixed(2);
           }
         },
         plotOptions : {
@@ -356,7 +356,7 @@ $(document).ready(
                 <f:ajax event="change"
                   disabled="#{ajaxController.disabled}"
                   listener="#{mainController.changeFrequency}"
-                  render="returnSummary" />
+                  render="returnSummary cashflowChart yieldChart" />
               </h:selectOneMenu>
             </h:panelGroup>
             <h:panelGroup>
@@ -367,8 +367,8 @@ $(document).ready(
             <script src="http://code.highcharts.com/highcharts.js" />
             <script
               src="http://code.highcharts.com/modules/exporting.js" />
-            <div id="cashflowChart" />
-            <div id="yieldChart" />
+            <h:panelGroup layout="block" id="cashflowChart" />
+            <h:panelGroup layout="block" id="yieldChart" />
             <h:dataTable id="returnSummary"
               value="#{mainController.results}" var="row">
               <h:column>
