@@ -219,8 +219,9 @@ public class MainController implements Serializable {
                 new Transformer() {
                     @Override
                     public Object transform(Object input) {
-                        return MathUtil.doubleToLong(((FeasibilityAnalysisResult) input)
-                                .getTotalExpense());
+                        return MathUtil
+                                .doubleToLong(((FeasibilityAnalysisResult) input)
+                                        .getTotalExpense());
                     }
                 }).toArray(new Long[] {}));
     }
@@ -231,8 +232,9 @@ public class MainController implements Serializable {
                 new Transformer() {
                     @Override
                     public Object transform(Object input) {
-                        return MathUtil.doubleToLong(((FeasibilityAnalysisResult) input)
-                                .getTotalOutOfPocket());
+                        return MathUtil
+                                .doubleToLong(((FeasibilityAnalysisResult) input)
+                                        .getTotalOutOfPocket());
                     }
                 }).toArray(new Long[] {}));
     }
@@ -808,5 +810,14 @@ public class MainController implements Serializable {
 
     protected FeasibilityAnalysisProjectionService getFeasibilityAnalysisProjectionService() {
         return feasibilityAnalysisProjectionService;
+    }
+
+    public MainController() {
+        System.out
+                .println("--------------------------------------------------------------------");
+        System.out
+                .println("-------------------- Main Controller Created -----------------------");
+        System.out
+                .println("--------------------------------------------------------------------");
     }
 }

@@ -73,7 +73,7 @@
 		<property name="taxRateRepository" ref="taxRateRepository" />
 	</bean>
 
-	<bean id="mainController" class="au.com.numbrcrunchr.web.MainController">
+	<bean id="mainController" class="au.com.numbrcrunchr.web.MainController" scope="session">
 		<property name="feasibilityAnalysisProjectionService" ref="feasibilityAnalysisProjectionService" />
 		<property name="loanBalanceCalculator" ref="loanBalanceCalculator" />
 		<property name="stampDutyCalculator" ref="stampDutyCalculator" />
