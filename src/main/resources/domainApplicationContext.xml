@@ -86,6 +86,6 @@
 	</bean>
 
 	<bean id="versionDetails" class="au.com.numbrcrunchr.web.VersionDetails">
-		<property name="versionNumber" value="1.0" />
+		<property name="versionNumber" value="1.0.1" />
 	</bean>
 </beans>
