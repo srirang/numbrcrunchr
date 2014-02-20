@@ -758,6 +758,10 @@ public class MainController implements Serializable {
         return versionDetails.getVersionNumber();
     }
 
+    public String getContactEmail() {
+        return versionDetails.getContactEmail();
+    }
+
     public boolean getHasErrors() {
         return FacesContext.getCurrentInstance().isValidationFailed();
     }

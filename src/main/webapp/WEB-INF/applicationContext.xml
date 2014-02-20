@@ -9,4 +9,11 @@
     <!--<property name="session" ref="mailSession" /> -->
     <property name="host" value="mail.metawerx.net" />
   </bean>
+
+  <bean id="feedbackController" class="au.com.numbrcrunchr.web.FeedbackController"
+    scope="session">
+    <property name="versionDetails" ref="versionDetails" />
+    <property name="mailSender" ref="mailSender" />
+  </bean>
+
 </beans>

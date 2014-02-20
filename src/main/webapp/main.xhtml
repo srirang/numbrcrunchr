@@ -179,7 +179,7 @@ $(document).ready(
     </h1>
   </div>
   <h:form id="feasibilityAnalysisForm">
-    <div class="colmask leftmenu">
+    <div class="colmask">
       <div class="colleft">
         <div class="col1">
           <h:panelGroup id="errormessages">
@@ -674,14 +674,48 @@ $(document).ready(
           </h:panelGrid>
         </div>
       </div>
+      <div class="colleft">
+        <hr class="dashes" />
+        <h4>Provide Feedback :-</h4>
+        <h:form id="feedbackForm">
+          <h:panelGrid>
+            <h:panelGroup>
+              <h:inputTextarea id="feedbackComment"
+                value="#{feedbackController.feedbackComment}" rows="8"
+                cols="34" />
+            </h:panelGroup>
+            <h:panelGroup>Name:</h:panelGroup>
+            <h:panelGroup>
+              <h:inputText id="feedbackName"
+                value="#{feedbackController.name}" />
+            </h:panelGroup>
+            <h:panelGroup>E-mail:</h:panelGroup>
+            <h:panelGroup>
+              <h:inputText id="feedbackEmail"
+                value="#{feedbackController.email}" required="false" />
+            </h:panelGroup>
+            <h:panelGroup>
+              <h:commandButton
+                actionListener="#{feedbackController.sendFeedback}"
+                value="Send" class="simple-button" />
+            </h:panelGroup>
+            <h:panelGroup />
+          </h:panelGrid>
+        </h:form>
+      </div>
     </div>
   </h:form>
   <hr />
   <div id="footer">
     <p class="left">
-      &copy; 2014 <strong>NumbrCrunchr</strong> (<a
-        href="mailto:numbrcrunchrau@gmail.com?subject=Feedback on NumbrCrunchr">E-Mail</a>)<br />Version
+      Version
       <h:outputText value="#{mainController.versionNumber}" id="version" />
+      &copy; 2014 <strong>NumbrCrunchr</strong><br /> Feedback:
+      <h:outputLink value="mailto:#{mainController.contactEmail}">
+        <f:param name="subject" value="Feedback on NumbrCrunchr" />
+        <h:outputText value="E-Mail" />
+      </h:outputLink>
+
     </p>
   </div>
 </body>

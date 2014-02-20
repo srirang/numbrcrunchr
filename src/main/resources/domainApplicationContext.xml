@@ -1,91 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-	<bean class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"
-		id="entityManagerFactory">
-		<property name="persistenceUnitName" value="NumbrCrunchrPU" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true" />
-				<property name="generateDdl" value="true" />
-				<property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
-			</bean>
-		</property>
-	</bean>
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
-		id="transactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+  <bean class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"
+    id="entityManagerFactory">
+    <property name="persistenceUnitName" value="NumbrCrunchrPU" />
+    <property name="jpaVendorAdapter">
+      <bean
+        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="true" />
+        <property name="generateDdl" value="true" />
+        <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
+      </bean>
+    </property>
+  </bean>
+  <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+    id="transactionManager">
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
 
-	<bean id="stampDutyCalculator" class="au.com.numbrcrunchr.domain.StampDutyCalculator">
-		<property name="stampDutyRepository" ref="stampDutyRepository" />
-	</bean>
+  <bean id="stampDutyCalculator" class="au.com.numbrcrunchr.domain.StampDutyCalculator">
+    <property name="stampDutyRepository" ref="stampDutyRepository" />
+  </bean>
 
-	<bean id="stampDutyRepository" class="au.com.numbrcrunchr.domain.StampDutyRepositoryJpaImpl">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+  <bean id="stampDutyRepository" class="au.com.numbrcrunchr.domain.StampDutyRepositoryJpaImpl">
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
 
-	<bean id="taxCalculator" class="au.com.numbrcrunchr.domain.TaxCalculator">
-		<property name="taxRateRepository" ref="taxRateRepository" />
-	</bean>
+  <bean id="taxCalculator" class="au.com.numbrcrunchr.domain.TaxCalculator">
+    <property name="taxRateRepository" ref="taxRateRepository" />
+  </bean>
 
-	<bean id="taxRateRepository" class="au.com.numbrcrunchr.domain.TaxRateRepositoryJpaImpl">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+  <bean id="taxRateRepository" class="au.com.numbrcrunchr.domain.TaxRateRepositoryJpaImpl">
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
 
-	<bean id="feasibilityAnalyser" class="au.com.numbrcrunchr.domain.FeasibilityAnalyser">
-		<property name="taxCalculator" ref="taxCalculator" />
-		<property name="interestCalculator" ref="interestCalculator" />
-		<property name="rentalIncomeCalculator" ref="rentalIncomeCalculator" />
-	</bean>
+  <bean id="feasibilityAnalyser" class="au.com.numbrcrunchr.domain.FeasibilityAnalyser">
+    <property name="taxCalculator" ref="taxCalculator" />
+    <property name="interestCalculator" ref="interestCalculator" />
+    <property name="rentalIncomeCalculator" ref="rentalIncomeCalculator" />
+  </bean>
 
-	<bean id="loanBalanceCalculator" class="au.com.numbrcrunchr.domain.LoanBalanceCalculator" />
+  <bean id="loanBalanceCalculator" class="au.com.numbrcrunchr.domain.LoanBalanceCalculator" />
 
-	<bean id="interestCalculator" class="au.com.numbrcrunchr.domain.InterestOnlyLoanRepaymentCalculator" />
+  <bean id="interestCalculator"
+    class="au.com.numbrcrunchr.domain.InterestOnlyLoanRepaymentCalculator" />
 
-	<bean id="rentalIncomeCalculator" class="au.com.numbrcrunchr.domain.RentalIncomeCalculator" />
+  <bean id="rentalIncomeCalculator" class="au.com.numbrcrunchr.domain.RentalIncomeCalculator" />
 
-	<bean id="ongoingCosts" class="au.com.numbrcrunchr.domain.OngoingCosts" />
+  <bean id="ongoingCosts" class="au.com.numbrcrunchr.domain.OngoingCosts" />
 
-	<bean id="propertyRepository" class="au.com.numbrcrunchr.domain.PropertyRepositoryJpaImpl">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+  <bean id="propertyRepository" class="au.com.numbrcrunchr.domain.PropertyRepositoryJpaImpl">
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
 
-	<bean id="feasibilityAnalysisProjectionService"
-		class="au.com.numbrcrunchr.domain.FeasibilityAnalysisProjectionService">
-		<property name="feasibilityAnalyser" ref="feasibilityAnalyser" />
-		<property name="loanAmortisationScheduleCalculator" ref="loanAmortisationScheduleCalculator" />
-	</bean>
+  <bean id="feasibilityAnalysisProjectionService"
+    class="au.com.numbrcrunchr.domain.FeasibilityAnalysisProjectionService">
+    <property name="feasibilityAnalyser" ref="feasibilityAnalyser" />
+    <property name="loanAmortisationScheduleCalculator" ref="loanAmortisationScheduleCalculator" />
+  </bean>
 
-	<bean id="projectionParameters" class="au.com.numbrcrunchr.domain.ProjectionParameters">
-		<property name="cpi" value="3" />
-		<property name="salaryIncreaseRate" value="3.5" />
-		<property name="rentIncreaseRate" value="4" />
-		<property name="capitalGrowthRate" value="5.5" />
-	</bean>
+  <bean id="projectionParameters" class="au.com.numbrcrunchr.domain.ProjectionParameters">
+    <property name="cpi" value="3" />
+    <property name="salaryIncreaseRate" value="3.5" />
+    <property name="rentIncreaseRate" value="4" />
+    <property name="capitalGrowthRate" value="5.5" />
+  </bean>
 
-	<bean id="dbInitialiser" class="au.com.numbrcrunchr.DbInitialiser" destroy-method="shutdownDatabase" lazy-init="false">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-		<property name="sqlFilepath" value="schema/insert.sql" />
-		<property name="stampDutyRepository" ref="stampDutyRepository" />
-		<property name="taxRateRepository" ref="taxRateRepository" />
-	</bean>
+  <bean id="dbInitialiser" class="au.com.numbrcrunchr.DbInitialiser"
+    destroy-method="shutdownDatabase" lazy-init="false">
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+    <property name="sqlFilepath" value="schema/insert.sql" />
+    <property name="stampDutyRepository" ref="stampDutyRepository" />
+    <property name="taxRateRepository" ref="taxRateRepository" />
+  </bean>
 
-	<bean id="mainController" class="au.com.numbrcrunchr.web.MainController" scope="session">
-		<property name="feasibilityAnalysisProjectionService" ref="feasibilityAnalysisProjectionService" />
-		<property name="loanBalanceCalculator" ref="loanBalanceCalculator" />
-		<property name="stampDutyCalculator" ref="stampDutyCalculator" />
-		<property name="projectionParameters" ref="projectionParameters" />
-		<property name="versionDetails" ref="versionDetails" />
-	</bean>
+  <bean id="mainController" class="au.com.numbrcrunchr.web.MainController"
+    scope="session">
+    <property name="feasibilityAnalysisProjectionService" ref="feasibilityAnalysisProjectionService" />
+    <property name="loanBalanceCalculator" ref="loanBalanceCalculator" />
+    <property name="stampDutyCalculator" ref="stampDutyCalculator" />
+    <property name="projectionParameters" ref="projectionParameters" />
+    <property name="versionDetails" ref="versionDetails" />
+  </bean>
 
-	<bean id="loanAmortisationScheduleCalculator" class="au.com.numbrcrunchr.domain.LoanAmortisationScheduleCalculator">
-		<property name="interestCalculator" ref="interestCalculator" />
-	</bean>
+  <bean id="loanAmortisationScheduleCalculator"
+    class="au.com.numbrcrunchr.domain.LoanAmortisationScheduleCalculator">
+    <property name="interestCalculator" ref="interestCalculator" />
+  </bean>
 
-	<bean id="versionDetails" class="au.com.numbrcrunchr.web.VersionDetails">
-		<property name="versionNumber" value="1.0.1" />
-	</bean>
+  <bean id="versionDetails" class="au.com.numbrcrunchr.web.VersionDetails">
+    <property name="versionNumber" value="1.0.1" />
+    <property name="contactEmail" value="numbrcrunchr@gmail.com" />
+  </bean>
 </beans>
