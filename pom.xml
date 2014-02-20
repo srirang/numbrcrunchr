@@ -152,7 +152,8 @@
   </repositories>
 
   <properties>
-    <springframework.version>3.0.5.RELEASE</springframework.version>
+    <!-- <springframework.version>3.0.5.RELEASE</springframework.version> -->
+    <springframework.version>3.2.7.RELEASE</springframework.version>
     <primafaces.version>3.3.1</primafaces.version>
     <commons-collections.version>3.2.1</commons-collections.version>
     <junit.version>4.5</junit.version>

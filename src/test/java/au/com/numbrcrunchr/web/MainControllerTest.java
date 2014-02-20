@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
 import au.com.numbrcrunchr.domain.Property;
@@ -19,6 +20,7 @@ import au.com.numbrcrunchr.domain.State;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
+@WebAppConfiguration
 public class MainControllerTest {
     private static final Logger LOGGER = Logger.getLogger(MainController.class
             .getName());
