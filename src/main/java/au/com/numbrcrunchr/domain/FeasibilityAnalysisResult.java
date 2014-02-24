@@ -48,8 +48,7 @@ public class FeasibilityAnalysisResult implements Serializable {
             double rentalIncome, double taxSavings, double youPay,
             double nettCashflow, double interest, double annualIncomeAfterIP,
             double annualTaxAfterIP, double annualIncomeBeforeIP,
-            double annualTaxBeforeIP, double totalNettIncome,
-            double ongoingExpenses) {
+            double annualTaxBeforeIP, double totalNettIncome) {
         super();
         this.property = property;
         this.grossCashflow = grossCashflow;
@@ -84,7 +83,6 @@ public class FeasibilityAnalysisResult implements Serializable {
                         * financialYearRemaining, annualIncomeBeforeIP
                         * financialYearRemaining, annualTaxBeforeIP
                         * financialYearRemaining, totalNettIncome
-                        * financialYearRemaining, ongoingExpenses
                         * financialYearRemaining);
         return newResult;
     }

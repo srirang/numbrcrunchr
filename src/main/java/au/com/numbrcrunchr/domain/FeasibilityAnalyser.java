@@ -36,11 +36,8 @@ public class FeasibilityAnalyser {
 
         double rentalIncome = rentalIncomeCalculator.calculateGrossAnnualRent(
                 property.getWeeklyRent(), property.getWeeksRented());
-        double ongoingExpenses = property.getTotalOngoingCosts();
 
-        double totalExpenses = interest + ongoingExpenses;
-
-        double grossCashflow = rentalIncome - totalExpenses;
+        double grossCashflow = rentalIncome - interest;
         double annualIncomeBeforeIP = totalGrossIncome;
         double annualTaxBeforeIP = totalTax;
 
@@ -56,7 +53,7 @@ public class FeasibilityAnalyser {
         return new FeasibilityAnalysisResult(property, grossCashflow,
                 rentalIncome, taxSavings, youPay, nettCashflow, interest,
                 annualIncomeAfterIP, annualTaxAfterIP, annualIncomeBeforeIP,
-                annualTaxBeforeIP, totalNettIncome, ongoingExpenses);
+                annualTaxBeforeIP, totalNettIncome);
     }
 
     public FeasibilityAnalysisResult analyseFirstYearFeasibility(

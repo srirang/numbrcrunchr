@@ -32,7 +32,7 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
         double r = 1 + (interestRate / 100) / 12;
         int termInMonths = termInYears * 12;
         double monthlyRepayment = loanBalance
-                * ((r - 1) / (1 - (1 / Math.pow(r, termInMonths))));
+                * ((r - 1) / (1 - 1 / Math.pow(r, termInMonths)));
         double interest = interestCalculator.calculateInterest(loanBalance,
                 interestRate) / 12;
         double principal = monthlyRepayment - interest;

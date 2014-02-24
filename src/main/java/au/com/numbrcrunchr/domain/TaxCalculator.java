@@ -19,10 +19,8 @@ public class TaxCalculator {
         String taxYearString = FinancialYearUtils.getTaxYear(taxYear);
         TaxRate rate = taxRateRepository.getRate(taxYearString, grossIncome);
         LOGGER.info(rate.toString());
-        long flatAmount = rate.getFlatRate();
-        double taxOnIncome = flatAmount
-                + ((grossIncome - rate.getLowerLimit().longValue()) * rate
-                        .getPercentage());
+        double taxOnIncome = rate.getFlatRate()
+                + (grossIncome - rate.getLowerLimit()) * rate.getPercentage();
         double medicareLevy = 0;
         if (includeMedicareLevySurcharge) {
             medicareLevy = grossIncome
