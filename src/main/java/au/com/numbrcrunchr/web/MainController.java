@@ -213,7 +213,6 @@ public class MainController implements Serializable {
         return jsonString;
     }
 
-    @SuppressWarnings("unchecked")
     public String getAllExpensesAsJson() {
         return new Gson().toJson(CollectionUtils.collect(getProjection(),
                 new Transformer() {
@@ -226,7 +225,6 @@ public class MainController implements Serializable {
                 }).toArray(new Long[] {}));
     }
 
-    @SuppressWarnings("unchecked")
     public String getAllOutOfPocketsAsJson() {
         return new Gson().toJson(CollectionUtils.collect(getProjection(),
                 new Transformer() {

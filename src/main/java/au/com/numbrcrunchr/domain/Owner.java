@@ -68,7 +68,7 @@ public class Owner implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idOwner != null ? idOwner.hashCode() : 0);
+        hash += idOwner != null ? idOwner.hashCode() : 0;
         return hash;
     }
 
@@ -78,8 +78,8 @@ public class Owner implements Serializable {
             return false;
         }
         Owner other = (Owner) object;
-        if ((this.idOwner == null && other.idOwner != null)
-                || (this.idOwner != null && !this.idOwner.equals(other.idOwner))) {
+        if (this.idOwner == null && other.idOwner != null
+                || this.idOwner != null && !this.idOwner.equals(other.idOwner)) {
             return false;
         }
         return true;

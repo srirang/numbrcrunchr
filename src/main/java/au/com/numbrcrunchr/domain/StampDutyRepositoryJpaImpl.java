@@ -16,7 +16,7 @@ public class StampDutyRepositoryJpaImpl extends AbstractJpaRepository implements
     public StampDutyRepositoryJpaImpl() {
     }
 
-    @SuppressWarnings("unchecked")
+    @Override
     public StampDutyRate getRate(String state, long value) {
         if (state == null) {
             throw new DataException(
@@ -44,7 +44,6 @@ public class StampDutyRepositoryJpaImpl extends AbstractJpaRepository implements
 
     @Override
     public boolean hasAllData() {
-        @SuppressWarnings("unchecked")
         List<StampDutyRate> rates = getJpaTemplate().find(
                 "SELECT r FROM StampDutyRate r");
         return rates.size() == 42;

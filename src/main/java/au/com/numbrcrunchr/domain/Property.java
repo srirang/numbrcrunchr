@@ -199,7 +199,7 @@ public class Property implements Serializable, Cloneable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idProperty != null ? idProperty.hashCode() : 0);
+        hash += idProperty != null ? idProperty.hashCode() : 0;
         return hash;
     }
 
@@ -209,9 +209,9 @@ public class Property implements Serializable, Cloneable {
             return false;
         }
         Property other = (Property) object;
-        if ((this.idProperty == null && other.idProperty != null)
-                || (this.idProperty != null && !this.idProperty
-                        .equals(other.idProperty))) {
+        if (this.idProperty == null && other.idProperty != null
+                || this.idProperty != null
+                && !this.idProperty.equals(other.idProperty)) {
             return false;
         }
         return true;

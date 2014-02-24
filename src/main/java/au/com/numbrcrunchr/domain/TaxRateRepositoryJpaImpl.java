@@ -9,13 +9,13 @@ public class TaxRateRepositoryJpaImpl extends AbstractJpaRepository implements
     public TaxRateRepositoryJpaImpl() {
     }
 
+    @Override
     public TaxRate getRate(String taxYear, double income) {
         if (taxYear == null) {
             throw new DataException(
                     "Unable to find any tax rates for tax year: null");
         }
         taxYear = State.normalise(taxYear);
-        @SuppressWarnings("unchecked")
         List<TaxRate> taxRates = getJpaTemplate().findByNamedParams(
                 "SELECT r FROM TaxRate r where r.taxYear = :taxYear",
                 parameters("taxYear", taxYear));
@@ -34,7 +34,6 @@ public class TaxRateRepositoryJpaImpl extends AbstractJpaRepository implements
 
     @Override
     public boolean hasAllData() {
-        @SuppressWarnings("unchecked")
         List<TaxRate> rates = getJpaTemplate().find("SELECT r FROM TaxRate r");
         return rates.size() == 20;
     }
