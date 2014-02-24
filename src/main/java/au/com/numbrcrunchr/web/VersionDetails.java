@@ -1,6 +1,10 @@
 package au.com.numbrcrunchr.web;
 
-public class VersionDetails {
+import java.io.Serializable;
+
+public class VersionDetails implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String versionNumber;
     private String contactEmail;
