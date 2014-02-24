@@ -17,7 +17,7 @@ public class MathUtil {
     }
 
     public static double increaseBy(double value, double rate) {
-        return value * ((rate / 100) + 1);
+        return value * (rate / 100 + 1);
     }
 
 }

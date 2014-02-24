@@ -61,9 +61,8 @@ public class Amortisation {
             return false;
         }
         Amortisation amortisation = (Amortisation) object;
-        return (getPrincipal().equals(amortisation.getPrincipal())
-        // && getPeriod() == amortisation.getPeriod()
-        && getInterest().equals(amortisation.getInterest()))
+        return getPrincipal().equals(amortisation.getPrincipal())
+                && getInterest().equals(amortisation.getInterest())
                 && getRepayment().equals(amortisation.getRepayment())
                 && getLoanBalance().equals(amortisation.getLoanBalance());
     }

@@ -816,12 +816,4 @@ public class MainController implements Serializable {
         return feasibilityAnalysisProjectionService;
     }
 
-    public MainController() {
-        System.out
-                .println("--------------------------------------------------------------------");
-        System.out
-                .println("-------------------- Main Controller Created -----------------------");
-        System.out
-                .println("--------------------------------------------------------------------");
-    }
 }

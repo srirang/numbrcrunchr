@@ -48,15 +48,11 @@ public abstract class AbstractRate implements Serializable {
     }
 
     public boolean isInRange(Long value) {
-        if (lowerLimit == null) {
-            if (value.compareTo(upperLimit) <= 0) {
-                return true;
-            }
+        if (lowerLimit == null && value.compareTo(upperLimit) <= 0) {
+            return true;
         }
-        if (upperLimit == null) {
-            if (value.compareTo(lowerLimit) >= 0) {
-                return true;
-            }
+        if (upperLimit == null && value.compareTo(lowerLimit) >= 0) {
+            return true;
         }
         if (lowerLimit == null || upperLimit == null) {
             return false;
