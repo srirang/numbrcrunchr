@@ -169,9 +169,6 @@ $(document).ready(
 <body>
 
   <div id="header">
-    <!--
-    <h1 id="logo-text"><h:graphicImage value="resources/images/simplified-logo-v0.1.png" rendered="true" width="300px" />&nbsp;&nbsp;&nbsp;Property Investment Number Cruncher</h1>
--->
     <h1 id="logo-text">
       <h:graphicImage value="resources/images/numbrcrunchr-v0.1.png"
         rendered="true" />
@@ -348,154 +345,8 @@ $(document).ready(
           </h:panelGrid>
           <hr class="dashes" />
           <h:panelGroup rendered="#{mainController.showResults}">
-            <script src="http://code.highcharts.com/highcharts.js" />
-            <script
-              src="http://code.highcharts.com/modules/exporting.js" />
-            <h:panelGroup layout="block" id="cashflowChart" />
-            <h:panelGroup layout="block" id="yieldChart" />
-            <h:panelGroup>Select Frequency:</h:panelGroup>
-            <h:panelGroup>
-              <h:selectOneMenu id="Frequency"
-                value="#{mainController.frequency}">
-                <f:selectItems value="#{mainController.frequencies}" />
-                <f:ajax event="change"
-                  disabled="#{ajaxController.disabled}"
-                  listener="#{mainController.changeFrequency}"
-                  render="returnSummary" />
-              </h:selectOneMenu>
-            </h:panelGroup>
-            <h:panelGroup>
-              <h:commandButton
-                actionListener="#{mainController.downloadCsv}"
-                value="Download Data" class="simple-button" />
-            </h:panelGroup>
-            <h:dataTable id="returnSummary"
-              value="#{mainController.results}" var="row">
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Year" />
-                </f:facet>
-                <h:outputText value="#{row.year}" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Tenant Pays" />
-                </f:facet>
-                <h:outputText value="#{row.rentalIncome}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="You Pay" />
-                </f:facet>
-                <h:outputText value="#{row.youPay}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="ATO Pays" />
-                </f:facet>
-                <h:outputText value="#{row.taxSavings}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Total Income" />
-                </f:facet>
-                <h:outputText value="#{row.totalIncome}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Interest" />
-                </f:facet>
-                <h:outputText value="#{row.interest}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Ongoing Expenses" />
-                </f:facet>
-                <h:outputText value="#{row.ongoingExpenses}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Total Expense" />
-                </f:facet>
-                <h:outputText value="#{row.totalExpense}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Cashflow Before Tax" />
-                </f:facet>
-                <h:outputText value="#{row.grossCashflow}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Cashflow After Tax" />
-                </f:facet>
-                <h:outputText value="#{row.nettCashflow}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Gross Yield" />
-                </f:facet>
-                <h:outputText value="#{row.grossYield}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Nett Yield" />
-                </f:facet>
-                <h:outputText value="#{row.nettYield}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:column>
-
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Weekly Rent" />
-                </f:facet>
-                <h:outputText value="#{row.weeklyRent}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Loan Balance" />
-                </f:facet>
-                <h:outputText value="#{row.loanBalance}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Market Value" />
-                </f:facet>
-                <h:outputText value="#{row.propertyValue}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Capital Growth" />
-                </f:facet>
-                <h:outputText value="#{row.capitalGrowth}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-              <h:column>
-                <f:facet name="header">
-                  <h:outputText value="Equity Available" />
-                </f:facet>
-                <h:outputText value="#{row.equityAvailable}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:column>
-
-            </h:dataTable>
-            <h:commandButton
-              actionListener="#{mainController.downloadCsv}"
-              value="Download Data" class="simple-button" />
             <h4>Investment Summary :-</h4>
+
             <h:panelGrid columns="2" id="investmentSummary" width="100%">
               <h:panelGroup>Purchase Price:</h:panelGroup>
               <h:panelGroup>
@@ -528,7 +379,286 @@ $(document).ready(
                   converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:panelGroup>
             </h:panelGrid>
+
+            <h4>Assumptions :-</h4>
+            <h:panelGrid columns="4">
+              <h:panelGroup>
+                <h4>Yearly Costs :-</h4>
+              </h:panelGroup>
+              <h:panelGroup />
+              <h:panelGroup>
+                <h4>Projection :-</h4>
+              </h:panelGroup>
+              <h:panelGroup></h:panelGroup>
+              <h:panelGroup>Interest Rate:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText value="#{mainController.interestRate}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Purchase Date:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText value="#{mainController.purchaseDate}">
+                  <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                </h:outputText>
+              </h:panelGroup>
+              <h:panelGroup>Landlord's Insurance:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.landlordsInsurance}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup>How many years to project:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.numberOfYears}" />
+              </h:panelGroup>
+              <h:panelGroup>Maintenance:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.maintenance}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup>CPI:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6" value="#{mainController.cpi}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Strata:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6" value="#{mainController.strata}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Capital Growth Rate:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.capitalGrowthRate}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Water Charges:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.waterCharges}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Salary Increase Rate:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.salaryIncreaseRate}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Cleaning:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.cleaning}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Rent Increase Rate:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.rentIncreaseRate}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Council Rates:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.councilRates}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Loan Term:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.loanTerm}" />
+              </h:panelGroup>
+              <h:panelGroup>Gardening:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.gardening}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup>Interest Only Period:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.interestOnlyPeriod}" />
+              </h:panelGroup>
+              <h:panelGroup>Tax Expenses:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.taxExpenses}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup />
+              <h:panelGroup />
+              <h:panelGroup>Property Management Fees:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.propertyManagementFees}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </h:panelGroup>
+              <h:panelGroup />
+              <h:panelGroup />
+              <h:panelGroup>Misc Ongoing Expenses:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.miscOngoingExpenses}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </h:panelGroup>
+              <h:panelGroup />
+              <h:panelGroup />
+              <h:panelGroup>Weeks Rented:</h:panelGroup>
+              <h:panelGroup>
+                <h:outputText size="6"
+                  value="#{mainController.weeksRented}" />
+              </h:panelGroup>
+            </h:panelGrid>
+
+            <h:panelGroup>Select Frequency:</h:panelGroup>
+            <h:panelGroup>
+              <h:selectOneMenu id="Frequency"
+                value="#{mainController.frequency}">
+                <f:selectItems value="#{mainController.frequencies}" />
+                <f:ajax event="change"
+                  disabled="#{ajaxController.disabled}"
+                  listener="#{mainController.changeFrequency}"
+                  render="returnSummary" />
+              </h:selectOneMenu>
+            </h:panelGroup>
+            <h:panelGroup>
+              <h:commandButton
+                actionListener="#{mainController.downloadCsv}"
+                value="Download Data" class="simple-button" />
+            </h:panelGroup>
+            <p:dataTable id="returnSummary"
+              value="#{mainController.results}" var="row"
+              draggableColumns="true">
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Year" />
+                </f:facet>
+                <h:outputText value="#{row.year}" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Tenant Pays" />
+                </f:facet>
+                <h:outputText value="#{row.rentalIncome}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="You Pay" />
+                </f:facet>
+                <h:outputText value="#{row.youPay}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="ATO Pays" />
+                </f:facet>
+                <h:outputText value="#{row.taxSavings}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Total Income" />
+                </f:facet>
+                <h:outputText value="#{row.totalIncome}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Interest" />
+                </f:facet>
+                <h:outputText value="#{row.interest}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Ongoing Expenses" />
+                </f:facet>
+                <h:outputText value="#{row.ongoingExpenses}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Total Expense" />
+                </f:facet>
+                <h:outputText value="#{row.totalExpense}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Cashflow Before Tax" />
+                </f:facet>
+                <h:outputText value="#{row.grossCashflow}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Cashflow After Tax" />
+                </f:facet>
+                <h:outputText value="#{row.nettCashflow}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Gross Yield" />
+                </f:facet>
+                <h:outputText value="#{row.grossYield}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Nett Yield" />
+                </f:facet>
+                <h:outputText value="#{row.nettYield}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+              </p:column>
+
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Weekly Rent" />
+                </f:facet>
+                <h:outputText value="#{row.weeklyRent}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Loan Balance" />
+                </f:facet>
+                <h:outputText value="#{row.loanBalance}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Market Value" />
+                </f:facet>
+                <h:outputText value="#{row.propertyValue}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Capital Growth" />
+                </f:facet>
+                <h:outputText value="#{row.capitalGrowth}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Equity Available" />
+                </f:facet>
+                <h:outputText value="#{row.equityAvailable}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+
+            </p:dataTable>
+            <h:commandButton
+              actionListener="#{mainController.downloadCsv}"
+              value="Download Data" class="simple-button" />
           </h:panelGroup>
+          <script src="http://code.highcharts.com/highcharts.js" />
+          <script src="http://code.highcharts.com/modules/exporting.js" />
+          <h:panelGroup layout="block" id="cashflowChart" />
+          <h:panelGroup layout="block" id="yieldChart" />
           <h:panelGrid columns="4"
             rendered="#{mainController.showAdvanced}">
             <h:panelGroup>
