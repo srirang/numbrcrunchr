@@ -29,6 +29,7 @@ public class StampDutyCalculatorTest {
 
     @Test
     public void specialCaseForACT() {
+        // TODO: Stamp duty for ACT shows as $20 for $0 purchase price on UI!
         assertEquals(0,
                 calculator.calculateStampDuty(State.ACT, new Long("0")), 0);
         assertEquals(20,

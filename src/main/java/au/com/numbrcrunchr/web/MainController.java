@@ -91,6 +91,12 @@ public class MainController implements Serializable {
                 getProjectionParameters());
         projectionResults = projection.getProjections();
         this.resultsAvailable = true;
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context != null) {
+            context.addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_INFO, "Numbers Crunched!",
+                    "Select Download to download the raw data"));
+        }
         return null;
     }
 

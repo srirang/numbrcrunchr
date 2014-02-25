@@ -1,378 +1,378 @@
 #featured {
-	clear: both;
-	background: #F8FAFD;
-	border: 1px solid #DCF1FB;
-	margin: 30px 0 15px 10px;
-	padding-bottom: 0px;
-	width: 100%;
+  clear: both;
+  background: #F8FAFD;
+  border: 1px solid #DCF1FB;
+  margin: 30px 0 15px 10px;
+  padding-bottom: 0px;
+  width: 100%;
 }
 
 .clear {
-	display: inline-block;
+  display: inline-block;
 }
 
 #featured h2 {
-	font: normal 3.8em Georgia, 'Times New Roman', Times, Serif;
-	color: #295177;
-	letter-spacing: -2.0px;
-	margin-bottom: 0;
-	padding-bottom: 3px;
-	border-bottom: 1px solid #EBEBEB;
+  font: normal 3.8em Georgia, 'Times New Roman', Times, Serif;
+  color: #295177;
+  letter-spacing: -2.0px;
+  margin-bottom: 0;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #EBEBEB;
 }
 
 #featured h2 a {
-	color: #295177;
-	border: none;
+  color: #295177;
+  border: none;
 }
 
 #featured .image-block {
-	float: left;
-	/*width: 330px;*/
-	margin: 10px 0 0 10px;
-	padding: 1px 0 0 0;
-	display: inline;
-	border-right: 1px solid #DCF1FB;
+  float: left;
+  /*width: 330px;*/
+  margin: 10px 0 0 10px;
+  padding: 1px 0 0 0;
+  display: inline;
+  border-right: 1px solid #DCF1FB;
 }
 
 #featured .image-block img {
-	background: #FFF;
-	border: 1px solid #DFEAF0;
-	padding: 12px;
+  background: #FFF;
+  border: 1px solid #DFEAF0;
+  padding: 12px;
 }
 
 #featured .text-block {
-	float: left;
-	width: 98%;
-	margin: 0px 0px 0 10px;
-	display: inline;
+  float: left;
+  width: 98%;
+  margin: 0px 0px 0 10px;
+  display: inline;
 }
 
 #featured a.more-link {
-	background: #B4DB6F;
-	padding: 5px 10px 5px 10px;
-	margin-top: 15px;
-	color: #FFF;
-	text-decoration: none;
-	border: 1px solid #BADE7D;
-	text-transform: uppercase;
-	font-size: 10px;
-	font-weight: bold;
-	line-height: 20px;
-	display: block;
-	float: left;
+  background: #B4DB6F;
+  padding: 5px 10px 5px 10px;
+  margin-top: 15px;
+  color: #FFF;
+  text-decoration: none;
+  border: 1px solid #BADE7D;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 20px;
+  display: block;
+  float: left;
 }
 
 #featured a.more-link:hover {
-	background: #008EFD;
-	border-color: #007DE2;
+  background: #008EFD;
+  border-color: #007DE2;
 }
 
 .ui-input-invalid {
-	color: #D8000C;
-	background-color: #FFBABA;
-	/* background-color: #F5A9BC */
+  color: #D8000C;
+  background-color: #FFBABA;
+  /* background-color: #F5A9BC */
 }
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
-	{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	font-family: inherit;
-	vertical-align: baseline;
+  {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
 }
 
 h1,h2,h3,h4 {
-	font: bold 1em/1.5em "Lucida Sans Unicode", "Lucida Grande", Verdana,
-		Arial, Helvetica, sans-serif;
-	color: #1887c5;
-	/*margin: 10px 20px 7px 20px;*/
+  font: bold 1em/1.5em "Lucida Sans Unicode", "Lucida Grande", Verdana,
+    Arial, Helvetica, sans-serif;
+  color: #1887c5;
+  /*margin: 10px 20px 7px 20px;*/
 }
 
 h1 {
-	font-size: 2.7em;
-	font-weight: normal;
-	letter-spacing: -1px;
+  font-size: 2.7em;
+  font-weight: normal;
+  letter-spacing: -1px;
 }
 
 h2 {
-	font-size: 2.8em;
-	font-weight: normal;
+  font-size: 2.8em;
+  font-weight: normal;
 }
 
 h3 {
-	font-size: 2.2em;
-	font-weight: normal;
-	letter-spacing: 1px;
-	padding-top: 15px;
+  font-size: 2.2em;
+  font-weight: normal;
+  letter-spacing: 1px;
+  padding-top: 15px;
 }
 
 h5 {
-	font-size: 1.2em;
-	font-weight: normal;
-	letter-spacing: 2px;
+  font-size: 1.2em;
+  font-weight: normal;
+  letter-spacing: 2px;
 }
 
 #header p#slogan {
-	position: absolute;
-	margin: 0;
-	padding: 5px 5px 0 0;
-	font-size: 9px;
-	line-height: 1.8em;
-	font: bold 1em/1.5em "Lucida Sans Unicode", "Lucida Grande", Verdana,
-		Arial, Helvetica, sans-serif;
-	color: #999;
-	/* change the values of top and left to adjust the position */
-	top: 75px;
-	left: 15px;
+  position: absolute;
+  margin: 0;
+  padding: 5px 5px 0 0;
+  font-size: 9px;
+  line-height: 1.8em;
+  font: bold 1em/1.5em "Lucida Sans Unicode", "Lucida Grande", Verdana,
+    Arial, Helvetica, sans-serif;
+  color: #999;
+  /* change the values of top and left to adjust the position */
+  top: 75px;
+  left: 15px;
 }
 
 body {
-	font: 12px/170% Helvetica, Sans-Serif;
-	color: #666666;
-	margin: 0;
-	padding: 0;
-	background: #FFF url(../resources/images/bg.gif) repeat-x;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	/* This removes the border around the viewport in old versions of IE */
-	width: 100%;
-	min-width: 600px;
-	/* Minimum width of layout - remove line if not required */
-	/* The min-width property does not work in old versions of Internet Explorer */
-	font-size: 90%;
+  font: 12px/170% Helvetica, Sans-Serif;
+  color: #666666;
+  margin: 0;
+  padding: 0;
+  background: #FFF url(../resources/images/bg.gif) repeat-x;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* This removes the border around the viewport in old versions of IE */
+  width: 100%;
+  min-width: 600px;
+  /* Minimum width of layout - remove line if not required */
+  /* The min-width property does not work in old versions of Internet Explorer */
+  font-size: 90%;
 }
 
 a {
-	color: #369;
+  color: #369;
 }
 
 a:hover {
-	color: #fff;
-	background: #369;
-	text-decoration: none;
+  color: #fff;
+  background: #369;
+  text-decoration: none;
 }
 
 h1,h2,h3 {
-	margin: .8em 0 .2em 0;
-	padding: 0;
+  margin: .8em 0 .2em 0;
+  padding: 0;
 }
 
 p {
-	margin: .4em 0 .8em 0;
-	padding: 0;
+  margin: .4em 0 .8em 0;
+  padding: 0;
 }
 
 #ads img {
-	display: block;
-	padding-top: 10px;
+  display: block;
+  padding-top: 10px;
 }
 
 /* Header styles */
 #header {
-	clear: both;
-	float: left;
-	width: 100%;
+  clear: both;
+  float: left;
+  width: 100%;
 }
 
 #header p,#header h1,#header h2 {
-	padding: .4em 15px 0 15px;
-	margin: 0;
+  padding: .4em 15px 0 15px;
+  margin: 0;
 }
 
 #header ul {
-	clear: left;
-	float: left;
-	width: 100%;
-	list-style: none;
-	margin: 10px 0 0 0;
-	padding: 0;
+  clear: left;
+  float: left;
+  width: 100%;
+  list-style: none;
+  margin: 10px 0 0 0;
+  padding: 0;
 }
 
 #header ul li {
-	display: inline;
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  display: inline;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 #header ul li a {
-	display: block;
-	float: left;
-	margin: 0 0 0 1px;
-	padding: 3px 10px;
-	text-align: center;
-	background: #eee;
-	color: #000;
-	text-decoration: none;
-	position: relative;
-	left: 15px;
-	line-height: 1.3em;
+  display: block;
+  float: left;
+  margin: 0 0 0 1px;
+  padding: 3px 10px;
+  text-align: center;
+  background: #eee;
+  color: #000;
+  text-decoration: none;
+  position: relative;
+  left: 15px;
+  line-height: 1.3em;
 }
 
 #header ul li a:hover {
-	background: #369;
-	color: #fff;
+  background: #369;
+  color: #fff;
 }
 
 #header ul li a.active,#header ul li a.active:hover {
-	color: #fff;
-	background: #000;
-	font-weight: bold;
+  color: #fff;
+  background: #000;
+  font-weight: bold;
 }
 
 #header ul li a span {
-	display: block;
+  display: block;
 }
 /* 'widths' sub menu */
 #layoutdims {
-	clear: both;
-	background: #eee;
-	border-top: 4px solid #000;
-	margin: 0;
-	padding: 6px 15px !important;
-	text-align: right;
+  clear: both;
+  background: #eee;
+  border-top: 4px solid #000;
+  margin: 0;
+  padding: 6px 15px !important;
+  text-align: right;
 }
 /* column container */
 .colmask {
-	position: relative; /* This fixes the IE7 overflow hidden bug */
-	clear: both;
-	float: left;
-	width: 100%; /* width of whole page */
-	overflow: hidden; /* This chops off any overhanging divs */
+  position: relative; /* This fixes the IE7 overflow hidden bug */
+  clear: both;
+  float: left;
+  width: 100%; /* width of whole page */
+  overflow: hidden; /* This chops off any overhanging divs */
 }
 /* common column settings */
 .colright,.colmid,.colleft {
-	float: left;
-	width: 100%;
-	position: relative;
+  float: left;
+  width: 100%;
+  position: relative;
 }
 
 .col1,.col2,.col3 {
-	float: left;
-	position: relative;
-	padding: 0 0 1em 0;
-	overflow: hidden;
+  float: left;
+  position: relative;
+  padding: 0 0 1em 0;
+  overflow: hidden;
 }
 
 .col2 {
-	background: #FFF url(../resources/images/slash.png);
+  background: #FFF url(../resources/images/slash.png);
 }
 
 /* 2 Column (left menu) settings */
 .leftmenu {
-	background: #fff; /* right column background colour */
+  background: #fff; /* right column background colour */
 }
 
 .leftmenu .colleft {
-	right: 99%; /* right column width */
-	background: #f4f4f4; /* left column background colour */
-	background: #FFF url(../resources/images/slash.png);
+  right: 99%; /* right column width */
+  background: #f4f4f4; /* left column background colour */
+  background: #FFF url(../resources/images/slash.png);
 }
 
 .leftmenu .col1 {
-	width: 71%; /* right column content width */
-	left: 102%; /* 100% plus left column left padding */
+  width: 71%; /* right column content width */
+  left: 102%; /* 100% plus left column left padding */
 }
 
 .leftmenu .col2 {
-	width: 41%;
-	/* left column content width (column width minus left and right padding) */
-	left: 6%;
-	/* (right column left and right padding) plus (left column left padding) */
+  width: 41%;
+  /* left column content width (column width minus left and right padding) */
+  left: 6%;
+  /* (right column left and right padding) plus (left column left padding) */
 }
 /* Footer styles */
 #footer {
-	clear: both;
-	float: left;
-	width: 100%;
-	font: normal Georgia, 'Times New Roman', Times, Serif;
-	color: #555;
-	font-size: 0.7em;
-	font-weight: normal;
+  clear: both;
+  float: left;
+  width: 100%;
+  font: normal Georgia, 'Times New Roman', Times, Serif;
+  color: #555;
+  font-size: 0.7em;
+  font-weight: normal;
 }
 
 #footer p {
-	padding: 10px;
-	margin: 0;
+  padding: 10px;
+  margin: 0;
 }
 
 .simple-button {
-	-moz-box-shadow: inset 0px 0px 0px 0px #bbdaf7;
-	-webkit-box-shadow: inset 0px 0px 0px 0px #bbdaf7;
-	box-shadow: inset 0px 0px 0px 0px #bbdaf7;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff
-		), color-stop(1, #378de5) );
-	background: -moz-linear-gradient(center top, #79bbff 5%, #378de5 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff',
-		endColorstr='#378de5' );
-	background-color: #79bbff;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	display: inline-block;
-	color: #ffffff;
-	font-family: arial;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 2px 9px;
-	text-decoration: none;
-	text-shadow: 1px 1px 0px #528ecc;
+  -moz-box-shadow: inset 0px 0px 0px 0px #bbdaf7;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #bbdaf7;
+  box-shadow: inset 0px 0px 0px 0px #bbdaf7;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff
+    ), color-stop(1, #378de5));
+  background: -moz-linear-gradient(center top, #79bbff 5%, #378de5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff',
+    endColorstr='#378de5');
+  background-color: #79bbff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  display: inline-block;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 9px;
+  text-decoration: none;
+  text-shadow: 1px 1px 0px #528ecc;
 }
 
 .simple-button:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5
-		), color-stop(1, #79bbff) );
-	background: -moz-linear-gradient(center top, #378de5 5%, #79bbff 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5',
-		endColorstr='#79bbff' );
-	background-color: #378de5;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5
+    ), color-stop(1, #79bbff));
+  background: -moz-linear-gradient(center top, #378de5 5%, #79bbff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5',
+    endColorstr='#79bbff');
+  background-color: #378de5;
 }
 
 .simple-button:active {
-	position: relative;
-	top: 1px;
+  position: relative;
+  top: 1px;
 }
 
 label {
-	font-weight: bold;
-	color: #666666;
+  font-weight: bold;
+  color: #666666;
 }
 
 input,select,textarea {
-	margin: 2px 0;
-	padding: 1px;
-	color: #6A6969;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #D4D4D4 #EBEBEB #EBEBEB #D4D4D4;
-	font: 14px Helvetica, sans-serif;
+  margin: 2px 0;
+  padding: 1px;
+  color: #6A6969;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #D4D4D4 #EBEBEB #EBEBEB #D4D4D4;
+  font: 14px Helvetica, sans-serif;
 }
 
 input:focus,select:focus,textarea:focus {
-	color: #3399FF;
-	background: #F8FAFD;
+  color: #3399FF;
+  background: #F8FAFD;
 }
 
 #name,#email,#message,#website {
-	width: 380px;
+  width: 380px;
 }
 
 input.submit,input.button {
-	font: bold 12px Arial, Sans-serif;
-	height: 30px;
-	margin: 0;
-	padding: 2px 3px;
-	background: #0788C3;
-	color: #0788C3;
-	border-bottom: 1px dotted #0788C3;
-	border-width: 1px;
-	border-style: solid;
+  font: bold 12px Arial, Sans-serif;
+  height: 30px;
+  margin: 0;
+  padding: 2px 3px;
+  background: #0788C3;
+  color: #0788C3;
+  border-bottom: 1px dotted #0788C3;
+  border-width: 1px;
+  border-style: solid;
 }
 
 /* 
@@ -383,86 +383,86 @@ input.submit,input.button {
 }
 */
 hr {
-	background-color: #fff;
-	border: #000 1px dotted;
-	border-style: none none dotted;
-	color: #fff;
+  background-color: #fff;
+  border: #000 1px dotted;
+  border-style: none none dotted;
+  color: #fff;
 }
 
 .info-box,.success-box,.warning-box,.error-box {
-	border: 0px solid;
-	margin: 10px 0px;
-	padding: 5px 5px 5px 30px;
-	background-repeat: no-repeat;
-	background-position: 5px 5px;
-	background-size: 25px 25px;
-	font: normal 100% Helvetica, Arial, sans-serif;
+  border: 0px solid;
+  margin: 10px 0px;
+  padding: 5px 5px 5px 30px;
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 25px 25px;
+  font: normal 100% Helvetica, Arial, sans-serif;
 }
 
 .info-box {
-	color: #00529B;
-	background: #BDE5F8 url(/images/info.png) top left no-repeat;
+  color: #00529B;
+  background: #BDE5F8 url(/images/info.png) top left no-repeat;
 }
 
 .success-box {
-	color: #4F8A10;
-	background: url(../resources/images/rsz_1successicon.png) top left
-		no-repeat;
+  color: #4F8A10;
+  background: url(../resources/images/rsz_1successicon.png) top left
+    no-repeat;
 }
 
 .warning-box {
-	color: #9F6000;
-	background: #FEEFB3 url(/images/warning.png) top left no-repeat;
+  color: #9F6000;
+  background: #FEEFB3 url(/images/warning.png) top left no-repeat;
 }
 
 .error-box {
-	color: #D8000C;
-	background: #FFBABA url(../resources/images/erroricon.png) top left
-		no-repeat;
+  color: #D8000C;
+  background: #FFBABA url(../resources/images/erroricon.png) top left
+    no-repeat;
 }
 
 table {
-	width: 100%;
-	border-top: 1px solid #e5eff8;
-	border-right: 1px solid #e5eff8;
-	margin: 1em auto;
-	border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #e5eff8;
+  border-right: 1px solid #e5eff8;
+  margin: 1em auto;
+  border-collapse: collapse;
 }
 
 thead,td,th {
-	color: #678197;
-	border-bottom: 1px solid #e5eff8;
-	border-left: 1px solid #e5eff8;
-	padding: 1px 1px 2px 2px;
+  color: #678197;
+  border-bottom: 1px solid #e5eff8;
+  border-left: 1px solid #e5eff8;
+  padding: 1px 1px 2px 2px;
 }
 
 thead,th {
-	text-align: center;
+  text-align: center;
 }
 
 tr.odd td {
-	background: #f7fbff
+  background: #f7fbff
 }
 
 tr.odd .column1 {
-	background: #f4f9fe;
+  background: #f4f9fe;
 }
 
 .column1 {
-	background: #f9fcfe;
+  background: #f9fcfe;
 }
 
 #footer p.left {
-	width: 98%;
-	float: left;
-	padding-top: 15px;
-	text-align: left;
+  width: 98%;
+  float: left;
+  padding-top: 15px;
+  text-align: left;
 }
 
 #footer p.right {
-	padding-right: 0;
-	width: 98%;
-	float: right;
-	padding-top: 15px;
-	text-align: right;
+  padding-right: 0;
+  width: 98%;
+  float: right;
+  padding-top: 15px;
+  text-align: right;
 }
