@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
+import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 import au.com.numbrcrunchr.CsvExporter;
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisProjectionService;
@@ -100,14 +102,14 @@ public class MainController implements Serializable {
         return null;
     }
 
-    public void quickAnalysis() {
-        updateTotals(null);
-        projection = feasibilityAnalysisProjectionService.runProjection(
-                getProperty(), getNumberOfYears() - 1,
-                getProjectionParameters());
-        projectionResults = projection.getProjections();
-        this.resultsAvailable = true;
-    }
+    // public void quickAnalysis() {
+    // updateTotals(null);
+    // projection = feasibilityAnalysisProjectionService.runProjection(
+    // getProperty(), getNumberOfYears() - 1,
+    // getProjectionParameters());
+    // projectionResults = projection.getProjections();
+    // this.resultsAvailable = true;
+    // }
 
     public String advanced() {
         this.advancedSelected = true;
@@ -820,4 +822,40 @@ public class MainController implements Serializable {
         return feasibilityAnalysisProjectionService;
     }
 
+    public CartesianChartModel getCashflowChart() {
+        CartesianChartModel chartModel = new CartesianChartModel();
+        ChartSeries incomeSeries = new ChartSeries("Income");
+        ChartSeries expenseSeries = new ChartSeries("Expense");
+        ChartSeries outOfPocketSeries = new ChartSeries("Out of Pocket");
+        for (FeasibilityAnalysisResult result : getProjection()) {
+            incomeSeries.set(result.getYear(), result.getTotalIncome());
+            expenseSeries.set(result.getYear(), result.getTotalExpense());
+            outOfPocketSeries.set(result.getYear(),
+                    result.getTotalOutOfPocket());
+        }
+        chartModel.addSeries(incomeSeries);
+        chartModel.addSeries(expenseSeries);
+        chartModel.addSeries(outOfPocketSeries);
+        return chartModel;
+    }
+
+    public CartesianChartModel getEquityChart() {
+        CartesianChartModel chartModel = new CartesianChartModel();
+        ChartSeries equitySeries = new ChartSeries("Equity");
+        ChartSeries loanBalanceSeries = new ChartSeries("Loan Balance");
+        ChartSeries marketValueSeries = new ChartSeries("Market Value");
+        for (FeasibilityAnalysisResult result : getProjection()) {
+            equitySeries.set(result.getYear(), result.getEquityAvailable());
+            loanBalanceSeries.set(result.getYear(), result.getLoanBalance());
+            marketValueSeries.set(result.getYear(), result.getPropertyValue());
+        }
+        chartModel.addSeries(equitySeries);
+        chartModel.addSeries(loanBalanceSeries);
+        chartModel.addSeries(marketValueSeries);
+        return chartModel;
+    }
+
+    public String getCashflowTipFormat() {
+        return "<span style=\"display:none;\">%s</span><span>%s</span>";
+    }
 }

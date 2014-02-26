@@ -13,7 +13,7 @@
   <classpathentry kind="var" path="M2_REPO/com/sun/faces/jsf-api/2.1.2/jsf-api-2.1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/sun/faces/jsf-impl/2.1.2/jsf-impl-2.1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jpa_2.0_spec/1.0/geronimo-jpa_2.0_spec-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/primefaces/primefaces/3.3.1/primefaces-3.3.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/primefaces/primefaces/3.4/primefaces-3.4.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/primefaces/themes/blitzer/1.0.2/blitzer-1.0.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/primefaces/themes/home/1.0.4/home-1.0.4.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/3.2.7.RELEASE/spring-context-3.2.7.RELEASE.jar"/>
