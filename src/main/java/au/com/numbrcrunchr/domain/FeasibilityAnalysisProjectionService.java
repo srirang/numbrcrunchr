@@ -11,7 +11,8 @@ public class FeasibilityAnalysisProjectionService {
             ProjectionParameters projectionParameters) {
         FeasibilityAnalysisResult firstFullYearResult = feasibilityAnalyser
                 .analyseFirstYearFeasibility(property);
-
+        numberOfYears = property.getLoanTerm() < numberOfYears ? property
+                .getLoanTerm() : numberOfYears;
         List<FeasibilityAnalysisResult> projections = new ArrayList<FeasibilityAnalysisResult>(
                 numberOfYears);
         projections.add(firstFullYearResult);
@@ -32,8 +33,9 @@ public class FeasibilityAnalysisProjectionService {
             try {
                 projectionProperty = (Property) projectionProperty.clone();
                 projectionProperty.projectBy(projectionParameters);
+                // TODO: Test this, may not be right
                 Amortisation yearlyAmortisation = amortisationSchedule
-                        .getYearlyAmortisations().get(i);
+                        .getYearlyAmortisations().get(i - 1);
                 result = feasibilityAnalyser.analyseFeasibility(
                         projectionProperty, yearlyAmortisation.getInterest()
                                 .doubleValue(), yearlyAmortisation

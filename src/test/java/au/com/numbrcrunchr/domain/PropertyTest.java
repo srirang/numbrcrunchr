@@ -102,7 +102,7 @@ public class PropertyTest {
         property.setLoanApplicationFees(200l);
         property.setMaintenance(500l);
         property.setMiscOngoingExpenses(100l);
-        property.setMortgageInsurance(6000l);
+        property.setLendersMortgageInsurance(6000l);
         property.setMortgageInsuranceStampDuty(600l);
         property.setMortgageStampDuty(50l);
         property.setAddress("my address");

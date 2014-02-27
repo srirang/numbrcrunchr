@@ -14,8 +14,10 @@
         property investment</title>
     </f:facet>
 
-    <link type="text/css" rel="stylesheet"
+    <!--     <link type="text/css" rel="stylesheet"
       href="#{request.contextPath}/css/default.css" />
+ -->
+    <h:outputStylesheet library="css" name="default.css" target="body" />
     <ui:insert name="head"></ui:insert>
 
     <script type="text/javascript">
@@ -44,12 +46,13 @@
                 </script>
   </h:head>
 
-  <h:body
-    style="background: url(../../resources/images/bg.gif) repeat-x;">
-
-    <div id="header" class="ui-widget ui-widget-header">
+  <h:body>
+    <div id="header" class="ui-widget ui-widget-header"
+      style="height: 45px;">
       <div id="logo">
-        <img src="../resources/images/numbrcrunchr-v0.1.png" alt="Logo" />
+        <a href="#"> <img
+          src="../resources/images/numbrcrunchr-v0.1.png"
+          alt="NumbrCrunchr" /></a>
       </div>
     </div>
 
@@ -57,6 +60,7 @@
       <h:form id="feasibilityAnalysisForm">
         <div id="sidebar"
           class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
+          <br />
           <p:fieldset legend="Step 1 : Property Details"
             toggleable="false" collapsed="false">
             <div class="ui-widget submenu-content">
@@ -113,14 +117,6 @@
                       render="totalPurhcaseCost investmentSummary loanAmount lvr" />
                   </h:inputText>
                 </h:panelGroup>
-                <h:panelGroup>Loan/Value Ratio (LVR):</h:panelGroup>
-                <h:panelGroup>
-                  <h:inputText size="6" id="lvr"
-                    value="#{mainController.lvr}"
-                    converter="au.com.numbrcrunchr.web.PercentageConverter"
-                    disabled="true">
-                  </h:inputText>
-                </h:panelGroup>
                 <h:panelGroup>Expected Weekly Rent:</h:panelGroup>
                 <h:panelGroup>
                   <h:inputText size="6" id="WeeklyRent"
@@ -175,36 +171,56 @@
             <div class="submenu-content">
               <p:panelGrid columns="2" id="investmentSummary"
                 width="100%">
-                <h:panelGroup>Purchase Price:</h:panelGroup>
-                <h:panelGroup>
+                Purchase Price:
                   <h:outputText value="#{mainController.propertyValue}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-                </h:panelGroup>
-                <h:panelGroup>Stamp Duty:</h:panelGroup>
-                <h:panelGroup>
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                
+                Stamp Duty:
                   <h:outputText value="#{mainController.stampDuty}"
-                    id="stampDuty"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-                </h:panelGroup>
-                <h:panelGroup>Total Cost:</h:panelGroup>
-                <h:panelGroup>
+                  id="stampDuty"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                
+                Conveyancing Cost:
                   <h:outputText
-                    value="#{mainController.totalPurhcaseCost}"
-                    id="totalPurhcaseCost"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-                </h:panelGroup>
-                <h:panelGroup>Cash Deposit:</h:panelGroup>
-                <h:panelGroup>
+                  value="#{mainController.conveyancingCost}"
+                  id="conveyancingCost"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                
+                Government Costs:
+                  <h:outputText
+                  value="#{mainController.governmentCosts}"
+                  id="governmentCosts"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                
+                Total Cost:
+                  <h:outputText
+                  value="#{mainController.totalPurhcaseCost}"
+                  id="totalPurhcaseCost"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                
+                Cash Deposit:
                   <h:outputText value="#{mainController.deposit}"
-                    id="deposit"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-                </h:panelGroup>
-                <h:panelGroup>Loan Required:</h:panelGroup>
-                <h:panelGroup>
+                  id="deposit"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                
+                Loan Required:
                   <h:outputText value="#{mainController.loanAmount}"
-                    id="loanAmount"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-                </h:panelGroup>
+                  id="loanAmount"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+
+                Loan/Value Ratio (LVR):
+                  <h:inputText size="6" id="lvr"
+                  value="#{mainController.lvr}"
+                  converter="au.com.numbrcrunchr.web.PercentageConverter"
+                  disabled="true">
+                </h:inputText>
+
+                Lender's Mortgage Insurance:
+                  <h:outputText
+                  value="#{mainController.lendersMortgageInsurance}"
+                  id="lendersMortgageInsurance"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+
               </p:panelGrid>
             </div>
           </p:fieldset>
@@ -217,7 +233,7 @@
               </h:panelGroup>
               <h:panelGroup />
               <h:panelGroup>
-                <h4>Projection</h4>
+                <h4>Projection Assumptions</h4>
               </h:panelGroup>
               <h:panelGroup></h:panelGroup>
               <h:panelGroup>Interest Rate:</h:panelGroup>
@@ -370,8 +386,10 @@
       <div id="content">
         <div class="post">
           <p:messages id="errormessages" showDetail="true"
-            autoUpdate="true" closable="false" showSummary="true" />
-          <ui:insert name="content">...</ui:insert>
+            autoUpdate="true" closable="false" showSummary="true" style="padding: 10px"/>
+          <ui:insert name="content">
+          ...
+          </ui:insert>
         </div>
       </div>
 

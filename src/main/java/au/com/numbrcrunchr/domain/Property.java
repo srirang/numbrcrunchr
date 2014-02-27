@@ -59,6 +59,12 @@ public class Property implements Serializable, Cloneable {
     @Column(name = "total_cost")
     private double totalPurchaseCost;
 
+    @Column(name = "conveyancing_cost")
+    private double conveyancingCost;
+
+    @Column(name = "govt_costs")
+    private double governmentCosts;
+
     @Column(name = "address", length = 255)
     private String address;
 
@@ -109,7 +115,7 @@ public class Property implements Serializable, Cloneable {
     private double mortgageStampDuty;
 
     @Column(name = "mortgage_insurance")
-    private double mortgageInsurance;
+    private double lendersMortgageInsurance;
 
     @Column(name = "mortgage_insurance_stamp_duty")
     private double mortgageInsuranceStampDuty;
@@ -290,12 +296,12 @@ public class Property implements Serializable, Cloneable {
         return loanApplicationFees;
     }
 
-    public double getMortgageInsurance() {
-        return mortgageInsurance;
+    public double getLendersMortgageInsurance() {
+        return lendersMortgageInsurance;
     }
 
-    public void setMortgageInsurance(double mortgageInsurance) {
-        this.mortgageInsurance = mortgageInsurance;
+    public void setLendersMortgageInsurance(double mortgageInsurance) {
+        this.lendersMortgageInsurance = mortgageInsurance;
     }
 
     public void setMortgageInsuranceStampDuty(double mortgageInsuranceStampDuty) {
@@ -370,7 +376,7 @@ public class Property implements Serializable, Cloneable {
 
     public Double[] getBorrowingCosts() {
         Double[] borrowingCosts = new Double[] { getMortgageStampDuty(),
-                getMortgageInsurance(), getMortgageInsuranceStampDuty(),
+                getLendersMortgageInsurance(), getMortgageInsuranceStampDuty(),
                 getLoanApplicationFees(), };
         return borrowingCosts;
     }
@@ -558,8 +564,18 @@ public class Property implements Serializable, Cloneable {
     }
 
     public double getGovermentCosts() {
-        return this.getStampDuty() + this.getLegalFees()
-                + this.getMortgageInsuranceStampDuty()
-                + this.getMortgageStampDuty();
+        return this.governmentCosts;
+    }
+
+    public void setGovernmentCosts(double governmentCosts) {
+        this.governmentCosts = governmentCosts;
+    }
+
+    public double getConveyancingCost() {
+        return conveyancingCost;
+    }
+
+    public void setConveyancingCost(double conveyancingCost) {
+        this.conveyancingCost = conveyancingCost;
     }
 }

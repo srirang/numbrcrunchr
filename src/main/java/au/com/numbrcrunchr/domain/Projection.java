@@ -152,7 +152,7 @@ public class Projection implements Serializable {
         sb.append("\nInterest Rate: \t").append(property.getInterestRate());
         sb.append("\nInterest Only Period: \t")
                 .append(property.getInterestOnlyPeriod()).append(" Years");
-        sb.append("\nLMI: \t").append(property.getMortgageInsurance());
+        sb.append("\nLMI: \t").append(property.getLendersMortgageInsurance());
         sb.append("\nLVR: \t").append(property.getLvr());
         sb.append("\n");
 

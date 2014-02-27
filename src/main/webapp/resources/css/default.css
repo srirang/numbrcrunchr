@@ -1,6 +1,6 @@
 body {
 /*   color: #666666; */
-  background: #FFF url(../../../resources/images/bg.gif) repeat-x;
+  background: #FFF url(../resources/images/bg.gif) repeat-x;
   margin: 0px;
   padding: 0px;
   border: 0px;
@@ -64,7 +64,7 @@ img.right {
 
 /* Header */
 #header {
-  padding: 4px 0px;
+  padding: 10px 10px;
   height: 75px;
   position: relative;
 }
@@ -116,7 +116,7 @@ img.right {
 #page {
   padding: 10px 0px;
 /*   background: #FFFFFF; */
-  background: #FFF url(../../resources/images/bg.gif) repeat-x;
+  background: #FFF url(../resources/images/bg.gif) repeat-x;
 }
 
 /* Content */
@@ -137,6 +137,7 @@ img.right {
   height: 30px;
   margin-left: 10px;
   padding: 8px 0 0 20px;
+  color: #1785C3;
 }
 
 .title a {

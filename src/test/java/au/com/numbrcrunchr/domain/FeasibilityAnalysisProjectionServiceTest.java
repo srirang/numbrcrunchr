@@ -164,4 +164,25 @@ public class FeasibilityAnalysisProjectionServiceTest {
 
         projection.changeFrequency(FeasibilityAnalysisResult.MONTHLY);
     }
+
+    @Test
+    public void checkProjectionFor50Years() {
+        income = 120000;
+        ongoingCosts = 7000;
+        weeklyRent = 320;
+        weeksRented = 50;
+        loanAmount = 427320;
+        interestRate = 8;
+        propertyManagementFee = 10;
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
+                interestRate, propertyManagementFee);
+        List<FeasibilityAnalysisResult> projections = projectionService
+                .runProjection(property, 50, projectionParameters)
+                .getProjections();
+        // TODO Why does projection for n years return n+1 results?
+        assertEquals(31, projections.size());
+        LOGGER.info(CsvExporter.exportToCsvString(projections));
+    }
+
 }

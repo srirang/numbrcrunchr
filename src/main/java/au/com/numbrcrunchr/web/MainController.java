@@ -157,7 +157,7 @@ public class MainController implements Serializable {
                 .doubleToLong(stampDutyCalculator.calculateStampDuty(
                         getState(), getPropertyValue())));
         this.getProperty().initialisePurhcaseCostAndMarketValue(
-                getPropertyValue() + getStampDuty());
+                getPropertyValue() + getStampDuty() + getGovernmentCosts());
         this.setLoanAmount(MathUtil.doubleToLong(loanBalanceCalculator
                 .calculateLoanBalance(getPropertyValue(), getStampDuty(),
                         getDeposit())));
@@ -432,12 +432,13 @@ public class MainController implements Serializable {
                 .getLoanApplicationFees());
     }
 
-    public void setMortgageInsurance(Long mortgageInsurance) {
-        this.getProperty().setMortgageInsurance(mortgageInsurance);
+    public void setLendersMortgageInsurance(Long mortgageInsurance) {
+        this.getProperty().setLendersMortgageInsurance(mortgageInsurance);
     }
 
-    public Long getMortgageInsurance() {
-        return MathUtil.doubleToLong(this.getProperty().getMortgageInsurance());
+    public Long getLendersMortgageInsurance() {
+        return MathUtil.doubleToLong(this.getProperty()
+                .getLendersMortgageInsurance());
     }
 
     public void setMortgageInsuranceStampDuty(Long mortgageInsuranceStampDuty) {
@@ -857,5 +858,21 @@ public class MainController implements Serializable {
 
     public String getCashflowTipFormat() {
         return "<span style=\"display:none;\">%s</span><span>%s</span>";
+    }
+
+    public Long getGovernmentCosts() {
+        return MathUtil.doubleToLong(this.getProperty().getGovermentCosts());
+    }
+
+    public void setGovernmentCosts(Long governmentCosts) {
+        this.getProperty().setGovernmentCosts(governmentCosts);
+    }
+
+    public Long getConveyancingCost() {
+        return MathUtil.doubleToLong(this.getProperty().getConveyancingCost());
+    }
+
+    public void setConveyancingCost(Long conveyancingCost) {
+        this.getProperty().setConveyancingCost(conveyancingCost);
     }
 }
