@@ -14,11 +14,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
+import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -54,6 +56,22 @@ public class MainController implements Serializable {
     private boolean hasPartner = false;
     private final FacesMessage shareErrorMessage = new FacesMessage(
             "Ownership share must equal 100%");
+
+    // Dependencies
+    @ManagedProperty(value = "#{stampDutyCalculator}")
+    private static StampDutyCalculator stampDutyCalculator;
+
+    @ManagedProperty(value = "#{loanBalanceCalculator}")
+    private static LoanBalanceCalculator loanBalanceCalculator;
+
+    @ManagedProperty(value = "#{projectionParameters}")
+    private ProjectionParameters projectionParameters;
+
+    @ManagedProperty(value = "#{feasibilityAnalysisProjectionService}")
+    private static FeasibilityAnalysisProjectionService feasibilityAnalysisProjectionService;
+
+    @ManagedProperty(value = "#{versionDetails}")
+    private VersionDetails versionDetails;
 
     // Read-write
     private Boolean includesStampDuty;
@@ -157,7 +175,8 @@ public class MainController implements Serializable {
                 .doubleToLong(stampDutyCalculator.calculateStampDuty(
                         getState(), getPropertyValue())));
         this.getProperty().initialisePurhcaseCostAndMarketValue(
-                getPropertyValue() + getStampDuty() + getGovernmentCosts());
+                getPropertyValue() + getStampDuty() + getGovernmentCosts()
+                        + getConveyancingCost());
         this.setLoanAmount(MathUtil.doubleToLong(loanBalanceCalculator
                 .calculateLoanBalance(getPropertyValue(), getStampDuty(),
                         getDeposit())));
@@ -589,22 +608,6 @@ public class MainController implements Serializable {
         return this.getProperty().getWeeksRented();
     }
 
-    // Dependencies
-    @ManagedProperty(value = "#{stampDutyCalculator}")
-    private static StampDutyCalculator stampDutyCalculator;
-
-    @ManagedProperty(value = "#{loanBalanceCalculator}")
-    private static LoanBalanceCalculator loanBalanceCalculator;
-
-    @ManagedProperty(value = "#{projectionParameters}")
-    private ProjectionParameters projectionParameters;
-
-    @ManagedProperty(value = "#{feasibilityAnalysisProjectionService}")
-    private static FeasibilityAnalysisProjectionService feasibilityAnalysisProjectionService;
-
-    @ManagedProperty(value = "#{versionDetails}")
-    private VersionDetails versionDetails;
-
     public void setLoanBalanceCalculator(
             LoanBalanceCalculator loanBalanceCalculator) {
         MainController.loanBalanceCalculator = loanBalanceCalculator;
@@ -874,5 +877,37 @@ public class MainController implements Serializable {
 
     public void setConveyancingCost(Long conveyancingCost) {
         this.getProperty().setConveyancingCost(conveyancingCost);
+    }
+
+    public void validatePrice(FacesContext context, UIComponent component,
+            Object value) throws ValidatorException {
+        if (value == null) {
+            context.addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Error:",
+                    "Please enter a value between $10,000 and $5,000,000"));
+            return;
+        }
+        if ((Long) value <= 10000 || (Long) value >= 5000000) {
+            context.addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Error:",
+                    "Please enter a value between $10,000 and $5,000,000"));
+            return;
+        }
+    }
+
+    public void validateWeeklyRent(FacesContext context, UIComponent component,
+            Object value) throws ValidatorException {
+        if (value == null) {
+            context.addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Error:",
+                    "Please enter a value between $100 and $5,000"));
+            return;
+        }
+        if ((Long) value <= 100 || (Long) value >= 5000) {
+            context.addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR, "Error:",
+                    "Please enter a value between $100 and $5,000"));
+            return;
+        }
     }
 }

@@ -13,7 +13,7 @@
       <title>NumbrCrunchr - Quickly understand return on your
         property investment</title>
     </f:facet>
-
+  <f:loadBundle basename="custom-validation-messages" var="msg" />
     <!--     <link type="text/css" rel="stylesheet"
       href="#{request.contextPath}/css/default.css" />
  -->
@@ -57,6 +57,7 @@
     </div>
 
     <div id="page" class="ui-widget">
+      <br />
       <h:form id="feasibilityAnalysisForm">
         <div id="sidebar"
           class="ui-widget-content ui-corner-bottom ui-helper-clearfix ui-shadow">
@@ -65,21 +66,38 @@
             toggleable="false" collapsed="false">
             <div class="ui-widget submenu-content">
               <p:panelGrid columns="2">
-                <h:outputLabel for="State" value="State: *" />
+                <h:outputLabel for="State" value="State:" />
                 <h:selectOneMenu id="State"
                   value="#{mainController.state}">
                   <f:selectItems value="#{mainController.states}" />
                   <f:ajax event="change"
                     disabled="#{ajaxController.disabled}"
                     listener="#{mainController.updateTotals}"
-                    render="totalPurhcaseCost cashDeposit deposit loanAmount lvr" />
+                    render="investmentSummary" />
                 </h:selectOneMenu>
                 <h:panelGroup>
                   <h:outputLabel for="Price">Purhcase Price:</h:outputLabel>
                 </h:panelGroup>
                 <h:panelGroup>
-                  <h:inputText size="12" id="Price"
+                  <p:inputText size="12" id="Price"
                     value="#{mainController.propertyValue}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                    required="true"
+                    styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                    validator="#{mainController.validatePrice}">
+                    <f:ajax event="blur"
+                      listener="#{mainController.updateTotals}"
+                      render="investmentSummary"
+                      execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
+                    <f:validateLongRange minimum="10000" />
+                  </p:inputText>
+                </h:panelGroup>
+                <h:panelGroup>
+                  <h:outputLabel for="Conveyancing">Conveyancing:</h:outputLabel>
+                </h:panelGroup>
+                <h:panelGroup>
+                  <h:inputText size="8" id="Conveyancing"
+                    value="#{mainController.conveyancingCost}"
                     validatorMessage="#{msg.purchasePrice_range}"
                     converter="au.com.numbrcrunchr.web.CurrencyConverter"
                     styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
@@ -87,9 +105,8 @@
                     <f:ajax event="blur"
                       listener="#{mainController.updateTotals}"
                       disabled="#{ajaxController.disabled}"
-                      render="Price investmentSummary totalPurhcaseCost cashDeposit deposit loanAmount lvr"
+                      render="investmentSummary"
                       execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
-                    <f:validateLongRange minimum="10000" />
                   </h:inputText>
                 </h:panelGroup>
                 <h:panelGroup>Includes Stamp Duty:</h:panelGroup>
@@ -99,7 +116,7 @@
                     <f:ajax event="change"
                       disabled="#{ajaxController.disabled}"
                       listener="#{mainController.updateTotals}"
-                      render="totalPurhcaseCost investmentSummary cashDeposit deposit loanAmount lvr"
+                      render="investmentSummary"
                       execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
                   </h:selectBooleanCheckbox>
                 </h:panelGroup>
@@ -114,22 +131,21 @@
                     <f:ajax event="change"
                       disabled="#{ajaxController.disabled}"
                       listener="#{mainController.updateTotals}"
-                      render="totalPurhcaseCost investmentSummary loanAmount lvr" />
+                      render="investmentSummary" />
                   </h:inputText>
                 </h:panelGroup>
                 <h:panelGroup>Expected Weekly Rent:</h:panelGroup>
                 <h:panelGroup>
-                  <h:inputText size="6" id="WeeklyRent"
+                  <p:inputText size="8" id="WeeklyRent"
                     value="#{mainController.weeklyRent}"
-                    validatorMessage="#{msg.weeklyRent_range}"
+                    validator="#{mainController.validateWeeklyRent}"
                     converter="au.com.numbrcrunchr.web.CurrencyConverter"
-                    styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
-                    converterMessage="#{msg.weeklyRent_convert}">
+                    styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
                     <f:validateLongRange minimum="100" />
                     <f:ajax event="blur" render="WeeklyRent"
                       disabled="#{ajaxController.disabled}"
                       execute="feasibilityAnalysisForm:WeeklyRent" />
-                  </h:inputText>
+                  </p:inputText>
                 </h:panelGroup>
               </p:panelGrid>
             </div>
@@ -157,11 +173,12 @@
               Medicare Levy:
                 <h:selectBooleanCheckbox
                   value="#{mainController.medicareLevyApplies}" />
+                <h:panelGroup />
+                <h:commandButton class="simple-button"
+                  value="Crunch Numbers"
+                  action="#{mainController.runProjection}"
+                  onfocus="this.blur()" />
               </p:panelGrid>
-              <h:commandButton class="simple-button"
-                value="Crunch Numbers"
-                action="#{mainController.runProjection}"
-                onfocus="this.blur()" />
             </div>
           </p:fieldset>
           <br />
@@ -226,7 +243,7 @@
           </p:fieldset>
           <br />
           <p:fieldset legend="Change Assumptions : " toggleable="true"
-            collapsed="true" toggleSpeed="500">
+            collapsed="false" toggleSpeed="500">
             <p:panelGrid columns="4">
               <h:panelGroup>
                 <h4>Yearly Costs</h4>
@@ -353,9 +370,12 @@
                   value="#{mainController.miscOngoingExpenses}"
                   converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </h:panelGroup>
+              <h:panelGroup />
+              <h:panelGroup />
+              <h:panelGroup />
+              <h:commandButton class="simple-button" value="Apply"
+                action="#{mainController.apply}" />
             </p:panelGrid>
-            <h:commandButton class="simple-button" value="Apply"
-              action="#{mainController.apply}" />
           </p:fieldset>
           <br />
 
@@ -374,6 +394,7 @@
                 E-mail:
                   <h:inputText id="feedbackEmail"
                     value="#{feedbackController.email}" required="false" />
+                  <h:panelGroup />
                   <h:commandButton
                     actionListener="#{feedbackController.sendFeedback}"
                     value="Send" class="simple-button" />
@@ -386,7 +407,8 @@
       <div id="content">
         <div class="post">
           <p:messages id="errormessages" showDetail="true"
-            autoUpdate="true" closable="false" showSummary="true" style="padding: 10px"/>
+            autoUpdate="true" closable="false" showSummary="false"
+            style="padding: 10px" />
           <ui:insert name="content">
           ...
           </ui:insert>

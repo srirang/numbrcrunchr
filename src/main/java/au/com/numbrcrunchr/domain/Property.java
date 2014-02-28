@@ -49,6 +49,7 @@ public class Property implements Serializable, Cloneable {
     private static final int DEFAULT_INTEREST_ONLY_PERIOD = 10;
     private static final Double DEFAULT_LVR = 80.0;
     private static final Double DEFAULT_PROPERTY_MANAGEMENT_FEES = 8.8d;
+    private static final Double DEFAULT_CONVEYANCING_COST = 700d;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +61,7 @@ public class Property implements Serializable, Cloneable {
     private double totalPurchaseCost;
 
     @Column(name = "conveyancing_cost")
-    private double conveyancingCost;
+    private double conveyancingCost = DEFAULT_CONVEYANCING_COST;
 
     @Column(name = "govt_costs")
     private double governmentCosts;

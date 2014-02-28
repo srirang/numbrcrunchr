@@ -7,8 +7,6 @@
 
   <application>
     <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-    <message-bundle>ValidationMessages</message-bundle>
-    <message-bundle>custom-validation-messages</message-bundle>
 
 <!--
      <locale-config>
