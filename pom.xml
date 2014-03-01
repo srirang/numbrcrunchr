@@ -109,7 +109,12 @@
       <artifactId>commons-lang</artifactId>
       <version>2.4</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.primefaces.extensions</groupId>
+      <artifactId>all-themes</artifactId>
+      <version>1.0.8</version>
+    </dependency>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -117,11 +122,6 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.primefaces.extensions</groupId>
-      <artifactId>all-themes</artifactId>
-      <version>1.0.8</version>
-    </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
@@ -157,7 +157,6 @@
   </repositories>
 
   <properties>
-    <!-- <springframework.version>3.0.5.RELEASE</springframework.version> -->
     <springframework.version>3.2.7.RELEASE</springframework.version>
     <primafaces.version>3.4</primafaces.version>
     <commons-collections.version>3.2.1</commons-collections.version>
@@ -189,4 +188,10 @@
       </plugin>
     </plugins>
   </build>
+
+  <scm>
+    <connection>scm:git:git@github.com:srirang/numbrcrunchr.git</connection>
+    <url>scm:git:git@github.com:srirang/numbrcrunchr.git</url>
+    <developerConnection>scm:git:git@github.com:srirang/numbrcrunchr.git</developerConnection>
+  </scm>
 </project>

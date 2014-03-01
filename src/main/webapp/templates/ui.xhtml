@@ -13,10 +13,7 @@
       <title>NumbrCrunchr - Quickly understand return on your
         property investment</title>
     </f:facet>
-  <f:loadBundle basename="custom-validation-messages" var="msg" />
-    <!--     <link type="text/css" rel="stylesheet"
-      href="#{request.contextPath}/css/default.css" />
- -->
+    <f:loadBundle basename="custom-validation-messages" var="msg" />
     <h:outputStylesheet library="css" name="default.css" target="body" />
     <ui:insert name="head"></ui:insert>
 
@@ -29,20 +26,21 @@
                 </script>
 
     <script type="text/javascript">
-                    var _gaq = _gaq || [];
-                    _gaq.push([ '_setAccount', 'UA-12200033-3' ]);
-                    _gaq.push([ '_trackPageview' ]);
+                    (function(i, s, o, g, r, a, m) {
+                        i['GoogleAnalyticsObject'] = r;
+                        i[r] = i[r] || function() {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date();
+                        a = s.createElement(o),
+                                m = s.getElementsByTagName(o)[0];
+                        a.async = 1;
+                        a.src = g;
+                        m.parentNode.insertBefore(a, m)
+                    })(window, document, 'script',
+                            '//www.google-analytics.com/analytics.js', 'ga');
 
-                    (function() {
-                        var ga = document.createElement('script');
-                        ga.type = 'text/javascript';
-                        ga.async = true;
-                        ga.src = ('https:' == document.location.protocol ? 'https://ssl'
-                                : 'http://www')
-                                + '.google-analytics.com/ga.js';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(ga, s);
-                    })();
+                    ga('create', 'UA-48547819-1', 'numbrcrunchr.com');
+                    ga('send', 'pageview');
                 </script>
   </h:head>
 
@@ -73,7 +71,7 @@
                   <f:ajax event="change"
                     disabled="#{ajaxController.disabled}"
                     listener="#{mainController.updateTotals}"
-                    render="investmentSummary" />
+                    render="investmentSummary LMI" />
                 </h:selectOneMenu>
                 <h:panelGroup>
                   <h:outputLabel for="Price">Purhcase Price:</h:outputLabel>
@@ -87,8 +85,8 @@
                     validator="#{mainController.validatePrice}">
                     <f:ajax event="blur"
                       listener="#{mainController.updateTotals}"
-                      render="investmentSummary"
-                      execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
+                      render="investmentSummary LMI"
+                      execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit " />
                     <f:validateLongRange minimum="10000" />
                   </p:inputText>
                 </h:panelGroup>
@@ -105,6 +103,22 @@
                     <f:ajax event="blur"
                       listener="#{mainController.updateTotals}"
                       disabled="#{ajaxController.disabled}"
+                      render="investmentSummary LMI"
+                      execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
+                  </h:inputText>
+                </h:panelGroup>
+                <h:panelGroup>
+                  <h:outputLabel for="Conveyancing">Lender's Mortgage Insurance:</h:outputLabel>
+                </h:panelGroup>
+                <h:panelGroup>
+                  <h:inputText size="8" id="LMI"
+                    value="#{mainController.lendersMortgageInsurance}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                    styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                    converterMessage="LMI should be a dollar value"
+                    disabled="#{mainController.lmiApplicable}">
+                    <f:ajax event="blur"
+                      listener="#{mainController.updateTotals}"
                       render="investmentSummary"
                       execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
                   </h:inputText>
@@ -116,7 +130,7 @@
                     <f:ajax event="change"
                       disabled="#{ajaxController.disabled}"
                       listener="#{mainController.updateTotals}"
-                      render="investmentSummary"
+                      render="investmentSummary LMI"
                       execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
                   </h:selectBooleanCheckbox>
                 </h:panelGroup>
@@ -131,7 +145,8 @@
                     <f:ajax event="change"
                       disabled="#{ajaxController.disabled}"
                       listener="#{mainController.updateTotals}"
-                      render="investmentSummary" />
+                      render="investmentSummary LMI"
+                      execute="feasibilityAnalysisForm:LMI" />
                   </h:inputText>
                 </h:panelGroup>
                 <h:panelGroup>Expected Weekly Rent:</h:panelGroup>
@@ -389,10 +404,10 @@
                     value="#{feedbackController.feedbackComment}"
                     rows="10" cols="45" />
                 Name:
-                  <h:inputText id="feedbackName"
+                  <h:inputText id="feedbackName" size="50"
                     value="#{feedbackController.name}" />
                 E-mail:
-                  <h:inputText id="feedbackEmail"
+                  <h:inputText id="feedbackEmail" size="50"
                     value="#{feedbackController.email}" required="false" />
                   <h:panelGroup />
                   <h:commandButton
@@ -402,6 +417,14 @@
               </h:form>
             </div>
           </p:fieldset>
+          Version
+          <h:outputText value="#{mainController.versionNumber}"
+            id="version" />
+          &copy; 2014 <strong>NumbrCrunchr</strong><br />
+          <h:outputLink value="mailto:#{mainController.contactEmail}">
+            <f:param name="subject" value="Feedback on NumbrCrunchr" />
+            <h:outputText value="Send feedback via e-mail" />
+          </h:outputLink>
         </div>
       </h:form>
       <div id="content">
@@ -414,7 +437,6 @@
           </ui:insert>
         </div>
       </div>
-
       <div style="clear: both;">&nbsp;</div>
     </div>
 

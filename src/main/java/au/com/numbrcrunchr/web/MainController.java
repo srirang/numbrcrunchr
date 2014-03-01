@@ -23,8 +23,6 @@ import javax.faces.model.SelectItem;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Transformer;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
@@ -97,8 +95,7 @@ public class MainController implements Serializable {
     static {
         FREQUENCIES = new ArrayList<SelectItem>(
                 FeasibilityAnalysisResult.FREQUENCY_FACTORS.size());
-        for (String frequency : FeasibilityAnalysisResult.FREQUENCY_FACTORS
-                .keySet()) {
+        for (String frequency : FeasibilityAnalysisResult.FREQUENCIES) {
             FREQUENCIES.add(new SelectItem(frequency, frequency));
         }
     }
@@ -183,6 +180,14 @@ public class MainController implements Serializable {
         this.setDeposit(this.getTotalPurhcaseCost() - this.getLoanAmount());
         this.setLvr(new LVRCalculator().calculateLvr(this.getLoanAmount(),
                 this.getTotalPurhcaseCost()));
+        if (this.getLvr() > 80) {
+            this.setLendersMortgageInsurance(0l);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Lender's Mortgage Insurance",
+                            "Lender's mortgage insurance may be applicable"));
+        }
     }
 
     public Long getTotalTenantPays() {
@@ -217,52 +222,52 @@ public class MainController implements Serializable {
         return years.substring(0, years.length() - 2).concat("]");
     }
 
-    public String getAllIncomesAsJson() {
-        StringBuffer json = new StringBuffer("[");
-        int i = 0;
-        int cashFlowPositive = projection.getCashflowPositiveYearIndex();
-        for (FeasibilityAnalysisResult result : getProjection()) {
-            if (i++ == cashFlowPositive) {
-                json.append("{ y:");
-                json.append(MathUtil.doubleToLong(result.getTotalIncome()));
-                json.append(", marker: {symbol:'url(resources/images/dollarsign.png)'}"
-                        + "},");
-                continue;
-            }
-            json.append(MathUtil.doubleToLong(result.getTotalIncome()));
-            json.append(", ");
-        }
-        String jsonString = json.toString();
-        if (jsonString.endsWith(", ")) {
-            jsonString = jsonString.substring(0, jsonString.length() - 2);
-        }
-        jsonString = jsonString + "]";
-        return jsonString;
-    }
-
-    public String getAllExpensesAsJson() {
-        return new Gson().toJson(CollectionUtils.collect(getProjection(),
-                new Transformer() {
-                    @Override
-                    public Object transform(Object input) {
-                        return MathUtil
-                                .doubleToLong(((FeasibilityAnalysisResult) input)
-                                        .getTotalExpense());
-                    }
-                }).toArray(new Long[] {}));
-    }
-
-    public String getAllOutOfPocketsAsJson() {
-        return new Gson().toJson(CollectionUtils.collect(getProjection(),
-                new Transformer() {
-                    @Override
-                    public Object transform(Object input) {
-                        return MathUtil
-                                .doubleToLong(((FeasibilityAnalysisResult) input)
-                                        .getTotalOutOfPocket());
-                    }
-                }).toArray(new Long[] {}));
-    }
+    // public String getAllIncomesAsJson() {
+    // StringBuffer json = new StringBuffer("[");
+    // int i = 0;
+    // int cashFlowPositive = projection.getCashflowPositiveYearIndex();
+    // for (FeasibilityAnalysisResult result : getProjection()) {
+    // if (i++ == cashFlowPositive) {
+    // json.append("{ y:");
+    // json.append(MathUtil.doubleToLong(result.getTotalIncome()));
+    // json.append(", marker: {symbol:'url(resources/images/dollarsign.png)'}"
+    // + "},");
+    // continue;
+    // }
+    // json.append(MathUtil.doubleToLong(result.getTotalIncome()));
+    // json.append(", ");
+    // }
+    // String jsonString = json.toString();
+    // if (jsonString.endsWith(", ")) {
+    // jsonString = jsonString.substring(0, jsonString.length() - 2);
+    // }
+    // jsonString = jsonString + "]";
+    // return jsonString;
+    // }
+    //
+    // public String getAllExpensesAsJson() {
+    // return new Gson().toJson(CollectionUtils.collect(getProjection(),
+    // new Transformer() {
+    // @Override
+    // public Object transform(Object input) {
+    // return MathUtil
+    // .doubleToLong(((FeasibilityAnalysisResult) input)
+    // .getTotalExpense());
+    // }
+    // }).toArray(new Long[] {}));
+    // }
+    //
+    // public String getAllOutOfPocketsAsJson() {
+    // return new Gson().toJson(CollectionUtils.collect(getProjection(),
+    // new Transformer() {
+    // @Override
+    // public Object transform(Object input) {
+    // return MathUtil
+    // .doubleToLong(((FeasibilityAnalysisResult) input)
+    // .getTotalOutOfPocket());
+    // }
+    // }).toArray(new Long[] {}));
+    // }
 
     public String getAllGrossYieldsAsJson() {
         return new Gson().toJson(projection.getAllGrossYields());
@@ -909,5 +914,9 @@ public class MainController implements Serializable {
                     "Please enter a value between $100 and $5,000"));
             return;
         }
+    }
+
+    public boolean isLmiApplicable() {
+        return this.getLvr() <= 80;
     }
 }

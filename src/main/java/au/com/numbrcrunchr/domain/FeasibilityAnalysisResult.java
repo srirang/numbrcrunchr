@@ -1,6 +1,7 @@
 package au.com.numbrcrunchr.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,20 +15,36 @@ public class FeasibilityAnalysisResult implements Serializable {
     public static final String NEUTRAL = "Neutral";
 
     public static final String YEARLY = "Yearly";
+    public static final String HALF_YEARLY = "Half-Yearly";
     public static final String QUARTERLY = "Quarterly";
     public static final String MONTHLY = "Monthly";
     public static final String FORTNIGHTLY = "Fortnightly";
     public static final String WEEKLY = "Weekly";
+    public static final String DAILY = "Daily";
 
     public static final Map<String, Double> FREQUENCY_FACTORS;
     static {
         FREQUENCY_FACTORS = new HashMap<String, Double>();
         FREQUENCY_FACTORS.put(YEARLY, 1.0);
+        FREQUENCY_FACTORS.put(HALF_YEARLY, 1.0 / 2.0);
         FREQUENCY_FACTORS.put(QUARTERLY, 1.0 / 4.0);
         FREQUENCY_FACTORS.put(MONTHLY, 1.0 / 12.0);
         FREQUENCY_FACTORS.put(FORTNIGHTLY, 1.0 / 26.0);
         FREQUENCY_FACTORS.put(WEEKLY, 1.0 / 52.0);
+        FREQUENCY_FACTORS.put(DAILY, 1.0 / 365.0);
     }
+    public static final ArrayList<String> FREQUENCIES;
+    static {
+        FREQUENCIES = new ArrayList<String>(5);
+        FREQUENCIES.add(YEARLY);
+        FREQUENCIES.add(HALF_YEARLY);
+        FREQUENCIES.add(QUARTERLY);
+        FREQUENCIES.add(MONTHLY);
+        FREQUENCIES.add(FORTNIGHTLY);
+        FREQUENCIES.add(WEEKLY);
+        FREQUENCIES.add(DAILY);
+    }
+
     private final Property property;
     private final double interest;
     private final double grossCashflow;
