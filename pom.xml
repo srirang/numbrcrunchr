@@ -4,9 +4,10 @@
   <groupId>au.com.numbrcrunchr</groupId>
   <artifactId>numbrcrunchr</artifactId>
   <packaging>war</packaging>
+  <url>www.numbrcrunchr.com</url>
   <version>1.0.3-SNAPSHOT</version>
-  <name>numbrcrunchr Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <name>NumbrCrunchr</name>
+  <description>Simple online tool that helps you assess the return on your property investment</description>
   <dependencies>
     <dependency>
       <groupId>com.sun.faces</groupId>
