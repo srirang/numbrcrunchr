@@ -180,13 +180,15 @@ public class MainController implements Serializable {
         this.setDeposit(this.getTotalPurhcaseCost() - this.getLoanAmount());
         this.setLvr(new LVRCalculator().calculateLvr(this.getLoanAmount(),
                 this.getTotalPurhcaseCost()));
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         if (this.getLvr() > 80) {
             this.setLendersMortgageInsurance(0l);
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Lender's Mortgage Insurance",
-                            "Lender's mortgage insurance may be applicable"));
+            if (facesContext != null) {
+                facesContext.addMessage(null, new FacesMessage(
+                        FacesMessage.SEVERITY_WARN,
+                        "Lender's Mortgage Insurance",
+                        "Lender's mortgage insurance may be applicable"));
+            }
         }
     }
 
@@ -214,14 +216,14 @@ public class MainController implements Serializable {
         return MathUtil.doubleToLong(totalAtoPays);
     }
 
-    public String getJsonYears() {
-        StringBuffer years = new StringBuffer("[");
-        for (int i = 0; i < getNumberOfYears(); i++) {
-            years.append("'Year ").append(i + 1).append("', ");
-        }
-        return years.substring(0, years.length() - 2).concat("]");
-    }
-
+    // public String getJsonYears() {
+    // StringBuffer years = new StringBuffer("[");
+    // for (int i = 0; i < getNumberOfYears(); i++) {
+    // years.append("'Year ").append(i + 1).append("', ");
+    // }
+    // return years.substring(0, years.length() - 2).concat("]");
+    // }
+    //
     // public String getAllIncomesAsJson() {
     // StringBuffer json = new StringBuffer("[");
     // int i = 0;
