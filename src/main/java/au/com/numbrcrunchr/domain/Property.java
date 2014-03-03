@@ -189,9 +189,6 @@ public class Property implements Serializable, Cloneable {
     }
 
     public List<Owner> getOwnerList() {
-        if (this.ownerList == null) {
-            this.ownerList = new ArrayList<Owner>();
-        }
         return ownerList;
     }
 
@@ -369,18 +366,18 @@ public class Property implements Serializable, Cloneable {
         return fittingsValue;
     }
 
-    public Double[] getBuyingCosts() {
-        Double[] buyingCosts = new Double[] { getStampDuty(), getLegalFees(),
-                getBuildingInspectionFees(), getTitleRegistrationFees(), };
-        return buyingCosts;
-    }
-
-    public Double[] getBorrowingCosts() {
-        Double[] borrowingCosts = new Double[] { getMortgageStampDuty(),
-                getLendersMortgageInsurance(), getMortgageInsuranceStampDuty(),
-                getLoanApplicationFees(), };
-        return borrowingCosts;
-    }
+    // public Double[] getBuyingCosts() {
+    // Double[] buyingCosts = new Double[] { getStampDuty(), getLegalFees(),
+    // getBuildingInspectionFees(), getTitleRegistrationFees(), };
+    // return buyingCosts;
+    // }
+    //
+    // public Double[] getBorrowingCosts() {
+    // Double[] borrowingCosts = new Double[] { getMortgageStampDuty(),
+    // getLendersMortgageInsurance(), getMortgageInsuranceStampDuty(),
+    // getLoanApplicationFees(), };
+    // return borrowingCosts;
+    // }
 
     public double getTotalOngoingCosts() {
         return this.ongoingCosts

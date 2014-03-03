@@ -123,13 +123,13 @@ public class MainControllerTest {
         assertNotNull(expense);
         assertNotNull(outOfPocket);
         assertEquals(
-                "{Year 1=4155.21978021978, Year 2=13000.0, Year 3=13520.000000000002, Year 4=14060.800000000003}",
+                "{Year 1=4086.5384615384614, Year 2=13000.0, Year 3=13520.000000000002, Year 4=14060.800000000003}",
                 income.getData().toString());
         assertEquals(
-                "{Year 1=19764.617362637364, Year 2=43940.32, Year 3=44196.26, Year 4=44460.3982}",
+                "{Year 1=19567.68153846154, Year 2=43940.32, Year 3=44196.26, Year 4=44460.3982}",
                 expense.getData().toString());
         assertEquals(
-                "{Year 1=15609.397582417583, Year 2=30940.32, Year 3=30676.260000000002, Year 4=30399.5982}",
+                "{Year 1=15481.14307692308, Year 2=30940.32, Year 3=30676.260000000002, Year 4=30399.5982}",
                 controller.getCashflowChart().getSeries().get(2).getData()
                         .toString());
     }

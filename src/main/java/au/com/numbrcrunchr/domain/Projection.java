@@ -11,7 +11,7 @@ public class Projection implements Serializable {
     private int cashflowPositiveYearIndex;
     private ProjectionParameters projectionParameters;
 
-    public static Projection EMPTY_PROJECTION;
+    public static final Projection EMPTY_PROJECTION;
     static {
         EMPTY_PROJECTION = new Projection();
         EMPTY_PROJECTION.projections = Collections.emptyList();
@@ -42,77 +42,77 @@ public class Projection implements Serializable {
         }
     }
 
-    public double getAverageNettYield() {
-        double nettYield = 0;
-        for (FeasibilityAnalysisResult projection : projections) {
-            nettYield += projection.getNettYield();
-        }
-        nettYield = nettYield / projections.size();
-        return nettYield;
-    }
-
-    public double getAverageGrossYield() {
-        double grossYield = 0;
-        for (FeasibilityAnalysisResult projection : projections) {
-            grossYield += projection.getGrossYield();
-        }
-        grossYield = grossYield / projections.size();
-        return grossYield;
-    }
-
-    public long getTotalInterest() {
-        long total = 0;
-        for (FeasibilityAnalysisResult projection : projections) {
-            total += projection.getInterest();
-        }
-        return total;
-    }
-
-    public long getTotalRentalIncome() {
-        long total = 0;
-        for (FeasibilityAnalysisResult projection : projections) {
-            total += projection.getRentalIncome();
-        }
-        return total;
-    }
-
-    public long getTotalOngoingExpenses() {
-        long total = 0;
-        for (FeasibilityAnalysisResult projection : projections) {
-            total += projection.getOngoingExpenses();
-        }
-        return total;
-    }
+    // public double getAverageNettYield() {
+    // double nettYield = 0;
+    // for (FeasibilityAnalysisResult projection : projections) {
+    // nettYield += projection.getNettYield();
+    // }
+    // nettYield = nettYield / projections.size();
+    // return nettYield;
+    // }
+    //
+    // public double getAverageGrossYield() {
+    // double grossYield = 0;
+    // for (FeasibilityAnalysisResult projection : projections) {
+    // grossYield += projection.getGrossYield();
+    // }
+    // grossYield = grossYield / projections.size();
+    // return grossYield;
+    // }
+    //
+    // public long getTotalInterest() {
+    // long total = 0;
+    // for (FeasibilityAnalysisResult projection : projections) {
+    // total += projection.getInterest();
+    // }
+    // return total;
+    // }
+    //
+    // public long getTotalRentalIncome() {
+    // long total = 0;
+    // for (FeasibilityAnalysisResult projection : projections) {
+    // total += projection.getRentalIncome();
+    // }
+    // return total;
+    // }
+    //
+    // public long getTotalOngoingExpenses() {
+    // long total = 0;
+    // for (FeasibilityAnalysisResult projection : projections) {
+    // total += projection.getOngoingExpenses();
+    // }
+    // return total;
+    // }
 
     public List<FeasibilityAnalysisResult> getProjections() {
         return projections;
     }
 
-    public Double[] getAllGrossYields() {
-        Double[] yields = new Double[projections.size()];
-        int i = 0;
-        for (FeasibilityAnalysisResult projection : projections) {
-            yields[i++] = projection.getGrossYield();
-        }
-        return yields;
-    }
-
-    public Double[] getAllNettYields() {
-        Double[] yields = new Double[projections.size()];
-        int i = 0;
-        for (FeasibilityAnalysisResult projection : projections) {
-            yields[i++] = projection.getNettYield();
-        }
-        return yields;
-    }
+    // public Double[] getAllGrossYields() {
+    // Double[] yields = new Double[projections.size()];
+    // int i = 0;
+    // for (FeasibilityAnalysisResult projection : projections) {
+    // yields[i++] = projection.getGrossYield();
+    // }
+    // return yields;
+    // }
+    //
+    // public Double[] getAllNettYields() {
+    // Double[] yields = new Double[projections.size()];
+    // int i = 0;
+    // for (FeasibilityAnalysisResult projection : projections) {
+    // yields[i++] = projection.getNettYield();
+    // }
+    // return yields;
+    // }
 
     public int getCashflowPositiveYearIndex() {
         return cashflowPositiveYearIndex;
     }
 
-    public ProjectionParameters getProjectionParameters() {
-        return projectionParameters;
-    }
+    // public ProjectionParameters getProjectionParameters() {
+    // return projectionParameters;
+    // }
 
     @Override
     public String toString() {

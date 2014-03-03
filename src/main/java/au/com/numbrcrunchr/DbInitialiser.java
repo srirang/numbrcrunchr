@@ -38,24 +38,31 @@ public class DbInitialiser implements BeanFactoryPostProcessor {
     private String sqlFilepath;
 
     public void initialiseDb(String sqlFilename) {
-        assert entityManagerFactory != null;
         final List<String> sqls = getSql(sqlFilename);
         Connection connection = ((SessionImpl) entityManagerFactory
                 .createEntityManager().getDelegate()).getJDBCContext()
                 .getConnectionManager().getConnection();
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(
-                new SingleConnectionDataSource(connection, true));
-        jdbcTemplate.execute(new StatementCallback<Object>() {
-            @Override
-            public Object doInStatement(Statement statement)
-                    throws SQLException, DataAccessException {
-                for (String sql : sqls) {
-                    statement.execute(sql);
-                    LOGGER.info("Executed :" + sql);
+        try {
+            JdbcTemplate jdbcTemplate = new JdbcTemplate(
+                    new SingleConnectionDataSource(connection, true));
+            jdbcTemplate.execute(new StatementCallback<Object>() {
+                @Override
+                public Object doInStatement(Statement statement)
+                        throws SQLException, DataAccessException {
+                    for (String sql : sqls) {
+                        statement.execute(sql);
+                        LOGGER.info("Executed :" + sql);
+                    }
+                    return null;
                 }
-                return null;
+            });
+        } catch (DataAccessException e) {
+            try {
+                connection.close();
+            } catch (SQLException e1) {
+                LOGGER.severe("Error initialising database!" + e1 + e);
             }
-        });
+        }
     }
 
     public boolean needsUpdating() {
@@ -116,7 +123,6 @@ public class DbInitialiser implements BeanFactoryPostProcessor {
     @Override
     public void postProcessBeanFactory(
             ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        assert !StringUtils.isEmpty(sqlFilepath);
         shutdownDatabase();
         LOGGER.info("Checking if db is up-to-date...");
         if (!needsUpdating()) {
@@ -144,7 +150,15 @@ public class DbInitialiser implements BeanFactoryPostProcessor {
         Connection connection = ((SessionImpl) entityManagerFactory
                 .createEntityManager().getDelegate()).getJDBCContext()
                 .getConnectionManager().getConnection();
-        new JdbcTemplate(new SingleConnectionDataSource(connection, false))
-                .update("SHUTDOWN IMMEDIATELY");
+        try {
+            new JdbcTemplate(new SingleConnectionDataSource(connection, false))
+                    .update("SHUTDOWN IMMEDIATELY");
+        } catch (DataAccessException e) {
+            try {
+                connection.close();
+            } catch (SQLException e1) {
+                LOGGER.severe("Error initialising database!" + e1 + e);
+            }
+        }
     }
 }

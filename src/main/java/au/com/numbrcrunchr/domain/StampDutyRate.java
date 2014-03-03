@@ -27,6 +27,9 @@ import javax.persistence.Table;
 public class StampDutyRate extends AbstractRate implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Required for JPA
+     */
     public StampDutyRate() {
     }
 

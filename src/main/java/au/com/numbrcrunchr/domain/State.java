@@ -3,9 +3,11 @@ package au.com.numbrcrunchr.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+public final class State {
+    private State() {
 
-public class State {
+    }
+
     public static final String VIC = "VIC";
     public static final String NSW = "NSW";
     public static final String QLD = "QLD";
@@ -33,9 +35,5 @@ public class State {
             throw new DataException("Invalid state: null");
         }
         return state.toUpperCase().trim();
-    }
-
-    public static boolean isValid(String state) {
-        return !StringUtils.isEmpty(state) && STATES.contains(normalise(state));
     }
 }

@@ -115,7 +115,7 @@
       <artifactId>all-themes</artifactId>
       <version>1.0.8</version>
     </dependency>
-    
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -165,6 +165,17 @@
     <jdk.version>1.6</jdk.version>
     <hsqldb.version>2.3.1</hsqldb.version>
     <hibernate.version>3.5.1-Final</hibernate.version>
+
+    <maven.cobertura.plugin>2.5.1</maven.cobertura.plugin>
+    <maven.javadoc.plugin>2.9</maven.javadoc.plugin>
+    <maven.jxr.plugin>2.3</maven.jxr.plugin>
+    <maven.pmd.plugin>2.7.1</maven.pmd.plugin>
+    <maven.project.info.reports.plugin>2.6</maven.project.info.reports.plugin>
+    <maven.site.plugin>3.2</maven.site.plugin>
+    <maven.sonar.plugin>3.3.1</maven.sonar.plugin>
+    <maven.versions.plugin>1.3.1</maven.versions.plugin>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
   <build>
@@ -187,12 +198,83 @@
           <scanIntervalSeconds>1</scanIntervalSeconds>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <reportPlugins>
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>findbugs-maven-plugin</artifactId>
+              <version>${maven.findbugs.plugin}</version>
+              <configuration>
+                <xmlOutput>true</xmlOutput>
+                <htmlOutput>true</htmlOutput>
+                <fork>false</fork>
+                <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+                <failOnError>false</failOnError>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-pmd-plugin</artifactId>
+              <version>${maven.pmd.plugin}</version>
+              <configuration>
+                <aggregate>true</aggregate>
+                <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+                <minimumTokens>100</minimumTokens>
+                <linkXRef>true</linkXRef>
+                <verbose>true</verbose>
+                <targetJdk>${jdk.version}</targetJdk>
+                <rulesets>
+                  <ruleset>/rulesets/maven.xml</ruleset>
+                  <ruleset>/rulesets/migrating_to_junit4.xml</ruleset>
+                  <ruleset>/rulesets/design.xml</ruleset>
+                  <ruleset>/rulesets/unusedcode.xml</ruleset>
+                  <ruleset>/rulesets/typeresolution.xml</ruleset>
+                </rulesets>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jxr-plugin</artifactId>
+              <version>${maven.jxr.plugin}</version>
+              <configuration>
+                <aggregate>true</aggregate>
+              </configuration>
+            </plugin>
+          </reportPlugins>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.6</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>jxr</report>
+              <report>findbugs</report>
+              <report>pmd</report>
+              <report>cpd</report>
+              <report>cobertura</report>
+              <report>index</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <scm>
     <connection>scm:git:git@github.com:srirang/numbrcrunchr.git</connection>
     <url>scm:git:git@github.com:srirang/numbrcrunchr.git</url>
     <developerConnection>scm:git:git@github.com:srirang/numbrcrunchr.git</developerConnection>
   </scm>
+
 </project>

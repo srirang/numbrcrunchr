@@ -11,10 +11,10 @@ public class FeasibilityAnalysisProjectionService {
             ProjectionParameters projectionParameters) {
         FeasibilityAnalysisResult firstFullYearResult = feasibilityAnalyser
                 .analyseFirstYearFeasibility(property);
-        numberOfYears = property.getLoanTerm() < numberOfYears ? property
+        int projectionYears = property.getLoanTerm() < numberOfYears ? property
                 .getLoanTerm() : numberOfYears;
         List<FeasibilityAnalysisResult> projections = new ArrayList<FeasibilityAnalysisResult>(
-                numberOfYears);
+                projectionYears);
         projections.add(firstFullYearResult);
 
         AmortisationSchedule amortisationSchedule = loanAmortisationScheduleCalculator
@@ -29,7 +29,7 @@ public class FeasibilityAnalysisProjectionService {
         } catch (CloneNotSupportedException e) {
             throw new DataException("Error completing projection", e);
         }
-        for (int i = 1; i < numberOfYears + 1; i++) {
+        for (int i = 1; i < projectionYears + 1; i++) {
             try {
                 projectionProperty = (Property) projectionProperty.clone();
                 projectionProperty.projectBy(projectionParameters);

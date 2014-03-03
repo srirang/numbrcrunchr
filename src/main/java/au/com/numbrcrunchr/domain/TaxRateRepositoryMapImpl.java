@@ -49,11 +49,11 @@ public class TaxRateRepositoryMapImpl implements TaxRateRepository {
             throw new DataException(
                     "Unable to find any tax rates for tax year: null");
         }
-        taxYear = State.normalise(taxYear);
-        TaxRate[] taxRates = TAX_RATES.get(taxYear);
+        String normalTaxYear = State.normalise(taxYear);
+        TaxRate[] taxRates = TAX_RATES.get(normalTaxYear);
         if (taxRates == null) {
             throw new DataException("Unable to find any tax rates for : "
-                    + String.valueOf(taxYear) + " for income " + income);
+                    + String.valueOf(normalTaxYear) + " for income " + income);
         }
         for (TaxRate TaxRate : taxRates) {
             if (TaxRate.isInRange(MathUtil.doubleToLong(income))) {
@@ -61,7 +61,7 @@ public class TaxRateRepositoryMapImpl implements TaxRateRepository {
             }
         }
         throw new DataException("Unable to find any tax rates for : "
-                + String.valueOf(taxYear) + " for income " + income);
+                + String.valueOf(normalTaxYear) + " for income " + income);
     }
 
     @Override

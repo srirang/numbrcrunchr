@@ -6,10 +6,15 @@ import java.util.logging.Logger;
 import org.primefaces.component.export.CSVExporter;
 
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
+import au.com.numbrcrunchr.web.PercentageConverter;
 
-public class CsvExporter {
+public final class CsvExporter {
     private static final Logger LOGGER = Logger.getLogger(CSVExporter.class
             .getName());
+
+    private CsvExporter() {
+
+    }
 
     public static String exportToCsvString(
             List<FeasibilityAnalysisResult> feasibilityAnalysisResults) {

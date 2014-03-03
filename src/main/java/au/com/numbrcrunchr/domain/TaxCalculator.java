@@ -11,9 +11,6 @@ public class TaxCalculator {
     private static final Double MEDICARE_LEVY_SURCHARGE_RATE = new Double(
             "0.015");
 
-    public TaxCalculator() {
-    }
-
     public double calculateTax(Date taxYear, double grossIncome,
             boolean includeMedicareLevySurcharge) {
         String taxYearString = FinancialYearUtils.getTaxYear(taxYear);
@@ -35,8 +32,7 @@ public class TaxCalculator {
             boolean includeMedicareLevySurcharge) {
         double tax = calculateTax(taxYear, grossIncome,
                 includeMedicareLevySurcharge);
-        double nettIncome = grossIncome - tax;
-        return nettIncome;
+        return grossIncome - tax;
     }
 
     public void setTaxRateRepository(TaxRateRepository taxRateRepository) {

@@ -37,11 +37,8 @@ import au.com.numbrcrunchr.domain.Owner;
 import au.com.numbrcrunchr.domain.Projection;
 import au.com.numbrcrunchr.domain.ProjectionParameters;
 import au.com.numbrcrunchr.domain.Property;
-import au.com.numbrcrunchr.domain.ReturnSummary;
 import au.com.numbrcrunchr.domain.StampDutyCalculator;
 import au.com.numbrcrunchr.domain.State;
-
-import com.google.gson.Gson;
 
 @ManagedBean
 @SessionScoped
@@ -57,16 +54,16 @@ public class MainController implements Serializable {
 
     // Dependencies
     @ManagedProperty(value = "#{stampDutyCalculator}")
-    private static StampDutyCalculator stampDutyCalculator;
+    private StampDutyCalculator stampDutyCalculator;
 
     @ManagedProperty(value = "#{loanBalanceCalculator}")
-    private static LoanBalanceCalculator loanBalanceCalculator;
+    private LoanBalanceCalculator loanBalanceCalculator;
 
     @ManagedProperty(value = "#{projectionParameters}")
     private ProjectionParameters projectionParameters;
 
     @ManagedProperty(value = "#{feasibilityAnalysisProjectionService}")
-    private static FeasibilityAnalysisProjectionService feasibilityAnalysisProjectionService;
+    private FeasibilityAnalysisProjectionService feasibilityAnalysisProjectionService;
 
     @ManagedProperty(value = "#{versionDetails}")
     private VersionDetails versionDetails;
@@ -168,7 +165,7 @@ public class MainController implements Serializable {
     }
 
     public void updateTotals(AjaxBehaviorEvent event) {
-        this.setStampDuty(getIncludesStampDuty() ? 0l : MathUtil
+        this.setStampDuty(getIncludesStampDuty() ? Long.valueOf(0) : MathUtil
                 .doubleToLong(stampDutyCalculator.calculateStampDuty(
                         getState(), getPropertyValue())));
         this.getProperty().initialisePurhcaseCostAndMarketValue(
@@ -270,14 +267,14 @@ public class MainController implements Serializable {
     // }
     // }).toArray(new Long[] {}));
     // }
-
-    public String getAllGrossYieldsAsJson() {
-        return new Gson().toJson(projection.getAllGrossYields());
-    }
-
-    public String getAllNettYieldsAsJson() {
-        return new Gson().toJson(projection.getAllNettYields());
-    }
+    //
+    // public String getAllGrossYieldsAsJson() {
+    // return new Gson().toJson(projection.getAllGrossYields());
+    // }
+    //
+    // public String getAllNettYieldsAsJson() {
+    // return new Gson().toJson(projection.getAllNettYields());
+    // }
 
     Property getProperty() {
         if (this.property == null) {
@@ -376,7 +373,7 @@ public class MainController implements Serializable {
     }
 
     public Boolean getIncludesStampDuty() {
-        return includesStampDuty == null ? false : includesStampDuty;
+        return includesStampDuty == null ? Boolean.FALSE : includesStampDuty;
     }
 
     public void setIncludesStampDuty(Boolean includesStampDuty) {
@@ -617,11 +614,11 @@ public class MainController implements Serializable {
 
     public void setLoanBalanceCalculator(
             LoanBalanceCalculator loanBalanceCalculator) {
-        MainController.loanBalanceCalculator = loanBalanceCalculator;
+        this.loanBalanceCalculator = loanBalanceCalculator;
     }
 
     public void setStampDutyCalculator(StampDutyCalculator stampDutyCalculator) {
-        MainController.stampDutyCalculator = stampDutyCalculator;
+        this.stampDutyCalculator = stampDutyCalculator;
     }
 
     public String getGearing() {
@@ -642,8 +639,8 @@ public class MainController implements Serializable {
     }
 
     public void setFeasibilityAnalysisProjectionService(
-            FeasibilityAnalysisProjectionService projectionService) {
-        MainController.feasibilityAnalysisProjectionService = projectionService;
+            FeasibilityAnalysisProjectionService feasibilityAnalysisProjectionService) {
+        this.feasibilityAnalysisProjectionService = feasibilityAnalysisProjectionService;
     }
 
     public List<FeasibilityAnalysisResult> getProjection() {
@@ -789,9 +786,9 @@ public class MainController implements Serializable {
                 + projection.getCashflowPositiveYearIndex());
     }
 
-    public double getYear1GrossYield() {
-        return projection.getAllGrossYields()[0];
-    }
+    // public double getYear1GrossYield() {
+    // return projection.getAllGrossYields()[0];
+    // }
 
     public boolean isShowIntro() {
         return !advancedSelected && !resultsAvailable;
@@ -803,14 +800,6 @@ public class MainController implements Serializable {
 
     public boolean isShowResults() {
         return resultsAvailable && !advancedSelected;
-    }
-
-    public ReturnSummary getFirstYearReturnSummary() {
-        return new ReturnSummary(projection.getProjections().get(0));
-    }
-
-    public ReturnSummary getSecondYearReturnSummary() {
-        return new ReturnSummary(projection.getProjections().get(1));
     }
 
     public List<FeasibilityAnalysisResult> getResults() {

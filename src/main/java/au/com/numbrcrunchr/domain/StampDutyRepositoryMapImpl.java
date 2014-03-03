@@ -78,12 +78,13 @@ public class StampDutyRepositoryMapImpl implements StampDutyRepository {
 
     @Override
     public StampDutyRate getRate(String state, long value) {
-        state = State.normalise(state);
-        StampDutyRate[] stampDutyRates = STAMP_DUTY_RATES.get(state);
+        String normalState = State.normalise(state);
+        StampDutyRate[] stampDutyRates = STAMP_DUTY_RATES.get(normalState);
         if (stampDutyRates == null) {
             throw new DataException(
                     "Unable to find any stamp dtuy rates for state: "
-                            + String.valueOf(state) + " for value " + value);
+                            + String.valueOf(normalState) + " for value "
+                            + value);
         }
         for (StampDutyRate stampDutyRate : stampDutyRates) {
             if (stampDutyRate.isInRange(value)) {
@@ -92,7 +93,7 @@ public class StampDutyRepositoryMapImpl implements StampDutyRepository {
         }
         throw new DataException(
                 "Unable to find any stamp dtuy rates for state: "
-                        + String.valueOf(state) + " for value " + value);
+                        + String.valueOf(normalState) + " for value " + value);
     }
 
     @Override

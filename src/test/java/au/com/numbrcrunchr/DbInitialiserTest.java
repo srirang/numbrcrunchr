@@ -8,23 +8,21 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.JpaCallback;
-import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import au.com.numbrcrunchr.domain.DataException;
 import au.com.numbrcrunchr.domain.StampDutyRate;
 import au.com.numbrcrunchr.domain.StampDutyRepository;
+import au.com.numbrcrunchr.domain.StampDutyRepositoryJpaImpl;
 import au.com.numbrcrunchr.domain.TaxRate;
 import au.com.numbrcrunchr.domain.TaxRateRepository;
+import au.com.numbrcrunchr.domain.TaxRateRepositoryJpaImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
@@ -79,7 +77,7 @@ public class DbInitialiserTest {
         // Delete reference data
         delete(TaxRate.class.getSimpleName());
         assertTrue(dbInitialiser.needsUpdating());
-        assertTrue(stampDutyRepository.hasAllData());
+        assertFalse(stampDutyRepository.hasAllData());
         assertFalse(taxRateRepository.hasAllData());
 
         dbInitialiser.initialiseDb("schema/insert.sql");
@@ -95,7 +93,7 @@ public class DbInitialiserTest {
         // Delete reference data
         assertTrue(dbInitialiser.needsUpdating());
         assertFalse(stampDutyRepository.hasAllData());
-        assertTrue(taxRateRepository.hasAllData());
+        assertTrue(dbInitialiser.needsUpdating());
 
         dbInitialiser.postProcessBeanFactory(null);
         assertTrue(stampDutyRepository.hasAllData());
@@ -118,18 +116,42 @@ public class DbInitialiserTest {
     }
 
     private void delete(final String className) {
-        new JpaTemplate(entityManagerFactory)
-                .execute(new JpaCallback<Object>() {
-                    @Override
-                    public Object doInJpa(EntityManager em)
-                            throws PersistenceException {
-                        em.getTransaction().begin();
-                        em.createQuery("delete from " + className + " r")
-                                .executeUpdate();
-                        em.getTransaction().commit();
-                        return null;
-                    }
-                });
+        // new JpaTemplate(entityManagerFactory)
+        // .execute(new JpaCallback<Object>() {
+        // @Override
+        // public Object doInJpa(EntityManager em)
+        // throws PersistenceException {
+        // em.getTransaction().begin();
+        // em.createQuery("delete from " + className + " r")
+        // .executeUpdate();
+        // em.getTransaction().commit();
+        // return null;
+        // }
+        // });
+        // Connection connection = ((SessionImpl) entityManagerFactory
+        // .createEntityManager().getDelegate()).getJDBCContext()
+        // .getConnectionManager().getConnection();
+        // try {
+        // JdbcTemplate jdbcTemplate = new JdbcTemplate(
+        // new SingleConnectionDataSource(connection, true));
+        // jdbcTemplate.update("DELETE FROM Stamp_Duty_Rates");
+        // jdbcTemplate.update("DELETE FROM Payg_Tax_Rates");
+        // connection.commit();
+        // } catch (DataAccessException e) {
+        // try {
+        // connection.close();
+        // } catch (SQLException e1) {
+        // LOGGER.severe("Error initialising database!" + e1 + e);
+        // }
+        // } catch (SQLException e) {
+        // try {
+        // connection.close();
+        // } catch (SQLException e1) {
+        // LOGGER.severe("Error initialising database!" + e1 + e);
+        // }
+        // }
+        ((StampDutyRepositoryJpaImpl) stampDutyRepository).deleteAllData();
+        ((TaxRateRepositoryJpaImpl) taxRateRepository).deleteAllData();
     }
 
 }

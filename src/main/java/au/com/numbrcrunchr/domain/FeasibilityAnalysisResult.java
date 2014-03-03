@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FeasibilityAnalysisResult implements Serializable {
@@ -33,7 +34,7 @@ public class FeasibilityAnalysisResult implements Serializable {
         FREQUENCY_FACTORS.put(WEEKLY, 1.0 / 52.0);
         FREQUENCY_FACTORS.put(DAILY, 1.0 / 365.0);
     }
-    public static final ArrayList<String> FREQUENCIES;
+    public static final List<String> FREQUENCIES;
     static {
         FREQUENCIES = new ArrayList<String>(5);
         FREQUENCIES.add(YEARLY);

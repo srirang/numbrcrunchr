@@ -26,13 +26,13 @@ public class PercentageConverter implements Converter {
         if (value == null) {
             throw new ConverterException(message);
         }
-        value = value.trim();
-        if (StringUtils.isEmpty(value)) {
+        String theValue = value.trim();
+        if (StringUtils.isEmpty(theValue)) {
             return 0;
         }
-        value = StringUtils.strip(value, "%");
+        theValue = StringUtils.strip(theValue, "%");
         try {
-            return Double.valueOf(value);
+            return Double.valueOf(theValue);
         } catch (NumberFormatException e) {
             throw new ConverterException(message, e);
         }

@@ -30,12 +30,12 @@ public class CurrencyConverter implements Converter {
         if (value == null || StringUtils.isEmpty(value)) {
             return Long.valueOf(0);
         }
-        value = value.trim();
-        value = stripCurrencySymbol(value);
-        value = stripCommas(value);
-        String[] values = StringUtils.split(value, '.');
+        String theValue = value.trim();
+        theValue = stripCurrencySymbol(theValue);
+        theValue = stripCommas(theValue);
+        String[] values = StringUtils.split(theValue, '.');
         if (values.length == 0) {
-            return new Long(0);
+            return Long.valueOf(0);
         }
         FacesMessage message = new FacesMessage("Conversion error occurred. ",
                 "Invalid amount. ");
@@ -47,9 +47,9 @@ public class CurrencyConverter implements Converter {
             LOGGER.warning("Invalid number " + value + ", truncating to:"
                     + values[0]);
         }
-        value = values[0];
-        if (StringUtils.isNumeric(value)) {
-            return new Long(value);
+        theValue = values[0];
+        if (StringUtils.isNumeric(theValue)) {
+            return new Long(theValue);
         }
         throw new ConverterException(message);
     }
@@ -68,13 +68,13 @@ public class CurrencyConverter implements Converter {
     public String getAsString(FacesContext facesContext,
             UIComponent uiComponent, Object value) {
         if (value == null) {
-            value = 0;
+            return CURRENCY_FORMAT.format(0);
         }
         if (value instanceof String && StringUtils.isNumeric((String) value)) {
             return CURRENCY_FORMAT.format(new Float((String) value));
         }
         if (value instanceof Number) {
-            return CURRENCY_FORMAT.format((Number) value);
+            return CURRENCY_FORMAT.format(value);
         }
         FacesMessage message = new FacesMessage("Conversion error occurred. ",
                 "Invalid amount. ");

@@ -6,7 +6,6 @@ package au.com.numbrcrunchr.domain;
  */
 public class InterestCalculator {
     public double calculateInterest(double loanBalance, double interestRate) {
-        double yearlyInterest = loanBalance * interestRate / 100;
-        return yearlyInterest;
+        return loanBalance * interestRate / 100;
     }
 }

@@ -50,15 +50,11 @@ public class Owner implements Serializable {
     private Double ownershipShare = DEFAULT_OWNERSHIP_SHARE;
     @JoinTable(name = "property_has_owner", joinColumns = { @JoinColumn(name = "Owner_idOwner", referencedColumnName = "idOwner", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "Property_idProperty", referencedColumnName = "idProperty", nullable = false) })
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Property> propertyList;
+    private List<Property> propertyList = new ArrayList<Property>();
     private double tax;
     private Boolean medicareLevyApplies = Boolean.TRUE;
 
     public Owner() {
-    }
-
-    public List<Property> getPropertyList() {
-        return propertyList;
     }
 
     public void setPropertyList(List<Property> propertyList) {
@@ -86,9 +82,6 @@ public class Owner implements Serializable {
     }
 
     public void addProperty(Property property) {
-        if (this.propertyList == null) {
-            this.propertyList = new ArrayList<Property>();
-        }
         this.propertyList.add(property);
     }
 
@@ -112,15 +105,8 @@ public class Owner implements Serializable {
         this.medicareLevyApplies = medicareLevyApplies;
     }
 
-    // Default value is true
     public Boolean getMedicareLevyApplies() {
-        return medicareLevyApplies == null ? true : medicareLevyApplies;
-    }
-
-    public static Owner createOwner(long annualIncome) {
-        Owner owner = new Owner();
-        owner.setAnnualIncome(annualIncome);
-        return owner;
+        return medicareLevyApplies == null ? Boolean.TRUE : medicareLevyApplies;
     }
 
     public void setOwnershipShare(Double ownershipShare) {

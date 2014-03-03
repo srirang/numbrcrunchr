@@ -1,7 +1,6 @@
 package au.com.numbrcrunchr.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -64,10 +63,6 @@ public abstract class AbstractRate implements Serializable {
     }
 
     public static String nullSafeNumber(Long number) {
-        return number == null ? "null" : number.toString();
-    }
-
-    public static String nullSafeNumber(BigDecimal number) {
         return number == null ? "null" : number.toString();
     }
 

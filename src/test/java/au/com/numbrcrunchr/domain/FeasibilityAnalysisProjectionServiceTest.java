@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.joda.time.DateMidnight;
 import org.junit.Test;
@@ -13,13 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import au.com.numbrcrunchr.CsvExporter;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class FeasibilityAnalysisProjectionServiceTest {
-    private static final Logger LOGGER = Logger
-            .getLogger(FeasibilityAnalysisProjectionServiceTest.class.getName());
     @Autowired
     private FeasibilityAnalysisProjectionService projectionService;
     @Autowired
@@ -68,6 +63,25 @@ public class FeasibilityAnalysisProjectionServiceTest {
     }
 
     @Test
+    public void checkProjectionFor1YearWithoutMedicareLevy() {
+        income = 120000;
+        ongoingCosts = 7000;
+        weeklyRent = 320;
+        weeksRented = 50;
+        loanAmount = 427320;
+        interestRate = 8;
+        propertyManagementFee = 10;
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
+                interestRate, propertyManagementFee);
+        property.getOwnerList().get(0).setMedicareLevyApplies(Boolean.FALSE);
+        List<FeasibilityAnalysisResult> projections = projectionService
+                .runProjection(property, 1, projectionParameters)
+                .getProjections();
+        assertEquals(2, projections.size());
+    }
+
+    @Test
     public void checkProjectionFor2Years() {
         income = 120000;
         ongoingCosts = 7000;
@@ -106,7 +120,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 .runProjection(property, 20, projectionParameters)
                 .getProjections();
         assertEquals(21, projections.size());
-        LOGGER.info(CsvExporter.exportToCsvString(projections));
     }
 
     @Test
@@ -160,7 +173,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
         property.setManagementFeeRate(8.8);
         Projection projection = projectionService.runProjection(property,
                 projectionYears, projectionParameters);
-        LOGGER.info(CsvExporter.exportToCsvString(projection.getProjections()));
 
         projection.changeFrequency(FeasibilityAnalysisResult.MONTHLY);
     }
@@ -182,7 +194,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 .getProjections();
         // TODO Why does projection for n years return n+1 results?
         assertEquals(31, projections.size());
-        LOGGER.info(CsvExporter.exportToCsvString(projections));
+        System.out.println(projections.get(0).toString());
     }
 
 }

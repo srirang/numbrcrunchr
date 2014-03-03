@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AmortisationSchedule {
+public final class AmortisationSchedule {
 
     private List<Amortisation> monthlyAmortisations = new ArrayList<Amortisation>();
     private List<Amortisation> yearlyAmortisations = new ArrayList<Amortisation>();

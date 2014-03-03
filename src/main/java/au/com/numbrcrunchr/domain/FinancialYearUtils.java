@@ -8,7 +8,11 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
 
-public class FinancialYearUtils {
+public final class FinancialYearUtils {
+
+    private FinancialYearUtils() {
+
+    }
 
     public static String getTaxYear(Date aDate) {
         DateTime aDateTime = new DateTime(aDate);

@@ -11,6 +11,13 @@ public class StampDutyCalculator implements Serializable {
 
     private StampDutyRepository stampDutyRepository;
 
+    /**
+     * Constructor for spring
+     */
+    public StampDutyCalculator() {
+
+    }
+
     public double calculateStampDuty(String state, Double value) {
         return calculateStampDuty(state, value.longValue());
     }
@@ -22,8 +29,7 @@ public class StampDutyCalculator implements Serializable {
                 return 0.0495 * value.doubleValue();
             } else {
                 double v = value.doubleValue() / 1000;
-                double stampDuty = 0.06571441 * v * v + 15 * v;
-                return stampDuty;
+                return 0.06571441 * v * v + 15 * v;
             }
         }
         // Special case #2: ACT has unique rules for stamp duty for <= $100,000
@@ -51,8 +57,4 @@ public class StampDutyCalculator implements Serializable {
     public StampDutyCalculator(StampDutyRepository stampDutyRepository) {
         this.stampDutyRepository = stampDutyRepository;
     }
-
-    public StampDutyCalculator() {
-    }
-
 }
