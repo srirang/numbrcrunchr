@@ -6,36 +6,45 @@ import java.util.List;
 
 public final class AmortisationSchedule {
 
-    private List<Amortisation> monthlyAmortisations = new ArrayList<Amortisation>();
-    private List<Amortisation> yearlyAmortisations = new ArrayList<Amortisation>();
+    private List<Amortisation> interestOnlyRepayments = new ArrayList<Amortisation>();
+    private List<Amortisation> monthlyRepayments = new ArrayList<Amortisation>();
+    private List<Amortisation> yearlyRepayments = new ArrayList<Amortisation>();
+    private Amortisation baloonPayment;
 
     private AmortisationSchedule() {
     }
 
     public static AmortisationSchedule createAmortisationSchedule(
-            List<Amortisation> monthlyAmortisations) {
+            List<Amortisation> interestOnlyRepayments,
+            List<Amortisation> monthlyRepayments, Amortisation baloonPayment) {
         AmortisationSchedule schedule = new AmortisationSchedule();
-        schedule.monthlyAmortisations = monthlyAmortisations;
+        schedule.monthlyRepayments = monthlyRepayments;
+        schedule.interestOnlyRepayments = interestOnlyRepayments;
         schedule.updateYearlyAmortisations();
+        schedule.baloonPayment = baloonPayment;
         return schedule;
     }
 
-    public List<Amortisation> getMonthlyAmortisations() {
-        return Collections.unmodifiableList(monthlyAmortisations);
+    public List<Amortisation> getMonthlyRepayments() {
+        return Collections.unmodifiableList(monthlyRepayments);
     }
 
-    public List<Amortisation> getYearlyAmortisations() {
-        return Collections.unmodifiableList(yearlyAmortisations);
+    public List<Amortisation> getInterestOnlyRepayments() {
+        return Collections.unmodifiableList(interestOnlyRepayments);
+    }
+
+    public List<Amortisation> getYearlyRepayments() {
+        return Collections.unmodifiableList(yearlyRepayments);
     }
 
     public void updateYearlyAmortisations() {
         int i = 1;
-        this.yearlyAmortisations = new ArrayList<Amortisation>();
+        this.yearlyRepayments = new ArrayList<Amortisation>();
         double interest = 0;
         double loanBalance = 0;
         double principal = 0;
         int year = 1;
-        for (Amortisation monthlyAmortisation : monthlyAmortisations) {
+        for (Amortisation monthlyAmortisation : monthlyRepayments) {
             interest += monthlyAmortisation.interest();
             principal += monthlyAmortisation.principal();
             if (i % 12 == 0) {
@@ -46,11 +55,15 @@ public final class AmortisationSchedule {
                 loanBalance = 0;
                 principal = 0;
                 year++;
-                this.yearlyAmortisations.add(yearly);
+                this.yearlyRepayments.add(yearly);
                 i++;
                 continue;
             }
             i++;
         }
+    }
+
+    public Amortisation getBaloonPayment() {
+        return baloonPayment;
     }
 }

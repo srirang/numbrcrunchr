@@ -35,7 +35,7 @@ public class FeasibilityAnalysisProjectionService {
                 projectionProperty.projectBy(projectionParameters);
                 // TODO: Test this, may not be right
                 Amortisation yearlyAmortisation = amortisationSchedule
-                        .getYearlyAmortisations().get(i - 1);
+                        .getYearlyRepayments().get(i - 1);
                 result = feasibilityAnalyser.analyseFeasibility(
                         projectionProperty, yearlyAmortisation.getInterest()
                                 .doubleValue(), yearlyAmortisation

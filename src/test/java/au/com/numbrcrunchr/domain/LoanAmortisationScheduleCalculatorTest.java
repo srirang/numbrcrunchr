@@ -23,19 +23,19 @@ public class LoanAmortisationScheduleCalculatorTest {
         int termInYears = 30;
         AmortisationSchedule amortisationSchedule = calculator
                 .calculateAmortisationSchedule(loan, termInYears, interest);
-        assertEquals(361, amortisationSchedule.getMonthlyAmortisations().size());
+        assertEquals(361, amortisationSchedule.getMonthlyRepayments().size());
 
         // Check first few months repayment
         assertEquals(new Amortisation(1, 226.6863403909656, 1852.50, 300000),
-                amortisationSchedule.getMonthlyAmortisations().get(0));
+                amortisationSchedule.getMonthlyRepayments().get(0));
         assertEquals(new Amortisation(2, 228.08612854287935,
                 1851.1002118480862, 299773.31365960906), amortisationSchedule
-                .getMonthlyAmortisations().get(1));
+                .getMonthlyRepayments().get(1));
 
         // Check that at the end of the loan term, balance is 0
         Amortisation lastMonthAmortisation = amortisationSchedule
-                .getMonthlyAmortisations()
-                .get(amortisationSchedule.getMonthlyAmortisations().size() - 1);
+                .getMonthlyRepayments()
+                .get(amortisationSchedule.getMonthlyRepayments().size() - 1);
         assertTrue(lastMonthAmortisation.getInterest().doubleValue() <= 0);
         assertTrue(lastMonthAmortisation.getLoanBalance().doubleValue() <= 0);
     }
@@ -49,20 +49,20 @@ public class LoanAmortisationScheduleCalculatorTest {
         AmortisationSchedule amortisationSchedule = calculator
                 .calculateAmortisationSchedule(loan, interestOnlyYears,
                         termInYears, interest);
-        assertEquals(361, amortisationSchedule.getMonthlyAmortisations().size());
+        assertEquals(361, amortisationSchedule.getMonthlyRepayments().size());
 
         // Check that the repayment for interest only period is the same
         Amortisation amortisation = amortisationSchedule
-                .getMonthlyAmortisations().get(0);
+                .getMonthlyRepayments().get(0);
         for (int i = 1; i < interestOnlyYears; i++) {
             assertEquals(amortisation, amortisationSchedule
-                    .getMonthlyAmortisations().get(i));
+                    .getMonthlyRepayments().get(i));
         }
 
         // Check that at the end of the loan term, balance is 0
         Amortisation lastMonthAmortisation = amortisationSchedule
-                .getMonthlyAmortisations()
-                .get(amortisationSchedule.getMonthlyAmortisations().size() - 1);
+                .getMonthlyRepayments()
+                .get(amortisationSchedule.getMonthlyRepayments().size() - 1);
         assertTrue(lastMonthAmortisation.getInterest().doubleValue() <= 0);
         assertTrue(lastMonthAmortisation.getLoanBalance().doubleValue() <= 0);
     }

@@ -44,18 +44,21 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
                 termInMonths);
         i++;
         amortisations.add(amortisation);
+        loanBalance = amortisations.get(i - 1).getLoanBalance().doubleValue()
+                - amortisations.get(i - 1).getPrincipal().doubleValue();
         while (loanBalance > 0) {
-            // while (loanBalance >= monthlyRepayment) {
-            // for (; i < termInMonths + 1; i++) {
-            loanBalance = amortisations.get(i - 1).getLoanBalance()
-                    .doubleValue()
-                    - amortisations.get(i - 1).getPrincipal().doubleValue();
+            // loanBalance = amortisations.get(i - 1).getLoanBalance()
+            // .doubleValue()
+            // - amortisations.get(i - 1).getPrincipal().doubleValue();
             interest = interestCalculator.calculateInterest(loanBalance,
                     interestRate) / 12;
             principal = monthlyRepayment - interest;
             amortisations.add(amortisation = new Amortisation(i + 1, principal,
                     interest, loanBalance));
             i++;
+            loanBalance = amortisations.get(i - 1).getLoanBalance()
+                    .doubleValue()
+                    - amortisations.get(i - 1).getPrincipal().doubleValue();
         }
         return amortisations;
     }
@@ -74,9 +77,11 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
         double interest = interestCalculator.calculateInterest(loanBalance,
                 interestRate) / 12;
 
-        for (int i = 0; i < interestOnlyPeriod * 12; i++) {
-            interestOnlyAmortisations.add(new Amortisation(i + 1, 0, interest,
-                    loanBalance));
+        if (interestOnlyPeriod > 0) {
+            for (int i = 0; i < interestOnlyPeriod * 12; i++) {
+                interestOnlyAmortisations.add(new Amortisation(i + 1, 0,
+                        interest, loanBalance));
+            }
         }
 
         List<Amortisation> princpalAndInterestAmortisations = this
@@ -85,7 +90,20 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
         List<Amortisation> amortisations = new ArrayList<Amortisation>(
                 interestOnlyAmortisations);
         amortisations.addAll(princpalAndInterestAmortisations);
-        return AmortisationSchedule.createAmortisationSchedule(amortisations);
+
+        double baloonPrincipal = princpalAndInterestAmortisations.get(
+                princpalAndInterestAmortisations.size() - 1).getPrincipal();
+        double baloonInterest = interestCalculator.calculateInterest(
+                baloonPrincipal, interestRate);
+        int baloonPeriod = princpalAndInterestAmortisations.get(
+                princpalAndInterestAmortisations.size() - 1).getPeriod() + 1;
+        double baloonBalance = princpalAndInterestAmortisations.get(
+                princpalAndInterestAmortisations.size() - 1).getLoanBalance()
+                - baloonPrincipal;
+        Amortisation baloonRepayment = new Amortisation(baloonPeriod,
+                baloonInterest, baloonPrincipal, baloonBalance);
+        return AmortisationSchedule.createAmortisationSchedule(
+                interestOnlyAmortisations, amortisations, baloonRepayment);
     }
 
     public AmortisationSchedule calculateAmortisationSchedule(

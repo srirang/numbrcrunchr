@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class MathUtilTest {
-    public static double ROUNDING_ERROR_TOLERANCE = 0.00000001;
+    public static double ROUNDING_ERROR_TOLERANCE = 0.0000001;
 
     @Test
     public void checkIncreaseBy() {
