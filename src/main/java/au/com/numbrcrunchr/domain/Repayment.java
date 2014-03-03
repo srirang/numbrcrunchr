@@ -1,8 +1,6 @@
 package au.com.numbrcrunchr.domain;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
-public class Amortisation {
+public class Repayment {
 
     private final int period;
     private final double principal;
@@ -10,7 +8,7 @@ public class Amortisation {
     private final double loanBalance;
     private final double repayment;
 
-    public Amortisation(int period, double principal, double interest,
+    public Repayment(int period, double principal, double interest,
             double loanBalance) {
         super();
         this.period = period;
@@ -42,11 +40,11 @@ public class Amortisation {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("period", period)
-                .append("principal", getPrincipal())
-                .append("interest", getInterest())
-                .append("loanBalance", getLoanBalance())
-                .append("repayment", getRepayment()).toString();
+        StringBuffer sb = new StringBuffer();
+        return sb.append("Month ").append(getPeriod()).append("\t")
+                .append(getLoanBalance()).append("\t").append(getRepayment())
+                .append("\t").append(getInterest()).append("\t")
+                .append(getPrincipal()).append("\n").toString();
     }
 
     @Override
@@ -60,11 +58,11 @@ public class Amortisation {
         if (object.getClass() != getClass()) {
             return false;
         }
-        Amortisation amortisation = (Amortisation) object;
-        return getPrincipal().equals(amortisation.getPrincipal())
-                && getInterest().equals(amortisation.getInterest())
-                && getRepayment().equals(amortisation.getRepayment())
-                && getLoanBalance().equals(amortisation.getLoanBalance());
+        Repayment repayment = (Repayment) object;
+        return getPrincipal().equals(repayment.getPrincipal())
+                && getInterest().equals(repayment.getInterest())
+                && getRepayment().equals(repayment.getRepayment())
+                && getLoanBalance().equals(repayment.getLoanBalance());
     }
 
     protected double principal() {
@@ -88,4 +86,5 @@ public class Amortisation {
         assert false : "hashCode not designed";
         return 42;
     }
+
 }

@@ -34,11 +34,11 @@ public class FeasibilityAnalysisProjectionService {
                 projectionProperty = (Property) projectionProperty.clone();
                 projectionProperty.projectBy(projectionParameters);
                 // TODO: Test this, may not be right
-                Amortisation yearlyAmortisation = amortisationSchedule
+                Repayment yearlyRepayment = amortisationSchedule
                         .getYearlyRepayments().get(i - 1);
                 result = feasibilityAnalyser.analyseFeasibility(
-                        projectionProperty, yearlyAmortisation.getInterest()
-                                .doubleValue(), yearlyAmortisation
+                        projectionProperty, yearlyRepayment.getInterest()
+                                .doubleValue(), yearlyRepayment
                                 .getPrincipal().doubleValue());
                 if (i == 0) {
                     result.setYear("Year " + (i + 1) + "(partial)");

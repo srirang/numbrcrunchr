@@ -2,7 +2,6 @@ package au.com.numbrcrunchr.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,11 +26,11 @@ public class AmortisationScheduleTest {
         assertEquals(30, amortisationSchedule.getYearlyRepayments().size());
 
         assertEquals(0, amortisationSchedule.getInterestOnlyRepayments().size());
-        assertEquals(30 * 12, amortisationSchedule.getMonthlyRepayments()
-                .size());
-        assertNotNull(amortisationSchedule.getBaloonPayment());
-        assertEquals(0, amortisationSchedule.getBaloonPayment()
+        assertEquals(361, amortisationSchedule.getMonthlyRepayments().size());
+        assertNotNull(amortisationSchedule.getMonthlyRepayments().get(360));
+        assertEquals(0, amortisationSchedule.getMonthlyRepayments().get(360)
                 .getLoanBalance(), MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        System.out.println(amortisationSchedule.toString());
     }
 
     @Test
@@ -41,9 +40,9 @@ public class AmortisationScheduleTest {
         assertEquals(30, amortisationSchedule.getYearlyRepayments().size());
 
         assertEquals(30, amortisationSchedule.getYearlyRepayments().size());
-        assertEquals(30 * 12, amortisationSchedule.getMonthlyRepayments()
-                .size());
-        assertTrue(amortisationSchedule.getMonthlyRepayments().get(30 * 12)
-                .getLoanBalance() <= 0);
+        assertEquals(361, amortisationSchedule.getMonthlyRepayments().size());
+        assertNotNull(amortisationSchedule.getMonthlyRepayments().get(360));
+        assertEquals(0, amortisationSchedule.getMonthlyRepayments().get(360)
+                .getLoanBalance(), MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }
 }
