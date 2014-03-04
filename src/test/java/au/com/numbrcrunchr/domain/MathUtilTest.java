@@ -14,4 +14,10 @@ public class MathUtilTest {
         assertEquals(110, MathUtil.increaseBy(100, 10),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }
+
+    @Test
+    public void checkScaled() {
+        assertEquals(1.12, MathUtil.scaled(1.12345),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+    }
 }

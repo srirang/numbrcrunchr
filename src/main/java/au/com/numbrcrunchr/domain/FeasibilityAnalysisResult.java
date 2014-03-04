@@ -102,6 +102,7 @@ public class FeasibilityAnalysisResult implements Serializable {
                         * financialYearRemaining, annualTaxBeforeIP
                         * financialYearRemaining, totalNettIncome
                         * financialYearRemaining);
+        newResult.setYear(this.year);
         return newResult;
     }
 
@@ -189,7 +190,7 @@ public class FeasibilityAnalysisResult implements Serializable {
         return getRentalIncome();
     }
 
-    public double getTotalOutOfPocket() {
+    public double getOutOfPocket() {
         double outOfPocket = getTotalExpense() - getTotalIncome();
         if (outOfPocket < 0) {
             return 0;

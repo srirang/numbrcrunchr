@@ -75,4 +75,8 @@ public class StampDutyRate extends AbstractRate implements Serializable {
         }
         return true;
     }
+
+    protected void setId(Integer id) {
+        this.id = id;
+    }
 }

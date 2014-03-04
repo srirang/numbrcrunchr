@@ -1,13 +1,11 @@
 package au.com.numbrcrunchr.web;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
@@ -15,18 +13,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.validator.ValidatorException;
-import javax.servlet.http.HttpServletResponse;
 
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
-import au.com.numbrcrunchr.CsvExporter;
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisProjectionService;
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
 import au.com.numbrcrunchr.domain.FinancialYearUtils;
@@ -114,15 +108,6 @@ public class MainController implements Serializable {
         return null;
     }
 
-    // public void quickAnalysis() {
-    // updateTotals(null);
-    // projection = feasibilityAnalysisProjectionService.runProjection(
-    // getProperty(), getNumberOfYears() - 1,
-    // getProjectionParameters());
-    // projectionResults = projection.getProjections();
-    // this.resultsAvailable = true;
-    // }
-
     public String advanced() {
         this.advancedSelected = true;
         return null;
@@ -144,26 +129,6 @@ public class MainController implements Serializable {
         return null;
     }
 
-    public void downloadCsv(ActionEvent event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        HttpServletResponse response = (HttpServletResponse) externalContext
-                .getResponse();
-
-        response.reset();
-        response.setContentType("text/csv");
-        response.setHeader("Content-disposition",
-                "attachment; filename=\"numbrcrunchr-data-download.csv\"");
-        try {
-            response.getOutputStream()
-                    .write(CsvExporter.exportToCsvString(projectionResults)
-                            .getBytes());
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
-        }
-        facesContext.responseComplete();
-    }
-
     public void updateTotals(AjaxBehaviorEvent event) {
         this.setStampDuty(getIncludesStampDuty() ? Long.valueOf(0) : MathUtil
                 .doubleToLong(stampDutyCalculator.calculateStampDuty(
@@ -179,13 +144,14 @@ public class MainController implements Serializable {
                 this.getTotalPurhcaseCost()));
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (this.getLvr() > 80) {
-            this.setLendersMortgageInsurance(0l);
             if (facesContext != null) {
                 facesContext.addMessage(null, new FacesMessage(
                         FacesMessage.SEVERITY_WARN,
                         "Lender's Mortgage Insurance",
                         "Lender's mortgage insurance may be applicable"));
             }
+        } else {
+            this.setLendersMortgageInsurance(0l);
         }
     }
 
@@ -212,69 +178,6 @@ public class MainController implements Serializable {
         }
         return MathUtil.doubleToLong(totalAtoPays);
     }
-
-    // public String getJsonYears() {
-    // StringBuffer years = new StringBuffer("[");
-    // for (int i = 0; i < getNumberOfYears(); i++) {
-    // years.append("'Year ").append(i + 1).append("', ");
-    // }
-    // return years.substring(0, years.length() - 2).concat("]");
-    // }
-    //
-    // public String getAllIncomesAsJson() {
-    // StringBuffer json = new StringBuffer("[");
-    // int i = 0;
-    // int cashFlowPositive = projection.getCashflowPositiveYearIndex();
-    // for (FeasibilityAnalysisResult result : getProjection()) {
-    // if (i++ == cashFlowPositive) {
-    // json.append("{ y:");
-    // json.append(MathUtil.doubleToLong(result.getTotalIncome()));
-    // json.append(", marker: {symbol:'url(resources/images/dollarsign.png)'}"
-    // + "},");
-    // continue;
-    // }
-    // json.append(MathUtil.doubleToLong(result.getTotalIncome()));
-    // json.append(", ");
-    // }
-    // String jsonString = json.toString();
-    // if (jsonString.endsWith(", ")) {
-    // jsonString = jsonString.substring(0, jsonString.length() - 2);
-    // }
-    // jsonString = jsonString + "]";
-    // return jsonString;
-    // }
-    //
-    // public String getAllExpensesAsJson() {
-    // return new Gson().toJson(CollectionUtils.collect(getProjection(),
-    // new Transformer() {
-    // @Override
-    // public Object transform(Object input) {
-    // return MathUtil
-    // .doubleToLong(((FeasibilityAnalysisResult) input)
-    // .getTotalExpense());
-    // }
-    // }).toArray(new Long[] {}));
-    // }
-    //
-    // public String getAllOutOfPocketsAsJson() {
-    // return new Gson().toJson(CollectionUtils.collect(getProjection(),
-    // new Transformer() {
-    // @Override
-    // public Object transform(Object input) {
-    // return MathUtil
-    // .doubleToLong(((FeasibilityAnalysisResult) input)
-    // .getTotalOutOfPocket());
-    // }
-    // }).toArray(new Long[] {}));
-    // }
-    //
-    // public String getAllGrossYieldsAsJson() {
-    // return new Gson().toJson(projection.getAllGrossYields());
-    // }
-    //
-    // public String getAllNettYieldsAsJson() {
-    // return new Gson().toJson(projection.getAllNettYields());
-    // }
 
     Property getProperty() {
         if (this.property == null) {
@@ -315,7 +218,6 @@ public class MainController implements Serializable {
         this.frequency = frequency;
     }
 
-    // Passthrough methods
     public void setState(String state) {
         this.getProperty().setState(state);
     }
@@ -650,8 +552,6 @@ public class MainController implements Serializable {
         return projectionResults;
     }
 
-    // FIXME: Can't be more than loan term, but there's no way to change loan
-    // term (set to 30 years). Need to add validation to UI
     public int getNumberOfYears() {
         return numberOfYears;
     }
@@ -786,10 +686,6 @@ public class MainController implements Serializable {
                 + projection.getCashflowPositiveYearIndex());
     }
 
-    // public double getYear1GrossYield() {
-    // return projection.getAllGrossYields()[0];
-    // }
-
     public boolean isShowIntro() {
         return !advancedSelected && !resultsAvailable;
     }
@@ -830,8 +726,7 @@ public class MainController implements Serializable {
         for (FeasibilityAnalysisResult result : getProjection()) {
             incomeSeries.set(result.getYear(), result.getTotalIncome());
             expenseSeries.set(result.getYear(), result.getTotalExpense());
-            outOfPocketSeries.set(result.getYear(),
-                    result.getTotalOutOfPocket());
+            outOfPocketSeries.set(result.getYear(), result.getOutOfPocket());
         }
         chartModel.addSeries(incomeSeries);
         chartModel.addSeries(expenseSeries);

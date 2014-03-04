@@ -19,9 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
 /**
  * 
  * @author AMIS005
@@ -50,16 +47,16 @@ public class Owner implements Serializable {
     private Double ownershipShare = DEFAULT_OWNERSHIP_SHARE;
     @JoinTable(name = "property_has_owner", joinColumns = { @JoinColumn(name = "Owner_idOwner", referencedColumnName = "idOwner", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "Property_idProperty", referencedColumnName = "idProperty", nullable = false) })
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Property> propertyList = new ArrayList<Property>();
+    private final List<Property> propertyList = new ArrayList<Property>();
     private double tax;
     private Boolean medicareLevyApplies = Boolean.TRUE;
 
     public Owner() {
     }
 
-    public void setPropertyList(List<Property> propertyList) {
-        this.propertyList = propertyList;
-    }
+    // public void setPropertyList(List<Property> propertyList) {
+    // this.propertyList = propertyList;
+    // }
 
     @Override
     public int hashCode() {
@@ -117,9 +114,7 @@ public class Owner implements Serializable {
         return ownershipShare;
     }
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this,
-                ToStringStyle.MULTI_LINE_STYLE);
+    protected void setIdOwner(Integer idOwner) {
+        this.idOwner = idOwner;
     }
 }

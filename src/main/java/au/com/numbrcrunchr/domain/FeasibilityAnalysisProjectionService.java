@@ -1,9 +1,12 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FeasibilityAnalysisProjectionService {
+public class FeasibilityAnalysisProjectionService implements Serializable {
+    private static final long serialVersionUID = 1L;
+    public static final String PROJECTION_YEAR_PREFIX = "Y ";
     private FeasibilityAnalyser feasibilityAnalyser;
     private LoanAmortisationScheduleCalculator loanAmortisationScheduleCalculator;
 
@@ -38,14 +41,9 @@ public class FeasibilityAnalysisProjectionService {
                         .getYearlyRepayments().get(i - 1);
                 result = feasibilityAnalyser.analyseFeasibility(
                         projectionProperty, yearlyRepayment.getInterest()
-                                .doubleValue(), yearlyRepayment
-                                .getPrincipal().doubleValue());
-                if (i == 0) {
-                    result.setYear("Year " + (i + 1) + "(partial)");
-                } else {
-                    result.setYear("Year " + (i + 1));
-                }
-
+                                .doubleValue(), yearlyRepayment.getPrincipal()
+                                .doubleValue(), PROJECTION_YEAR_PREFIX
+                                + (i + 1));
                 projections.add(result);
             } catch (CloneNotSupportedException e) {
                 throw new DataException("Error completing projection", e);

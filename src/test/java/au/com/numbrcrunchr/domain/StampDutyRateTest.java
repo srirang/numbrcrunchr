@@ -45,4 +45,28 @@ public class StampDutyRateTest {
         assertNotSame(rate1, rate2);
 
     }
+
+    @Test
+    public void checkEquals() {
+        StampDutyRate rate1 = new StampDutyRate("NSW", 1000001l, null, 40490,
+                0.055);
+        StampDutyRate rate2 = new StampDutyRate("NSW", 1000001l, null, 40490,
+                0.055);
+        assertFalse(rate1.equals(null));
+        assertFalse(rate1.equals("test"));
+        assertTrue(rate1.equals(rate2));
+        assertTrue(rate2.equals(rate1));
+        assertEquals("NSW\t1000001 < null = 40490 + 0.055", rate1.toString());
+        rate2.setId(2);
+        assertFalse(rate1.equals(rate2));
+        assertFalse(rate2.equals(rate1));
+
+        rate2.setId(null);
+        assertTrue(rate1.equals(rate2));
+        assertTrue(rate2.equals(rate1));
+
+        rate1.setId(null);
+        assertTrue(rate1.equals(rate2));
+        assertTrue(rate2.equals(rate1));
+    }
 }

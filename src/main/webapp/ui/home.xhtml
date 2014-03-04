@@ -239,9 +239,24 @@
           <br />
           <p:fieldset legend="Projection Data" toggleable="false"
             collapsed="false">
-            <h:commandButton
-              actionListener="#{mainController.downloadCsv}"
-              value="Download Data" class="simple-button" />
+            Change Frequency:
+            <h:selectOneMenu value="#{mainController.frequency}">
+              <f:selectItems value="#{mainController.frequencies}" />
+              <f:ajax event="change"
+                disabled="#{ajaxController.disabled}"
+                listener="#{mainController.changeFrequency}"
+                render="returnSummary cashflowChart" />
+            </h:selectOneMenu>
+            <br />
+            <p:commandButton value="Download Excel" ajax="false">
+              <p:dataExporter type="xls" target="returnSummary"
+                fileName="numbrcrunchr-dataexport.xlsx" />
+            </p:commandButton>
+            <p:commandButton value="Download CSV" ajax="false">
+              <p:dataExporter type="csv" target="returnSummary"
+                fileName="numbrcrunchr-dataexport.csv" />
+            </p:commandButton>
+            <br />
             <br />
             <p:dataTable id="returnSummary" draggableColumns="true"
               resizableColumns="true" value="#{mainController.results}"
@@ -318,6 +333,13 @@
  -->
               <p:column>
                 <f:facet name="header">
+                  <h:outputText value="Out of Pocket" />
+                </f:facet>
+                <h:outputText value="#{row.outOfPocket}"
+                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">
                   <h:outputText value="Gross Yield" />
                 </f:facet>
                 <h:outputText value="#{row.grossYield}"
@@ -367,11 +389,26 @@
                 <h:outputText value="#{row.equityAvailable}"
                   converter="au.com.numbrcrunchr.web.CurrencyConverter" />
               </p:column>
-
             </p:dataTable>
-            <h:commandButton
-              actionListener="#{mainController.downloadCsv}"
-              value="Download Data" class="simple-button" />
+            <br />
+            <p:commandButton value="Download Excel" ajax="false">
+              <p:dataExporter type="xls" target="returnSummary"
+                fileName="numbrcrunchr-dataexport.xlsx" />
+            </p:commandButton>
+            <p:commandButton value="Download CSV" ajax="false">
+              <p:dataExporter type="csv" target="returnSummary"
+                fileName="numbrcrunchr-dataexport.csv" />
+            </p:commandButton>
+            <br />
+            Change Frequency:
+            <h:selectOneMenu value="#{mainController.frequency}">
+              <f:selectItems value="#{mainController.frequencies}" />
+              <f:ajax event="change"
+                disabled="#{ajaxController.disabled}"
+                listener="#{mainController.changeFrequency}"
+                render="returnSummary cashflowChart" />
+            </h:selectOneMenu>
+            <br />
           </p:fieldset>
         </h:form>
       </h:panelGroup>

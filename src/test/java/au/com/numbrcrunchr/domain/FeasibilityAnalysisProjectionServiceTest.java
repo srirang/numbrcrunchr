@@ -189,8 +189,10 @@ public class FeasibilityAnalysisProjectionServiceTest {
         Property property = PropertyTest.createProperty(income, true,
                 loanAmount, ongoingCosts, weeksRented, weeklyRent,
                 interestRate, propertyManagementFee);
-        List<FeasibilityAnalysisResult> projections = projectionService
-                .runProjection(property, 50, projectionParameters)
+        Projection projection = projectionService.runProjection(property, 50,
+                projectionParameters);
+        assertEquals(16, projection.getCashflowPositiveYearIndex());
+        List<FeasibilityAnalysisResult> projections = projection
                 .getProjections();
         // TODO Why does projection for n years return n+1 results?
         assertEquals(31, projections.size());

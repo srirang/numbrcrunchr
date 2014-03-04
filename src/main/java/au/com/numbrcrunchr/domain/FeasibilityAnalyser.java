@@ -1,8 +1,11 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class FeasibilityAnalyser {
+public class FeasibilityAnalyser implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * All figures are annual
@@ -10,14 +13,15 @@ public class FeasibilityAnalyser {
      * @param property
      * @return
      */
-    public FeasibilityAnalysisResult analyseFeasibility(Property property) {
+    public FeasibilityAnalysisResult analyseFeasibility(Property property,
+            String year) {
         double interest = interestCalculator.calculateInterest(
                 property.getLoanAmount(), property.getInterestRate());
-        return analyseFeasibility(property, interest, 0);
+        return analyseFeasibility(property, interest, 0, year);
     }
 
     public FeasibilityAnalysisResult analyseFeasibility(Property property,
-            double interest, double principal) {
+            double interest, double principal, String year) {
         double tax, nettIncome;
         double totalGrossIncome = property.calculateOwnerGrossIncome();
 
@@ -50,18 +54,21 @@ public class FeasibilityAnalyser {
         double nettCashflow = grossCashflow + taxSavings;
         double youPay = nettCashflow;
 
-        return new FeasibilityAnalysisResult(property, grossCashflow,
-                rentalIncome, taxSavings, youPay, nettCashflow, interest,
-                annualIncomeAfterIP, annualTaxAfterIP, annualIncomeBeforeIP,
-                annualTaxBeforeIP, totalNettIncome);
+        FeasibilityAnalysisResult result = new FeasibilityAnalysisResult(
+                property, grossCashflow, rentalIncome, taxSavings, youPay,
+                nettCashflow, interest, annualIncomeAfterIP, annualTaxAfterIP,
+                annualIncomeBeforeIP, annualTaxBeforeIP, totalNettIncome);
+        result.setYear(year);
+        return result;
     }
 
     public FeasibilityAnalysisResult analyseFirstYearFeasibility(
             Property property) {
-        FeasibilityAnalysisResult fullYearResult = analyseFeasibility(property);
+        FeasibilityAnalysisResult fullYearResult = analyseFeasibility(property,
+                FeasibilityAnalysisProjectionService.PROJECTION_YEAR_PREFIX
+                        + "1 (partial)");
         FeasibilityAnalysisResult firstYearResult = fullYearResult
                 .applyPurchaseDate(property.getPurchaseDate());
-        firstYearResult.setYear("Year 1");
         return firstYearResult;
     }
 
