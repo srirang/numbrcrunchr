@@ -132,30 +132,6 @@ public class MainController implements Serializable {
         }
     }
 
-    public Long getTotalTenantPays() {
-        double totalTenantPays = 0l;
-        for (FeasibilityAnalysisResult result : getProjection()) {
-            totalTenantPays += result.getRentalIncome();
-        }
-        return MathUtil.doubleToLong(totalTenantPays);
-    }
-
-    public Long getTotalYouPay() {
-        double totalYouPay = 0l;
-        for (FeasibilityAnalysisResult result : getProjection()) {
-            totalYouPay += result.getYouPay();
-        }
-        return MathUtil.doubleToLong(totalYouPay);
-    }
-
-    public Long getTotalAtoPays() {
-        double totalAtoPays = 0l;
-        for (FeasibilityAnalysisResult result : getProjection()) {
-            totalAtoPays += result.getTaxSavings();
-        }
-        return MathUtil.doubleToLong(totalAtoPays);
-    }
-
     Property getProperty() {
         if (this.property == null) {
             this.property = new Property();
