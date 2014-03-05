@@ -68,7 +68,6 @@
                   value="#{mainController.state}">
                   <f:selectItems value="#{mainController.states}" />
                   <f:ajax event="change"
-                    disabled="#{ajaxController.disabled}"
                     listener="#{mainController.updateTotals}"
                     render="investmentSummary LMI" />
                 </h:selectOneMenu>
@@ -101,7 +100,6 @@
                     converterMessage="#{msg.purchasePrice_convert}">
                     <f:ajax event="blur"
                       listener="#{mainController.updateTotals}"
-                      disabled="#{ajaxController.disabled}"
                       render="investmentSummary LMI"
                       execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
                   </h:inputText>
@@ -127,7 +125,6 @@
                   <h:selectBooleanCheckbox
                     value="#{mainController.includesStampDuty}">
                     <f:ajax event="change"
-                      disabled="#{ajaxController.disabled}"
                       listener="#{mainController.updateTotals}"
                       render="investmentSummary LMI"
                       execute="feasibilityAnalysisForm:State feasibilityAnalysisForm:Price feasibilityAnalysisForm:cashDeposit" />
@@ -142,7 +139,6 @@
                     converterMessage="#{msg.deposit_convert}">
                     <f:validateLongRange minimum="0" />
                     <f:ajax event="change"
-                      disabled="#{ajaxController.disabled}"
                       listener="#{mainController.updateTotals}"
                       render="investmentSummary LMI"
                       execute="feasibilityAnalysisForm:LMI" />
@@ -157,7 +153,6 @@
                     styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
                     <f:validateLongRange minimum="100" />
                     <f:ajax event="blur" render="WeeklyRent"
-                      disabled="#{ajaxController.disabled}"
                       execute="feasibilityAnalysisForm:WeeklyRent" />
                   </p:inputText>
                 </h:panelGroup>
@@ -180,7 +175,6 @@
                   converterMessage="#{msg.annualIncome_convert}">
                   <f:validateLongRange minimum="20000" />
                   <f:ajax event="blur" render="annualIncome"
-                    disabled="#{ajaxController.disabled}"
                     execute="feasibilityAnalysisForm:annualIncome" />
                 </h:inputText>
               
@@ -188,7 +182,7 @@
                 <h:selectBooleanCheckbox
                   value="#{mainController.medicareLevyApplies}" />
                 <h:panelGroup />
-                <h:commandButton class="simple-button" id="CrunchNumbers"
+                <h:commandButton class="simple-button"
                   value="Crunch Numbers"
                   action="#{mainController.runProjection}"
                   onfocus="this.blur()" />
@@ -405,10 +399,6 @@
                 Name:
                   <h:inputText id="feedbackName" size="50"
                     value="#{feedbackController.name}" />
-                E-mail:
-                  <h:inputText id="feedbackEmail" size="50"
-                    value="#{feedbackController.email}" required="false" />
-                  <h:panelGroup />
                   <h:commandButton
                     actionListener="#{feedbackController.sendFeedback}"
                     value="Send" class="simple-button" />

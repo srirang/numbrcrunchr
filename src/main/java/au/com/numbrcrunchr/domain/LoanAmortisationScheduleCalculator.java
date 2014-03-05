@@ -43,8 +43,6 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
         List<Repayment> repayments = new ArrayList<Repayment>(termInMonths);
         i++;
         repayments.add(repayment);
-        // loanBalance = repayments.get(i - 1).getLoanBalance().doubleValue()
-        // - repayments.get(i - 1).getPrincipal().doubleValue();
         while (loanBalance > 0) {
             loanBalance = repayments.get(i - 1).getLoanBalance().doubleValue()
                     - repayments.get(i - 1).getPrincipal().doubleValue();
@@ -54,9 +52,6 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
             repayments.add(repayment = new Repayment(i + 1, principal,
                     interest, loanBalance));
             i++;
-            // loanBalance = repayments.get(i - 1).getLoanBalance()
-            // .doubleValue()
-            // - repayments.get(i - 1).getPrincipal().doubleValue();
         }
         return repayments;
     }
@@ -89,22 +84,8 @@ public class LoanAmortisationScheduleCalculator implements Serializable {
                 interestOnlyAmortisations);
         amortisations.addAll(princpalAndInterestAmortisations);
 
-        // double baloonPrincipal = princpalAndInterestAmortisations.get(
-        // princpalAndInterestAmortisations.size() - 1).getPrincipal();
-        // double baloonInterest = interestCalculator.calculateInterest(
-        // baloonPrincipal, interestRate);
-        // int baloonPeriod = princpalAndInterestAmortisations.get(
-        // princpalAndInterestAmortisations.size() - 1).getPeriod() + 1;
-        // double baloonBalance = princpalAndInterestAmortisations.get(
-        // princpalAndInterestAmortisations.size() - 1).getLoanBalance()
-        // - baloonPrincipal;
-        // Repayment baloonRepayment = new Repayment(baloonPeriod,
-        // baloonInterest,
-        // baloonPrincipal, baloonBalance);
-        return AmortisationSchedule.createAmortisationSchedule(loanAmount,
-                interestRate, termInYears, interestOnlyAmortisations,
-                amortisations);
-        // , baloonRepayment);
+        return new AmortisationSchedule(loanAmount, interestRate, termInYears,
+                interestOnlyAmortisations, amortisations);
     }
 
     public AmortisationSchedule calculateAmortisationSchedule(

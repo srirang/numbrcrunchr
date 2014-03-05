@@ -1,12 +1,12 @@
 package au.com.numbrcrunchr.web;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 
 @ManagedBean
 @SessionScoped
@@ -17,23 +17,31 @@ public class FeedbackController {
     @ManagedProperty(value = "#{versionDetails}")
     private VersionDetails versionDetails;
 
-    public void sendFeedback(ActionEvent event) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setSubject("NumbrCrunchr "
-                + versionDetails.getVersionNumber() + " feedback from " + name);
-        mailMessage.setText(feedbackComment);
-        mailMessage.setFrom(email);
-        mailMessage.setTo(versionDetails.getContactEmail());
-
-        mailSender.send(mailMessage);
+    public void sendFeedback(ActionEvent event) throws IOException {
+        // SimpleMailMessage mailMessage = new SimpleMailMessage();
+        // mailMessage.setSubject("NumbrCrunchr "
+        // + versionDetails.getVersionNumber() + " feedback from " + name);
+        // mailMessage.setText(feedbackComment);
+        // mailMessage.setFrom(email);
+        // mailMessage.setTo(versionDetails.getContactEmail());
+        //
+        // mailSender.send(mailMessage);
+        FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .redirect(
+                        "mailto:" + versionDetails.getContactEmail()
+                                + "?subject=Feedback on NumbrCrunchr from "
+                                + String.valueOf(getName()) + "&body="
+                                + String.valueOf(getFeedbackComment()));
     }
 
-    @ManagedProperty(value = "#{mailSender}")
-    private MailSender mailSender;
-
-    public void setMailSender(MailSender mailSender) {
-        this.mailSender = mailSender;
-    }
+    // @ManagedProperty(value = "#{mailSender}")
+    // private MailSender mailSender;
+    //
+    // public void setMailSender(MailSender mailSender) {
+    // this.mailSender = mailSender;
+    // }
 
     public void setFeedbackComment(String feedback) {
         this.feedbackComment = feedback;
@@ -51,13 +59,13 @@ public class FeedbackController {
         return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
+    // public void setEmail(String email) {
+    // this.email = email;
+    // }
+    //
+    // public String getEmail() {
+    // return email;
+    // }
 
     public void setVersionDetails(VersionDetails versionDetails) {
         this.versionDetails = versionDetails;

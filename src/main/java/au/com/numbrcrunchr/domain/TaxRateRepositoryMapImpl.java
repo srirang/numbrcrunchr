@@ -1,9 +1,13 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TaxRateRepositoryMapImpl implements TaxRateRepository {
+public class TaxRateRepositoryMapImpl implements TaxRateRepository,
+        Serializable {
+
+    private static final long serialVersionUID = 1L;
     private static final Map<String, TaxRate[]> TAX_RATES;
 
     private static final String TAX_YEAR_2010_2011 = "2010-2011";

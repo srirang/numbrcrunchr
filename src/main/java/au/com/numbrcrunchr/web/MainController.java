@@ -64,7 +64,6 @@ public class MainController implements Serializable {
 
     // Read-write
     private Boolean includesStampDuty;
-    private boolean advancedSelected = false;
     private Property property;
     private Owner owner, partner;
     private boolean resultsAvailable = false;
@@ -93,7 +92,6 @@ public class MainController implements Serializable {
 
     public String runProjection() {
         updateTotals(null);
-        this.advancedSelected = false;
         projection = feasibilityAnalysisProjectionService.runProjection(
                 getProperty(), getNumberOfYears() - 1,
                 getProjectionParameters());
@@ -104,27 +102,6 @@ public class MainController implements Serializable {
             context.addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Numbers Crunched!",
                     "Select Download to download the raw data"));
-        }
-        return null;
-    }
-
-    public String advanced() {
-        this.advancedSelected = true;
-        return null;
-    }
-
-    public String updateAssumptions() {
-        return "main";
-    }
-
-    public String startAgain() {
-        return "main";
-    }
-
-    public String apply() {
-        this.advancedSelected = false;
-        if (this.resultsAvailable) {
-            runProjection();
         }
         return null;
     }
@@ -612,10 +589,6 @@ public class MainController implements Serializable {
         this.getProperty().setInterestOnlyPeriod(interestOnlyPeriod);
     }
 
-    public void setAdvancedSelected(boolean advancedSelected) {
-        this.advancedSelected = advancedSelected;
-    }
-
     public Double getOwnerShare() {
         return getOwner().getOwnershipShare();
     }
@@ -687,15 +660,11 @@ public class MainController implements Serializable {
     }
 
     public boolean isShowIntro() {
-        return !advancedSelected && !resultsAvailable;
-    }
-
-    public boolean isShowAdvanced() {
-        return advancedSelected;
+        return !resultsAvailable;
     }
 
     public boolean isShowResults() {
-        return resultsAvailable && !advancedSelected;
+        return resultsAvailable;
     }
 
     public List<FeasibilityAnalysisResult> getResults() {

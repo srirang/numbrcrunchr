@@ -17,10 +17,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import au.com.numbrcrunchr.domain.DataException;
-import au.com.numbrcrunchr.domain.StampDutyRate;
 import au.com.numbrcrunchr.domain.StampDutyRepository;
 import au.com.numbrcrunchr.domain.StampDutyRepositoryJpaImpl;
-import au.com.numbrcrunchr.domain.TaxRate;
 import au.com.numbrcrunchr.domain.TaxRateRepository;
 import au.com.numbrcrunchr.domain.TaxRateRepositoryJpaImpl;
 
@@ -60,8 +58,8 @@ public class DbInitialiserTest {
     @Test
     public void clearDbAndInitialise() {
         // Delete reference data
-        delete(TaxRate.class.getSimpleName());
-        delete(StampDutyRate.class.getSimpleName());
+        deleteTaxRates();
+        deleteStampDuties();
         assertTrue(dbInitialiser.needsUpdating());
         assertFalse(stampDutyRepository.hasAllData());
         assertFalse(taxRateRepository.hasAllData());
@@ -75,7 +73,7 @@ public class DbInitialiserTest {
     @Test
     public void clearSomeReferenceDataFromDbAndInitialise() {
         // Delete reference data
-        delete(TaxRate.class.getSimpleName());
+        deleteTaxRates();
         assertTrue(dbInitialiser.needsUpdating());
         assertFalse(stampDutyRepository.hasAllData());
         assertFalse(taxRateRepository.hasAllData());
@@ -89,7 +87,7 @@ public class DbInitialiserTest {
     @Test
     public void clearSomeDbAndInitialiseUsingPostProcessing() {
         dbInitialiser.postProcessBeanFactory(null);
-        delete(StampDutyRate.class.getSimpleName());
+        deleteStampDuties();
         // Delete reference data
         assertTrue(dbInitialiser.needsUpdating());
         assertFalse(stampDutyRepository.hasAllData());
@@ -115,42 +113,11 @@ public class DbInitialiserTest {
         dbInitialiser.shutdownDatabase();
     }
 
-    private void delete(final String className) {
-        // new JpaTemplate(entityManagerFactory)
-        // .execute(new JpaCallback<Object>() {
-        // @Override
-        // public Object doInJpa(EntityManager em)
-        // throws PersistenceException {
-        // em.getTransaction().begin();
-        // em.createQuery("delete from " + className + " r")
-        // .executeUpdate();
-        // em.getTransaction().commit();
-        // return null;
-        // }
-        // });
-        // Connection connection = ((SessionImpl) entityManagerFactory
-        // .createEntityManager().getDelegate()).getJDBCContext()
-        // .getConnectionManager().getConnection();
-        // try {
-        // JdbcTemplate jdbcTemplate = new JdbcTemplate(
-        // new SingleConnectionDataSource(connection, true));
-        // jdbcTemplate.update("DELETE FROM Stamp_Duty_Rates");
-        // jdbcTemplate.update("DELETE FROM Payg_Tax_Rates");
-        // connection.commit();
-        // } catch (DataAccessException e) {
-        // try {
-        // connection.close();
-        // } catch (SQLException e1) {
-        // LOGGER.severe("Error initialising database!" + e1 + e);
-        // }
-        // } catch (SQLException e) {
-        // try {
-        // connection.close();
-        // } catch (SQLException e1) {
-        // LOGGER.severe("Error initialising database!" + e1 + e);
-        // }
-        // }
+    private void deleteStampDuties() {
         ((StampDutyRepositoryJpaImpl) stampDutyRepository).deleteAllData();
+    }
+
+    private void deleteTaxRates() {
         ((TaxRateRepositoryJpaImpl) taxRateRepository).deleteAllData();
     }
 

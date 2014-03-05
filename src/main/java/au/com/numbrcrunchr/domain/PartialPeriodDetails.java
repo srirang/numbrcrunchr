@@ -1,8 +1,10 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PartialPeriodDetails {
+public class PartialPeriodDetails implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final double proRataFinancialYear;
     private final Date financialYearEnd;
 

@@ -85,6 +85,11 @@
     <property name="versionDetails" ref="versionDetails" />
   </bean>
 
+  <bean id="feedbackController" class="au.com.numbrcrunchr.web.FeedbackController"
+    scope="session">
+    <property name="versionDetails" ref="versionDetails" />
+  </bean>
+
   <bean id="loanAmortisationScheduleCalculator"
     class="au.com.numbrcrunchr.domain.LoanAmortisationScheduleCalculator">
     <property name="interestCalculator" ref="interestCalculator" />

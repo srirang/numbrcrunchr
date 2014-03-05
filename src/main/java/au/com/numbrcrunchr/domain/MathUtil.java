@@ -1,8 +1,11 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public final class MathUtil {
+public final class MathUtil implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private MathUtil() {
 
     }

@@ -1,9 +1,12 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class State {
+public final class State implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private State() {
 
     }

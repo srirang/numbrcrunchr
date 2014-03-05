@@ -1,36 +1,30 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public final class AmortisationSchedule {
+public final class AmortisationSchedule implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private List<Repayment> interestOnlyRepayments = new ArrayList<Repayment>();
     private List<Repayment> monthlyRepayments = new ArrayList<Repayment>();
     private List<Repayment> yearlyRepayments = new ArrayList<Repayment>();
-    // private Repayment baloonPayment;
-    private double loanAmount;
-    private double interestRate;
-    private double termInYears;
+    private final double loanAmount;
+    private final double interestRate;
+    private final double termInYears;
 
-    private AmortisationSchedule() {
-    }
-
-    public static AmortisationSchedule createAmortisationSchedule(
-            double loanAmount, double interestRate, double termInYears,
-            List<Repayment> interestOnlyRepayments,
+    public AmortisationSchedule(double loanAmount, double interestRate,
+            double termInYears, List<Repayment> interestOnlyRepayments,
             List<Repayment> monthlyRepayments) {
-        // , Repayment baloonPayment) {
-        AmortisationSchedule schedule = new AmortisationSchedule();
-        schedule.loanAmount = loanAmount;
-        schedule.interestRate = interestRate;
-        schedule.termInYears = termInYears;
-        schedule.monthlyRepayments = monthlyRepayments;
-        schedule.interestOnlyRepayments = interestOnlyRepayments;
-        schedule.updateYearlyAmortisations();
-        // schedule.baloonPayment = baloonPayment;
-        return schedule;
+        this.loanAmount = loanAmount;
+        this.interestRate = interestRate;
+        this.termInYears = termInYears;
+        this.monthlyRepayments = monthlyRepayments;
+        this.interestOnlyRepayments = interestOnlyRepayments;
+        this.updateYearlyAmortisations();
     }
 
     public List<Repayment> getMonthlyRepayments() {
@@ -71,10 +65,6 @@ public final class AmortisationSchedule {
         }
     }
 
-    // public Repayment getBaloonPayment() {
-    // return baloonPayment;
-    // }
-
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer("Amortisation Schedule:");
@@ -89,7 +79,6 @@ public final class AmortisationSchedule {
         for (Repayment result : this.monthlyRepayments) {
             sb.append(result.toString());
         }
-        // sb.append(baloonPayment.toString());
         sb.append("\n---------------------------------------------------------------------------\n\n\n\n");
         return sb.toString();
     }

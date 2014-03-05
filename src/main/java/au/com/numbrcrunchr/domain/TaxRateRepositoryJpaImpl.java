@@ -1,5 +1,6 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,7 +9,9 @@ import javax.persistence.PersistenceException;
 import org.springframework.orm.jpa.JpaCallback;
 
 public class TaxRateRepositoryJpaImpl extends AbstractJpaRepository implements
-        TaxRateRepository {
+        TaxRateRepository, Serializable {
+
+    private static final long serialVersionUID = 1L;
     public static final String TAX_YEAR_2010_2011 = "2010-2011";
 
     @Override

@@ -1,9 +1,12 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Logger;
 
-public class TaxCalculator {
+public class TaxCalculator implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private static final Logger LOGGER = Logger.getLogger(TaxCalculator.class
             .getName());

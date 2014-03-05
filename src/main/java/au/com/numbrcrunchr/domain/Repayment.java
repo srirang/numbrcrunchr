@@ -34,35 +34,19 @@ public class Repayment {
         return principal;
     }
 
-    public Double getRepayment() {
-        return repayment;
-    }
-
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         return sb.append("Month ").append(getPeriod()).append("\t")
-                .append(getLoanBalance()).append("\t").append(getRepayment())
+                .append(getLoanBalance()).append("\t").append(repayment)
                 .append("\t").append(getInterest()).append("\t")
                 .append(getPrincipal()).append("\n").toString();
     }
 
     @Override
     public boolean equals(Object object) {
-        if (object == null) {
-            return false;
-        }
-        if (object == this) {
-            return true;
-        }
-        if (object.getClass() != getClass()) {
-            return false;
-        }
-        Repayment repayment = (Repayment) object;
-        return getPrincipal().equals(repayment.getPrincipal())
-                && getInterest().equals(repayment.getInterest())
-                && getRepayment().equals(repayment.getRepayment())
-                && getLoanBalance().equals(repayment.getLoanBalance());
+        throw new UnsupportedOperationException(
+                "Equals is not supported for objects of this type");
     }
 
     protected double principal() {
@@ -83,8 +67,8 @@ public class Repayment {
 
     @Override
     public int hashCode() {
-        assert false : "hashCode not designed";
-        return 42;
+        throw new UnsupportedOperationException(
+                "Hascode is not supported for objects of this type");
     }
 
 }

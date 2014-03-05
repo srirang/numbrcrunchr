@@ -1,5 +1,6 @@
 package au.com.numbrcrunchr.domain;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,7 +9,8 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
 
-public final class FinancialYearUtils {
+public final class FinancialYearUtils implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private FinancialYearUtils() {
 

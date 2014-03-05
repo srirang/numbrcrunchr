@@ -1,6 +1,10 @@
 package au.com.numbrcrunchr.domain;
 
-public class LVRCalculator {
+import java.io.Serializable;
+
+public class LVRCalculator implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public double calculateLvr(double loanAmount, double propertyValue) {
         if (propertyValue == 0) {
             return 0;

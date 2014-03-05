@@ -1,6 +1,8 @@
 package au.com.numbrcrunchr.domain;
 
-public interface TaxRateRepository {
+import java.io.Serializable;
+
+public interface TaxRateRepository extends Serializable {
     TaxRate getRate(String taxYear, double income);
 
     boolean hasAllData();
