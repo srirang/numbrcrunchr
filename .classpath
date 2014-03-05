@@ -13,7 +13,7 @@
   <classpathentry kind="var" path="M2_REPO/com/sun/faces/jsf-api/2.1.2/jsf-api-2.1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/sun/faces/jsf-impl/2.1.2/jsf-impl-2.1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jpa_2.0_spec/1.0/geronimo-jpa_2.0_spec-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/primefaces/primefaces/3.4/primefaces-3.4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/primefaces/primefaces/3.5/primefaces-3.5.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/primefaces/themes/blitzer/1.0.2/blitzer-1.0.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/primefaces/themes/home/1.0.4/home-1.0.4.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/3.2.7.RELEASE/spring-context-3.2.7.RELEASE.jar"/>
@@ -30,7 +30,6 @@
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/3.2.7.RELEASE/spring-tx-3.2.7.RELEASE.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/joda-time/joda-time/1.6.1/joda-time-1.6.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/1.7.1/gson-1.7.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/3.2.7.RELEASE/spring-web-3.2.7.RELEASE.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-core/3.5.1-Final/hibernate-core-3.5.1-Final.jar"/>
   <classpathentry kind="var" path="M2_REPO/antlr/antlr/2.7.6/antlr-2.7.6.jar"/>

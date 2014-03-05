@@ -51,11 +51,6 @@ public class DbInitialiserTest {
     }
 
     @Test
-    public void needsUpdating() {
-        assertFalse(dbInitialiser.needsUpdating());
-    }
-
-    @Test
     public void clearDbAndInitialise() {
         // Delete reference data
         deleteTaxRates();
@@ -75,7 +70,7 @@ public class DbInitialiserTest {
         // Delete reference data
         deleteTaxRates();
         assertTrue(dbInitialiser.needsUpdating());
-        assertFalse(stampDutyRepository.hasAllData());
+        assertTrue(stampDutyRepository.hasAllData());
         assertFalse(taxRateRepository.hasAllData());
 
         dbInitialiser.initialiseDb("schema/insert.sql");

@@ -34,17 +34,17 @@ public class TaxRateRepositoryMapImpl implements TaxRateRepository,
                 new TaxRate(TAX_YEAR_2011_2012, 80001l, 180000l, 17550, 0.37),
                 new TaxRate(TAX_YEAR_2011_2012, 180001l, null, 54550, 0.45), });
         TAX_RATES.put(TAX_YEAR_2012_2013, new TaxRate[] {
-                new TaxRate(TAX_YEAR_2012_2013, 0l, 6000l, 0, 0),
-                new TaxRate(TAX_YEAR_2012_2013, 6001l, 37000l, 0, .15),
-                new TaxRate(TAX_YEAR_2012_2013, 37001l, 80000l, 4650, 0.30),
-                new TaxRate(TAX_YEAR_2012_2013, 80001l, 180000l, 17550, 0.37),
-                new TaxRate(TAX_YEAR_2012_2013, 180001l, null, 54550, 0.45), });
+                new TaxRate(TAX_YEAR_2012_2013, 0l, 18200l, 0, 0),
+                new TaxRate(TAX_YEAR_2012_2013, 18201l, 37000l, 0, .19),
+                new TaxRate(TAX_YEAR_2012_2013, 37001l, 80000l, 3572, 0.325),
+                new TaxRate(TAX_YEAR_2012_2013, 80001l, 180000l, 17547, 0.37),
+                new TaxRate(TAX_YEAR_2012_2013, 180001l, null, 54547, 0.45), });
         TAX_RATES.put(TAX_YEAR_2013_2014, new TaxRate[] {
-                new TaxRate(TAX_YEAR_2013_2014, 0l, 6000l, 0, 0),
-                new TaxRate(TAX_YEAR_2013_2014, 6001l, 37000l, 0, .15),
-                new TaxRate(TAX_YEAR_2013_2014, 37001l, 80000l, 4650, 0.30),
-                new TaxRate(TAX_YEAR_2013_2014, 80001l, 180000l, 17550, 0.37),
-                new TaxRate(TAX_YEAR_2013_2014, 180001l, null, 54550, 0.45), });
+                new TaxRate(TAX_YEAR_2013_2014, 0l, 18200l, 0, 0),
+                new TaxRate(TAX_YEAR_2013_2014, 18201l, 37000l, 0, .19),
+                new TaxRate(TAX_YEAR_2013_2014, 37001l, 80000l, 3572, 0.325),
+                new TaxRate(TAX_YEAR_2013_2014, 80001l, 180000l, 17547, 0.37),
+                new TaxRate(TAX_YEAR_2013_2014, 180001l, null, 54547, 0.45), });
     }
 
     @Override

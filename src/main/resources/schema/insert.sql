@@ -56,14 +56,15 @@ INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2011-2012', '180000', '17550', '.37');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2011-2012', NULL, '54550', '.45');
 
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2012-2013', '6000', '0', '0');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '6001', '2012-2013', '37000', '0', '0.15');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2012-2013', '80000', '4650', '.30');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2012-2013', '180000', '17550', '.37');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2012-2013', NULL, '54550', '.45');
 
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2013-2014', '6000', '0', '0');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '6001', '2013-2014', '37000', '0', '0.15');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2013-2014', '80000', '4650', '.30');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2013-2014', '180000', '17550', '.37');
-INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2013-2014', NULL, '54550', '.45');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2012-2013', '18200', '0', '0');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '18201', '2012-2013', '37000', '0', '0.19');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2012-2013', '80000', '3572', '.325');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2012-2013', '180000', '17547', '.37');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2012-2013', NULL, '54547', '.45');
+
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2013-2014', '18200', '0', '0');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '18201', '2013-2014', '37000', '0', '0.19');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2013-2014', '80000', '3572', '.325');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2013-2014', '180000', '17547', '.37');
+INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2013-2014', NULL, '54547', '.45');

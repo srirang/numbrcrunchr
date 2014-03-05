@@ -57,4 +57,16 @@ public abstract class TaxCalculatorTestCase {
         assertEquals(7410.416666666667, nettIncome / 12,
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }
+
+    @Test
+    public void checkAgainstATOWebsite() {
+        Date referenceDate = new DateMidnight(2013, 3, 5).toDate();
+        assertEquals(7867,
+                getTaxCalculator().calculateTax(referenceDate, 48000, true),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        assertEquals(
+                40133,
+                getTaxCalculator().calculateNettIncome(referenceDate, 48000,
+                        true), MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+    }
 }

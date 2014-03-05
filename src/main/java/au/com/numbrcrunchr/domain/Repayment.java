@@ -1,5 +1,7 @@
 package au.com.numbrcrunchr.domain;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+
 public class Repayment {
 
     private final int period;
@@ -45,8 +47,20 @@ public class Repayment {
 
     @Override
     public boolean equals(Object object) {
-        throw new UnsupportedOperationException(
-                "Equals is not supported for objects of this type");
+        if (object == null) {
+            return false;
+        }
+        if (object == this) {
+            return true;
+        }
+        if (object.getClass() != getClass()) {
+            return false;
+        }
+        Repayment rhs = (Repayment) object;
+        return new EqualsBuilder().append(this.loanBalance, rhs.loanBalance)
+                .append(this.interest, rhs.interest)
+                .append(this.principal, rhs.principal)
+                .append(this.repayment, rhs.repayment).isEquals();
     }
 
     protected double principal() {

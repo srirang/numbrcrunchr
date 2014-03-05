@@ -45,9 +45,9 @@ public class FeasibilityAnalyserTest {
         assertEquals(FeasibilityAnalysisResult.NEGATIVE, result.getGearing());
         assertEquals(income, result.getAnnualIncomeBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(32350, result.getAnnualTaxBeforeIP(),
+        assertEquals(32347, result.getAnnualTaxBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(87650, result.getTotalNettIncome(),
+        assertEquals(87653, result.getTotalNettIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(16000, result.getRentalIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -55,7 +55,7 @@ public class FeasibilityAnalyserTest {
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(101814.4, result.getAnnualIncomeAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(27148, result.getAnnualTaxAfterIP(),
+        assertEquals(27145, result.getAnnualTaxAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(5202, result.getTaxSavings(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -98,11 +98,9 @@ public class FeasibilityAnalyserTest {
         assertEquals(income * proRataFinancialYearRemaining,
                 result.getAnnualIncomeBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(32350 * proRataFinancialYearRemaining,
-                result.getAnnualTaxBeforeIP(),
+        assertEquals(1777.3076923076924, result.getAnnualTaxBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(87650 * proRataFinancialYearRemaining,
-                result.getTotalNettIncome(),
+        assertEquals(4816.098901098901, result.getTotalNettIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(879.1208791208791, result.getRentalIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -110,7 +108,7 @@ public class FeasibilityAnalyserTest {
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(5594.197802197802, result.getAnnualIncomeAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(1491.6483516483515, result.getAnnualTaxAfterIP(),
+        assertEquals(1491.4835164835165, result.getAnnualTaxAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(285.8241758241758, result.getTaxSavings(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -138,9 +136,9 @@ public class FeasibilityAnalyserTest {
         assertEquals(FeasibilityAnalysisResult.NEGATIVE, result.getGearing());
         assertEquals(income, result.getAnnualIncomeBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(32350, result.getAnnualTaxBeforeIP(),
+        assertEquals(32347, result.getAnnualTaxBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(87650, result.getTotalNettIncome(),
+        assertEquals(87653, result.getTotalNettIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(16000, result.getRentalIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -148,7 +146,7 @@ public class FeasibilityAnalyserTest {
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(112960.0, result.getAnnualIncomeAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(31439, result.getAnnualTaxAfterIP(),
+        assertEquals(31436, result.getAnnualTaxAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(911, result.getTaxSavings(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -177,9 +175,9 @@ public class FeasibilityAnalyserTest {
         assertEquals(FeasibilityAnalysisResult.POSITIVE, result.getGearing());
         assertEquals(income, result.getAnnualIncomeBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(32350, result.getAnnualTaxBeforeIP(),
+        assertEquals(32347, result.getAnnualTaxBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(87650, result.getTotalNettIncome(),
+        assertEquals(87653, result.getTotalNettIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(16000, result.getRentalIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -187,7 +185,7 @@ public class FeasibilityAnalyserTest {
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(129600, result.getAnnualIncomeAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(37846, result.getAnnualTaxAfterIP(),
+        assertEquals(37843, result.getAnnualTaxAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(-5496, result.getTaxSavings(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -216,9 +214,9 @@ public class FeasibilityAnalyserTest {
         assertEquals(FeasibilityAnalysisResult.NEGATIVE, result.getGearing());
         assertEquals(income, result.getAnnualIncomeBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(108550, result.getAnnualTaxBeforeIP(),
+        assertEquals(108547, result.getAnnualTaxBeforeIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(191450, result.getTotalNettIncome(),
+        assertEquals(191453, result.getTotalNettIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(22500, result.getRentalIncome(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
@@ -226,7 +224,7 @@ public class FeasibilityAnalyserTest {
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(288314.4, result.getAnnualIncomeAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        assertEquals(107616, result.getAnnualTaxAfterIP(),
+        assertEquals(107613, result.getAnnualTaxAfterIP(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
         assertEquals(934, result.getTaxSavings(),
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
