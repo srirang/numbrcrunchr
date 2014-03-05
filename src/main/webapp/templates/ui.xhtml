@@ -269,10 +269,10 @@
               </h:panelGroup>
               <h:panelGroup>Purchase Date:</h:panelGroup>
               <h:panelGroup>
-                <h:inputText id="purchaseDate" size="10"
-                  value="#{mainController.purchaseDate}">
+                <p:calendar id="purchaseDate" size="14"
+                  value="#{mainController.purchaseDate}" mindate="new java.util.Date()" pattern="dd/MM/yyyy">
                   <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-                </h:inputText>
+                </p:calendar>
               </h:panelGroup>
               <h:panelGroup>Landlord's Insurance:</h:panelGroup>
               <h:panelGroup>
@@ -382,7 +382,7 @@
               <h:panelGroup />
               <h:panelGroup />
               <h:commandButton class="simple-button" value="Apply"
-                action="#{mainController.apply}" />
+                action="#{mainController.runProjection}" />
             </p:panelGrid>
           </p:fieldset>
           <br />
