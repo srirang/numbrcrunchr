@@ -3,7 +3,6 @@ package au.com.numbrcrunchr.web;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -63,9 +62,10 @@ public class MainController implements Serializable {
     private VersionDetails versionDetails;
 
     // Read-write
-    private Boolean includesStampDuty;
-    private Property property;
-    private Owner owner, partner;
+    private Boolean includesStampDuty = Boolean.FALSE;
+    private Property property = new Property();
+    private final Owner owner = new Owner();
+    private Owner partner = new Owner();
     private boolean resultsAvailable = false;
     private int numberOfYears = 25;
     private String frequency = FeasibilityAnalysisResult.YEARLY;
@@ -133,17 +133,10 @@ public class MainController implements Serializable {
     }
 
     Property getProperty() {
-        if (this.property == null) {
-            this.property = new Property();
-        }
         return this.property;
     }
 
     Owner getOwner() {
-        if (this.owner == null) {
-            this.owner = new Owner();
-            this.property.addOwner(owner);
-        }
         return this.owner;
     }
 
@@ -228,7 +221,7 @@ public class MainController implements Serializable {
     }
 
     public Boolean getIncludesStampDuty() {
-        return includesStampDuty == null ? Boolean.FALSE : includesStampDuty;
+        return includesStampDuty;
     }
 
     public void setIncludesStampDuty(Boolean includesStampDuty) {
@@ -476,10 +469,6 @@ public class MainController implements Serializable {
         this.stampDutyCalculator = stampDutyCalculator;
     }
 
-    public String getGearing() {
-        return "Negative";
-    }
-
     public ProjectionParameters getProjectionParameters() {
         return projectionParameters;
     }
@@ -644,13 +633,14 @@ public class MainController implements Serializable {
     }
 
     public List<FeasibilityAnalysisResult> getResults() {
-        if (projection.getProjections().isEmpty()) {
-            return Collections.emptyList();
-        }
-        return projection.getProjections().subList(
-                0,
-                projection.getProjections().size() < 25 ? projection
-                        .getProjections().size() : 25);
+        // if (projection.getProjections().isEmpty()) {
+        // return Collections.emptyList();
+        // }
+        // return projection.getProjections().subList(
+        // 0,
+        // projection.getProjections().size() < 25 ? projection
+        // .getProjections().size() : 25);
+        return this.projection.getProjections();
     }
 
     public void changeFrequency() {
@@ -663,6 +653,7 @@ public class MainController implements Serializable {
         return feasibilityAnalysisProjectionService;
     }
 
+    // TODO Consider the best place to cache and update the chart
     public CartesianChartModel getCashflowChart() {
         CartesianChartModel chartModel = new CartesianChartModel();
         ChartSeries incomeSeries = new ChartSeries("Income");
@@ -679,6 +670,7 @@ public class MainController implements Serializable {
         return chartModel;
     }
 
+    // TODO Consider the best place to cache and update the chart
     public CartesianChartModel getEquityChart() {
         CartesianChartModel chartModel = new CartesianChartModel();
         ChartSeries equitySeries = new ChartSeries("Equity");
@@ -749,5 +741,9 @@ public class MainController implements Serializable {
 
     public boolean isLmiApplicable() {
         return this.getLvr() <= 80;
+    }
+
+    public MainController() {
+        this.property.addOwner(owner);
     }
 }

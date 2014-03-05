@@ -47,7 +47,6 @@ public class MainControllerTest {
         assertNotNull(controller.getStampDutyCalculator());
         assertNotNull(controller.getLoanBalanceCalculator());
         assertNotNull(controller.getProjectionParameters());
-        assertEquals("Negative", controller.getGearing());
     }
 
     @Test
@@ -60,7 +59,6 @@ public class MainControllerTest {
 
         List<FeasibilityAnalysisResult> projection = controller.getProjection();
         assertEquals(25, projection.size());
-        assertEquals("Negative", controller.getGearing());
         // assertNotNull(controller.getAllExpensesAsJson());
         // assertNotNull(controller.getAllGrossYieldsAsJson());
         // assertNotNull(controller.getAllIncomesAsJson());
@@ -80,7 +78,6 @@ public class MainControllerTest {
 
         List<FeasibilityAnalysisResult> projection = controller.getProjection();
         assertEquals(25, projection.size());
-        assertEquals("Negative", controller.getGearing());
     }
 
     @Test

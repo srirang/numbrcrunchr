@@ -369,6 +369,50 @@
             </h:selectOneMenu>
             <br />
           </p:fieldset>
+
+          <br />
+          <p:fieldset legend="Yearly Projection" toggleable="false"
+            collapsed="false">
+            Change Frequency:
+            <h:selectOneMenu value="#{mainController.frequency}">
+              <f:selectItems value="#{mainController.frequencies}" />
+              <f:ajax event="change"
+                listener="#{mainController.changeFrequency}"
+                render="returnSummary cashflowChart" />
+            </h:selectOneMenu>
+            <br />
+            <p:commandButton value="Download Excel" ajax="false">
+              <p:dataExporter type="xls" target="returnSummary"
+                fileName="numbrcrunchr-dataexport.xlsx" />
+            </p:commandButton>
+            <p:commandButton value="Download CSV" ajax="false">
+              <p:dataExporter type="csv" target="returnSummary"
+                fileName="numbrcrunchr-dataexport.csv" />
+            </p:commandButton>
+            <br />
+            <br />
+            <p:dataTable id="yearlyProjectionSummary"
+              draggableColumns="true" resizableColumns="true"
+              value="#{mainController.results}" var="row">
+              <p:column>
+                <f:facet name="header">
+                  <h:outputText value="Line Items" />
+                </f:facet>
+              </p:column>
+              <c:forEach items="#{mainController.results}" var="result">
+                <p:column>
+                  <f:facet name="header">
+                    <h:outputText value="#{result.year}"></h:outputText>
+                  </f:facet>
+                </p:column>
+              </c:forEach>
+
+              <p:column>Weekly Rent</p:column>
+              <p:column>
+                <h:outputText value="#{row.weeklyRent}"></h:outputText>
+              </p:column>
+            </p:dataTable>
+          </p:fieldset>
         </h:form>
       </h:panelGroup>
     </div>
