@@ -32,6 +32,7 @@ public class FeasibilityAnalysisProjectionService implements Serializable {
         } catch (CloneNotSupportedException e) {
             throw new DataException("Error completing projection", e);
         }
+        int j = 0;
         for (int i = 1; i < projectionYears + 1; i++) {
             try {
                 projectionProperty = (Property) projectionProperty.clone();
@@ -44,6 +45,8 @@ public class FeasibilityAnalysisProjectionService implements Serializable {
                                 .doubleValue(), yearlyRepayment.getPrincipal()
                                 .doubleValue(), PROJECTION_YEAR_PREFIX
                                 + (i + 1));
+                projectionProperty.setLoanAmount(yearlyRepayment
+                        .getLoanBalance());
                 projections.add(result);
             } catch (CloneNotSupportedException e) {
                 throw new DataException("Error completing projection", e);

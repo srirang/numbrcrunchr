@@ -191,6 +191,7 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 interestRate, propertyManagementFee);
         Projection projection = projectionService.runProjection(property, 50,
                 projectionParameters);
+        projection.toString();
         assertEquals(16, projection.getCashflowPositiveYearIndex());
         List<FeasibilityAnalysisResult> projections = projection
                 .getProjections();
