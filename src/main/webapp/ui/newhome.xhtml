@@ -399,6 +399,12 @@
                   <h:outputText value="Line Items" />
                 </f:facet>
               </p:column>
+              <p:column>
+                <h:outputText value="Loan Balance" />
+              </p:column>
+              <p:column>
+                <h:outputText value="Weekly Rent" />
+              </p:column>
               <c:forEach items="#{mainController.results}" var="result">
                 <p:column>
                   <f:facet name="header">
@@ -407,7 +413,6 @@
                 </p:column>
               </c:forEach>
 
-              <p:column>Weekly Rent</p:column>
               <p:column>
                 <h:outputText value="#{row.weeklyRent}"></h:outputText>
               </p:column>

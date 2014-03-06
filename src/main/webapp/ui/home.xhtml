@@ -202,14 +202,16 @@
           <br />
           <p:fieldset legend="Investment Projection" toggleable="false"
             collapsed="false">
-            Change Frequency:
-            <h:selectOneMenu id="Frequency"
-              value="#{mainController.frequency}">
-              <f:selectItems value="#{mainController.frequencies}" />
-              <f:ajax event="change"
-                listener="#{mainController.changeFrequency}"
-                render="returnSummary cashflowChart" />
-            </h:selectOneMenu>
+            <h:panelGrid columns="2">
+              <h:outputText value="Change Frequency:" />
+              <p:selectOneMenu id="Frequency"
+                value="#{mainController.frequency}">
+                <f:selectItems value="#{mainController.frequencies}" />
+                <f:ajax event="change"
+                  listener="#{mainController.changeFrequency}"
+                  render="returnSummary cashflowChart" />
+              </p:selectOneMenu>
+            </h:panelGrid>
             <p:lineChart id="cashflowChart"
               value="#{mainController.cashflowChart}"
               legendPosition="se"
@@ -231,13 +233,15 @@
           <br />
           <p:fieldset legend="Projection Data" toggleable="false"
             collapsed="false">
-            Change Frequency:
-            <h:selectOneMenu value="#{mainController.frequency}">
-              <f:selectItems value="#{mainController.frequencies}" />
-              <f:ajax event="change"
-                listener="#{mainController.changeFrequency}"
-                render="returnSummary cashflowChart" />
-            </h:selectOneMenu>
+            <h:panelGrid columns="2">
+              <h:outputText value="Change Frequency:" />
+              <p:selectOneMenu value="#{mainController.frequency}">
+                <f:selectItems value="#{mainController.frequencies}" />
+                <f:ajax event="change"
+                  listener="#{mainController.changeFrequency}"
+                  render="returnSummary cashflowChart" />
+              </p:selectOneMenu>
+            </h:panelGrid>
             <br />
             <p:commandButton value="Download Excel" ajax="false">
               <p:dataExporter type="xls" target="returnSummary"
@@ -360,13 +364,16 @@
                 fileName="numbrcrunchr-dataexport.csv" />
             </p:commandButton>
             <br />
-            Change Frequency:
-            <h:selectOneMenu value="#{mainController.frequency}">
-              <f:selectItems value="#{mainController.frequencies}" />
-              <f:ajax event="change"
-                listener="#{mainController.changeFrequency}"
-                render="returnSummary cashflowChart" />
-            </h:selectOneMenu>
+            <br />
+            <h:panelGrid columns="2">
+              <h:outputText value="Change Frequency:" />
+              <p:selectOneMenu value="#{mainController.frequency}">
+                <f:selectItems value="#{mainController.frequencies}" />
+                <f:ajax event="change"
+                  listener="#{mainController.changeFrequency}"
+                  render="returnSummary cashflowChart" />
+              </p:selectOneMenu>
+            </h:panelGrid>
             <br />
           </p:fieldset>
         </h:form>

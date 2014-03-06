@@ -14,6 +14,10 @@
     <param-value>home</param-value>
   </context-param>
   <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Production</param-value>
+  </context-param>
+  <context-param>
     <param-name>javax.faces.CONFIG_FILES</param-name>
     <param-value>/WEB-INF/faces-config.xml</param-value>
   </context-param>
@@ -58,4 +62,12 @@
   <welcome-file-list>
     <welcome-file>ui/home.xhtml</welcome-file>
   </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/ui/error4xx.xhtml</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error5xx.xhtml</location>
+  </error-page>
 </web-app>
