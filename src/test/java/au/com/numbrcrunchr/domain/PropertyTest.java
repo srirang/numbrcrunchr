@@ -7,7 +7,6 @@ import static org.junit.Assert.assertNotSame;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,9 +19,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class PropertyTest {
     @Autowired
     private ProjectionParameters projectionParameters;
-
-    private static final Logger LOGGER = Logger.getLogger(PropertyTest.class
-            .getName());
 
     @Test
     public void checkOwnersList() {
@@ -51,9 +47,7 @@ public class PropertyTest {
     public void checkClone() throws CloneNotSupportedException {
         Property property = createAProperty();
 
-        LOGGER.info(new Date().toString());
         Property copy = (Property) property.clone();
-        LOGGER.info(new Date().toString());
 
         assertNotSame(property, copy);
         assertEquals(property, copy);
@@ -63,11 +57,9 @@ public class PropertyTest {
     public void checkThousandClones() throws CloneNotSupportedException {
         Property property = createAProperty();
 
-        LOGGER.info(new Date().toString());
         for (int i = 0; i < 1001; i++) {
             property.clone();
         }
-        LOGGER.info(new Date().toString());
     }
 
     @Test

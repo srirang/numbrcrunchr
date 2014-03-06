@@ -51,7 +51,6 @@ public class DbInitialiser implements BeanFactoryPostProcessor {
                         throws SQLException, DataAccessException {
                     for (String sql : sqls) {
                         statement.execute(sql);
-                        LOGGER.info("Executed :" + sql);
                     }
                     return null;
                 }

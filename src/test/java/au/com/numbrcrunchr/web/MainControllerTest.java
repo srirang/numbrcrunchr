@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,9 +22,6 @@ import au.com.numbrcrunchr.domain.State;
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 @WebAppConfiguration
 public class MainControllerTest {
-    private static final Logger LOGGER = Logger.getLogger(MainController.class
-            .getName());
-
     @Autowired
     private MainController controller;
 
@@ -97,7 +93,6 @@ public class MainControllerTest {
     public void checkCharts() {
         Property property = PropertyTest.createProperty(125000, true, 427320,
                 5000, (byte) 50, 250, 8.0, 10.0);
-        LOGGER.info(String.valueOf(property));
         property.setState(State.VIC);
         controller.setProperty(property);
         controller.setNumberOfYears(4);

@@ -196,7 +196,6 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 .getProjections();
         // TODO Why does projection for n years return n+1 results?
         assertEquals(31, projections.size());
-        System.out.println(projections.get(0).toString());
     }
 
 }

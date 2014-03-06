@@ -2,14 +2,10 @@ package au.com.numbrcrunchr.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.logging.Logger;
 
 public class TaxCalculator implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
-    private static final Logger LOGGER = Logger.getLogger(TaxCalculator.class
-            .getName());
     private TaxRateRepository taxRateRepository;
     private static final Double MEDICARE_LEVY_SURCHARGE_RATE = new Double(
             "0.015");
@@ -18,7 +14,6 @@ public class TaxCalculator implements Serializable {
             boolean includeMedicareLevySurcharge) {
         String taxYearString = FinancialYearUtils.getTaxYear(taxYear);
         TaxRate rate = taxRateRepository.getRate(taxYearString, grossIncome);
-        LOGGER.info(rate.toString());
         double taxOnIncome = rate.getFlatRate()
                 + (grossIncome - rate.getLowerLimit()) * rate.getPercentage();
         double medicareLevy = 0;

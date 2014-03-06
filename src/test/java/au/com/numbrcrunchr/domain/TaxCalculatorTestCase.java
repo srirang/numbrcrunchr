@@ -3,8 +3,6 @@ package au.com.numbrcrunchr.domain;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.joda.time.DateMidnight;
 import org.junit.Test;
@@ -20,8 +18,6 @@ public abstract class TaxCalculatorTestCase {
 
     private static final Date referenceDate = new DateMidnight(2010, 8, 11)
             .toDate();
-    private static final Logger LOGGER = Logger
-            .getLogger(TaxCalculatorTestCase.class.getName());
 
     @Test
     public void taxFor1Million() {
@@ -53,7 +49,6 @@ public abstract class TaxCalculatorTestCase {
         double income = 125000;
         double nettIncome = getTaxCalculator().calculateNettIncome(
                 referenceDate, income, true);
-        LOGGER.log(Level.INFO, "Nett Income: {0}", nettIncome);
         assertEquals(7410.416666666667, nettIncome / 12,
                 MathUtilTest.ROUNDING_ERROR_TOLERANCE);
     }

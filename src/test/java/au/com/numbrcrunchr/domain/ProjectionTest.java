@@ -1,9 +1,11 @@
 package au.com.numbrcrunchr.domain;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class ProjectionTest {
+    private static final Logger LOGGER = Logger.getLogger(ProjectionTest.class
+            .getName());
 
     @Autowired
     private FeasibilityAnalysisProjectionService projectionService;
@@ -44,9 +48,10 @@ public class ProjectionTest {
                 interestRate, propertyManagementFee);
         Projection projection = projectionService.runProjection(property, 50,
                 projectionParameters);
+        assertNotNull(projection);
         List<FeasibilityAnalysisResult> projections = projection
                 .getProjections();
-        System.out.println(projection);
+        LOGGER.info(projection.toString());
         try {
             new Projection(projections, null);
             fail("IllegalArgumentException expected");

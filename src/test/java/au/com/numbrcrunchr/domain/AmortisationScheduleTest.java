@@ -3,6 +3,8 @@ package au.com.numbrcrunchr.domain;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.logging.Logger;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class AmortisationScheduleTest {
+    private static final Logger LOGGER = Logger
+            .getLogger(AmortisationScheduleTest.class.getName());
     @Autowired
     private LoanAmortisationScheduleCalculator calculator;
     private final double loan = 300000;
@@ -30,7 +34,7 @@ public class AmortisationScheduleTest {
         assertNotNull(amortisationSchedule.getMonthlyRepayments().get(360));
         assertEquals(0, amortisationSchedule.getMonthlyRepayments().get(360)
                 .getLoanBalance(), MathUtilTest.ROUNDING_ERROR_TOLERANCE);
-        System.out.println(amortisationSchedule.toString());
+        LOGGER.info(amortisationSchedule.toString());
     }
 
     @Test
