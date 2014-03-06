@@ -185,6 +185,12 @@
 
   <build>
     <finalName>numbrcrunchr</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -194,6 +200,39 @@
           <source>${jdk.version}</source>
           <target>${jdk.version}</target>
           <showWarnings>true</showWarnings>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>maven-version</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>false</addClasspath>
+            </manifest>
+            <manifestEntries>
+              <Build-Time>${maven.build.timestamp}</Build-Time>
+              <Build-User>${user.name}</Build-User>
+              <Build-Maven>Maven ${maven.version}</Build-Maven>
+              <Build-Java>${java.version}</Build-Java>
+              <Build-OS>${os.name}</Build-OS>
+              <Build-Label>${project.version}</Build-Label>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
       <plugin>

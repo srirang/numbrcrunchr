@@ -96,7 +96,7 @@
   </bean>
 
   <bean id="versionDetails" class="au.com.numbrcrunchr.web.VersionDetails">
-    <property name="versionNumber" value="1.0.2" />
+    <property name="versionNumber" value="${project.version}" />
     <property name="contactEmail" value="numbrcrunchrau@gmail.com" />
   </bean>
 </beans>
