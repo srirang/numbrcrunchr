@@ -229,7 +229,6 @@ public class FeasibilityAnalysisResult implements Serializable {
         return this.property.getWeeklyRent();
     }
 
-    // TODO: Loan balance does not go down for P+I?
     public double getLoanBalance() {
         return this.property.getLoanAmount();
     }

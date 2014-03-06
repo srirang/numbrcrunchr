@@ -1,6 +1,7 @@
 package au.com.numbrcrunchr.domain;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
@@ -197,6 +198,30 @@ public class FeasibilityAnalysisProjectionServiceTest {
                 .getProjections();
         // TODO Why does projection for n years return n+1 results?
         assertEquals(31, projections.size());
+    }
+
+    @Test
+    public void checkThatLoanBalanceReducesForPrincipalAndInterestProjection() {
+        income = 120000;
+        ongoingCosts = 7000;
+        weeklyRent = 320;
+        weeksRented = 50;
+        loanAmount = 427320;
+        interestRate = 8;
+        propertyManagementFee = 10;
+        Property property = PropertyTest.createProperty(income, true,
+                loanAmount, ongoingCosts, weeksRented, weeklyRent,
+                interestRate, propertyManagementFee);
+        property.setInterestOnlyPeriod(0);
+        Projection projection = projectionService.runProjection(property, 20,
+                projectionParameters);
+        List<FeasibilityAnalysisResult> projections = projection
+                .getProjections();
+        double previousLoanBalance = loanAmount + 1;
+        for (FeasibilityAnalysisResult result : projections) {
+            assertTrue(result.getLoanBalance() < previousLoanBalance);
+            previousLoanBalance = result.getLoanBalance();
+        }
     }
 
 }

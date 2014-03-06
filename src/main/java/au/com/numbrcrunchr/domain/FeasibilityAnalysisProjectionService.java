@@ -32,19 +32,17 @@ public class FeasibilityAnalysisProjectionService implements Serializable {
         } catch (CloneNotSupportedException e) {
             throw new DataException("Error completing projection", e);
         }
-        int j = 0;
         for (int i = 1; i < projectionYears + 1; i++) {
             try {
                 projectionProperty = (Property) projectionProperty.clone();
                 projectionProperty.projectBy(projectionParameters);
-                // TODO: Test this, may not be right
                 Repayment yearlyRepayment = amortisationSchedule
                         .getYearlyRepayments().get(i - 1);
                 result = feasibilityAnalyser.analyseFeasibility(
                         projectionProperty, yearlyRepayment.getInterest()
                                 .doubleValue(), yearlyRepayment.getPrincipal()
                                 .doubleValue(), PROJECTION_YEAR_PREFIX
-                                + (i + 1));
+                                + i + 1);
                 projectionProperty.setLoanAmount(yearlyRepayment
                         .getLoanBalance());
                 projections.add(result);

@@ -38,8 +38,6 @@ import au.com.numbrcrunchr.domain.State;
 public class MainController implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOGGER = Logger.getLogger(MainController.class
-            .getName());
 
     private boolean hasPartner = false;
     private final FacesMessage shareErrorMessage = new FacesMessage(
