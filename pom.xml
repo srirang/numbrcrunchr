@@ -4,7 +4,7 @@
   <artifactId>numbrcrunchr</artifactId>
   <packaging>war</packaging>
   <url>www.numbrcrunchr.com</url>
-  <version>1.0.4</version>
+  <version>1.0.5-SNAPSHOT</version>
   <name>NumbrCrunchr</name>
   <description>Simple online tool that helps you assess the return on your property investment</description>
   <dependencies>
