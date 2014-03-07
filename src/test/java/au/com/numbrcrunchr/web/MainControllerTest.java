@@ -2,6 +2,8 @@ package au.com.numbrcrunchr.web;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -118,4 +120,14 @@ public class MainControllerTest {
         // .toString());
     }
 
+    @Test
+    public void checkMainControllerSimilarToTheWebApp() {
+        controller.setPropertyValue(320000l);
+        controller.setWeeklyRent(320l);
+        controller.setState(State.VIC);
+        assertNull(controller.runProjection());
+
+        assertNotNull(controller.getProjection());
+        assertTrue(controller.isShowResults());
+    }
 }
