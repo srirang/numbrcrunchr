@@ -75,10 +75,6 @@ public class Repayment {
         return this.loanBalance;
     }
 
-    protected double repayment() {
-        return this.repayment;
-    }
-
     @Override
     public int hashCode() {
         throw new UnsupportedOperationException(

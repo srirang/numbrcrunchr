@@ -9,6 +9,10 @@ import org.junit.Test;
 public class RepaymentTest {
     @Test
     public void testEquals() {
+        Repayment repayment = new Repayment(0, 0, 0, 0);
+        assertFalse(new Repayment(0, 0, 0, 0).equals(null));
+        assertFalse(new Repayment(0, 0, 0, 0).equals("Test"));
+        assertTrue(repayment.equals(repayment));
         assertTrue(new Repayment(0, 0, 0, 0).equals(new Repayment(0, 0, 0, 0)));
         assertFalse(new Repayment(0, 0, 0, 0)
                 .equals(new Repayment(0, 0, 0, 10)));

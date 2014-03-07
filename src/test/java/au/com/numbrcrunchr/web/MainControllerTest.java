@@ -5,6 +5,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 import org.junit.Test;
@@ -16,6 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import au.com.numbrcrunchr.domain.FeasibilityAnalysisResult;
+import au.com.numbrcrunchr.domain.MathUtilTest;
 import au.com.numbrcrunchr.domain.Property;
 import au.com.numbrcrunchr.domain.PropertyTest;
 import au.com.numbrcrunchr.domain.State;
@@ -129,5 +136,37 @@ public class MainControllerTest {
 
         assertNotNull(controller.getProjection());
         assertTrue(controller.isShowResults());
+    }
+
+    @Test
+    public void checkThatDeserialisedObjectIsValid()
+            throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectOutputStream stream = new ObjectOutputStream(
+                new FileOutputStream("MainController.ser"));
+        stream.writeObject(controller);
+        stream.close();
+
+        Object object = new ObjectInputStream(new FileInputStream(
+                "MainController.ser")).readObject();
+        assertNotNull(object);
+        assertTrue(object instanceof MainController);
+        MainController deSerialisedController = (MainController) object;
+        assertEquals(controller.getAnnualIncome(),
+                deSerialisedController.getAnnualIncome());
+        assertEquals(controller.getBuildingInspections(),
+                deSerialisedController.getBuildingInspections());
+        assertEquals(controller.getBuildingValue(),
+                deSerialisedController.getBuildingValue());
+        assertEquals(controller.getCapitalGrowthRate(),
+                deSerialisedController.getCapitalGrowthRate(),
+                MathUtilTest.ROUNDING_ERROR_TOLERANCE);
+        assertNotNull(deSerialisedController.getStampDutyCalculator());
+
+        // TODO When MainController is deserialised, spring dependencies=NULL
+        // deSerialisedController.getStampDutyCalculator().calculateStampDuty(
+        // State.NSW, 500000d);
+        // assertNull(deSerialisedController.runProjection());
+        // assertNotNull(deSerialisedController.getProjection());
+        // assertTrue(deSerialisedController.isShowResults());
     }
 }
