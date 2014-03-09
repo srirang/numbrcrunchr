@@ -184,7 +184,7 @@
                 <p:selectBooleanCheckbox
                   value="#{mainController.medicareLevyApplies}" />
                 <h:panelGroup />
-                <p:commandButton value="Crunch Numbers"
+                <p:commandButton value="Crunch Numbers" ajax="false"
                   action="#{mainController.runProjection}"
                   onfocus="this.blur()" />
               </p:panelGrid>
@@ -444,7 +444,8 @@
       <p:ajaxStatus
         style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
         <f:facet name="start">
-          <p:graphicImage value="../resources/images/loading.gif" />
+          <p:graphicImage library="images" value="loading.gif"
+            alt="Loading..." />
         </f:facet>
 
         <f:facet name="complete">

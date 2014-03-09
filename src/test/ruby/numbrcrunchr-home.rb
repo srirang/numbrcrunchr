@@ -1,5 +1,5 @@
 require 'watir-webdriver'
-b = Watir::Browser.new :ie
+b = Watir::Browser.new
 b.goto 'http://localhost:8081/numbrcrunchr'
 
 b.text.include? 'NumbrCrunchr - Investment Property Number Cruncher'

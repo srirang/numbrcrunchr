@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -622,22 +621,11 @@ public class MainController implements Serializable {
                 + projection.getCashflowPositiveYearIndex());
     }
 
-    public boolean isShowIntro() {
-        return !resultsAvailable;
-    }
-
     public boolean isShowResults() {
         return resultsAvailable;
     }
 
     public List<FeasibilityAnalysisResult> getResults() {
-        // if (projection.getProjections().isEmpty()) {
-        // return Collections.emptyList();
-        // }
-        // return projection.getProjections().subList(
-        // 0,
-        // projection.getProjections().size() < 25 ? projection
-        // .getProjections().size() : 25);
         return this.projection.getProjections();
     }
 
@@ -744,4 +732,9 @@ public class MainController implements Serializable {
     public MainController() {
         this.property.addOwner(owner);
     }
+
+    public boolean getShowResults() {
+        return resultsAvailable;
+    }
+
 }
