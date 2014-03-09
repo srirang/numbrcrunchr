@@ -32,13 +32,13 @@
       </p>
 
       <h:panelGroup rendered="#{mainController.showResults}">
-        <h:form id="resultsForm" rendered="#{mainController.showResults}">
+        <h:form id="resultsForm"
+          rendered="#{mainController.showResults}">
           <p>
             Based on the information you provided, this property will be
             Cashflow Positive in <strong><h:outputText
                 value="#{mainController.cashflowPositiveYear}" /></strong>. To
-            download or print the graphs, please click on the buttons on
-            the right.
+            download the analysis, select Download Excel or Download CSV
           </p>
           <br />
           <p:fieldset legend="Investment Summary" toggleable="false"

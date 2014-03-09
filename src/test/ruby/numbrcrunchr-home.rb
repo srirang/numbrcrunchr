@@ -12,3 +12,7 @@ b.select_list(:id => 'feasibilityAnalysisForm:State').select 'NSW'
 b.text_field(:id => 'feasibilityAnalysisForm:Price').set '320000'
 b.text_field(:id => 'feasibilityAnalysisForm:WeeklyRent').set '320'
 b.button(:id => 'feasibilityAnalysisForm:CrunchNumbers').click
+
+b.text.include? "Lender's mortgage insurance may be applicable"
+b.text.include? "Select Download to download the raw data"
+b.text.include? "Based on the information you provided, this property will be Cashflow Positive in 2020. To download the analysis, select Download Excel or Download CSV"

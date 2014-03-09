@@ -198,7 +198,7 @@
         <configuration>
           <url>http://devserver:8080/manager/text</url>
           <server>devserver</server>
-          <path>/numbrcrunchr</path>
+          <path>/numbrcrunchr-staging</path>
         </configuration>
       </plugin>
       <plugin>
