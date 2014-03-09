@@ -68,5 +68,16 @@ public class StampDutyRateTest {
         rate1.setId(null);
         assertTrue(rate1.equals(rate2));
         assertTrue(rate2.equals(rate1));
+
+        rate1.setId(null);
+        assertTrue(rate1.equals(rate2));
+        rate1 = new StampDutyRate("NSW", 1000001l, null, 40490, 0.055);
+        rate2.setId(null);
+        assertTrue(rate1.equals(rate2));
+        rate2 = new StampDutyRate("NSW", 1000001l, null, 40490, 0.055);
+
+        rate1.setId(4);
+        rate2.setId(45);
+        assertFalse(rate1.equals(rate2));
     }
 }

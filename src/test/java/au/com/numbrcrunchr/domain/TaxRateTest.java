@@ -34,5 +34,16 @@ public class TaxRateTest {
         rate1.setId(null);
         assertTrue(rate1.equals(rate2));
         assertTrue(rate2.equals(rate1));
+
+        rate1.setId(null);
+        assertTrue(rate1.equals(rate2));
+        rate1 = new TaxRate(0l, 100l, 0, 0.10);
+        rate2.setId(null);
+        assertTrue(rate1.equals(rate2));
+        rate2 = new TaxRate(0l, 100l, 0, 0.10);
+
+        rate1.setId(4);
+        rate2.setId(45);
+        assertFalse(rate1.equals(rate2));
     }
 }
