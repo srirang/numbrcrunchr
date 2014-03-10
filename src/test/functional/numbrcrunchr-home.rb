@@ -1,6 +1,6 @@
 require 'watir-webdriver'
 b = Watir::Browser.new
-b.goto 'http://devserver:8080/numbrcrunchr'
+b.goto 'http://devserver:8080/numbrcrunchr-staging'
 
 b.text.include? 'NumbrCrunchr - Investment Property Number Cruncher'
 b.text.include? 'Step 1 : Property Details'
@@ -13,7 +13,7 @@ b.label(:id => 'feasibilityAnalysisForm:State_label').click
 b.li(:text => "NSW").click
 b.text_field(:id => 'feasibilityAnalysisForm:Price').set '320000'
 b.text_field(:id => 'feasibilityAnalysisForm:WeeklyRent').set '320'
-b.button(:label => 'Crunch Numbers').present?.should be_true
+b.button(:text => 'Crunch Numbers').present?
 b.button(:id => 'feasibilityAnalysisForm:CrunchNumbers').click
 
 b.text.include? "Lender's mortgage insurance may be applicable"
