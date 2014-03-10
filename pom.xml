@@ -4,7 +4,7 @@
   <artifactId>numbrcrunchr</artifactId>
   <packaging>war</packaging>
   <url>www.numbrcrunchr.com</url>
-  <version>1.0.7</version>
+  <version>1.0.8-SNAPSHOT</version>
   <name>NumbrCrunchr</name>
   <description>Simple online tool that helps you assess the return on your property investment</description>
   <dependencies>
@@ -339,7 +339,7 @@
     <connection>scm:git:git@github.com:srirang/numbrcrunchr.git</connection>
     <url>scm:git:git@github.com:srirang/numbrcrunchr.git</url>
     <developerConnection>scm:git:git@github.com:srirang/numbrcrunchr.git</developerConnection>
-    <tag>v1.0.7</tag>
+    <tag>v1.0.4</tag>
   </scm>
 
   <distributionManagement>
