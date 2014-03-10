@@ -183,8 +183,11 @@
               Medicare Levy:
                 <p:selectBooleanCheckbox
                   value="#{mainController.medicareLevyApplies}" />
-                <h:panelGroup />
-                <p:commandButton value="Crunch Numbers" ajax="false" id="CrunchNumbers"
+                <p:commandButton id="changeAssumptionsButton"
+                  value="Change Assumptions" onclick="dlg2.show();"
+                  type="button" />
+                <p:commandButton value="Crunch Numbers" ajax="false"
+                  id="CrunchNumbers"
                   action="#{mainController.runProjection}"
                   onfocus="this.blur()" />
               </p:panelGrid>
@@ -251,142 +254,148 @@
             </div>
           </p:fieldset>
           <br />
-          <p:fieldset legend="Change Assumptions : " toggleable="true"
-            collapsed="false" toggleSpeed="500">
-            <p:panelGrid columns="4">
-              <h:panelGroup>
-                <h4>Yearly Costs</h4>
-              </h:panelGroup>
-              <h:panelGroup />
-              <h:panelGroup>
-                <h4>Projection Assumptions</h4>
-              </h:panelGroup>
-              <h:panelGroup></h:panelGroup>
-              <h:panelGroup>Interest Rate:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="interestRate" size="6"
-                  value="#{mainController.interestRate}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Purchase Date:</h:panelGroup>
-              <h:panelGroup>
-                <p:calendar id="purchaseDate" size="14"
-                  value="#{mainController.purchaseDate}"
-                  mindate="new java.util.Date()" pattern="dd/MM/yyyy">
-                  <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-                </p:calendar>
-              </h:panelGroup>
-              <h:panelGroup>Landlord's Insurance:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="landlordsInsurance" size="6"
-                  value="#{mainController.landlordsInsurance}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>How many years to project:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="numberOfYears" size="6"
-                  value="#{mainController.numberOfYears}" />
-              </h:panelGroup>
-              <h:panelGroup>Maintenance:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="maintenance" size="6"
-                  value="#{mainController.maintenance}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>CPI:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="cpi" size="6"
-                  value="#{mainController.cpi}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Strata:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="strata" size="6"
-                  value="#{mainController.strata}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Capital Growth Rate:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="capitalGrowthRate" size="6"
-                  value="#{mainController.capitalGrowthRate}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Water Charges:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="waterCharges" size="6"
-                  value="#{mainController.waterCharges}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Salary Increase Rate:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="salaryIncreaseRate" size="6"
-                  value="#{mainController.salaryIncreaseRate}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Cleaning:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="cleaning" size="6"
-                  value="#{mainController.cleaning}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Rent Increase Rate:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="rentIncreaseRate" size="6"
-                  value="#{mainController.rentIncreaseRate}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Council Rates:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="councilRates" size="6"
-                  value="#{mainController.councilRates}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Loan Term:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="loanTerm" size="6"
-                  value="#{mainController.loanTerm}" />
-              </h:panelGroup>
-              <h:panelGroup>Gardening:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="gardening" size="6"
-                  value="#{mainController.gardening}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Interest Only Period:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="interestOnlyPeriod" size="6"
-                  value="#{mainController.interestOnlyPeriod}" />
-              </h:panelGroup>
-              <h:panelGroup>Tax Expenses:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="taxExpenses" size="6"
-                  value="#{mainController.taxExpenses}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Weeks Rented:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="weeksRented" size="6"
-                  value="#{mainController.weeksRented}" />
-              </h:panelGroup>
-              <h:panelGroup>Property Management Fees:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="propertyManagementFees" size="6"
-                  value="#{mainController.propertyManagementFees}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
-              </h:panelGroup>
-              <h:panelGroup>Misc Ongoing Expenses:</h:panelGroup>
-              <h:panelGroup>
-                <p:inputText id="miscOngoingExpenses" size="6"
-                  value="#{mainController.miscOngoingExpenses}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
-              </h:panelGroup>
-              <h:panelGroup />
-              <h:panelGroup />
-              <h:panelGroup />
-              <p:commandButton value="Apply"
-                action="#{mainController.runProjection}" />
-            </p:panelGrid>
-          </p:fieldset>
+          <p:dialog id="changeAssumptionsDialog"
+            header="Change Assumptions" resizable="false"
+            widgetVar="dlg2" modal="true" height="500"
+            maximizable="false" minHeight="500">
+            <p:fieldset legend="Change Assumptions : "
+              toggleable="false" collapsed="false">
+              <p:panelGrid columns="4">
+                <h:panelGroup>
+                  <h4>Yearly Costs</h4>
+                </h:panelGroup>
+                <h:panelGroup />
+                <h:panelGroup>
+                  <h4>Projection Assumptions</h4>
+                </h:panelGroup>
+                <h:panelGroup></h:panelGroup>
+                <h:panelGroup>Interest Rate:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="interestRate" size="6"
+                    value="#{mainController.interestRate}"
+                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Purchase Date:</h:panelGroup>
+                <h:panelGroup>
+                  <p:calendar id="purchaseDate" size="14"
+                    value="#{mainController.purchaseDate}"
+                    mindate="new java.util.Date()" pattern="dd/MM/yyyy">
+                    <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                  </p:calendar>
+                </h:panelGroup>
+                <h:panelGroup>Landlord's Insurance:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="landlordsInsurance" size="6"
+                    value="#{mainController.landlordsInsurance}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>How many years to project:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="numberOfYears" size="6"
+                    value="#{mainController.numberOfYears}" />
+                </h:panelGroup>
+                <h:panelGroup>Maintenance:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="maintenance" size="6"
+                    value="#{mainController.maintenance}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>CPI:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="cpi" size="6"
+                    value="#{mainController.cpi}"
+                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Strata:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="strata" size="6"
+                    value="#{mainController.strata}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Capital Growth Rate:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="capitalGrowthRate" size="6"
+                    value="#{mainController.capitalGrowthRate}"
+                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Water Charges:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="waterCharges" size="6"
+                    value="#{mainController.waterCharges}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Salary Increase Rate:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="salaryIncreaseRate" size="6"
+                    value="#{mainController.salaryIncreaseRate}"
+                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Cleaning:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="cleaning" size="6"
+                    value="#{mainController.cleaning}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Rent Increase Rate:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="rentIncreaseRate" size="6"
+                    value="#{mainController.rentIncreaseRate}"
+                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Council Rates:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="councilRates" size="6"
+                    value="#{mainController.councilRates}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Loan Term:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="loanTerm" size="6"
+                    value="#{mainController.loanTerm}" />
+                </h:panelGroup>
+                <h:panelGroup>Gardening:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="gardening" size="6"
+                    value="#{mainController.gardening}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Interest Only Period:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="interestOnlyPeriod" size="6"
+                    value="#{mainController.interestOnlyPeriod}" />
+                </h:panelGroup>
+                <h:panelGroup>Tax Expenses:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="taxExpenses" size="6"
+                    value="#{mainController.taxExpenses}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Weeks Rented:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="weeksRented" size="6"
+                    value="#{mainController.weeksRented}" />
+                </h:panelGroup>
+                <h:panelGroup>Property Management Fees:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="propertyManagementFees" size="6"
+                    value="#{mainController.propertyManagementFees}"
+                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                </h:panelGroup>
+                <h:panelGroup>Misc Ongoing Expenses:</h:panelGroup>
+                <h:panelGroup>
+                  <p:inputText id="miscOngoingExpenses" size="6"
+                    value="#{mainController.miscOngoingExpenses}"
+                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                </h:panelGroup>
+                <h:panelGroup />
+                <h:panelGroup />
+                <h:panelGroup />
+                <p:commandButton value="Apply"
+                  action="#{mainController.runProjection}"
+                  onclick="dlg2.close()" />
+              </p:panelGrid>
+            </p:fieldset>
+          </p:dialog>
           <br />
 
           <p:fieldset legend="Send Feedback" toggleable="false"
