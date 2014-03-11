@@ -8,11 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.numbrcrunchr.domain.DataException;
-import com.numbrcrunchr.domain.StampDutyRate;
-import com.numbrcrunchr.domain.StampDutyRepository;
-import com.numbrcrunchr.domain.State;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public abstract class StampDutyRepositoryAbstractTestCase {
@@ -163,10 +158,10 @@ public abstract class StampDutyRepositoryAbstractTestCase {
                 getStampDutyRepository().getRate("qld", new Long("500000"))
                         .getFlatRate(), 0);
 
-        assertEquals(0.0525,
+        assertEquals(0.045,
                 getStampDutyRepository().getRate("qld", new Long("1000000"))
                         .getPercentage(), 0);
-        assertEquals(37125,
+        assertEquals(38025,
                 getStampDutyRepository().getRate("qld", new Long("20250001"))
                         .getFlatRate(), 0);
     }

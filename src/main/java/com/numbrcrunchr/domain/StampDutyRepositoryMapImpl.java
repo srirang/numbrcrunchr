@@ -13,13 +13,23 @@ public class StampDutyRepositoryMapImpl implements StampDutyRepository {
     private static final Map<String, StampDutyRate[]> STAMP_DUTY_RATES;
     static {
         STAMP_DUTY_RATES = new HashMap<String, StampDutyRate[]>();
-        STAMP_DUTY_RATES.put(State.NSW, new StampDutyRate[] {
-                new StampDutyRate(State.NSW, 0l, 14000l, 0l, 0.0125),
-                new StampDutyRate(State.NSW, 14001l, 30000l, 175, 0.015),
-                new StampDutyRate(State.NSW, 30001l, 80000l, 415l, 0.0175),
-                new StampDutyRate(State.NSW, 80001l, 300000l, 1290l, 0.035),
-                new StampDutyRate(State.NSW, 300001l, 1000000l, 8990l, 0.045),
-                new StampDutyRate(State.NSW, 1000001l, null, 40490l, 0.055), });
+        STAMP_DUTY_RATES
+                .put(State.NSW,
+                        new StampDutyRate[] {
+                                new StampDutyRate(State.NSW, 0l, 14000l, 0l,
+                                        0.0125),
+                                new StampDutyRate(State.NSW, 14001l, 30000l,
+                                        175, 0.015),
+                                new StampDutyRate(State.NSW, 30001l, 80000l,
+                                        415l, 0.0175),
+                                new StampDutyRate(State.NSW, 80001l, 300000l,
+                                        1290l, 0.035),
+                                new StampDutyRate(State.NSW, 300001l, 1000000l,
+                                        8990l, 0.045),
+                                new StampDutyRate(State.NSW, 1000001l,
+                                        3000000l, 40490l, 0.055),
+                                new StampDutyRate(State.NSW, 3000001l, null, 0,
+                                        0.07), });
 
         STAMP_DUTY_RATES.put(State.VIC, new StampDutyRate[] {
                 new StampDutyRate(State.VIC, 0l, 25000l, 0, 0.014),
@@ -31,8 +41,8 @@ public class StampDutyRepositoryMapImpl implements StampDutyRepository {
                 new StampDutyRate(State.QLD, null, 5000l, 0, 0),
                 new StampDutyRate(State.QLD, 5000l, 75000l, 0, 0.015),
                 new StampDutyRate(State.QLD, 75001l, 540000l, 1050l, 0.035),
-                new StampDutyRate(State.QLD, 540001l, 980000l, 17325l, 0.045),
-                new StampDutyRate(State.QLD, 980001l, null, 37125l, 0.0525), });
+                new StampDutyRate(State.QLD, 540001l, 1000000l, 17325l, 0.045),
+                new StampDutyRate(State.QLD, 1000001l, null, 38025, 0.0575), });
 
         STAMP_DUTY_RATES.put(State.SA, new StampDutyRate[] {
                 new StampDutyRate(State.SA, null, 12000l, 0, 0.01),
@@ -53,27 +63,24 @@ public class StampDutyRepositoryMapImpl implements StampDutyRepository {
                 new StampDutyRate(State.WA, 725001l, null, 28453l, 0.0515), });
 
         STAMP_DUTY_RATES.put(State.TAS, new StampDutyRate[] {
-                new StampDutyRate(State.TAS, null, 1300l, 20l, 0.00),
-                new StampDutyRate(State.TAS, 1301l, 10000l, 0, 0.015),
-                new StampDutyRate(State.TAS, 10001l, 30000l, 150l, 0.02),
-                new StampDutyRate(State.TAS, 30001l, 75000l, 550l, 0.025),
-                new StampDutyRate(State.TAS, 75001l, 150000l, 1675l, 0.03),
-                new StampDutyRate(State.TAS, 150001l, 225000l, 3925l, 0.035),
-                new StampDutyRate(State.WA, 225001l, null, 6550l, 0.04), });
+                new StampDutyRate(State.TAS, null, 3000l, 50, 0.00),
+                new StampDutyRate(State.TAS, 3001l, 25000l, 50, 0.0175),
+                new StampDutyRate(State.TAS, 25001l, 75000l, 435, 0.0225),
+                new StampDutyRate(State.TAS, 75001l, 200000l, 1560, 0.035),
+                new StampDutyRate(State.TAS, 200001l, 375000l, 5935, 0.0435),
+                new StampDutyRate(State.TAS, 375001l, 725000l, 12935, 0.425),
+                new StampDutyRate(State.WA, 725001l, null, 27810, 0.045), });
 
-        STAMP_DUTY_RATES.put(State.ACT,
-                new StampDutyRate[] {
-                        new StampDutyRate(State.ACT, null, 100000l, 0, 0.02),
-                        new StampDutyRate(State.ACT, 100001l, 200000l, 2000l,
-                                0.03),
-                        new StampDutyRate(State.ACT, 200001l, 300000l, 5500l,
-                                0.04),
-                        new StampDutyRate(State.ACT, 300001l, 500000l, 9500l,
-                                0.055),
-                        new StampDutyRate(State.ACT, 500001l, 1000000l, 20500l,
-                                0.0575),
-                        new StampDutyRate(State.ACT, 1000000l, null, 49250l,
-                                0.0675), });
+        STAMP_DUTY_RATES.put(State.ACT, new StampDutyRate[] {
+                new StampDutyRate(State.ACT, null, 200000l, 0, 0.022),
+                new StampDutyRate(State.ACT, 200001l, 300000l, 4400l, 0.037),
+                new StampDutyRate(State.ACT, 300001l, 500000l, 8100l, 0.045),
+                new StampDutyRate(State.ACT, 500001l, 750000l, 17100l, 0.05),
+                new StampDutyRate(State.ACT, 750001l, 1000000l, 29600l, 0.065),
+                new StampDutyRate(State.ACT, 1000001l, 1650000l, 45850l, 0.07),
+                new StampDutyRate(State.ACT, 1650001l, null, 0, 0.055),
+
+        });
     }
 
     @Override

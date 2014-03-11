@@ -34,8 +34,8 @@ public class StampDutyCalculator implements Serializable {
         }
         // Special case #2: ACT has unique rules for stamp duty for <= $100,000
         if (value.compareTo(new Long("0")) > 0 && State.ACT.equals(state)
-                && value.compareTo(new Long(100000)) <= 0) {
-            return Math.max(20, value.doubleValue() * 0.02);
+                && value.compareTo(new Long(1650001)) >= 0) {
+            return value * 5.5 / 100;
         }
 
         // All other states

@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.numbrcrunchr.DbInitialiser;
 import com.numbrcrunchr.domain.DataException;
 import com.numbrcrunchr.domain.StampDutyRepository;
 import com.numbrcrunchr.domain.StampDutyRepositoryJpaImpl;
@@ -43,12 +42,12 @@ public class DbInitialiserTest {
     public void checkFileContents() throws IOException {
         List<String> sqls = dbInitialiser.getSql("schema/insert.sql");
         assertNotNull(sqls);
-        assertEquals(64, sqls.size());
+        assertEquals(66, sqls.size());
     }
 
     @Test
     public void checkInitialiseDb() {
-        dbInitialiser.initialiseDb("schema/insert.sql");
+        dbInitialiser.postProcessBeanFactory(null);
     }
 
     @Test
@@ -60,7 +59,7 @@ public class DbInitialiserTest {
         assertFalse(stampDutyRepository.hasAllData());
         assertFalse(taxRateRepository.hasAllData());
 
-        dbInitialiser.initialiseDb("schema/insert.sql");
+        dbInitialiser.postProcessBeanFactory(null);
         assertTrue(stampDutyRepository.hasAllData());
         assertTrue(taxRateRepository.hasAllData());
         assertFalse(dbInitialiser.needsUpdating());
@@ -71,10 +70,9 @@ public class DbInitialiserTest {
         // Delete reference data
         deleteTaxRates();
         assertTrue(dbInitialiser.needsUpdating());
-        assertTrue(stampDutyRepository.hasAllData());
         assertFalse(taxRateRepository.hasAllData());
 
-        dbInitialiser.initialiseDb("schema/insert.sql");
+        dbInitialiser.postProcessBeanFactory(null);
         assertTrue(stampDutyRepository.hasAllData());
         assertTrue(taxRateRepository.hasAllData());
         assertFalse(dbInitialiser.needsUpdating());
@@ -87,7 +85,6 @@ public class DbInitialiserTest {
         // Delete reference data
         assertTrue(dbInitialiser.needsUpdating());
         assertFalse(stampDutyRepository.hasAllData());
-        assertTrue(dbInitialiser.needsUpdating());
 
         dbInitialiser.postProcessBeanFactory(null);
         assertTrue(stampDutyRepository.hasAllData());

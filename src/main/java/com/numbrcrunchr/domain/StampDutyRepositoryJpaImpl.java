@@ -48,7 +48,7 @@ public class StampDutyRepositoryJpaImpl extends AbstractJpaRepository implements
     public boolean hasAllData() {
         List<StampDutyRate> rates = getJpaTemplate().find(
                 "SELECT r FROM StampDutyRate r");
-        return rates.size() == 42;
+        return rates.size() == 44;
     }
 
     public void deleteAllData() {

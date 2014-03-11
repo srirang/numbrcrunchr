@@ -1,4 +1,3 @@
-
 DELETE FROM Stamp_Duty_Rates;
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '0', '25000', '0', '0.014', 'VIC');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '25001', '130000', '350', '0.024', 'VIC');
@@ -9,12 +8,13 @@ INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '30001', '80000', '415', '0.0175', 'NSW');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '80001', '300000', '1290', '0.035', 'NSW');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '300001', '1000000', '8990', '0.045', 'NSW');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '1000001', NULL, '40490', '0.055', 'NSW');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '1000001', '3000000', '40490', '0.055', 'NSW');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '3000001', NULL, '0', '0.07', 'NSW');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '0', '5000', '0', '0', 'QLD');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '5001', '75000', '0', '0.015', 'QLD');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '75001', '540000', '1050', '0.035', 'QLD');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '540001', '980000', '17325', '0.045', 'QLD');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '980001', NULL, '37125', '0.0525', 'QLD');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '540001', '1000000', '17325', '0.045', 'QLD');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '1000001', NULL, '38025', '0.0575', 'QLD');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '0', '12000', '0', '0.01', 'SA');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '12001', '30000', '120', '0.02', 'SA');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '30001', '50000', '480', '0.03', 'SA');
@@ -29,19 +29,20 @@ INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '150001', '360000', '3135', '0.038', 'WA');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '360001', '725000', '11115', '0.0475', 'WA');
 INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '725001', NULL, '28453', '0.0515', 'WA');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '0', '1300', '20', '0', 'TAS');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '1301', '10000', '0', '0.015', 'TAS');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '10001', '30000', '150', '0.02', 'TAS');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '30001', '75000', '550', '0.025', 'TAS');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '75001', '150000', '1675', '0.03', 'TAS');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '150001', '225000', '3925', '0.035', 'TAS');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '225001', NULL, '6550', '0.04', 'TAS');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '0', '100000', '0', '0.02', 'ACT');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '100001', '200000', '2000', '0.035', 'ACT');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '200001', '300000', '5500', '0.04', 'ACT');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '300001', '500000', '9500', '0.055', 'ACT');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '500001', '1000000', '20500', '0.0575', 'ACT');
-INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '1000001', NULL, '49250', '0.0675', 'ACT');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '0', '3000', '50', '0', 'TAS');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '3001', '25000', '50', '0.0175', 'TAS');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '25001', '75000', '435', '0.0225', 'TAS');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '75001', '200000', '1560', '0.035', 'TAS');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '200001', '375000', '5935', '0.0435', 'TAS');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '375001', '725000', '12935', '0.0425', 'TAS');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '725001', NULL, '27810', '0.045', 'TAS');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '0', '200000', '0', '0.022', 'ACT');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '200001', '300000', '4400', '0.037', 'ACT');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '300001', '500000', '8100', '0.045', 'ACT');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '500001', '750000', '17100', '0.05', 'ACT');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '750001', '1000000', '29600', '0.065', 'ACT');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '1000001', '1650000', '45850', '0.07', 'ACT');
+INSERT INTO Stamp_Duty_Rates (idStamp_Duty_Rates, lower_limit, upper_limit, flat_rate, percentage, state_code) VALUES (NULL, '1650001', NULL, '0', '0.055', 'ACT');
 
 DELETE FROM Payg_Tax_Rates;
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2010-2011', '6000', '0', '0');
@@ -49,20 +50,16 @@ INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2010-2011', '80000', '4650', '.30');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2010-2011', '180000', '17550', '.37');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2010-2011', NULL, '54550', '.45');
-
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2011-2012', '6000', '0', '0');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '6001', '2011-2012', '37000', '0', '0.15');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2011-2012', '80000', '4650', '.30');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2011-2012', '180000', '17550', '.37');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2011-2012', NULL, '54550', '.45');
-
-
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2012-2013', '18200', '0', '0');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '18201', '2012-2013', '37000', '0', '0.19');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2012-2013', '80000', '3572', '.325');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '80001', '2012-2013', '180000', '17547', '.37');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '180001', '2012-2013', NULL, '54547', '.45');
-
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '0', '2013-2014', '18200', '0', '0');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '18201', '2013-2014', '37000', '0', '0.19');
 INSERT INTO Payg_Tax_Rates (idPayg_Tax_Rates, lower_limit, tax_year, upper_limit, flat_rate, percentage) VALUES (NULL, '37001', '2013-2014', '80000', '3572', '.325');
