@@ -81,7 +81,7 @@
                 <h:panelGroup>
                   <p:inputText size="12" id="Price"
                     value="#{mainController.propertyValue}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                    converter="currencyConverter"
                     required="true"
                     styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                     validator="#{mainController.validatePrice}">
@@ -99,7 +99,7 @@
                   <p:inputText size="8" id="Conveyancing"
                     value="#{mainController.conveyancingCost}"
                     validatorMessage="#{msg.purchasePrice_range}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                    converter="currencyConverter"
                     styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                     converterMessage="#{msg.purchasePrice_convert}">
                     <f:ajax event="blur"
@@ -114,7 +114,7 @@
                 <h:panelGroup>
                   <p:inputText size="8" id="LMI"
                     value="#{mainController.lendersMortgageInsurance}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                    converter="currencyConverter"
                     styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                     converterMessage="LMI should be a dollar value"
                     disabled="#{mainController.lmiApplicable}">
@@ -139,7 +139,7 @@
                   <p:inputText size="12" id="cashDeposit"
                     value="#{mainController.deposit}"
                     validatorMessage="#{msg.deposit_range}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                    converter="currencyConverter"
                     converterMessage="#{msg.deposit_convert}">
                     <f:validateLongRange minimum="0" />
                     <f:ajax event="change"
@@ -153,7 +153,7 @@
                   <p:inputText size="8" id="WeeklyRent"
                     value="#{mainController.weeklyRent}"
                     validator="#{mainController.validateWeeklyRent}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                    converter="currencyConverter"
                     styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
                     <f:validateLongRange minimum="100" />
                     <f:ajax event="blur" render="WeeklyRent"
@@ -173,7 +173,7 @@
                 <p:inputText size="12"
                   value="#{mainController.annualIncome}"
                   id="annualIncome"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter"
+                  converter="currencyConverter"
                   validatorMessage="#{msg.annualIncome_range}"
                   styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                   converterMessage="#{msg.annualIncome_convert}">
@@ -204,45 +204,45 @@
                 width="100%">
                 Purchase Price:
                   <h:outputText value="#{mainController.propertyValue}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
                 
                 Stamp Duty:
                   <h:outputText value="#{mainController.stampDuty}"
                   id="stampDuty"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
                 
                 Conveyancing Cost:
                   <h:outputText
                   value="#{mainController.conveyancingCost}"
                   id="conveyancingCost"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
                 
                 Government Costs:
                   <h:outputText
                   value="#{mainController.governmentCosts}"
                   id="governmentCosts"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
                 
                 Total Cost:
                   <h:outputText
                   value="#{mainController.totalPurhcaseCost}"
                   id="totalPurhcaseCost"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
                 
                 Cash Deposit:
                   <h:outputText value="#{mainController.deposit}"
                   id="deposit"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
                 
                 Loan Required:
                   <h:outputText value="#{mainController.loanAmount}"
                   id="loanAmount"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
 
                 Loan/Value Ratio (LVR):
                   <p:inputText size="6" id="lvr"
                   value="#{mainController.lvr}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter"
+                  converter="percentageConverter"
                   disabled="true">
                 </p:inputText>
 
@@ -250,7 +250,7 @@
                   <h:outputText
                   value="#{mainController.lendersMortgageInsurance}"
                   id="lendersMortgageInsurance"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
 
               </p:panelGrid>
             </div>
@@ -275,7 +275,7 @@
                 <h:panelGroup>
                   <p:inputText id="interestRate" size="6"
                     value="#{mainController.interestRate}"
-                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                    converter="percentageConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Purchase Date:</h:panelGroup>
                 <h:panelGroup>
@@ -289,7 +289,7 @@
                 <h:panelGroup>
                   <p:inputText id="landlordsInsurance" size="6"
                     value="#{mainController.landlordsInsurance}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>How many years to project:</h:panelGroup>
                 <h:panelGroup>
@@ -300,55 +300,55 @@
                 <h:panelGroup>
                   <p:inputText id="maintenance" size="6"
                     value="#{mainController.maintenance}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>CPI:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="cpi" size="6"
                     value="#{mainController.cpi}"
-                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                    converter="percentageConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Strata:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="strata" size="6"
                     value="#{mainController.strata}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Capital Growth Rate:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="capitalGrowthRate" size="6"
                     value="#{mainController.capitalGrowthRate}"
-                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                    converter="percentageConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Water Charges:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="waterCharges" size="6"
                     value="#{mainController.waterCharges}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Salary Increase Rate:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="salaryIncreaseRate" size="6"
                     value="#{mainController.salaryIncreaseRate}"
-                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                    converter="percentageConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Cleaning:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="cleaning" size="6"
                     value="#{mainController.cleaning}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Rent Increase Rate:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="rentIncreaseRate" size="6"
                     value="#{mainController.rentIncreaseRate}"
-                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                    converter="percentageConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Council Rates:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="councilRates" size="6"
                     value="#{mainController.councilRates}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Loan Term:</h:panelGroup>
                 <h:panelGroup>
@@ -359,7 +359,7 @@
                 <h:panelGroup>
                   <p:inputText id="gardening" size="6"
                     value="#{mainController.gardening}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Interest Only Period:</h:panelGroup>
                 <h:panelGroup>
@@ -370,7 +370,7 @@
                 <h:panelGroup>
                   <p:inputText id="taxExpenses" size="6"
                     value="#{mainController.taxExpenses}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Weeks Rented:</h:panelGroup>
                 <h:panelGroup>
@@ -381,13 +381,13 @@
                 <h:panelGroup>
                   <p:inputText id="propertyManagementFees" size="6"
                     value="#{mainController.propertyManagementFees}"
-                    converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                    converter="percentageConverter" />
                 </h:panelGroup>
                 <h:panelGroup>Misc Ongoing Expenses:</h:panelGroup>
                 <h:panelGroup>
                   <p:inputText id="miscOngoingExpenses" size="6"
                     value="#{mainController.miscOngoingExpenses}"
-                    converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                    converter="currencyConverter" />
                 </h:panelGroup>
                 <h:panelGroup />
                 <h:panelGroup />

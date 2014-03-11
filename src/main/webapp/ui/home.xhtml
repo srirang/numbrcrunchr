@@ -53,12 +53,12 @@
                     Purchase Price:
                       <h:outputText
                 value="#{mainController.propertyValue}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     Interest Rate:
                       <h:outputText
                 value="#{mainController.interestRate}"
-                converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                converter="percentageConverter" />
 
                     Purchase Date:
                       <h:outputText
@@ -69,12 +69,12 @@
                     Stamp Duty:
                       <h:outputText value="#{mainController.stampDuty}"
                 id="stampDuty"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     Landlord's Insurance:
                       <h:outputText size="6"
                 value="#{mainController.landlordsInsurance}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     How many years to project:
                       <h:outputText size="6"
@@ -84,76 +84,76 @@
                       <h:outputText
                 value="#{mainController.conveyancingCost}"
                 id="conveyancingCost"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     Maintenance:
                       <h:outputText size="6"
                 value="#{mainController.maintenance}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     CPI:
                       <h:outputText size="6"
                 value="#{mainController.cpi}"
-                converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                converter="percentageConverter" />
                     
                     Government Costs:
                       <h:outputText
                 value="#{mainController.governmentCosts}"
                 id="governmentCosts"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     Strata:
                       <h:outputText size="6"
                 value="#{mainController.strata}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
 
                     Capital Growth Rate:
                       <h:outputText size="6"
                 value="#{mainController.capitalGrowthRate}"
-                converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                converter="percentageConverter" />
 
                     Total Cost:
                       <h:outputText
                 value="#{mainController.totalPurhcaseCost}"
                 id="totalPurhcaseCost"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
 
                     Water Charges:
                       <h:outputText size="6"
                 value="#{mainController.waterCharges}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
 
                     Salary Increase Rate:
                       <h:outputText size="6"
                 value="#{mainController.salaryIncreaseRate}"
-                converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                converter="percentageConverter" />
 
                     Cash Deposit:
                       <h:outputText value="#{mainController.deposit}"
                 id="deposit"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
 
                     Cleaning:
                       <h:outputText size="6"
                 value="#{mainController.cleaning}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     Rent Increase Rate:
                       <h:outputText size="6"
                 value="#{mainController.rentIncreaseRate}"
-                converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                converter="percentageConverter" />
 
               <div style="font-weidht: bold;">
                 Loan Required:
                 <h:outputText value="#{mainController.loanAmount}"
                   id="loanAmount"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </div>
 
                     Council Rates:
                       <h:outputText size="6"
                 value="#{mainController.councilRates}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
 
                     Loan Term:
                       <h:outputText size="6"
@@ -162,12 +162,12 @@
                     Loan/Value Ratio (LVR):
                   <h:outputText size="6" id="lvr"
                 value="#{mainController.lvr}"
-                converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                converter="percentageConverter" />
 
                     Gardening:
                       <h:outputText size="6"
                 value="#{mainController.gardening}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     Interest Only Period:
                       <h:outputText size="6"
@@ -176,12 +176,12 @@
                     Lender's Mortgage Insurnace (LMI):
                       <h:outputText size="6"
                 value="#{mainController.lendersMortgageInsurance}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
 
                     Tax Expenses:
                       <h:outputText size="6"
                 value="#{mainController.taxExpenses}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
                     
                     Weeks Rented:
                       <h:outputText size="6"
@@ -192,11 +192,11 @@
                     Property Management Fees:
                       <h:outputText size="6"
                 value="#{mainController.propertyManagementFees}"
-                converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                converter="percentageConverter" />
 
             Misc Ongoing Expenses: <h:outputText size="6"
                 value="#{mainController.miscOngoingExpenses}"
-                converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                converter="currencyConverter" />
             </p:panelGrid>
           </p:fieldset>
           <br />
@@ -267,91 +267,91 @@
                   <h:outputText value="Total Income" />
                 </f:facet>
                 <h:outputText value="#{row.totalIncome}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Total Expense" />
                 </f:facet>
                 <h:outputText value="#{row.totalExpense}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Tenant Pays" />
                 </f:facet>
                 <h:outputText value="#{row.rentalIncome}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="You Pay" />
                 </f:facet>
                 <h:outputText value="#{row.youPay}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="ATO Pays" />
                 </f:facet>
                 <h:outputText value="#{row.taxSavings}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Interest" />
                 </f:facet>
                 <h:outputText value="#{row.interest}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Out of Pocket" />
                 </f:facet>
                 <h:outputText value="#{row.outOfPocket}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Gross Yield" />
                 </f:facet>
                 <h:outputText value="#{row.grossYield}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                  converter="percentageConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Nett Yield" />
                 </f:facet>
                 <h:outputText value="#{row.nettYield}"
-                  converter="au.com.numbrcrunchr.web.PercentageConverter" />
+                  converter="percentageConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Loan Balance" />
                 </f:facet>
                 <h:outputText value="#{row.loanBalance}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Market Value" />
                 </f:facet>
                 <h:outputText value="#{row.propertyValue}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Capital Growth" />
                 </f:facet>
                 <h:outputText value="#{row.capitalGrowth}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
               <p:column>
                 <f:facet name="header">
                   <h:outputText value="Equity Available" />
                 </f:facet>
                 <h:outputText value="#{row.equityAvailable}"
-                  converter="au.com.numbrcrunchr.web.CurrencyConverter" />
+                  converter="currencyConverter" />
               </p:column>
             </p:dataTable>
             <br />

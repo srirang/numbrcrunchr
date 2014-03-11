@@ -10,15 +10,15 @@
    </application>
 
   <validator>
-    <validator-id>au.com.numbrcrunchr.web.EmailValidator</validator-id>
-    <validator-class>au.com.numbrcrunchr.web.EmailValidator</validator-class>
+    <validator-id>com.numbrcrunchr.web.EmailValidator</validator-id>
+    <validator-class>com.numbrcrunchr.web.EmailValidator</validator-class>
   </validator>
   <converter>
-    <converter-id>au.com.numbrcrunchr.web.CurrencyConverter</converter-id>
-    <converter-class>au.com.numbrcrunchr.web.CurrencyConverter</converter-class>
+    <converter-id>currencyConverter</converter-id>
+    <converter-class>com.numbrcrunchr.web.CurrencyConverter</converter-class>
   </converter>
   <converter>
-    <converter-id>au.com.numbrcrunchr.web.PercentageConverter</converter-id>
-    <converter-class>au.com.numbrcrunchr.web.PercentageConverter</converter-class>
+    <converter-id>percentageConverter</converter-id>
+    <converter-class>com.numbrcrunchr.web.PercentageConverter</converter-class>
   </converter>
 </faces-config>
