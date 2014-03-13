@@ -10,6 +10,7 @@ public class Projection implements Serializable {
     private List<FeasibilityAnalysisResult> projections;
     private int cashflowPositiveYearIndex;
     private ProjectionParameters projectionParameters;
+    private Property property;
 
     public static final Projection EMPTY_PROJECTION;
     static {
@@ -40,6 +41,7 @@ public class Projection implements Serializable {
                 break;
             }
         }
+        this.property = projections.get(0).getProperty();
     }
 
     public List<FeasibilityAnalysisResult> getProjections() {
@@ -202,5 +204,9 @@ public class Projection implements Serializable {
         for (FeasibilityAnalysisResult result : projections) {
             result.changeFrequency(frequency);
         }
+    }
+
+    protected Property getProperty() {
+        return property;
     }
 }

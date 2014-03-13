@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Coffee" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e636377-82e8-4dfc-bca7-4fdd83487265">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<import value="com.numbrcrunchr.domain.Projection"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="report" class="com.numbrcrunchr.domain.InvestmentProjectionReport"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="address" class="java.lang.String"/>
+	<field name="purchasePrice" class="java.lang.Long"/>
+	<field name="stampDutyAndGovtCharges" class="java.lang.Long"/>
+	<field name="purchaseDate" class="java.util.Date"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="totalPurchaseCost" class="java.lang.Long"/>
+	<field name="weeklyRent" class="java.lang.Long"/>
+	<field name="version" class="java.lang.String"/>
+	<group name="Group2">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="143" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="555" height="62" uuid="d43a7dc1-bca5-4618-9972-71f4f0e7098b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="30" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Property Investment Analysis Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="1" y="62" width="179" height="32" uuid="59c53d4e-8c8a-460f-b139-c4bbae8d1df8"/>
+				<box padding="2">
+					<topPen lineWidth="3.0" lineStyle="Solid"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
+					<rightPen lineWidth="3.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[NumbrCrunchr.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="97" width="554" height="46" uuid="cb9f3e50-64de-4218-af24-e2fdd3df2d6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Note: Information provided in this report is solely for illustrative purposes and should not be construed as financial advise. Please seek specific financial advise that is tailored to your personal circumstances from your financial services professional or adviser before acting on this information.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="374" y="62" width="179" height="32" uuid="5ea370b9-bddb-48b9-a617-4c809d28ecb2"/>
+				<box padding="2">
+					<topPen lineWidth="3.0" lineStyle="Solid"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
+					<rightPen lineWidth="3.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[NumbrCrunchr]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="10" width="553" height="1" uuid="6e13848d-0189-45e9-86c9-7ccbca52f24f"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="335" splitType="Stretch">
+			<textField>
+				<reportElement x="115" y="26" width="440" height="22" uuid="704aa32d-e437-4441-b781-8426558c1482"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="26" width="100" height="22" uuid="6f3cf0ab-5032-488c-991c-5e71d7132ba5"/>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="48" width="100" height="22" uuid="3ece3421-0f76-4c3e-98f4-e838974675e2"/>
+				<text><![CDATA[Purchase Price]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="47" width="134" height="22" uuid="99c82014-3212-4969-8e6a-3f630d25db18"/>
+				<textFieldExpression><![CDATA[$F{purchasePrice}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="115" y="70" width="134" height="22" uuid="e3e3859c-e56f-46e9-a45e-4b841d4181a3"/>
+				<textFieldExpression><![CDATA[$F{purchaseDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="70" width="100" height="22" uuid="c5278f9f-92dd-4997-aa3f-effc70c7b2ad"/>
+				<text><![CDATA[Purchase Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="69" width="129" height="22" uuid="d21e7005-9795-47be-bb12-303fbddf7817"/>
+				<text><![CDATA[State]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="69" width="104" height="22" uuid="c8c77de9-68ce-4000-86b1-77e8fc621e40"/>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="47" width="130" height="22" uuid="14752a3d-7c9d-4e17-a956-79e277f89af4"/>
+				<text><![CDATA[Stamp Duty & Govt. Charges]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="46" width="104" height="22" uuid="2fac0427-1f7a-4a82-b822-5752bd250e28"/>
+				<textFieldExpression><![CDATA[$F{stampDutyAndGovtCharges}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="92" width="100" height="22" uuid="4488aeee-859d-46df-9313-99faf0d293b3"/>
+				<text><![CDATA[Total Purchase Cost]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="92" width="134" height="22" uuid="199a2286-8ef8-4c85-9788-7afab37fbfd3"/>
+				<textFieldExpression><![CDATA[$F{totalPurchaseCost}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="91" width="129" height="22" uuid="191db4e1-e064-439b-810f-bb7394cf095b"/>
+				<text><![CDATA[Expected Weekly Rent]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="91" width="104" height="22" uuid="f03838dd-8c51-4676-a507-0203264559fd"/>
+				<textFieldExpression><![CDATA[$F{weeklyRent}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="555" height="22" uuid="b22c52d4-9bbe-42dc-8efd-6943d41e8d5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Property Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="0" y="130" width="555" height="22" uuid="5877b3e9-cdd7-4743-9606-db62a0048e3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Loan Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="201" width="129" height="22" uuid="c30dc961-93ac-418f-a047-83d368bb90a1"/>
+				<text><![CDATA[Mortgage Insurance]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="156" width="104" height="22" uuid="a48f125e-6043-468c-b412-8b1392388aed"/>
+				<textFieldExpression><![CDATA[$F{stampDutyAndGovtCharges}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="180" width="100" height="22" uuid="4720b6bf-795e-4f7a-8329-4f1906e13915"/>
+				<text><![CDATA[Interest Rate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="179" width="129" height="22" uuid="12fd4067-0863-44b8-b8ce-829e09f9d01d"/>
+				<text><![CDATA[Interest Only Period]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="158" width="100" height="22" uuid="1e99235b-bef5-48ca-b1b9-0216363f4cc0"/>
+				<text><![CDATA[Loan Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="157" width="134" height="22" uuid="1ac3d1c9-d5d2-4873-acef-dd3498294e05"/>
+				<textFieldExpression><![CDATA[$F{purchasePrice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="202" width="100" height="22" uuid="c6e97569-c5fc-406e-9473-02cf740aa701"/>
+				<text><![CDATA[Type]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="180" width="134" height="22" uuid="a0f1d24f-42eb-4e76-866c-36e3a7fd632a"/>
+				<textFieldExpression><![CDATA[$F{purchaseDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="202" width="134" height="22" uuid="27d9c8a6-eef2-451a-9c6a-a31eeb1f724e"/>
+				<textFieldExpression><![CDATA[$F{totalPurchaseCost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="179" width="104" height="22" uuid="718ef3ec-e57c-40e5-bbf8-0997b0f247d6"/>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="201" width="104" height="22" uuid="3a0c3b14-4f54-432d-b545-3edd4cb258e4"/>
+				<textFieldExpression><![CDATA[$F{weeklyRent}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="157" width="130" height="22" uuid="e2068047-4db0-4415-9e1a-ebb251996b97"/>
+				<text><![CDATA[Term]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="224" width="134" height="22" uuid="f31ccbbb-5f93-4a3d-aec7-94d0edc4f1e9"/>
+				<textFieldExpression><![CDATA[$F{totalPurchaseCost}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="224" width="100" height="22" uuid="2f177502-1ea3-4e3b-b211-56acccf4e565"/>
+				<text><![CDATA[Loan/Value Ratio]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="124" width="553" height="1" uuid="b08f09b8-83c1-4219-b9ed-7dbc2d610db9"/>
+			</line>
+			<line>
+				<reportElement x="1" y="250" width="553" height="1" uuid="60cee97e-28b2-48a6-973b-f66f33745c33"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="95fedf65-7e1c-46af-8805-09754cdce693"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="303" y="2" width="40" height="20" forecolor="#736343" uuid="2d6f8f48-0988-401a-96e9-40a26742dbc6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="223" y="2" width="80" height="20" forecolor="#736343" uuid="8d6913c4-81c1-4bd1-bdaa-621a5ced7c2b"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="2" width="197" height="20" forecolor="#736343" uuid="8cb2609f-1aaf-4185-a0d7-9372b7290407"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="356" y="2" width="132" height="20" forecolor="#736343" uuid="4535d7f8-b54e-4974-8405-2dcb76d8ce05"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["www.numbrcrunchr.com"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="488" y="2" width="85" height="20" forecolor="#736343" uuid="70f7c397-a53e-4b0c-b493-822e67d69f13"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{version}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
