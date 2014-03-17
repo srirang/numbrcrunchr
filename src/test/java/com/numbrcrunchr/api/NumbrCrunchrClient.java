@@ -14,8 +14,8 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 public class NumbrCrunchrClient {
-    private static final URI URI = UriBuilder.fromUri(
-            "http://localhost:8080/numbrcrunchr/").build();
+    private static final URI URI = UriBuilder.fromUri("http://localhost:8080/")
+            .build();
     private static final WebResource SERVICE = Client.create(
             new DefaultClientConfig()).resource(URI);
 
