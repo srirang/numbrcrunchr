@@ -10,8 +10,10 @@
   <h:head>
     <f:facet name="first">
       <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
-      <meta name="Description" CONTENT="Quickly understand the return on your property investment. Tailor made for property investors in the Australian market by property investors, for property investors" />
-      <meta name="Description" CONTENT="Number Cruncher (NumbrCrunchr) helps you decide whether to buy any given investment property or not by giving you the information you need to decide with confidence" />
+      <meta name="Description"
+        CONTENT="Quickly understand the return on your property investment. Tailor made for property investors in the Australian market by property investors, for property investors" />
+      <meta name="Description"
+        CONTENT="Number Cruncher (NumbrCrunchr) helps you decide whether to buy any given investment property or not by giving you the information you need to decide with confidence" />
       <title>NumbrCrunchr - Quickly understand return on your
         Australian property investment</title>
     </f:facet>
@@ -81,8 +83,7 @@
                 <h:panelGroup>
                   <p:inputText size="12" id="Price"
                     value="#{mainController.propertyValue}"
-                    converter="currencyConverter"
-                    required="true"
+                    converter="currencyConverter" required="true"
                     styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                     validator="#{mainController.validatePrice}">
                     <f:ajax event="blur"
@@ -172,8 +173,7 @@
               Annual Income:              
                 <p:inputText size="12"
                   value="#{mainController.annualIncome}"
-                  id="annualIncome"
-                  converter="currencyConverter"
+                  id="annualIncome" converter="currencyConverter"
                   validatorMessage="#{msg.annualIncome_range}"
                   styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                   converterMessage="#{msg.annualIncome_convert}">
@@ -208,42 +208,35 @@
                 
                 Stamp Duty:
                   <h:outputText value="#{mainController.stampDuty}"
-                  id="stampDuty"
-                  converter="currencyConverter" />
+                  id="stampDuty" converter="currencyConverter" />
                 
                 Conveyancing Cost:
                   <h:outputText
                   value="#{mainController.conveyancingCost}"
-                  id="conveyancingCost"
-                  converter="currencyConverter" />
+                  id="conveyancingCost" converter="currencyConverter" />
                 
                 Government Costs:
                   <h:outputText
                   value="#{mainController.governmentCosts}"
-                  id="governmentCosts"
-                  converter="currencyConverter" />
+                  id="governmentCosts" converter="currencyConverter" />
                 
                 Total Cost:
                   <h:outputText
                   value="#{mainController.totalPurhcaseCost}"
-                  id="totalPurhcaseCost"
-                  converter="currencyConverter" />
+                  id="totalPurhcaseCost" converter="currencyConverter" />
                 
                 Cash Deposit:
                   <h:outputText value="#{mainController.deposit}"
-                  id="deposit"
-                  converter="currencyConverter" />
+                  id="deposit" converter="currencyConverter" />
                 
                 Loan Required:
                   <h:outputText value="#{mainController.loanAmount}"
-                  id="loanAmount"
-                  converter="currencyConverter" />
+                  id="loanAmount" converter="currencyConverter" />
 
                 Loan/Value Ratio (LVR):
                   <p:inputText size="6" id="lvr"
                   value="#{mainController.lvr}"
-                  converter="percentageConverter"
-                  disabled="true">
+                  converter="percentageConverter" disabled="true">
                 </p:inputText>
 
                 Lender's Mortgage Insurance:
@@ -455,7 +448,7 @@
       <p:ajaxStatus
         style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
         <f:facet name="start">
-          <p:graphicImage library="images" value="loading.gif"
+          <h:graphicImage library="images" name="loading.gif"
             alt="Loading..." />
         </f:facet>
 
