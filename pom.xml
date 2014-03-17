@@ -37,6 +37,21 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-json</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-bundle</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.primefaces</groupId>
       <artifactId>primefaces</artifactId>
       <version>${primafaces.version}</version>
@@ -129,6 +144,12 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+      <groupId>asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>3.3.1</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
       <version>3.7</version>
@@ -176,6 +197,7 @@
     <jdk.version>1.7</jdk.version>
     <hsqldb.version>2.3.1</hsqldb.version>
     <hibernate.version>3.5.1-Final</hibernate.version>
+    <jersey.version>1.9.1</jersey.version>
 
     <maven.cobertura.plugin>2.5.1</maven.cobertura.plugin>
     <maven.javadoc.plugin>2.9</maven.javadoc.plugin>
