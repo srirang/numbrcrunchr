@@ -13,13 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.numbrcrunchr.domain.FeasibilityAnalysisProjectionService;
-import com.numbrcrunchr.domain.FeasibilityAnalysisResult;
-import com.numbrcrunchr.domain.OngoingCosts;
-import com.numbrcrunchr.domain.Projection;
-import com.numbrcrunchr.domain.ProjectionParameters;
-import com.numbrcrunchr.domain.Property;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/domainApplicationContext.xml" })
 public class FeasibilityAnalysisProjectionServiceTest {
@@ -225,8 +218,15 @@ public class FeasibilityAnalysisProjectionServiceTest {
         List<FeasibilityAnalysisResult> projections = projection
                 .getProjections();
         double previousLoanBalance = loanAmount + 1;
+        int i = 1;
         for (FeasibilityAnalysisResult result : projections) {
             assertTrue(result.getLoanBalance() < previousLoanBalance);
+            if (i == 1) {
+                assertEquals("Y 1 (partial)", result.getYear());
+            } else {
+                assertEquals("Y " + i, result.getYear());
+            }
+            i++;
             previousLoanBalance = result.getLoanBalance();
         }
     }

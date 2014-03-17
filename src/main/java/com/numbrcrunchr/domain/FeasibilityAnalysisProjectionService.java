@@ -42,7 +42,7 @@ public class FeasibilityAnalysisProjectionService implements Serializable {
                         projectionProperty, yearlyRepayment.getInterest()
                                 .doubleValue(), yearlyRepayment.getPrincipal()
                                 .doubleValue(), PROJECTION_YEAR_PREFIX
-                                + i + 1);
+                                + (i + 1));
                 projectionProperty.setLoanAmount(yearlyRepayment
                         .getLoanBalance());
                 projections.add(result);
